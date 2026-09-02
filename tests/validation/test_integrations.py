@@ -1,0 +1,53 @@
+import glob
+import os
+import unittest
+import yaml
+
+ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
+
+class TestIntegrations(unittest.TestCase):
+    def test_all_integrations_present_and_valid(self):
+        expected_integrations = {
+            "ecc",
+            "graphify",
+            "unlazy",
+            "addy",
+            "agency",
+            "gstack",
+            "opendesign",
+            "ponytail",
+            "karpathy"
+        }
+        
+        integration_files = glob.glob(os.path.join(ROOT_DIR, "integrations", "*.yaml"))
+        found_integrations = set()
+        
+        for file_path in integration_files:
+            name = os.path.splitext(os.path.basename(file_path))[0]
+            found_integrations.add(name)
+            
+            with open(file_path, "r", encoding="utf-8") as f:
+                data = yaml.safe_load(f)
+                
+            self.assertIn("source", data, f"{name}.yaml missing source")
+            self.assertIn("role", data, f"{name}.yaml missing role")
+            self.assertIn("ref", data, f"{name}.yaml missing ref")
+            self.assertIn("integration_type", data, f"{name}.yaml missing integration_type")
+            self.assertIn("hosts", data, f"{name}.yaml missing hosts")
+            
+        self.assertEqual(expected_integrations, found_integrations, "Mismatch in expected integrations")
+
+    def test_skills_frontmatter(self):
+        skill_files = glob.glob(os.path.join(ROOT_DIR, "skills", "*", "SKILL.md"))
+        self.assertGreaterEqual(len(skill_files), 5, "Expected at least 5 core skills")
+        
+        for skill_file in skill_files:
+            with open(skill_file, "r", encoding="utf-8") as f:
+                content = f.read()
+                
+            self.assertTrue(content.startswith("---"), f"{skill_file} missing frontmatter delimiter")
+            self.assertIn("name:", content, f"{skill_file} missing name in frontmatter")
+            self.assertIn("description:", content, f"{skill_file} missing description in frontmatter")
+
+if __name__ == "__main__":
+    unittest.main()

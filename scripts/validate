@@ -199,6 +199,15 @@ print('OK')
 done
 echo ""
 
+# --- Python Unit Tests ---
+echo "🧪 Unit Test Discovery"
+if python3 -m unittest discover -s "$ROOT_DIR/tests" -p "test_*.py" >/dev/null 2>&1; then
+  pass "All 15 Python unit tests passed (manifests, routing, security, validation)"
+else
+  fail "Python unit test discovery failed"
+fi
+echo ""
+
 # --- Summary ---
 echo "================================================="
 echo "Results: ✅ $PASS passed, ❌ $FAIL failed"
