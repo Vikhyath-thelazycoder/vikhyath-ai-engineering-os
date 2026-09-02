@@ -256,7 +256,7 @@ echo ""
 
 # --- Key Files ---
 echo "📝 Key Files"
-for file in README.md AGENTS.md CLAUDE.md LICENSE CHANGELOG.md; do
+for file in README.md AGENTS.md CLAUDE.md LICENSE CHANGELOG.md CONTRIBUTING.md SECURITY.md CODE_OF_CONDUCT.md; do
   if [ -f "$ROOT_DIR/$file" ]; then
     pass "$file exists"
   else

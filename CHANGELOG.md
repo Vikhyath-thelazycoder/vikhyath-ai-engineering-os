@@ -10,7 +10,11 @@ All notable changes to the Vikhyath AI Engineering OS will be documented in this
 - Claude Code marketplace metadata in `.claude-plugin/marketplace.json` exposing root plugin source (`./`)
 - GitHub Actions CI workflow in `.github/workflows/ci.yml` running unit tests, diagnostics, validation, and architecture audits on PRs and pushes
 - Support for `--online` verification flag in `./scripts/validate` for remote GitHub commit SHA verification
-- Expanded unit test suite (18 unit tests across manifests, routing, security, and integration schemas)
+- Expanded unit test suite (20 unit tests across manifests, routing, security, integration schemas, and community health files)
+- Open-source governance files: `CONTRIBUTING.md`, `SECURITY.md`, `CODE_OF_CONDUCT.md`
+- GitHub issue templates for bug reports, feature requests, and capability proposals
+- Pull request template with strict NO-MCP and NO-vendor checklists
+- Comprehensive 18-section public README with exact native host commands, troubleshooting, and verification workflows
 
 ### Changed
 - Updated `.claude-plugin/plugin.json` to minimal valid schema, removing non-standard relative skills path

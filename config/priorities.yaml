@@ -1,6 +1,6 @@
 # Vikhyath AI Engineering OS — Priority Configuration
 # Conflict resolution and priority ordering
-# Version: 1.0.0
+# Version: 1.0.1
 
 # When two capabilities provide conflicting guidance, use this hierarchy
 conflict_hierarchy:

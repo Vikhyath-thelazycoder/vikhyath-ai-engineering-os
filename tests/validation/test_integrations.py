@@ -60,5 +60,19 @@ class TestIntegrations(unittest.TestCase):
         self.assertIn("name", ci)
         self.assertIn("jobs", ci)
 
+    def test_community_health_files(self):
+        expected_files = [
+            "CONTRIBUTING.md",
+            "SECURITY.md",
+            "CODE_OF_CONDUCT.md",
+            os.path.join(".github", "pull_request_template.md"),
+            os.path.join(".github", "ISSUE_TEMPLATE", "bug_report.md"),
+            os.path.join(".github", "ISSUE_TEMPLATE", "feature_request.md"),
+            os.path.join(".github", "ISSUE_TEMPLATE", "capability_proposal.md"),
+        ]
+        for rel_path in expected_files:
+            full_path = os.path.join(ROOT_DIR, rel_path)
+            self.assertTrue(os.path.isfile(full_path), f"Expected open-source health file missing: {rel_path}")
+
 if __name__ == "__main__":
     unittest.main()
