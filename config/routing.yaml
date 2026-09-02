@@ -1,0 +1,177 @@
+# Vikhyath AI Engineering OS — Routing Rules
+# Determines which capabilities activate for which task types
+# Version: 1.0.0
+
+routing:
+
+  # Simple tasks — minimal capability set
+  simple-bugfix:
+    description: "Fix a small bug, typo, or minor issue"
+    signals:
+      - "fix typo"
+      - "small bug"
+      - "minor fix"
+      - "one-liner"
+      - "simple change"
+    activate:
+      - ecc
+    optional:
+      - addy  # Only if testing/security relevance exists
+
+  # Engineering implementation
+  engineering-task:
+    description: "Standard engineering implementation"
+    signals:
+      - "implement"
+      - "add feature"
+      - "create"
+      - "build"
+      - "develop"
+    activate:
+      - ecc
+    optional:
+      - addy
+      - agency  # Only if specialist domain needed
+
+  # Complex/unfamiliar codebase
+  complex-codebase:
+    description: "Working with large or unfamiliar codebases"
+    signals:
+      - "unfamiliar repo"
+      - "monorepo"
+      - "large codebase"
+      - "understand the code"
+      - "navigate the architecture"
+      - "trace dependencies"
+    activate:
+      - ecc
+      - graphify
+    optional:
+      - agency  # Architecture specialist
+
+  # Security-sensitive work
+  security-task:
+    description: "Security-sensitive changes"
+    signals:
+      - "authentication"
+      - "authorization"
+      - "security"
+      - "credentials"
+      - "encryption"
+      - "vulnerability"
+      - "OWASP"
+      - "hardening"
+    activate:
+      - ecc
+      - addy  # security/hardening skills
+    optional:
+      - agency  # security specialist
+
+  # Large feature implementation
+  large-feature:
+    description: "Substantial multi-part implementation"
+    signals:
+      - "large feature"
+      - "multi-file"
+      - "substantial"
+      - "don't stop until done"
+      - "complete implementation"
+    activate:
+      - ecc
+      - unlazy
+    optional:
+      - graphify  # If codebase is complex
+      - agency    # If specialist domain needed
+
+  # UI/Design work
+  design-task:
+    description: "UI/UX and design-related work"
+    signals:
+      - "UI"
+      - "UX"
+      - "design"
+      - "redesign"
+      - "visual"
+      - "layout"
+      - "frontend design"
+      - "design system"
+    activate:
+      - ecc
+      - opendesign
+    optional:
+      - agency  # frontend/design specialist
+
+  # Review/release
+  review-release:
+    description: "Code review, product review, or release preparation"
+    signals:
+      - "review"
+      - "release"
+      - "ship"
+      - "deploy"
+      - "production"
+      - "launch"
+      - "QA"
+    activate:
+      - ecc
+      - gstack
+    optional:
+      - addy    # production engineering
+      - unlazy  # completion discipline for substantial releases
+
+  # Simplicity/YAGNI review
+  simplicity-review:
+    description: "Explicit simplicity or overengineering review"
+    signals:
+      - "simplicity"
+      - "YAGNI"
+      - "overengineered"
+      - "too complex"
+      - "unnecessary abstraction"
+      - "ponytail"
+    activate:
+      - ponytail
+    notes: "Only activated on explicit request. Default is OFF."
+
+  # Refactoring
+  refactor:
+    description: "Code refactoring"
+    signals:
+      - "refactor"
+      - "restructure"
+      - "reorganize"
+      - "clean up"
+      - "modernize"
+    activate:
+      - ecc
+    optional:
+      - graphify   # For understanding impact
+      - ponytail   # For simplification opportunities
+
+  # Architecture work
+  architecture:
+    description: "Architecture design or review"
+    signals:
+      - "architecture"
+      - "system design"
+      - "design patterns"
+      - "structure"
+    activate:
+      - ecc
+      - graphify
+    optional:
+      - agency  # architecture specialist
+
+# Fallback behavior
+fallback:
+  description: "When no specific routing rule matches"
+  activate:
+    - ecc
+  notes: "ECC is the default engineering foundation for unclassified tasks"
+
+# Context loading rules
+context_rules:
+  max_simultaneous_capabilities: 4
+  prefer_fewer_capabilities: true
+  unload_after_task: true
+  never_load_all: true

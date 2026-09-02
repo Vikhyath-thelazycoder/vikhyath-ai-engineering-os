@@ -1,0 +1,21 @@
+# Addy Agent Skills Integration Metadata
+name: addy
+source: addyosmani/agent-skills
+url: https://github.com/addyosmani/agent-skills
+role: production-engineering
+version: "0.6.8"
+ref: d2c37ef6225dd8726cdd369a8030307f48592d26
+tag: "0.6.8"
+license: MIT
+integration_type: plugin
+install:
+  codex: "codex plugin install addyosmani/agent-skills --trust"
+  claude: "claude plugin install addyosmani/agent-skills"
+  antigravity: "Clone or reference the repository. The .agents/ directory provides native integration."
+hosts:
+  codex: true
+  antigravity: true
+  claude: true
+notes: |
+  Production-oriented agent skills covering code review, security hardening, testing,
+  performance, and engineering best practices. Skill-based design fits progressive activation.

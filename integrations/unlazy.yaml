@@ -1,0 +1,19 @@
+# Unlazy Integration Metadata
+name: unlazy
+source: Leonxlnx/unlazy
+url: https://github.com/Leonxlnx/unlazy
+role: completion-discipline
+ref: 473d4b80421c36d733042434cd4b938f81a19ef1
+license: MIT
+integration_type: skill-reference
+install:
+  codex: "Reference SKILL.md from the unlazy repository"
+  claude: "Reference SKILL.md from the unlazy repository"
+hosts:
+  codex: true
+  antigravity: false
+  claude: true
+notes: |
+  Completion discipline for preventing incomplete work. Provides acceptance gates, depth trees,
+  verification, and exhaustive completion. Use conditionally for substantial tasks.
+  Do NOT make hard-stop behavior a universal requirement across every host.

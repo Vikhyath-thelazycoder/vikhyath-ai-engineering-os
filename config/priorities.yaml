@@ -1,0 +1,61 @@
+# Vikhyath AI Engineering OS — Priority Configuration
+# Conflict resolution and priority ordering
+# Version: 1.0.0
+
+# When two capabilities provide conflicting guidance, use this hierarchy
+conflict_hierarchy:
+  - level: 1
+    source: user-requirements
+    description: "Explicit user requirements always win"
+
+  - level: 2
+    source: project-security
+    description: "Security and safety constraints"
+
+  - level: 3
+    source: project-architecture
+    description: "Established project architecture decisions"
+
+  - level: 4
+    source: ecc
+    description: "ECC engineering workflow methodology"
+
+  - level: 5
+    source: security-testing
+    description: "Specialized security and testing guidance (Addy)"
+
+  - level: 6
+    source: domain-specialists
+    description: "Domain specialist agents (Agency)"
+
+  - level: 7
+    source: product-review
+    description: "Product and review workflows (gstack)"
+
+  - level: 8
+    source: simplicity
+    description: "Simplicity optimization (Ponytail)"
+
+# Capability priorities (higher = more authoritative)
+capability_priorities:
+  ecc: 100
+  graphify: 90
+  unlazy: 80
+  addy: 75
+  agency: 70
+  gstack: 60
+  opendesign: 50
+  ponytail: 40
+  karpathy: 30
+
+# Default activation states
+defaults:
+  ecc: "on"           # Always-available foundation
+  graphify: "off"      # Activated for complex codebases
+  unlazy: "off"        # Activated for substantial tasks
+  addy: "off"          # Activated for relevant engineering tasks
+  agency: "off"        # Activated when specialist needed
+  gstack: "off"        # Activated for review/release
+  opendesign: "off"    # Activated for design tasks
+  ponytail: "off"      # Explicit activation only
+  karpathy: "off"      # Reference only

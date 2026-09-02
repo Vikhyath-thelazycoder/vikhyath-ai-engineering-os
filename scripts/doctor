@@ -1,0 +1,151 @@
+#!/usr/bin/env bash
+# Vikhyath AI Engineering OS — Doctor Script
+# Validates repository structure, manifests, and configuration integrity
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ROOT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+
+PASS=0
+FAIL=0
+WARN=0
+
+pass() { echo "  ✅ $1"; PASS=$((PASS + 1)); }
+fail() { echo "  ❌ $1"; FAIL=$((FAIL + 1)); }
+warn() { echo "  ⚠️  $1"; WARN=$((WARN + 1)); }
+
+echo "🔍 Vikhyath AI Engineering OS — Doctor"
+echo "======================================="
+echo ""
+
+# --- Repository Structure ---
+echo "📁 Repository Structure"
+for dir in skills agents workflows integrations config tests scripts .codex-plugin .claude-plugin .agents/skills; do
+  if [ -d "$ROOT_DIR/$dir" ]; then
+    pass "$dir/ exists"
+  else
+    fail "$dir/ missing"
+  fi
+done
+echo ""
+
+# --- Manifests ---
+echo "📋 Manifests"
+for file in .codex-plugin/plugin.json .claude-plugin/plugin.json; do
+  if [ -f "$ROOT_DIR/$file" ]; then
+    if python3 -c "import json; json.load(open('$ROOT_DIR/$file'))" 2>/dev/null; then
+      pass "$file valid JSON"
+    else
+      fail "$file invalid JSON"
+    fi
+  else
+    fail "$file missing"
+  fi
+done
+echo ""
+
+# --- No MCP Check ---
+echo "🚫 MCP Absence Check"
+if grep -rq "mcpServers" "$ROOT_DIR/.codex-plugin/" "$ROOT_DIR/.claude-plugin/" 2>/dev/null; then
+  fail "MCP configuration found in plugin manifests!"
+else
+  pass "No MCP in plugin manifests"
+fi
+if [ -f "$ROOT_DIR/.mcp.json" ]; then
+  fail ".mcp.json file exists — MCP is prohibited"
+else
+  pass "No .mcp.json file"
+fi
+if grep -rql "mcpServers\|mcp-configs\|mcp_server\|MCP" "$ROOT_DIR/config/" 2>/dev/null; then
+  fail "MCP references found in config/"
+else
+  pass "No MCP references in config/"
+fi
+echo ""
+
+# --- YAML Validation ---
+echo "📄 YAML Configuration"
+for file in config/capabilities.yaml config/routing.yaml config/priorities.yaml; do
+  if [ -f "$ROOT_DIR/$file" ]; then
+    if python3 -c "import yaml; yaml.safe_load(open('$ROOT_DIR/$file'))" 2>/dev/null; then
+      pass "$file valid YAML"
+    else
+      fail "$file invalid YAML"
+    fi
+  else
+    fail "$file missing"
+  fi
+done
+echo ""
+
+# --- Integration Files ---
+echo "🔗 Integration Metadata"
+for file in integrations/*.yaml; do
+  if [ -f "$ROOT_DIR/$file" ]; then
+    if python3 -c "import yaml; yaml.safe_load(open('$ROOT_DIR/$file'))" 2>/dev/null; then
+      pass "$(basename $file) valid YAML"
+    else
+      fail "$(basename $file) invalid YAML"
+    fi
+  fi
+done
+echo ""
+
+# --- Skills ---
+echo "🎯 Skills"
+for skill_dir in skills/vikhyath-*/; do
+  skill_name=$(basename "$skill_dir")
+  if [ -f "$ROOT_DIR/$skill_dir/SKILL.md" ]; then
+    pass "$skill_name/SKILL.md exists"
+  else
+    fail "$skill_name/SKILL.md missing"
+  fi
+done
+echo ""
+
+# --- No Vendor Copies ---
+echo "📦 No Upstream Copies"
+if [ -d "$ROOT_DIR/vendor" ]; then
+  fail "vendor/ directory exists — upstream copies prohibited"
+else
+  pass "No vendor/ directory"
+fi
+for repo in ECC agency-agents gstack graphify agent-skills unlazy ponytail; do
+  if [ -d "$ROOT_DIR/vendor/$repo" ] 2>/dev/null; then
+    fail "vendor/$repo/ exists — upstream copy prohibited"
+  fi
+done
+pass "No upstream repository copies detected"
+echo ""
+
+# --- Version ---
+echo "🏷️  Version"
+if [ -f "$ROOT_DIR/VERSION" ]; then
+  VERSION=$(cat "$ROOT_DIR/VERSION" | tr -d '[:space:]')
+  pass "VERSION file exists: $VERSION"
+else
+  fail "VERSION file missing"
+fi
+echo ""
+
+# --- Key Files ---
+echo "📝 Key Files"
+for file in README.md AGENTS.md CLAUDE.md LICENSE CHANGELOG.md; do
+  if [ -f "$ROOT_DIR/$file" ]; then
+    pass "$file exists"
+  else
+    fail "$file missing"
+  fi
+done
+echo ""
+
+# --- Summary ---
+echo "======================================="
+echo "Results: ✅ $PASS passed, ❌ $FAIL failed, ⚠️  $WARN warnings"
+if [ $FAIL -gt 0 ]; then
+  echo "❌ Doctor found issues. Please fix the failures above."
+  exit 1
+else
+  echo "✅ All checks passed!"
+  exit 0
+fi

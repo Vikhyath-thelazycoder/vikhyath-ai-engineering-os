@@ -1,0 +1,19 @@
+# Graphify Integration Metadata
+name: graphify
+source: Graphify-Labs/graphify
+url: https://github.com/Graphify-Labs/graphify
+role: codebase-intelligence
+ref: 91f4d120b630ee35c79bf3c75ccd186870a808f9
+tag: v1.0.0
+license: Apache-2.0 AND MIT
+integration_type: cli-tool
+install:
+  all: "pip install graphify-ai"
+hosts:
+  codex: false
+  antigravity: false
+  claude: false
+notes: |
+  Deterministic codebase knowledge graph using AST/tree-sitter. Python CLI tool, not a native
+  plugin for any host. Install via pip and use as external CLI. Activate only when codebase
+  understanding is materially useful. Do NOT use MCP even if Graphify supports it.

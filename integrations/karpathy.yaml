@@ -1,0 +1,19 @@
+# Karpathy Skills Integration Metadata
+name: karpathy
+source: multica-ai/andrej-karpathy-skills
+url: https://github.com/multica-ai/andrej-karpathy-skills
+role: engineering-principles
+ref: 2c606141936f1eeef17fa3043a72095b4765b9c2
+license: MIT
+integration_type: skill-reference
+install:
+  codex: "Reference skills from the repository"
+  claude: "Reference skills from the repository"
+hosts:
+  codex: true
+  antigravity: false
+  claude: true
+notes: |
+  Lightweight engineering principles: think before coding, simplicity first, surgical changes,
+  goal-driven execution. Treat as a reference/principle layer. Do NOT duplicate into every skill.
+  Do NOT create another giant always-loaded prompt from this.

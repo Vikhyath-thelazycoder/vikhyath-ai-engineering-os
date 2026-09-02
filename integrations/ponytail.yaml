@@ -1,0 +1,21 @@
+# Ponytail Integration Metadata
+name: ponytail
+source: DietrichGebert/ponytail
+url: https://github.com/DietrichGebert/ponytail
+role: simplicity-review
+ref: 2ed6c52c9d7e5e56942508591085fd45dea277d3
+license: MIT
+integration_type: plugin
+install:
+  codex: "codex plugin install DietrichGebert/ponytail --trust"
+  claude: "claude plugin install DietrichGebert/ponytail"
+  antigravity: "Clone or reference the repository. Uses .agents/ directory."
+hosts:
+  codex: true
+  antigravity: true
+  claude: true
+default: "off"
+notes: |
+  Simplicity/YAGNI review. Identifies unnecessary abstractions, overengineering, and premature
+  complexity. IMPORTANT: Default is OFF. Only activate on explicit request. Do NOT make
+  automatic mode the global default.

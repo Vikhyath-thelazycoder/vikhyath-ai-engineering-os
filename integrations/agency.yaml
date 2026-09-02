@@ -1,0 +1,20 @@
+# Agency Agents Integration Metadata
+name: agency
+source: msitarzewski/agency-agents
+url: https://github.com/msitarzewski/agency-agents
+role: specialist-agent
+ref: 3c9588880b7cafaec325a104899fd8bbe27e7d72
+license: MIT
+integration_type: agent-reference
+install:
+  codex: "Reference specialist agent files from the agency-agents repository"
+  claude: "Reference specialist agent files from the agency-agents repository"
+  antigravity: "Reference specialist agent files from the agency-agents repository"
+hosts:
+  codex: true
+  antigravity: true
+  claude: true
+notes: |
+  273 specialist AI agents organized by division (engineering, design, product, security, etc.).
+  IMPORTANT: Only activate relevant specialists. Do NOT install the entire agency as an
+  always-running swarm. Use selective specialist activation.

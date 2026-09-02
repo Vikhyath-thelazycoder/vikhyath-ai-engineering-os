@@ -1,0 +1,25 @@
+# ECC Integration Metadata
+name: ecc
+source: affaan-m/ECC
+url: https://github.com/affaan-m/ECC
+role: engineering-foundation
+version: "2.2.1"
+ref: ca185ef5f7667078a1e70a763bd3a9c71c48acf0
+tag: v2.2.0
+license: MIT
+integration_type: plugin
+install:
+  codex: "codex plugin install affaan-m/ECC --trust"
+  claude: "claude plugin install affaan-m/ECC"
+  antigravity: "Clone or reference the ECC repository. The .agents/ directory provides native Antigravity skill integration."
+hosts:
+  codex: true
+  antigravity: true
+  claude: true
+notes: |
+  ECC is the primary engineering foundation. It provides comprehensive engineering
+  workflows including planning, implementation, testing, review, verification, and
+  security practices. Do NOT duplicate ECC's methodology — route to it.
+  
+  IMPORTANT: ECC's plugin configuration includes MCP support, but Vikhyath MUST NOT
+  adopt the MCP portion. Use only the non-MCP capabilities (skills, hooks, agents, workflows).

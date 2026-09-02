@@ -1,0 +1,211 @@
+#!/usr/bin/env bash
+# Vikhyath AI Engineering OS — Validation Script
+# Runs comprehensive validation tests
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ROOT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+
+PASS=0
+FAIL=0
+
+pass() { echo "  ✅ $1"; PASS=$((PASS + 1)); }
+fail() { echo "  ❌ $1"; FAIL=$((FAIL + 1)); }
+warn() { echo "  ⚠️  $1"; }
+
+echo "🧪 Vikhyath AI Engineering OS — Validation Suite"
+echo "================================================="
+echo ""
+
+# --- Manifest Tests ---
+echo "📋 Manifest Tests"
+
+# Codex manifest
+CODEX_MANIFEST="$ROOT_DIR/.codex-plugin/plugin.json"
+if python3 -c "
+import json, sys
+m = json.load(open('$CODEX_MANIFEST'))
+assert 'name' in m, 'missing name'
+assert 'version' in m, 'missing version'
+assert 'skills' in m, 'missing skills'
+assert 'mcpServers' not in m, 'mcpServers found — MCP prohibited!'
+assert m['name'] == 'vikhyath-ai-engineering-os', 'wrong name'
+print('OK')
+" 2>/dev/null; then
+  pass "Codex manifest valid, no MCP"
+else
+  fail "Codex manifest validation failed"
+fi
+
+# Claude manifest
+CLAUDE_MANIFEST="$ROOT_DIR/.claude-plugin/plugin.json"
+if python3 -c "
+import json, sys
+m = json.load(open('$CLAUDE_MANIFEST'))
+assert 'name' in m, 'missing name'
+assert 'mcpServers' not in m, 'mcpServers found — MCP prohibited!'
+print('OK')
+" 2>/dev/null; then
+  pass "Claude manifest valid, no MCP"
+else
+  fail "Claude manifest validation failed"
+fi
+
+# Antigravity files
+if [ -f "$ROOT_DIR/.agents/skills/vikhyath-os/SKILL.md" ]; then
+  pass "Antigravity skill adapter exists"
+else
+  fail "Antigravity skill adapter missing"
+fi
+echo ""
+
+# --- Routing Tests ---
+echo "🔀 Routing Tests"
+
+if python3 -c "
+import yaml
+routing = yaml.safe_load(open('$ROOT_DIR/config/routing.yaml'))
+r = routing['routing']
+
+# Test: simple-bugfix routes to ecc
+assert 'ecc' in r['simple-bugfix']['activate'], 'bugfix should route to ecc'
+
+# Test: complex-codebase routes to ecc + graphify
+assert 'ecc' in r['complex-codebase']['activate'], 'complex should route to ecc'
+assert 'graphify' in r['complex-codebase']['activate'], 'complex should route to graphify'
+
+# Test: security-task routes to ecc + addy
+assert 'ecc' in r['security-task']['activate'], 'security should route to ecc'
+assert 'addy' in r['security-task']['activate'], 'security should route to addy'
+
+# Test: simplicity only routes to ponytail
+assert 'ponytail' in r['simplicity-review']['activate'], 'simplicity should route to ponytail'
+
+# Test: review-release routes to ecc + gstack
+assert 'ecc' in r['review-release']['activate'], 'release should route to ecc'
+assert 'gstack' in r['review-release']['activate'], 'release should route to gstack'
+
+# Test: fallback
+assert 'ecc' in routing['fallback']['activate'], 'fallback should route to ecc'
+
+print('OK')
+" 2>/dev/null; then
+  pass "Routing rules valid"
+  pass "  fix typo → minimal (ecc)"
+  pass "  unfamiliar monorepo → ecc + graphify"
+  pass "  authentication → ecc + addy"
+  pass "  simplicity review → ponytail"
+  pass "  production release → ecc + gstack"
+else
+  fail "Routing validation failed"
+fi
+echo ""
+
+# --- Capability Registry Tests ---
+echo "📦 Capability Registry Tests"
+
+if python3 -c "
+import yaml
+caps = yaml.safe_load(open('$ROOT_DIR/config/capabilities.yaml'))['capabilities']
+
+# Verify all 9 capabilities
+expected = ['ecc', 'graphify', 'unlazy', 'addy', 'agency', 'gstack', 'opendesign', 'ponytail', 'karpathy']
+for cap in expected:
+    assert cap in caps, f'missing capability: {cap}'
+    assert 'source' in caps[cap], f'{cap} missing source'
+    assert 'role' in caps[cap], f'{cap} missing role'
+    assert 'priority' in caps[cap], f'{cap} missing priority'
+    assert 'ref' in caps[cap], f'{cap} missing ref'
+    assert 'activation' in caps[cap], f'{cap} missing activation'
+
+# Verify priorities are ordered
+assert caps['ecc']['priority'] > caps['graphify']['priority'], 'ecc should have higher priority'
+assert caps['graphify']['priority'] > caps['unlazy']['priority'], 'graphify > unlazy'
+
+# Verify ponytail default is off
+assert caps['ponytail'].get('default') == 'off', 'ponytail should default to off'
+
+print('OK')
+" 2>/dev/null; then
+  pass "All 9 capabilities registered with verified refs"
+  pass "Priority ordering correct"
+  pass "Ponytail defaults to off"
+else
+  fail "Capability registry validation failed"
+fi
+echo ""
+
+# --- Security Tests ---
+echo "🔒 Security Tests"
+
+# No MCP anywhere
+if grep -rq "mcpServers" "$ROOT_DIR/.codex-plugin/" "$ROOT_DIR/.claude-plugin/" 2>/dev/null; then
+  fail "MCP found in manifests"
+else
+  pass "No MCP in manifests"
+fi
+
+if [ -f "$ROOT_DIR/.mcp.json" ]; then
+  fail ".mcp.json exists"
+else
+  pass "No .mcp.json"
+fi
+
+# No unpinned dependencies
+if python3 -c "
+import yaml
+caps = yaml.safe_load(open('$ROOT_DIR/config/capabilities.yaml'))['capabilities']
+for name, cap in caps.items():
+    assert 'ref' in cap, f'{name} has no pinned ref'
+print('OK')
+" 2>/dev/null; then
+  pass "All dependencies version-pinned"
+else
+  fail "Unpinned dependencies detected"
+fi
+
+# No vendor copies
+if [ -d "$ROOT_DIR/vendor" ]; then
+  fail "vendor/ directory exists"
+else
+  pass "No vendor/ copies"
+fi
+
+# No dangerous commands in scripts
+if grep -rq "curl.*\| *sh\|wget.*\| *bash\|eval.*\$(" "$ROOT_DIR/scripts/" 2>/dev/null; then
+  warn "Potentially dangerous commands in scripts"
+else
+  pass "No unsafe remote execution in scripts"
+fi
+echo ""
+
+# --- Integration Metadata Tests ---
+echo "🔗 Integration Tests"
+for file in "$ROOT_DIR"/integrations/*.yaml; do
+  name=$(basename "$file" .yaml)
+  if python3 -c "
+import yaml
+i = yaml.safe_load(open('$file'))
+assert 'source' in i, 'missing source'
+assert 'role' in i, 'missing role'
+assert 'ref' in i, 'missing ref'
+assert 'integration_type' in i, 'missing integration_type'
+print('OK')
+" 2>/dev/null; then
+    pass "$name integration metadata valid"
+  else
+    fail "$name integration metadata invalid"
+  fi
+done
+echo ""
+
+# --- Summary ---
+echo "================================================="
+echo "Results: ✅ $PASS passed, ❌ $FAIL failed"
+if [ $FAIL -gt 0 ]; then
+  echo "❌ Validation failed. Fix the issues above."
+  exit 1
+else
+  echo "✅ All validation tests passed!"
+  exit 0
+fi

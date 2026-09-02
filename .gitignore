@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+.env
+.env.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+*.swp
+*.swo
+*~
+
+# Build artifacts
+dist/
+build/
+*.pyc
+__pycache__/
+
+# Test output
+coverage/
+.nyc_output/

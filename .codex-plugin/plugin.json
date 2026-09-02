@@ -1,0 +1,35 @@
+{
+  "name": "vikhyath-ai-engineering-os",
+  "version": "1.0.0",
+  "description": "Vikhyath AI Engineering OS — A thin orchestration plugin that selectively activates specialized engineering capabilities from proven external repositories.",
+  "author": {
+    "name": "Vikhyath",
+    "url": "https://github.com/Vikhyath-thelazycoder"
+  },
+  "homepage": "https://github.com/Vikhyath-thelazycoder/vikhyath-ai-engineering-os",
+  "repository": "https://github.com/Vikhyath-thelazycoder/vikhyath-ai-engineering-os",
+  "license": "MIT",
+  "keywords": [
+    "ai",
+    "engineering",
+    "orchestration",
+    "plugin",
+    "codex",
+    "skills",
+    "routing",
+    "capabilities"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Vikhyath AI Engineering OS",
+    "shortDescription": "Orchestration plugin that routes tasks to specialized engineering capabilities.",
+    "longDescription": "Vikhyath AI Engineering OS is a plugin-based orchestration layer that selectively activates specialized engineering capabilities from proven external repositories including ECC, Graphify, Addy Agent Skills, Agency Agents, gstack, Unlazy, Ponytail, Karpathy Skills, and OpenDesign. It provides progressive activation, context-efficient routing, and multi-host support.",
+    "developerName": "Vikhyath",
+    "category": "Coding",
+    "capabilities": [
+      "Interactive",
+      "Read"
+    ],
+    "brandColor": "#6C5CE7"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "vikhyath-ai-engineering-os",
+  "version": "1.0.0",
+  "description": "Vikhyath AI Engineering OS — Orchestration plugin for selective engineering capability activation.",
+  "skills": "../skills/",
+  "interface": {
+    "displayName": "Vikhyath AI Engineering OS",
+    "category": "Coding"
+  }
+}

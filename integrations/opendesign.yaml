@@ -1,0 +1,18 @@
+# OpenDesign Integration Metadata
+name: opendesign
+source: nexu-io/open-design
+url: https://github.com/nexu-io/open-design
+role: design
+ref: 349748ee36cb641895679bde7b46a8728ed1c1bb
+license: Apache-2.0
+integration_type: reference
+install:
+  all: "Reference the open-design repository for design workflows and templates"
+hosts:
+  codex: false
+  antigravity: false
+  claude: false
+notes: |
+  Design platform for UI/UX work, design systems, and visual product decisions. Not a native
+  plugin for any AI coding host. Use as external reference for design-specific tasks.
+  Should not add unnecessary context to normal backend/CLI tasks.

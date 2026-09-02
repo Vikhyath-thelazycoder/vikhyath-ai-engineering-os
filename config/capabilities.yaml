@@ -1,0 +1,301 @@
+# Vikhyath AI Engineering OS — Capability Registry
+# Machine-readable registry of all external capabilities
+# Version: 1.0.0
+
+capabilities:
+
+  ecc:
+    source: affaan-m/ECC
+    role: engineering-foundation
+    priority: 100
+    version: "2.2.1"
+    ref: ca185ef5f7667078a1e70a763bd3a9c71c48acf0
+    tag: v2.2.0
+    license: MIT
+    activation:
+      - engineering
+      - implementation
+      - testing
+      - review
+      - planning
+      - verification
+      - security-practices
+    hosts:
+      codex:
+        supported: true
+        integration: plugin
+        install: "codex plugin install affaan-m/ECC --trust"
+      antigravity:
+        supported: true
+        integration: skills
+        notes: "Uses .agents/ directory structure"
+      claude:
+        supported: true
+        integration: plugin
+        install: "claude plugin install affaan-m/ECC"
+    provides:
+      - engineering-workflows
+      - planning-methodology
+      - implementation-discipline
+      - testing-workflows
+      - code-review
+      - verification-loops
+      - security-scanning
+      - production-readiness
+      - hooks
+      - commands
+      - agents
+      - skills
+
+  graphify:
+    source: Graphify-Labs/graphify
+    role: codebase-intelligence
+    priority: 90
+    ref: 91f4d120b630ee35c79bf3c75ccd186870a808f9
+    tag: v1.0.0
+    license: Apache-2.0 AND MIT
+    activation:
+      - complex-codebase
+      - architecture-analysis
+      - refactor
+      - dependency-analysis
+      - impact-analysis
+      - unfamiliar-repository
+    hosts:
+      codex:
+        supported: false
+        notes: "Python CLI tool, not a native Codex plugin"
+      antigravity:
+        supported: false
+        notes: "Use as external CLI tool"
+      claude:
+        supported: false
+        notes: "Use as external CLI tool"
+    provides:
+      - ast-knowledge-graph
+      - symbol-relationships
+      - dependency-tracing
+      - architecture-visualization
+      - codebase-navigation
+
+  unlazy:
+    source: Leonxlnx/unlazy
+    role: completion-discipline
+    priority: 80
+    ref: 473d4b80421c36d733042434cd4b938f81a19ef1
+    license: MIT
+    activation:
+      - substantial-task
+      - exhaustive-task
+      - multi-part-implementation
+      - explicit-completion-requirement
+    hosts:
+      codex:
+        supported: true
+        integration: skill-reference
+        notes: "Has SKILL.md, agents/, package.json"
+      antigravity:
+        supported: false
+        notes: "No native .agents/ directory"
+      claude:
+        supported: true
+        integration: skill-reference
+        notes: "Has SKILL.md"
+    provides:
+      - acceptance-gates
+      - depth-trees
+      - verification-loops
+      - exhaustive-completion
+      - re-checking
+
+  addy:
+    source: addyosmani/agent-skills
+    role: production-engineering
+    priority: 75
+    version: "0.6.8"
+    ref: d2c37ef6225dd8726cdd369a8030307f48592d26
+    tag: "0.6.8"
+    license: MIT
+    activation:
+      - code-review
+      - security-hardening
+      - testing
+      - performance
+      - engineering-practices
+      - reliability
+    hosts:
+      codex:
+        supported: true
+        integration: plugin
+        install: "codex plugin install addyosmani/agent-skills --trust"
+      antigravity:
+        supported: true
+        integration: skills
+        notes: "Uses .agents/ directory structure"
+      claude:
+        supported: true
+        integration: plugin
+    provides:
+      - code-review-skills
+      - security-hardening
+      - testing-practices
+      - performance-skills
+      - engineering-best-practices
+      - reliability-skills
+
+  agency:
+    source: msitarzewski/agency-agents
+    role: specialist-agent
+    priority: 70
+    ref: 3c9588880b7cafaec325a104899fd8bbe27e7d72
+    license: MIT
+    activation:
+      - specialist-needed
+      - frontend-specialist
+      - backend-specialist
+      - architecture-review
+      - security-specialist
+      - product-review
+      - design-specialist
+    hosts:
+      codex:
+        supported: true
+        integration: agent-reference
+        notes: "273 specialist agents via divisions"
+      antigravity:
+        supported: true
+        integration: agent-reference
+      claude:
+        supported: true
+        integration: agent-reference
+    provides:
+      - frontend-specialists
+      - backend-specialists
+      - architecture-specialists
+      - security-specialists
+      - product-specialists
+      - design-specialists
+      - marketing-specialists
+      - engineering-specialists
+
+  gstack:
+    source: garrytan/gstack
+    role: product-release-review
+    priority: 60
+    ref: 0d1bd5616c0ef096bb7ccee336f63c60ee408618
+    license: MIT
+    activation:
+      - review-task
+      - release-task
+      - product-review
+      - office-hours
+      - shipping
+      - investigation
+      - retrospective
+    hosts:
+      codex:
+        supported: true
+        integration: reference
+        notes: "Has codex/ directory with Codex-specific content"
+      antigravity:
+        supported: false
+        notes: "No verified native Antigravity support"
+      claude:
+        supported: true
+        integration: reference
+        notes: "Has claude/ directory and CLAUDE.md"
+    provides:
+      - office-hours
+      - ceo-product-review
+      - engineering-review
+      - design-review
+      - code-review
+      - qa-workflows
+      - shipping-workflows
+      - investigation
+      - security-cso-review
+      - retrospectives
+      - browser-workflows
+
+  opendesign:
+    source: nexu-io/open-design
+    role: design
+    priority: 50
+    ref: 349748ee36cb641895679bde7b46a8728ed1c1bb
+    license: Apache-2.0
+    activation:
+      - design-task
+      - ui-ux-work
+      - design-system
+      - visual-product-decisions
+    hosts:
+      codex:
+        supported: false
+        notes: "Platform/framework, not a native plugin"
+      antigravity:
+        supported: false
+        notes: "Use as external reference"
+      claude:
+        supported: false
+        notes: "Use as external reference"
+    provides:
+      - design-system-tooling
+      - ui-ux-workflows
+      - design-templates
+      - visual-design-decisions
+
+  ponytail:
+    source: DietrichGebert/ponytail
+    role: simplicity-review
+    priority: 40
+    ref: 2ed6c52c9d7e5e56942508591085fd45dea277d3
+    license: MIT
+    default: "off"
+    activation:
+      - explicit-request
+      - yagni-review
+      - overengineering-check
+      - simplicity-audit
+    hosts:
+      codex:
+        supported: true
+        integration: plugin
+        install: "codex plugin install DietrichGebert/ponytail --trust"
+      antigravity:
+        supported: true
+        integration: skills
+        notes: "Uses .agents/ directory structure"
+      claude:
+        supported: true
+        integration: plugin
+    provides:
+      - yagni-detection
+      - abstraction-review
+      - complexity-analysis
+      - overengineering-detection
+      - simplification-suggestions
+
+  karpathy:
+    source: multica-ai/andrej-karpathy-skills
+    role: engineering-principles
+    priority: 30
+    ref: 2c606141936f1eeef17fa3043a72095b4765b9c2
+    license: MIT
+    activation:
+      - reference
+      - principles-check
+    hosts:
+      codex:
+        supported: true
+        integration: skill-reference
+      antigravity:
+        supported: false
+        notes: "No native .agents/ structure"
+      claude:
+        supported: true
+        integration: skill-reference
+    provides:
+      - think-before-coding
+      - simplicity-first
+      - surgical-changes
+      - goal-driven-execution
