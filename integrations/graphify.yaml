@@ -4,7 +4,6 @@ source: Graphify-Labs/graphify
 url: https://github.com/Graphify-Labs/graphify
 role: codebase-intelligence
 ref: 91f4d120b630ee35c79bf3c75ccd186870a808f9
-tag: v1.0.0
 license: Apache-2.0 AND MIT
 integration_type: cli-tool
 install:

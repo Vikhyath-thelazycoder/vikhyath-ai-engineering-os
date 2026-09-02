@@ -1,5 +1,6 @@
 import glob
 import os
+import re
 import unittest
 import yaml
 
@@ -21,6 +22,7 @@ class TestIntegrations(unittest.TestCase):
         
         integration_files = glob.glob(os.path.join(ROOT_DIR, "integrations", "*.yaml"))
         found_integrations = set()
+        hex_sha_regex = re.compile(r'^[0-9a-f]{40}$')
         
         for file_path in integration_files:
             name = os.path.splitext(os.path.basename(file_path))[0]
@@ -32,6 +34,7 @@ class TestIntegrations(unittest.TestCase):
             self.assertIn("source", data, f"{name}.yaml missing source")
             self.assertIn("role", data, f"{name}.yaml missing role")
             self.assertIn("ref", data, f"{name}.yaml missing ref")
+            self.assertTrue(hex_sha_regex.match(data["ref"]), f"{name}.yaml ref is not a 40-char hex SHA")
             self.assertIn("integration_type", data, f"{name}.yaml missing integration_type")
             self.assertIn("hosts", data, f"{name}.yaml missing hosts")
             

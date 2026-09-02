@@ -1,0 +1,22 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "vikhyath-ai-engineering-os",
+  "version": "1.0.1",
+  "description": "A thin orchestration plugin that selectively activates specialized engineering capabilities from proven external repositories.",
+  "author": {
+    "name": "Vikhyath",
+    "url": "https://github.com/Vikhyath-thelazycoder"
+  },
+  "homepage": "https://github.com/Vikhyath-thelazycoder/vikhyath-ai-engineering-os",
+  "repository": "https://github.com/Vikhyath-thelazycoder/vikhyath-ai-engineering-os",
+  "license": "MIT",
+  "keywords": [
+    "ai",
+    "engineering",
+    "orchestration",
+    "plugin",
+    "skills",
+    "routing",
+    "capabilities"
+  ]
+}

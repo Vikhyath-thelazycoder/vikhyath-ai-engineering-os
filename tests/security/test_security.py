@@ -1,4 +1,5 @@
 import os
+import re
 import unittest
 import yaml
 
@@ -23,16 +24,21 @@ class TestSecurity(unittest.TestCase):
         vendor_path = os.path.join(ROOT_DIR, "vendor")
         self.assertFalse(os.path.exists(vendor_path), "vendor directory must not exist")
 
-    def test_all_dependencies_pinned(self):
+    def test_all_dependencies_pinned_40_hex_sha(self):
         caps_path = os.path.join(ROOT_DIR, "config", "capabilities.yaml")
         with open(caps_path, "r", encoding="utf-8") as f:
             data = yaml.safe_load(f)
             
         capabilities = data.get("capabilities", {})
+        hex_sha_regex = re.compile(r'^[0-9a-f]{40}$')
+        
         for name, meta in capabilities.items():
-            ref = meta.get("ref")
+            ref = meta.get("ref", "")
             self.assertTrue(ref, f"Capability {name} must have pinned ref")
-            self.assertGreaterEqual(len(ref), 7, f"Capability {name} ref '{ref}' is invalid or unpinned")
+            self.assertTrue(
+                hex_sha_regex.match(ref),
+                f"Capability {name} ref '{ref}' is not a valid 40-character hexadecimal SHA"
+            )
 
     def test_no_giant_prompt_files(self):
         for prohibited in ["SYSTEM.md", "MASTER_PROMPT.md"]:

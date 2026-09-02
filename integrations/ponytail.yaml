@@ -7,7 +7,7 @@ ref: 2ed6c52c9d7e5e56942508591085fd45dea277d3
 license: MIT
 integration_type: plugin
 install:
-  codex: "codex plugin install DietrichGebert/ponytail --trust"
+  codex: "codex plugin marketplace add DietrichGebert/ponytail && codex plugin install ponytail"
   claude: "claude plugin install DietrichGebert/ponytail"
   antigravity: "Clone or reference the repository. Uses .agents/ directory."
 hosts:

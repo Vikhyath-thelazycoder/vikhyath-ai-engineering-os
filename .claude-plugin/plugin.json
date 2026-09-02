@@ -1,10 +1,12 @@
 {
   "name": "vikhyath-ai-engineering-os",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Vikhyath AI Engineering OS — Orchestration plugin for selective engineering capability activation.",
-  "skills": "../skills/",
-  "interface": {
-    "displayName": "Vikhyath AI Engineering OS",
-    "category": "Coding"
-  }
+  "author": {
+    "name": "Vikhyath",
+    "url": "https://github.com/Vikhyath-thelazycoder"
+  },
+  "homepage": "https://github.com/Vikhyath-thelazycoder/vikhyath-ai-engineering-os",
+  "repository": "https://github.com/Vikhyath-thelazycoder/vikhyath-ai-engineering-os",
+  "license": "MIT"
 }

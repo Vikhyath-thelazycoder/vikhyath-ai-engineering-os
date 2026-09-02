@@ -1,0 +1,63 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyyaml
+
+      - name: Run Python unit tests
+        run: |
+          python -m unittest discover -s tests -p "test_*.py"
+
+      - name: Run Doctor diagnostics
+        run: |
+          chmod +x scripts/doctor
+          ./scripts/doctor
+
+      - name: Run Validation suite
+        run: |
+          chmod +x scripts/validate
+          ./scripts/validate
+
+      - name: Run Benchmark analysis
+        run: |
+          chmod +x scripts/benchmark
+          ./scripts/benchmark
+
+      - name: Verify Strict NO MCP
+        run: |
+          if [ -f .mcp.json ]; then
+            echo "ERROR: .mcp.json found — MCP is strictly prohibited"
+            exit 1
+          fi
+          if grep -rq "mcpServers" .codex-plugin/ .claude-plugin/ plugin.json; then
+            echo "ERROR: mcpServers found in plugin manifests"
+            exit 1
+          fi
+          echo "✅ Strict NO MCP confirmed"
+
+      - name: Verify NO Vendor Copies
+        run: |
+          if [ -d vendor ]; then
+            echo "ERROR: vendor/ directory found"
+            exit 1
+          fi
+          echo "✅ No vendor copies confirmed"

@@ -1,6 +1,6 @@
 # Vikhyath AI Engineering OS — Capability Registry
 # Machine-readable registry of all external capabilities
-# Version: 1.0.0
+# Version: 1.0.1
 
 capabilities:
 
@@ -8,9 +8,7 @@ capabilities:
     source: affaan-m/ECC
     role: engineering-foundation
     priority: 100
-    version: "2.2.1"
     ref: ca185ef5f7667078a1e70a763bd3a9c71c48acf0
-    tag: v2.2.0
     license: MIT
     activation:
       - engineering
@@ -24,7 +22,7 @@ capabilities:
       codex:
         supported: true
         integration: plugin
-        install: "codex plugin install affaan-m/ECC --trust"
+        install: "codex plugin marketplace add affaan-m/ECC && codex plugin install ecc@ecc-marketplace"
       antigravity:
         supported: true
         integration: skills
@@ -52,7 +50,6 @@ capabilities:
     role: codebase-intelligence
     priority: 90
     ref: 91f4d120b630ee35c79bf3c75ccd186870a808f9
-    tag: v1.0.0
     license: Apache-2.0 AND MIT
     activation:
       - complex-codebase
@@ -96,7 +93,7 @@ capabilities:
         notes: "Has SKILL.md, agents/, package.json"
       antigravity:
         supported: false
-        notes: "No native .agents/ directory"
+        notes: "No native .agents/ directory in upstream"
       claude:
         supported: true
         integration: skill-reference
@@ -112,7 +109,6 @@ capabilities:
     source: addyosmani/agent-skills
     role: production-engineering
     priority: 75
-    version: "0.6.8"
     ref: d2c37ef6225dd8726cdd369a8030307f48592d26
     tag: "0.6.8"
     license: MIT
@@ -127,7 +123,7 @@ capabilities:
       codex:
         supported: true
         integration: plugin
-        install: "codex plugin install addyosmani/agent-skills --trust"
+        install: "codex plugin marketplace add addyosmani/agent-skills && codex plugin install agent-skills"
       antigravity:
         supported: true
         integration: skills
@@ -260,7 +256,7 @@ capabilities:
       codex:
         supported: true
         integration: plugin
-        install: "codex plugin install DietrichGebert/ponytail --trust"
+        install: "codex plugin marketplace add DietrichGebert/ponytail && codex plugin install ponytail"
       antigravity:
         supported: true
         integration: skills
@@ -290,7 +286,7 @@ capabilities:
         integration: skill-reference
       antigravity:
         supported: false
-        notes: "No native .agents/ structure"
+        notes: "No native .agents/ structure in upstream"
       claude:
         supported: true
         integration: skill-reference

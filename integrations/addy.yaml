@@ -9,7 +9,7 @@ tag: "0.6.8"
 license: MIT
 integration_type: plugin
 install:
-  codex: "codex plugin install addyosmani/agent-skills --trust"
+  codex: "codex plugin marketplace add addyosmani/agent-skills && codex plugin install agent-skills"
   claude: "claude plugin install addyosmani/agent-skills"
   antigravity: "Clone or reference the repository. The .agents/ directory provides native integration."
 hosts:

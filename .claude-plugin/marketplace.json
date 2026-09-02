@@ -1,0 +1,12 @@
+{
+  "name": "vikhyath-marketplace",
+  "description": "Vikhyath Plugin Marketplace for Claude Code",
+  "plugins": [
+    {
+      "name": "vikhyath-ai-engineering-os",
+      "version": "1.0.1",
+      "description": "A thin orchestration plugin that selectively activates specialized engineering capabilities from proven external repositories.",
+      "source": "./"
+    }
+  ]
+}

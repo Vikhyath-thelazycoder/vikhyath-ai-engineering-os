@@ -3,13 +3,11 @@ name: ecc
 source: affaan-m/ECC
 url: https://github.com/affaan-m/ECC
 role: engineering-foundation
-version: "2.2.1"
 ref: ca185ef5f7667078a1e70a763bd3a9c71c48acf0
-tag: v2.2.0
 license: MIT
 integration_type: plugin
 install:
-  codex: "codex plugin install affaan-m/ECC --trust"
+  codex: "codex plugin marketplace add affaan-m/ECC && codex plugin install ecc@ecc-marketplace"
   claude: "claude plugin install affaan-m/ECC"
   antigravity: "Clone or reference the ECC repository. The .agents/ directory provides native Antigravity skill integration."
 hosts:
