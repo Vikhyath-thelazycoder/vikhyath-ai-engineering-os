@@ -6,8 +6,24 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 
+VERSION_VAL=$(cat "$ROOT_DIR/VERSION" 2>/dev/null | tr -d '[:space:]' || echo "unknown")
+
 ONLINE_MODE=false
 for arg in "$@"; do
+  if [ "$arg" = "-h" ] || [ "$arg" = "--help" ]; then
+    echo "Vikhyath AI Engineering OS — Validation Suite"
+    echo "Usage: ./scripts/validate [OPTIONS]"
+    echo ""
+    echo "Options:"
+    echo "  --online       Verify pinned commit SHAs against remote GitHub repositories"
+    echo "  -h, --help     Show this help message"
+    echo "  -v, --version  Show version"
+    exit 0
+  fi
+  if [ "$arg" = "-v" ] || [ "$arg" = "--version" ]; then
+    echo "vikhyath-ai-engineering-os v$VERSION_VAL"
+    exit 0
+  fi
   if [ "$arg" = "--online" ]; then
     ONLINE_MODE=true
   fi

@@ -52,5 +52,13 @@ class TestIntegrations(unittest.TestCase):
             self.assertIn("name:", content, f"{skill_file} missing name in frontmatter")
             self.assertIn("description:", content, f"{skill_file} missing description in frontmatter")
 
+    def test_ci_workflow_valid_yaml(self):
+        ci_path = os.path.join(ROOT_DIR, ".github", "workflows", "ci.yml")
+        self.assertTrue(os.path.isfile(ci_path), ".github/workflows/ci.yml missing")
+        with open(ci_path, "r", encoding="utf-8") as f:
+            ci = yaml.safe_load(f)
+        self.assertIn("name", ci)
+        self.assertIn("jobs", ci)
+
 if __name__ == "__main__":
     unittest.main()

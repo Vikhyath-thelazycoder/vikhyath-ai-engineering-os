@@ -6,6 +6,24 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 
+VERSION_VAL=$(cat "$ROOT_DIR/VERSION" 2>/dev/null | tr -d '[:space:]' || echo "unknown")
+
+for arg in "$@"; do
+  if [ "$arg" = "-h" ] || [ "$arg" = "--help" ]; then
+    echo "Vikhyath AI Engineering OS — Doctor"
+    echo "Usage: ./scripts/doctor [OPTIONS]"
+    echo ""
+    echo "Options:"
+    echo "  -h, --help     Show this help message"
+    echo "  -v, --version  Show version"
+    exit 0
+  fi
+  if [ "$arg" = "-v" ] || [ "$arg" = "--version" ]; then
+    echo "vikhyath-ai-engineering-os v$VERSION_VAL"
+    exit 0
+  fi
+done
+
 PASS=0
 FAIL=0
 WARN=0
@@ -20,7 +38,7 @@ echo ""
 
 # --- Repository Structure ---
 echo "📁 Repository Structure"
-for dir in skills agents workflows integrations config tests scripts .codex-plugin .claude-plugin .agents/skills .agents/plugins; do
+for dir in skills agents workflows integrations config tests scripts .codex-plugin .claude-plugin .agents/skills .agents/plugins .github/workflows; do
   if [ -d "$ROOT_DIR/$dir" ]; then
     pass "$dir/ exists"
   else
@@ -42,7 +60,6 @@ assert 'version' in data, 'missing version'
 assert 'description' in data, 'missing description'
 assert 'author' in data, 'missing author'
 assert 'license' in data, 'missing license'
-# Ensure no host-specific fields at root
 forbidden = ['skills', 'mcpServers', 'interface', 'hooks', 'tools']
 for f in forbidden:
     assert f not in data, f'Forbidden field {f} in portable root plugin.json'
@@ -129,6 +146,24 @@ if [ -f "$ROOT_DIR/.agents/skills/vikhyath-os/SKILL.md" ]; then
   fi
 else
   fail ".agents/skills/vikhyath-os/SKILL.md missing"
+fi
+echo ""
+
+# --- CI Workflow Integrity ---
+echo "⚙️  CI Workflow Integrity"
+if [ -f "$ROOT_DIR/.github/workflows/ci.yml" ]; then
+  if python3 -c "
+import yaml
+ci = yaml.safe_load(open('$ROOT_DIR/.github/workflows/ci.yml'))
+assert 'name' in ci
+assert 'jobs' in ci
+" 2>/dev/null; then
+    pass ".github/workflows/ci.yml valid YAML workflow"
+  else
+    fail ".github/workflows/ci.yml invalid YAML"
+  fi
+else
+  fail ".github/workflows/ci.yml missing"
 fi
 echo ""
 
