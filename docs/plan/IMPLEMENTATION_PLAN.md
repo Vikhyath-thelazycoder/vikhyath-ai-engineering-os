@@ -5,18 +5,31 @@
 | Branch | `feat/v2-os-transformation` (from `main` @ `d77834e`, v1.0.1) |
 | Spec | Vikhyath AI Engineering OS Master Build Spec (Updated) |
 | Total phases | **28 (P0–P27)** |
-| Execution model | One phase at a time. After each phase: test → verify → update this plan → commit → report → wait for go-ahead. |
+| Execution model | Phases are grouped into **8 milestones (M0–M7)** (D-007). Within a milestone, every phase is still tested, verified, committed and updated in this plan. Work stops for user review **only at the end of each milestone**. |
 | Hard gate | **No large-scale implementation before P3 is VERIFIED** (spec §64). P4+ entries below are provisional outlines; P3 rewrites them as file-level tasks (spec §63). |
 | Decisions | [docs/audit/21_AUDIT_DECISIONS.md](../audit/21_AUDIT_DECISIONS.md) |
 
 Status vocabulary (spec §25): NOT_STARTED · PLANNED · IN_PROGRESS · PARTIALLY_COMPLETE · BLOCKED · READY_FOR_VERIFICATION · VERIFIED · COMPLETED · INTENTIONALLY_DEFERRED
+
+## Milestones (review stops)
+
+| Milestone | Phases | Status |
+|---|---|---|
+| M0 Baseline | P0 | **COMPLETED** |
+| M1 Audit & final plan | P1, P2, P3 (ends at the spec §64 hard gate) | **IN_PROGRESS** |
+| M2 Foundation & bundle | P4, P5, P6, P7 | NOT_STARTED |
+| M3 The brain | P8, P9, P10, P11, P18 | NOT_STARTED |
+| M4 Main domains | P12, P13, P14, P15 | NOT_STARTED |
+| M5 Specialist domains | P16, P17 | NOT_STARTED |
+| M6 Hosts | P19, P20, P21, P22 | NOT_STARTED |
+| M7 Dashboard & ship | P23, P24, P25, P26, P27 | NOT_STARTED |
 
 ## Phase index
 
 | Phase | Name | Stage | Depends on | Status |
 |---|---|---|---|---|
 | P0 | Current repository audit | Audit | — | **COMPLETED** |
-| P1 | Upstream deep audit (14 repos) | Audit | P0 | PLANNED (next) |
+| P1 | Upstream deep audit (14 repos) | Audit | P0 | IN_PROGRESS |
 | P2 | Capability, domain & extraction architecture | Audit | P1 | NOT_STARTED |
 | P3 | Cross-cutting audits, target architecture, definitive file-level plan — **GATE** | Audit/Plan | P2 | NOT_STARTED |
 | P4 | Core runtime & CLI foundation | Build: core | P3 | NOT_STARTED |
@@ -123,3 +136,4 @@ Produces `11_HOST_COMPATIBILITY_AUDIT`, `13_TOKEN_CONTEXT_AUDIT` (measured OLD-M
 |---|---|---|
 | 2026-10-03 | P0 | Plan created; 28 phases defined (D-004); P0 completed; P1 set as next. Licensing made non-blocking (D-002). |
 | 2026-10-03 | P0 | D-005: selective real extraction (actual files copied/adapted into the bundle; no reference-only capabilities). |
+| 2026-10-03 | M1 | D-006: dependency closure (selected content pulls in everything it needs). D-007: 8 review milestones. M1 started. |
