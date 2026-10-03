@@ -28,7 +28,7 @@ Similar-but-different files are kept and the reason is recorded here (spec §37:
 
 ## 3. Exact duplicates inside the selected bundle
 
-Computed from git blob SHA-1 over all 2,645 bundled files:
+Computed from git blob SHA-1 over all 2,644 bundled files:
 
 - **37 groups, 53 redundant copies, 0.99 MB.**
 - Mostly OpenDesign `design-systems/*/design-tokens.json` shared by several systems (groups of 2–7).

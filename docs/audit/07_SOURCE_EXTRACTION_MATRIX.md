@@ -15,12 +15,12 @@
 
 | Decision | Files | Size |
 |---|---:|---:|
-| ADAPT | 974 | 12.6 MB |
+| ADAPT | 973 | 12.6 MB |
 | COPY | 644 | 7.7 MB |
 | PRESERVE | 1,027 | 30.4 MB |
-| **Bundled total** | **2,645** | **50.7 MB** |
+| **Bundled total** | **2,644** | **50.7 MB** |
 | REFERENCE (staging only; design input) | 686 | 24.1 MB |
-| EXCLUDE | 21,257 | 508.7 MB |
+| EXCLUDE | 21,258 | 508.7 MB |
 
 | Repo | ADAPT | COPY | PRESERVE | REFERENCE | EXCLUDE |
 |---|---:|---:|---:|---:|---:|
@@ -29,7 +29,7 @@
 | beacon | 77 | 1 | — | 75 | 1,506 |
 | beyondseo | 1 | 140 | 58 | 2 | 20 |
 | brag | — | 1 | 290 | 21 | 56 |
-| ecc | 391 | 1 | 18 | 272 | 3,530 |
+| ecc | 390 | 1 | 18 | 272 | 3,531 |
 | graphify | 8 | 3 | 537 | 37 | 371 |
 | gstack | 130 | 3 | — | 108 | 2,436 |
 | karpathy | — | 2 | — | 1 | 6 |
@@ -58,6 +58,7 @@
 | MCP | 27 | 0.2 MB | ECC `.mcp.json`, Ponytail `ponytail-mcp/`, Graphify `serve.py`, UI/UX Pro Max `stack/.mcp.json` |
 | TELEMETRY | 12 | 0.1 MB | gstack `gstack-telemetry-*`, `gstack-analytics`, `supabase/` |
 | HOST_SPECIFIC_TOOL | 8 | <0.1 MB | OpenDesign `figma-*` |
+| UNAUDITED_DEPENDENCY | 1 | <0.1 MB | ECC `security-scan` (needs external `ecc-agentshield` npm package) |
 | SUPERSEDED | 6 | <0.1 MB | Addy `using-agent-skills` (OS router replaces it), ECC `seo` (BeyondSEO is canonical) |
 
 ## Dependency closure (D-006)
@@ -98,3 +99,4 @@ The 37 accepted references are listed with reasons in `extraction-rules.yaml →
 | Change | Why |
 |---|---|
 | ECC `skills/taste`, `taste-application`, `taste-distillation`: ADAPT(design) → EXCLUDE | Description check showed they are music-video aesthetics; two require the paid fal.ai API (`FAL_KEY`). Name-based selection was wrong; every ECC pick was then verified against its `description:`. |
+| ECC `skills/security-scan`: ADAPT → EXCLUDE (UNAUDITED_DEPENDENCY) | Requires the external `ecc-agentshield` npm package (global install, `npx`), which is outside the 14 audited upstreams (§43). The OS doctor covers agent-config checks instead. |

@@ -3630,7 +3630,7 @@ ADAPT	Engineering principles	engineering/principles	8210	skills/search-first/SKI
 EXCLUDE	OUT_OF_DOMAIN		3628	skills/security-bounty-hunter/SKILL.md
 ADAPT	Security review	engineering/security	12955	skills/security-review/SKILL.md
 ADAPT	Security review	engineering/security	10171	skills/security-review/cloud-infrastructure-security.md
-ADAPT	Security review	engineering/security	4592	skills/security-scan/SKILL.md
+EXCLUDE	UNAUDITED_DEPENDENCY		4592	skills/security-scan/SKILL.md
 EXCLUDE	SUPERSEDED		4320	skills/seo/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		2500	skills/skill-comply/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		1070	skills/skill-comply/fixtures/compliant_trace.jsonl

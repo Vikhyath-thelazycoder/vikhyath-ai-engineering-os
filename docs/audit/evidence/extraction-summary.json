@@ -96,16 +96,16 @@
   },
   "ecc": {
    "EXCLUDE": {
-    "files": 3530,
-    "bytes": 54045362
+    "files": 3531,
+    "bytes": 54049954
    },
    "COPY": {
     "files": 1,
     "bytes": 1071
    },
    "ADAPT": {
-    "files": 391,
-    "bytes": 2271278
+    "files": 390,
+    "bytes": 2266686
    },
    "REFERENCE": {
     "files": 272,
@@ -512,9 +512,9 @@
    ]
   },
   "engineering/security": {
-   "files": 35,
-   "bytes": 452250,
-   "est_tokens": 113062,
+   "files": 34,
+   "bytes": 447658,
+   "est_tokens": 111914,
    "sources": [
     "addy",
     "agency",

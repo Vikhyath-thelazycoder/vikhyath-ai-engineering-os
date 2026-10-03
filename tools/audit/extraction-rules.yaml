@@ -26,6 +26,7 @@ reason_codes:
   PAID_API: "Requires a paid third-party generation API"
   HOST_SPECIFIC_TOOL: "Requires a proprietary tool not available to the OS (e.g. Figma, Aside)"
   LICENSE: "License/notice file (carried verbatim with bundled content, D-002)"
+  UNAUDITED_DEPENDENCY: "Requires an external package outside the audited upstream set (spec §43)"
 
 repos:
 
@@ -180,7 +181,8 @@ repos:
       - {paths: ["skills/hexagonal-architecture/**", "skills/architecture-decision-records/**", "skills/api-design/**", "skills/contract-first/**", "agents/architect.md", "agents/code-architect.md", "agents/type-design-analyzer.md"], decision: ADAPT, capability: engineering/architecture, reason: "Architecture"}
       - {paths: ["skills/backend-patterns/**", "skills/error-handling/**", "agents/database-reviewer.md"], decision: ADAPT, capability: engineering/backend, reason: "Backend patterns"}
       - {paths: ["skills/frontend-patterns/**"], decision: ADAPT, capability: engineering/frontend, reason: "Frontend patterns"}
-      - {paths: ["skills/security-review/**", "skills/security-scan/**", "skills/safety-guard/**", "agents/security-reviewer.md"], decision: ADAPT, capability: engineering/security, reason: "Security review"}
+      - {paths: ["skills/security-scan/**"], decision: EXCLUDE, reason: UNAUDITED_DEPENDENCY}
+      - {paths: ["skills/security-review/**", "skills/safety-guard/**", "agents/security-reviewer.md"], decision: ADAPT, capability: engineering/security, reason: "Security review"}
       - {paths: ["agents/performance-optimizer.md"], decision: ADAPT, capability: engineering/performance, reason: "Performance role"}
       - {paths: ["agents/code-reviewer.md", "agents/comment-analyzer.md", "agents/pr-test-analyzer.md"], decision: ADAPT, capability: engineering/review, reason: "Review roles"}
       - {paths: ["agents/silent-failure-hunter.md", "agents/build-error-resolver.md", "skills/agent-introspection-debugging/**"], decision: ADAPT, capability: engineering/debugging, reason: "Debugging"}

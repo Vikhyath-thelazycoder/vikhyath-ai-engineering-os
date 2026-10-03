@@ -353,7 +353,6 @@ Every bundled upstream component appears below, grouped by source path prefix. T
 | ecc | engineering/security | `agents/` | 1 | 5.3 | ADAPT | none | MIT | `ef648e0` |
 | ecc | engineering/security | `skills/safety-guard/` | 1 | 2.2 | ADAPT | none | MIT | `ef648e0` |
 | ecc | engineering/security | `skills/security-review/` | 2 | 22.6 | ADAPT | none | MIT | `ef648e0` |
-| ecc | engineering/security | `skills/security-scan/` | 1 | 4.5 | ADAPT | none | MIT | `ef648e0` |
 | gstack | engineering/security | `careful/` | 3 | 23.8 | ADAPT | none | MIT (+Apache-2.0 notices) | `74512c2` |
 | gstack | engineering/security | `cso/` | 5 | 50.6 | ADAPT | none | MIT (+Apache-2.0 notices) | `74512c2` |
 | gstack | engineering/security | `freeze/` | 3 | 14.0 | ADAPT | none | MIT (+Apache-2.0 notices) | `74512c2` |
@@ -553,4 +552,4 @@ Every bundled upstream component appears below, grouped by source path prefix. T
 | gstack | testing/web-verification | `qa-only/` | 6 | 27.6 | ADAPT | os-native | MIT (+Apache-2.0 notices) | `74512c2` |
 | gstack | testing/web-verification | `qa/` | 15 | 57.1 | ADAPT | os-native | MIT (+Apache-2.0 notices) | `74512c2` |
 
-**Total bundled: 2645 files, 50.7 MB** across 56 capabilities.
+**Total bundled: 2644 files, 50.7 MB** across 56 capabilities.

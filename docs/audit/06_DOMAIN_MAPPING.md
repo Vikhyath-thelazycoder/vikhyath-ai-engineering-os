@@ -16,7 +16,7 @@ Plan, build, review and ship software with completion discipline.
 | `engineering/implementation` | Incremental, source-grounded, constraint-respecting implementation | addy, agency | 6 | 81.5 | 20,873 | L2 | none | False | none | bundled | — |
 | `engineering/backend` | Backend patterns, data layer, error handling, payments/realtime specialists | agency, ecc | 9 | 109.6 | 28,053 | L2 | none | False | none | bundled | — |
 | `engineering/frontend` | Frontend engineering: components, state, accessibility in code, responsiveness | addy, agency, ecc | 5 | 65.4 | 16,746 | L2 | none | False | none | bundled | design/frontend |
-| `engineering/security` | Threat-aware hardening, security review, CSO audit, guardrails | addy, agency, ecc, gstack | 35 | 441.7 | 113,062 | L2 | none | False | none | bundled | — |
+| `engineering/security` | Threat-aware hardening, security review, CSO audit, guardrails | addy, agency, ecc, gstack | 34 | 437.2 | 111,914 | L2 | none | False | none | bundled | — |
 | `engineering/performance` | Measured performance optimization | addy, ecc | 4 | 51.7 | 13,240 | L2 | none | False | none | bundled | — |
 | `engineering/review` | Multi-axis code review, pre-landing review, specialist reviewers | addy, agency, ecc, gstack | 33 | 213.3 | 54,595 | L2 | none | False | none | bundled | — |
 | `engineering/debugging` | Reproduce, root-cause, fix, regression-test | addy, ecc, gstack | 5 | 36.0 | 9,215 | L2 | none | False | none | bundled | — |
