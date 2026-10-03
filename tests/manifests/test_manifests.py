@@ -3,6 +3,8 @@ import os
 import unittest
 
 ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
+with open(os.path.join(ROOT_DIR, "VERSION"), encoding="utf-8") as _f:
+    VERSION = _f.read().strip()
 
 class TestManifests(unittest.TestCase):
     def test_portable_root_plugin_json(self):
@@ -14,7 +16,7 @@ class TestManifests(unittest.TestCase):
             
         self.assertEqual(data.get("$schema"), "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json")
         self.assertEqual(data.get("name"), "vikhyath-ai-engineering-os")
-        self.assertEqual(data.get("version"), "1.0.1")
+        self.assertEqual(data.get("version"), VERSION)
         self.assertIn("description", data)
         self.assertIn("author", data)
         self.assertIn("repository", data)
@@ -33,7 +35,7 @@ class TestManifests(unittest.TestCase):
             data = json.load(f)
             
         self.assertEqual(data.get("name"), "vikhyath-ai-engineering-os")
-        self.assertEqual(data.get("version"), "1.0.1")
+        self.assertEqual(data.get("version"), VERSION)
         self.assertEqual(data.get("skills"), "./skills/")
         self.assertIn("interface", data)
         self.assertNotIn("mcpServers", data, "MCP servers prohibited in Codex manifest")
@@ -46,7 +48,7 @@ class TestManifests(unittest.TestCase):
             data = json.load(f)
             
         self.assertEqual(data.get("name"), "vikhyath-ai-engineering-os")
-        self.assertEqual(data.get("version"), "1.0.1")
+        self.assertEqual(data.get("version"), VERSION)
         self.assertNotIn("skills", data, "Claude manifest should not contain relative skills path")
         self.assertNotIn("mcpServers", data, "MCP servers prohibited in Claude manifest")
 
@@ -62,7 +64,7 @@ class TestManifests(unittest.TestCase):
         self.assertGreaterEqual(len(data["plugins"]), 1)
         plugin = data["plugins"][0]
         self.assertEqual(plugin.get("name"), "vikhyath-ai-engineering-os")
-        self.assertEqual(plugin.get("version"), "1.0.1")
+        self.assertEqual(plugin.get("version"), VERSION)
         self.assertEqual(plugin.get("source"), "./")
 
     def test_claude_marketplace_manifest(self):
@@ -77,7 +79,7 @@ class TestManifests(unittest.TestCase):
         self.assertGreaterEqual(len(data["plugins"]), 1)
         plugin = data["plugins"][0]
         self.assertEqual(plugin.get("name"), "vikhyath-ai-engineering-os")
-        self.assertEqual(plugin.get("version"), "1.0.1")
+        self.assertEqual(plugin.get("version"), VERSION)
         self.assertEqual(plugin.get("source"), "./")
 
     def test_antigravity_skill_adapter(self):

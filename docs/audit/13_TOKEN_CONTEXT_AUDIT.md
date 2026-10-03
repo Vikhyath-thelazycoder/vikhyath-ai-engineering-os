@@ -9,17 +9,17 @@ What a Claude Code session loads **before any task** with v1.0.1 as documented (
 | Surface | Count | Bytes | Est. tokens |
 |---|---:|---:|---:|
 | v1.0.1 skill name+description | 5 | 784 | 196 |
-| v1.0.1 agent names (no descriptions) | 3 | 66 | 16 |
-| **v1.0.1 subtotal** | | **850** | **≈212** |
+| v1.0.1 agent names (no descriptions) | 3 | 57 | 14 |
+| **v1.0.1 subtotal** | | **841** | **≈210** |
 | ECC 2.2.2 skill name+description | 292 | 95,218 | 23,804 |
 | ECC 2.2.2 agent name+description | 68 | 15,325 | 3,831 |
 | ECC 2.2.2 command name+description | 94 | 10,139 | 2,535 |
 | **ECC subtotal** | | **120,682** | **≈30,170** |
-| **Always-loaded total (v1.0.1 + ECC)** | | **121,532** | **≈30,380** |
+| **Always-loaded total (v1.0.1 + ECC)** | | **121,523** | **≈30,380** |
 
 Not counted above, also present: ECC `.mcp.json` Chrome DevTools tool schemas (the session exposes ~29 `mcp__plugin_ecc_chrome-devtools__*` tools), ECC SessionStart hook output ("load previous context"), and any per-turn hook output. Real always-on cost is therefore **higher** than 30.4k.
 
-Measurement method: parse frontmatter of every `SKILL.md`/agent/command in `~/.claude/plugins/cache/{vikhyath-marketplace/.../1.0.1, ecc/ecc/2.2.2}`, sum `name + description` bytes. Script reproduced in P25 as `vikhyath benchmark --baseline`.
+Measurement method: parse frontmatter of every `SKILL.md`/agent/command in `~/.claude/plugins/cache/{vikhyath-marketplace/.../1.0.1, ecc/ecc/2.2.2}`, sum `name + description` bytes. Reproduced by `vikhyath benchmark --baseline` (P4). P4 correction: description-less agents are counted by file stem (as the host displays them), not filename with `.md` (−9 bytes vs the P3 figure).
 
 **When a task runs (old model):** routing happens in prose. The model chooses ECC skills by description and loads full bodies (ECC skills average 5.5 MB / 293 ≈ 19 KB ≈ 4.7k tokens each). gstack skills reached through v1.0.1 would cost up to 132 KB (≈33k tokens) for `design-review` alone, because the generated `SKILL.md` includes the preamble.
 

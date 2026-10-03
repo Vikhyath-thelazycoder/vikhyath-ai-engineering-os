@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vikhyath"
+dynamic = ["version"]
+description = "Vikhyath AI Engineering OS — one local-first core with thin host adapters."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [{name = "Vikhyath", email = "vikhyathmgowda007@gmail.com"}]
+dependencies = ["PyYAML>=6"]
+
+[project.urls]
+Repository = "https://github.com/Vikhyath-thelazycoder/vikhyath-ai-engineering-os"
+
+[project.scripts]
+vikhyath = "vikhyath.cli:main"
+
+[tool.setuptools.dynamic]
+version = {file = "VERSION"}
+
+[tool.setuptools.packages.find]
+include = ["vikhyath*"]

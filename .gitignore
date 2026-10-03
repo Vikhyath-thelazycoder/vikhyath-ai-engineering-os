@@ -25,3 +25,6 @@ coverage/
 
 # Upstream audit staging (complete snapshots; audit input, never runtime)
 .staging/
+
+# Python packaging build artefacts
+*.egg-info/

@@ -32,8 +32,8 @@ Status vocabulary (spec §25): NOT_STARTED · PLANNED · IN_PROGRESS · PARTIALL
 | P1 | Upstream deep audit (14 repos) | Audit | P0 | **COMPLETED** |
 | P2 | Capability, domain & extraction architecture | Audit | P1 | **COMPLETED** |
 | P3 | Cross-cutting audits, target architecture, definitive file-level plan — **GATE** | Audit/Plan | P2 | **COMPLETED** |
-| P4 | Core runtime & CLI foundation | Build: core | P3 | IN_PROGRESS |
-| P5 | Provenance & third-party notices | Build: supply | P4 | NOT_STARTED |
+| P4 | Core runtime & CLI foundation | Build: core | P3 | **COMPLETED** |
+| P5 | Provenance & third-party notices | Build: supply | P4 | IN_PROGRESS |
 | P6 | Upstream bundling (staging → local bundle) | Build: supply | P5 | NOT_STARTED |
 | P7 | Capability registry (single source of truth) | Build: core | P6 | NOT_STARTED |
 | P8 | Routing engine | Build: core | P7 | NOT_STARTED |
@@ -143,6 +143,7 @@ Produces `11_HOST_COMPATIBILITY_AUDIT`, `13_TOKEN_CONTEXT_AUDIT` (measured OLD-M
 |---|---|---|
 | 2026-10-03 | P0 | Plan created; 28 phases defined (D-004); P0 completed; P1 set as next. Licensing made non-blocking (D-002). |
 | 2026-10-03 | P0 | D-005: selective real extraction (actual files copied/adapted into the bundle; no reference-only capabilities). |
+| 2026-10-03 | P4 | P4 completed: `vikhyath` package + CLI (pyproject, Python ≥3.10, PyYAML declared), doctor 52/0 (50 legacy + 2 env), validate 27/0, measured `benchmark --baseline` (121,523 B ≈ 30,380 est. tokens), wrappers kept (§69), 32/32 tests, CI installs the package. Evidence: docs/evidence/P4/run.md. P5 started. |
 | 2026-10-03 | M1 | Gate passed (D-025). Q-1 → build at install (D-023); Q-3 → NOT VERIFIED where host absent (D-024). M2/P4 started. |
 | 2026-10-03 | P3 | P3 ready for verification: cross-cutting audits, target architecture, D-009…D-022, file-level plan; M1 awaiting user review (Q-1 blocks P6). |
 | 2026-10-03 | P2 | P2 completed: domain model, extraction rules + per-file matrix, closure 0 open, duplication & runtime matrices. P3 started. |
