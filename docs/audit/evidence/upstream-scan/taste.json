@@ -1,0 +1,174 @@
+{
+ "repo": "taste",
+ "head": "ce26fc25c0e5e8cab638f883de62d9a86ee5e45b",
+ "totals": {
+  "files": 66,
+  "bytes": 4875890,
+  "submodules": []
+ },
+ "top_dirs": {
+  "assets": 24,
+  "skills": 15,
+  "research": 12,
+  "(root)": 4,
+  "scripts": 4,
+  "examples": 3,
+  ".claude-plugin": 2,
+  ".github": 2
+ },
+ "extensions": {
+  ".md": 29,
+  ".webp": 13,
+  ".svg": 8,
+  ".png": 5,
+  ".mjs": 4,
+  ".json": 2,
+  "(none)": 2,
+  ".yml": 1,
+  ".sh": 1,
+  ".txt": 1
+ },
+ "host_dirs": [
+  ".claude-plugin"
+ ],
+ "manifests": [
+  ".claude-plugin/marketplace.json",
+  ".claude-plugin/plugin.json"
+ ],
+ "mcp_files": [],
+ "installers": [],
+ "license_files": [
+  "LICENSE"
+ ],
+ "skills": [
+  {
+   "path": "skills/brandkit/SKILL.md",
+   "name": "brandkit",
+   "description": "Premium brand-kit image generation skill for creating high-end brand-guidelines boards, logo systems, identity decks, and visual-world presentations. Trained for minimalist, cinematic, editorial, dark-tech, luxury, cultural, security, gamin",
+   "bytes": 15992
+  },
+  {
+   "path": "skills/brutalist-skill/SKILL.md",
+   "name": "industrial-brutalist-ui",
+   "description": "Raw mechanical interfaces fusing Swiss typographic print with military terminal aesthetics. Rigid grids, extreme type scale contrast, utilitarian color, analog degradation effects. For data-heavy dashboards, portfolios, or editorial sites t",
+   "bytes": 8456
+  },
+  {
+   "path": "skills/gpt-tasteskill/SKILL.md",
+   "name": "gpt-taste",
+   "description": "Elite UX/UI & Advanced GSAP Motion Engineer. Enforces Python-driven true randomization for layout variance, strict AIDA page structure, wide editorial typography (bans 6-line wraps), gapless bento grids, strict GSAP ScrollTriggers (pinning,",
+   "bytes": 7857
+  },
+  {
+   "path": "skills/image-to-code-skill/SKILL.md",
+   "name": "image-to-code",
+   "description": "Elite website image-to-code skill for Codex. For visually important web tasks, it must first generate the design image(s) itself, deeply analyze them, then implement the website to match them as closely as possible. In Codex, it must prefer",
+   "bytes": 36442
+  },
+  {
+   "path": "skills/imagegen-frontend-mobile/SKILL.md",
+   "name": "imagegen-frontend-mobile",
+   "description": "Elite mobile app image-generation skill for creating premium, app-native screen concepts and flows. Designed for iOS, Android, and cross-platform mobile products. Prioritizes clean hierarchy, comfortably readable text, strong multi-screen c",
+   "bytes": 40326
+  },
+  {
+   "path": "skills/imagegen-frontend-web/SKILL.md",
+   "name": "imagegen-frontend-web",
+   "description": "Elite frontend image-direction skill for generating premium, conversion-aware website design references. CRITICAL OUTPUT RULE \u2014 generate ONE separate horizontal image FOR EVERY section. A landing page with 8 sections produces 8 images. Neve",
+   "bytes": 36854
+  },
+  {
+   "path": "skills/minimalist-skill/SKILL.md",
+   "name": "minimalist-ui",
+   "description": "Clean editorial-style interfaces. Warm monochrome palette, typographic contrast, flat bento grids, muted pastels. No gradients, no heavy shadows.",
+   "bytes": 7901
+  },
+  {
+   "path": "skills/output-skill/SKILL.md",
+   "name": "full-output-enforcement",
+   "description": "Overrides default LLM truncation behavior. Enforces complete code generation, bans placeholder patterns, and handles token-limit splits cleanly. Apply to any task requiring exhaustive, unabridged output.",
+   "bytes": 2592
+  },
+  {
+   "path": "skills/redesign-skill/SKILL.md",
+   "name": "redesign-existing-projects",
+   "description": "Upgrades existing websites and apps to premium quality. Audits current design, identifies generic AI patterns, and applies high-end design standards without breaking functionality. Works with any CSS framework or vanilla CSS.",
+   "bytes": 15060
+  },
+  {
+   "path": "skills/soft-skill/SKILL.md",
+   "name": "high-end-visual-design",
+   "description": "Teaches the AI to design like a high-end agency. Defines the exact fonts, spacing, shadows, card structures, and animations that make a website feel expensive. Blocks all the common defaults that make AI designs look cheap or generic.",
+   "bytes": 10561
+  },
+  {
+   "path": "skills/stitch-skill/SKILL.md",
+   "name": "stitch-design-taste",
+   "description": "Semantic Design System Skill for Google Stitch. Generates agent-friendly DESIGN.md files that enforce premium, anti-generic UI standards \u2014 strict typography, calibrated color, asymmetric layouts, perpetual micro-motion, and hardware-acceler",
+   "bytes": 11851
+  },
+  {
+   "path": "skills/taste-skill-v1/SKILL.md",
+   "name": "design-taste-frontend-v1",
+   "description": "The original v1 taste-skill, preserved for projects depending on its exact behavior. The current default is `design-taste-frontend` (v2 experimental), which is a substantial rewrite. Use this v1 install name only if you need exact backward ",
+   "bytes": 21195
+  },
+  {
+   "path": "skills/taste-skill/SKILL.md",
+   "name": "design-taste-frontend",
+   "description": "Anti-slop frontend skill for landing pages, portfolios, and redesigns. The agent reads the brief, infers the right design direction, and ships interfaces that do not look templated. Real design systems when applicable, audit-first on redesi",
+   "bytes": 87253
+  }
+ ],
+ "agents": [],
+ "commands": {
+  "count": 0,
+  "files": []
+ },
+ "hooks": {
+  "count": 0,
+  "files": []
+ },
+ "indicators": {
+  "mcp": {
+   "count": 0,
+   "files": []
+  },
+  "network": {
+   "count": 0,
+   "files": []
+  },
+  "telemetry": {
+   "count": 0,
+   "files": []
+  },
+  "background": {
+   "count": 0,
+   "files": []
+  },
+  "browser": {
+   "count": 0,
+   "files": []
+  },
+  "shell_exec": {
+   "count": 0,
+   "files": []
+  },
+  "env_secrets": {
+   "count": 0,
+   "files": []
+  },
+  "home_writes": {
+   "count": 0,
+   "files": []
+  },
+  "self_update": {
+   "count": 0,
+   "files": []
+  },
+  "llm_api": {
+   "count": 0,
+   "files": []
+  }
+ }
+}

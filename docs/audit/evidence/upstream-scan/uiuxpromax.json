@@ -1,0 +1,359 @@
+{
+ "repo": "uiuxpromax",
+ "head": "09170eec67eefd46a7ae85de61b40c194020f997",
+ "totals": {
+  "files": 682,
+  "bytes": 21840310,
+  "submodules": []
+ },
+ "top_dirs": {
+  ".claude": 260,
+  "cli": 225,
+  "src": 93,
+  "gallery": 35,
+  "stack": 24,
+  "(root)": 14,
+  "scripts": 10,
+  ".github": 9,
+  "docs": 4,
+  "projects": 3,
+  ".claude-plugin": 2,
+  "\"docs": 1,
+  "preview": 1,
+  "screenshots": 1
+ },
+ "extensions": {
+  ".md": 144,
+  ".csv": 144,
+  ".json": 106,
+  ".py": 103,
+  ".ttf": 54,
+  ".txt": 33,
+  ".ts": 25,
+  ".tsx": 18,
+  ".cjs": 14,
+  ".yml": 9,
+  "(none)": 8,
+  ".png": 7,
+  ".mjs": 5,
+  ".html": 4,
+  ".sh": 3,
+  ".js": 2,
+  ".lock": 1,
+  ".md\"": 1,
+  ".css": 1
+ },
+ "host_dirs": [
+  ".claude",
+  ".claude-plugin"
+ ],
+ "manifests": [
+  ".claude-plugin/marketplace.json",
+  ".claude-plugin/plugin.json",
+  ".claude/skills/ui-styling/scripts/requirements.txt",
+  ".claude/skills/ui-styling/scripts/tests/requirements.txt",
+  "cli/assets/skills/ui-styling/scripts/requirements.txt",
+  "cli/assets/skills/ui-styling/scripts/tests/requirements.txt",
+  "cli/bun.lock",
+  "cli/package.json",
+  "gallery/package.json",
+  "stack/.mcp.json",
+  "stack/package.json"
+ ],
+ "mcp_files": [
+  "stack/.mcp.json"
+ ],
+ "installers": [
+  "cli/src/commands/uninstall.ts",
+  "cli/src/commands/update.ts",
+  "stack/scripts/setup.sh"
+ ],
+ "license_files": [
+  ".claude/skills/ui-styling/LICENSE.txt",
+  "LICENSE",
+  "cli/assets/skills/ui-styling/LICENSE.txt"
+ ],
+ "skills": [
+  {
+   "path": ".claude/skills/banner-design/SKILL.md",
+   "name": "banner-design",
+   "description": "Design banners for social media, ads, website heroes, creative assets, and print. Multiple art direction options with optional generated or supplied visuals. Actions: design, create, generate banner. Platforms: Facebook, Twitter/X, LinkedIn",
+   "bytes": 7071
+  },
+  {
+   "path": ".claude/skills/brand/SKILL.md",
+   "name": "brand",
+   "description": "Brand voice, visual identity, messaging frameworks, asset management, brand consistency. Activate for branded content, tone of voice, marketing assets, brand compliance, style guides.",
+   "bytes": 3926
+  },
+  {
+   "path": ".claude/skills/design-system/SKILL.md",
+   "name": "design-system",
+   "description": "Token architecture, component specifications, and slide generation. Three-layer tokens (primitive\u2192semantic\u2192component), CSS variables, spacing/typography scales, component specs, strategic slide creation. Use for design tokens, systematic de",
+   "bytes": 7458
+  },
+  {
+   "path": ".claude/skills/design/SKILL.md",
+   "name": "design",
+   "description": "Comprehensive design skill: brand identity, design tokens, UI styling, logo generation (55 styles, Gemini, Atlas Cloud, or MuAPI AI), corporate identity program (50 deliverables, CIP mockups), HTML presentations (Chart.js), banner design (2",
+   "bytes": 14126
+  },
+  {
+   "path": ".claude/skills/slides/SKILL.md",
+   "name": "slides",
+   "description": "Create strategic HTML presentations with Chart.js, design tokens, responsive layouts, copywriting formulas, and contextual slide strategies.",
+   "bytes": 1720
+  },
+  {
+   "path": ".claude/skills/ui-styling/SKILL.md",
+   "name": "ui-styling",
+   "description": "Create beautiful, accessible user interfaces with shadcn/ui components (built on Radix UI + Tailwind), Tailwind CSS utility-first styling, and canvas-based visual designs. Use when building user interfaces, implementing design systems, crea",
+   "bytes": 10945
+  },
+  {
+   "path": ".claude/skills/ui-ux-pro-max/SKILL.md",
+   "name": "ui-ux-pro-max",
+   "description": "UI/UX design intelligence for web, mobile, and desktop. This skill should be used when designing, building, reviewing, or fixing interfaces, including pages, components, design systems, accessibility, interaction, responsive layout, typogra",
+   "bytes": 15969
+  },
+  {
+   "path": "cli/assets/skills/banner-design/SKILL.md",
+   "name": "banner-design",
+   "description": "Design banners for social media, ads, website heroes, creative assets, and print. Multiple art direction options with optional generated or supplied visuals. Actions: design, create, generate banner. Platforms: Facebook, Twitter/X, LinkedIn",
+   "bytes": 7071
+  },
+  {
+   "path": "cli/assets/skills/brand/SKILL.md",
+   "name": "brand",
+   "description": "Brand voice, visual identity, messaging frameworks, asset management, brand consistency. Activate for branded content, tone of voice, marketing assets, brand compliance, style guides.",
+   "bytes": 3926
+  },
+  {
+   "path": "cli/assets/skills/design-system/SKILL.md",
+   "name": "design-system",
+   "description": "Token architecture, component specifications, and slide generation. Three-layer tokens (primitive\u2192semantic\u2192component), CSS variables, spacing/typography scales, component specs, strategic slide creation. Use for design tokens, systematic de",
+   "bytes": 7458
+  },
+  {
+   "path": "cli/assets/skills/design/SKILL.md",
+   "name": "design",
+   "description": "Comprehensive design skill: brand identity, design tokens, UI styling, logo generation (55 styles, Gemini, Atlas Cloud, or MuAPI AI), corporate identity program (50 deliverables, CIP mockups), HTML presentations (Chart.js), banner design (2",
+   "bytes": 14126
+  },
+  {
+   "path": "cli/assets/skills/slides/SKILL.md",
+   "name": "slides",
+   "description": "Create strategic HTML presentations with Chart.js, design tokens, responsive layouts, copywriting formulas, and contextual slide strategies.",
+   "bytes": 1720
+  },
+  {
+   "path": "cli/assets/skills/ui-styling/SKILL.md",
+   "name": "ui-styling",
+   "description": "Create beautiful, accessible user interfaces with shadcn/ui components (built on Radix UI + Tailwind), Tailwind CSS utility-first styling, and canvas-based visual designs. Use when building user interfaces, implementing design systems, crea",
+   "bytes": 10945
+  }
+ ],
+ "agents": [
+  {
+   "path": "stack/.claude/agents/design-review.md",
+   "name": "design-review",
+   "bytes": 4567
+  }
+ ],
+ "commands": {
+  "count": 2,
+  "files": [
+   "stack/.claude/commands/design-plan.md",
+   "stack/.claude/commands/design-review.md"
+  ]
+ },
+ "hooks": {
+  "count": 1,
+  "files": [
+   "stack/.claude/settings.json"
+  ]
+ },
+ "indicators": {
+  "mcp": {
+   "count": 7,
+   "files": [
+    "stack/.claude/settings.json",
+    "stack/.mcp.json",
+    "stack/CLAUDE.md",
+    "stack/README.md",
+    "stack/docs/SETUP.md",
+    "stack/docs/STACK.md",
+    "stack/scripts/setup.sh"
+   ]
+  },
+  "network": {
+   "count": 8,
+   "files": [
+    ".claude/skills/design/scripts/logo/generate.py",
+    ".claude/skills/ui-ux-pro-max/scripts/tests/test_web_stack_freshness.py",
+    ".github/workflows/refresh-catalogs.yml",
+    "cli/assets/scripts/tests/test_web_stack_freshness.py",
+    "cli/assets/skills/design/scripts/logo/generate.py",
+    "cli/src/utils/github.ts",
+    "scripts/refresh-google-fonts.py",
+    "src/ui-ux-pro-max/scripts/tests/test_web_stack_freshness.py"
+   ]
+  },
+  "telemetry": {
+   "count": 1,
+   "files": [
+    "gallery/package-lock.json"
+   ]
+  },
+  "background": {
+   "count": 2,
+   "files": [
+    ".github/workflows/refresh-catalogs.yml",
+    "stack/scripts/design-audit.mjs"
+   ]
+  },
+  "browser": {
+   "count": 20,
+   "files": [
+    ".github/workflows/check-asset-sync.yml",
+    ".github/workflows/release.yml",
+    ".github/workflows/tests.yml",
+    ".gitignore",
+    "cli/package-lock.json",
+    "cli/package.json",
+    "cli/playwright.config.ts",
+    "cli/tests/e2e/agent-query-contract.spec.ts",
+    "cli/tests/e2e/banner-design-path-contract.spec.ts",
+    "cli/tests/e2e/dry-run.spec.ts",
+    "cli/tests/e2e/preview.spec.ts",
+    "cli/tests/e2e/template-script-paths.spec.ts",
+    "gallery/package-lock.json",
+    "stack/.claude/settings.json",
+    "stack/.github/workflows/design-review.yml",
+    "stack/.gitignore",
+    "stack/.mcp.json",
+    "stack/package.json",
+    "stack/scripts/design-audit.mjs",
+    "stack/scripts/setup.sh"
+   ]
+  },
+  "shell_exec": {
+   "count": 31,
+   "files": [
+    ".claude/skills/brand/scripts/extract-colors.cjs",
+    ".claude/skills/brand/scripts/sync-brand-to-tokens.cjs",
+    ".claude/skills/brand/scripts/tests/test_sync_brand_to_tokens.py",
+    ".claude/skills/design-system/scripts/slide-token-validator.py",
+    ".claude/skills/design-system/scripts/tests/test_validate_tokens.py",
+    ".claude/skills/ui-styling/scripts/shadcn_add.py",
+    ".claude/skills/ui-styling/scripts/tests/test_shadcn_add.py",
+    ".claude/skills/ui-styling/scripts/tests/test_tailwind_config_gen.py",
+    ".claude/skills/ui-ux-pro-max/scripts/tests/test_catalog_refresh.py",
+    ".claude/skills/ui-ux-pro-max/scripts/tests/test_core.py",
+    ".claude/skills/ui-ux-pro-max/scripts/tests/test_design_system_stack.py",
+    "cli/assets/scripts/tests/test_catalog_refresh.py",
+    "cli/assets/scripts/tests/test_core.py",
+    "cli/assets/scripts/tests/test_design_system_stack.py",
+    "cli/assets/skills/brand/scripts/extract-colors.cjs",
+    "cli/assets/skills/brand/scripts/sync-brand-to-tokens.cjs",
+    "cli/assets/skills/brand/scripts/tests/test_sync_brand_to_tokens.py",
+    "cli/assets/skills/design-system/scripts/slide-token-validator.py",
+    "cli/assets/skills/design-system/scripts/tests/test_validate_tokens.py",
+    "cli/assets/skills/ui-styling/scripts/shadcn_add.py",
+    "cli/assets/skills/ui-styling/scripts/tests/test_shadcn_add.py",
+    "cli/assets/skills/ui-styling/scripts/tests/test_tailwind_config_gen.py",
+    "cli/scripts/build.mjs",
+    "cli/scripts/run-python.mjs",
+    "cli/src/commands/update.ts",
+    "cli/src/utils/extract.ts",
+    "gallery/lib/cssGenerator.ts",
+    "scripts/validate-agent-guide.py",
+    "src/ui-ux-pro-max/scripts/tests/test_catalog_refresh.py",
+    "src/ui-ux-pro-max/scripts/tests/test_core.py",
+    "src/ui-ux-pro-max/scripts/tests/test_design_system_stack.py"
+   ]
+  },
+  "env_secrets": {
+   "count": 34,
+   "files": [
+    ".claude/skills/design-system/scripts/fetch-background.py",
+    ".claude/skills/design-system/scripts/html-token-validator.py",
+    ".claude/skills/design-system/scripts/tests/test_validate_tokens.py",
+    ".claude/skills/design/scripts/cip/generate.py",
+    ".claude/skills/design/scripts/icon/generate.py",
+    ".claude/skills/design/scripts/logo/generate.py",
+    ".claude/skills/design/scripts/logo/tests/test_generate.py",
+    ".claude/skills/ui-ux-pro-max/data/phosphor-icons-upstream.json",
+    ".claude/skills/ui-ux-pro-max/scripts/design_system.py",
+    ".claude/skills/ui-ux-pro-max/scripts/tests/test_catalog_refresh.py",
+    ".claude/skills/ui-ux-pro-max/scripts/tests/test_core.py",
+    ".github/workflows/bump-versions.yml",
+    ".github/workflows/refresh-catalogs.yml",
+    ".github/workflows/release.yml",
+    "cli/assets/data/phosphor-icons-upstream.json",
+    "cli/assets/scripts/design_system.py",
+    "cli/assets/scripts/tests/test_catalog_refresh.py",
+    "cli/assets/scripts/tests/test_core.py",
+    "cli/assets/skills/design-system/scripts/fetch-background.py",
+    "cli/assets/skills/design-system/scripts/html-token-validator.py",
+    "cli/assets/skills/design-system/scripts/tests/test_validate_tokens.py",
+    "cli/assets/skills/design/scripts/cip/generate.py",
+    "cli/assets/skills/design/scripts/icon/generate.py",
+    "cli/assets/skills/design/scripts/logo/generate.py",
+    "cli/assets/skills/design/scripts/logo/tests/test_generate.py",
+    "cli/playwright.config.ts",
+    "cli/src/utils/github.ts",
+    "scripts/refresh-google-fonts.py",
+    "src/ui-ux-pro-max/data/phosphor-icons-upstream.json",
+    "src/ui-ux-pro-max/scripts/design_system.py",
+    "src/ui-ux-pro-max/scripts/tests/test_catalog_refresh.py",
+    "src/ui-ux-pro-max/scripts/tests/test_core.py",
+    "stack/.gitignore",
+    "stack/scripts/design-audit.mjs"
+   ]
+  },
+  "home_writes": {
+   "count": 16,
+   "files": [
+    ".claude/skills/design-system/scripts/fetch-background.py",
+    ".claude/skills/design-system/scripts/html-token-validator.py",
+    ".claude/skills/design/scripts/cip/generate.py",
+    ".claude/skills/design/scripts/icon/generate.py",
+    ".claude/skills/design/scripts/logo/generate.py",
+    ".claude/skills/ui-ux-pro-max/scripts/tests/test_skill_script_paths.py",
+    ".github/workflows/check-asset-sync.yml",
+    "cli/assets/scripts/tests/test_skill_script_paths.py",
+    "cli/assets/skills/design-system/scripts/fetch-background.py",
+    "cli/assets/skills/design-system/scripts/html-token-validator.py",
+    "cli/assets/skills/design/scripts/cip/generate.py",
+    "cli/assets/skills/design/scripts/icon/generate.py",
+    "cli/assets/skills/design/scripts/logo/generate.py",
+    "cli/src/commands/uninstall.ts",
+    "cli/src/utils/template.ts",
+    "src/ui-ux-pro-max/scripts/tests/test_skill_script_paths.py"
+   ]
+  },
+  "self_update": {
+   "count": 8,
+   "files": [
+    ".claude/skills/design/scripts/cip/generate.py",
+    ".claude/skills/design/scripts/icon/generate.py",
+    ".claude/skills/design/scripts/logo/generate.py",
+    ".github/workflows/tests.yml",
+    "cli/assets/skills/design/scripts/cip/generate.py",
+    "cli/assets/skills/design/scripts/icon/generate.py",
+    "cli/assets/skills/design/scripts/logo/generate.py",
+    "cli/src/commands/update.ts"
+   ]
+  },
+  "llm_api": {
+   "count": 4,
+   "files": [
+    ".claude/skills/ui-ux-pro-max/data/phosphor-icons-upstream.json",
+    "cli/assets/data/phosphor-icons-upstream.json",
+    "src/ui-ux-pro-max/data/phosphor-icons-upstream.json",
+    "stack/scripts/setup.sh"
+   ]
+  }
+ }
+}

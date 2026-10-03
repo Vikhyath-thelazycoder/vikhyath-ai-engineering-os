@@ -29,8 +29,8 @@ Status vocabulary (spec §25): NOT_STARTED · PLANNED · IN_PROGRESS · PARTIALL
 | Phase | Name | Stage | Depends on | Status |
 |---|---|---|---|---|
 | P0 | Current repository audit | Audit | — | **COMPLETED** |
-| P1 | Upstream deep audit (14 repos) | Audit | P0 | IN_PROGRESS |
-| P2 | Capability, domain & extraction architecture | Audit | P1 | NOT_STARTED |
+| P1 | Upstream deep audit (14 repos) | Audit | P0 | **COMPLETED** |
+| P2 | Capability, domain & extraction architecture | Audit | P1 | IN_PROGRESS |
 | P3 | Cross-cutting audits, target architecture, definitive file-level plan — **GATE** | Audit/Plan | P2 | NOT_STARTED |
 | P4 | Core runtime & CLI foundation | Build: core | P3 | NOT_STARTED |
 | P5 | Provenance & third-party notices | Build: supply | P4 | NOT_STARTED |
@@ -78,7 +78,7 @@ Ordering rationale vs. spec §66 anchors (D-004):
 | Rollback | `git switch main && git branch -D feat/v2-os-transformation`; `rm -rf .staging`. |
 | Evidence | `docs/audit/01_CURRENT_REPOSITORY_AUDIT.md` §1–11. |
 
-## P1 — Upstream deep audit · PLANNED (next)
+## P1 — Upstream deep audit · COMPLETED (2026-10-03)
 
 | Item | Detail |
 |---|---|
@@ -90,6 +90,7 @@ Ordering rationale vs. spec §66 anchors (D-004):
 | Acceptance criteria | 14/14 repos audited; every MCP surface located; every executable/install/hook mechanism listed with a risk note; pins chosen. |
 | Rollback | Docs only; delete files. |
 | Known so far | MCP surfaces already seen: ECC (installed plugin exposes chrome-devtools MCP), UI/UX Pro Max (`stack/.mcp.json`: playwright, chrome-devtools, shadcn). Must be excluded from extraction (§2.1). |
+| Result | **Done.** 14/14 repos audited (`04_UPSTREAM_REPOSITORY_AUDIT.md`), license inventory (`10_…`), third-party security audit with 16 controls (`12_…`), scanner `tools/audit/scan_upstream.py`, per-file hashes for all 26,588 files (inventory check: 14/14 PASS). Runtimes executed: Unlazy 188/188 ok; UI/UX Pro Max 164/164 OK; Graphify install + update + query OK; BeyondSEO 232/250 (9 browser-extra failures, UNKNOWN to confirm in P3). Pins: D-008. |
 | Note | Largest audit phase (≈26k upstream files; OpenDesign alone is 12,940). Hash inventories are generated; reading focuses on executable surfaces, manifests, skills/agents and runtimes. |
 
 ## P2 — Capability, domain & extraction architecture · NOT_STARTED
@@ -136,4 +137,5 @@ Produces `11_HOST_COMPATIBILITY_AUDIT`, `13_TOKEN_CONTEXT_AUDIT` (measured OLD-M
 |---|---|---|
 | 2026-10-03 | P0 | Plan created; 28 phases defined (D-004); P0 completed; P1 set as next. Licensing made non-blocking (D-002). |
 | 2026-10-03 | P0 | D-005: selective real extraction (actual files copied/adapted into the bundle; no reference-only capabilities). |
+| 2026-10-03 | P1 | P1 completed: upstream audit, license inventory, security audit, pins (D-008). P2 started. |
 | 2026-10-03 | M1 | D-006: dependency closure (selected content pulls in everything it needs). D-007: 8 review milestones. M1 started. |

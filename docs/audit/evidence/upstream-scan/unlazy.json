@@ -1,0 +1,120 @@
+{
+ "repo": "unlazy",
+ "head": "16671491f6679ad9378f52604d3bc2415b4120c7",
+ "totals": {
+  "files": 37,
+  "bytes": 460540,
+  "submodules": []
+ },
+ "top_dirs": {
+  "scripts": 10,
+  "(root)": 8,
+  "tests": 7,
+  "references": 6,
+  "templates": 3,
+  ".github": 1,
+  "agents": 1,
+  "research": 1
+ },
+ "extensions": {
+  ".mjs": 17,
+  ".md": 15,
+  "(none)": 2,
+  ".yml": 1,
+  ".yaml": 1,
+  ".json": 1
+ },
+ "host_dirs": [],
+ "manifests": [
+  "package.json"
+ ],
+ "mcp_files": [],
+ "installers": [
+  "scripts/install-hooks.mjs"
+ ],
+ "license_files": [
+  "LICENSE"
+ ],
+ "skills": [
+  {
+   "path": "SKILL.md",
+   "name": "unlazy",
+   "description": "Enforces completion discipline for substantial autonomous work by writing acceptance gates before execution, decomposing work with the Depth Tree, running approved checks, and re-verifying evidence before reporting. Use when an agent faces ",
+   "bytes": 10520
+  }
+ ],
+ "agents": [],
+ "commands": {
+  "count": 0,
+  "files": []
+ },
+ "hooks": {
+  "count": 0,
+  "files": []
+ },
+ "indicators": {
+  "mcp": {
+   "count": 0,
+   "files": []
+  },
+  "network": {
+   "count": 0,
+   "files": []
+  },
+  "telemetry": {
+   "count": 1,
+   "files": [
+    "tests/hardening-tests.mjs"
+   ]
+  },
+  "background": {
+   "count": 2,
+   "files": [
+    "scripts/lib/process-tree.mjs",
+    "tests/hardening-tests.mjs"
+   ]
+  },
+  "browser": {
+   "count": 0,
+   "files": []
+  },
+  "shell_exec": {
+   "count": 8,
+   "files": [
+    "scripts/gate-check.mjs",
+    "scripts/lib/check-supervisor.mjs",
+    "scripts/lib/process-tree.mjs",
+    "tests/dispatch-tests.mjs",
+    "tests/hardening-tests.mjs",
+    "tests/lint-tests.mjs",
+    "tests/run-tests.mjs",
+    "tests/stress-tests.mjs"
+   ]
+  },
+  "env_secrets": {
+   "count": 5,
+   "files": [
+    "scripts/gate-check.mjs",
+    "scripts/lib/gates.mjs",
+    "tests/dispatch-tests.mjs",
+    "tests/hardening-tests.mjs",
+    "tests/run-tests.mjs"
+   ]
+  },
+  "home_writes": {
+   "count": 2,
+   "files": [
+    "scripts/gate-check.mjs",
+    "scripts/install-hooks.mjs"
+   ]
+  },
+  "self_update": {
+   "count": 0,
+   "files": []
+  },
+  "llm_api": {
+   "count": 0,
+   "files": []
+  }
+ }
+}

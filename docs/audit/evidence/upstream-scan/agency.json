@@ -1,0 +1,130 @@
+{
+ "repo": "agency",
+ "head": "d3f71c4bb8922d3eea7576237a870dd59b3cdd52",
+ "totals": {
+  "files": 381,
+  "bytes": 4830924,
+  "submodules": []
+ },
+ "top_dirs": {
+  "engineering": 65,
+  "specialized": 59,
+  "marketing": 37,
+  "scripts": 37,
+  "game-development": 21,
+  "integrations": 20,
+  "strategy": 17,
+  "gis": 13,
+  "security": 12,
+  ".github": 10,
+  "design": 10,
+  "(root)": 9,
+  "sales": 9,
+  "testing": 9,
+  "paid-media": 7,
+  "project-management": 7,
+  "academic": 6,
+  "examples": 6,
+  "product": 6,
+  "spatial-computing": 6,
+  "support": 6,
+  "finance": 5,
+  "healthcare": 3,
+  "research": 1
+ },
+ "extensions": {
+  ".md": 329,
+  ".sh": 29,
+  ".yml": 9,
+  ".json": 4,
+  ".py": 4,
+  "(none)": 3,
+  ".example": 1,
+  ".sha256": 1,
+  ".ps1": 1
+ },
+ "host_dirs": [],
+ "manifests": [],
+ "mcp_files": [],
+ "installers": [
+  "integrations/mcp-memory/setup.sh",
+  "scripts/install.sh"
+ ],
+ "license_files": [
+  "LICENSE"
+ ],
+ "skills": [],
+ "agents": [],
+ "commands": {
+  "count": 0,
+  "files": []
+ },
+ "hooks": {
+  "count": 0,
+  "files": []
+ },
+ "indicators": {
+  "mcp": {
+   "count": 3,
+   "files": [
+    "integrations/mcp-memory/README.md",
+    "integrations/mcp-memory/setup.sh",
+    "specialized/specialized-mcp-builder.md"
+   ]
+  },
+  "network": {
+   "count": 0,
+   "files": []
+  },
+  "telemetry": {
+   "count": 0,
+   "files": []
+  },
+  "background": {
+   "count": 0,
+   "files": []
+  },
+  "browser": {
+   "count": 0,
+   "files": []
+  },
+  "shell_exec": {
+   "count": 2,
+   "files": [
+    "scripts/check-hermes-config-rewrite.py",
+    "scripts/check-runbooks.sh"
+   ]
+  },
+  "env_secrets": {
+   "count": 2,
+   "files": [
+    "scripts/check-agent-originality.sh",
+    "scripts/test-convert-outputs.sh"
+   ]
+  },
+  "home_writes": {
+   "count": 7,
+   "files": [
+    "integrations/mcp-memory/setup.sh",
+    "scripts/check-hermes-config-rewrite.py",
+    "scripts/convert.sh",
+    "scripts/install.sh",
+    "scripts/test-install-hermes-destination.sh",
+    "scripts/test-install-parallel-logs.sh",
+    "scripts/test-install.sh"
+   ]
+  },
+  "self_update": {
+   "count": 1,
+   "files": [
+    "integrations/mcp-memory/setup.sh"
+   ]
+  },
+  "llm_api": {
+   "count": 1,
+   "files": [
+    "scripts/convert.sh"
+   ]
+  }
+ }
+}

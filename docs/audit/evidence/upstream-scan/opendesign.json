@@ -1,0 +1,4135 @@
+{
+ "repo": "opendesign",
+ "head": "53231d40b778d88eba23f35547bf99485d3ae9fc",
+ "totals": {
+  "files": 12940,
+  "bytes": 290590952,
+  "submodules": []
+ },
+ "top_dirs": {
+  "apps": 4064,
+  "design-systems": 4015,
+  "plugins": 1829,
+  "design-templates": 747,
+  "packages": 450,
+  "skills": 358,
+  "tools": 292,
+  "e2e": 256,
+  "docs": 246,
+  ".github": 130,
+  "prompt-templates": 107,
+  "specs": 100,
+  "scripts": 51,
+  "clipper": 48,
+  "shells": 44,
+  "mocks": 43,
+  "assets": 33,
+  "deploy": 25,
+  ".claude": 23,
+  "(root)": 23,
+  "charts": 13,
+  "craft": 13,
+  "templates": 10,
+  ".vaunt": 6,
+  "data": 5,
+  "figma-plugin": 5,
+  "story": 2,
+  ".claude-plugin": 1,
+  ".looper-attachments": 1
+ },
+ "extensions": {
+  ".ts": 3602,
+  ".html": 2467,
+  ".md": 2254,
+  ".json": 1859,
+  ".tsx": 1057,
+  ".css": 536,
+  ".png": 239,
+  "(none)": 119,
+  ".woff2": 106,
+  ".py": 103,
+  ".mjs": 82,
+  ".svg": 75,
+  ".js": 71,
+  ".webp": 69,
+  ".yml": 67,
+  ".jpg": 47,
+  ".sh": 46,
+  ".yaml": 33,
+  ".mp4": 24,
+  ".ps1": 17,
+  ".txt": 11,
+  ".jsonl": 9,
+  ".jsx": 6,
+  ".ttf": 5,
+  ".mp3": 5
+ },
+ "host_dirs": [
+  ".claude",
+  ".claude-plugin"
+ ],
+ "manifests": [
+  ".claude-plugin/marketplace.json",
+  "apps/closure/package.json",
+  "apps/daemon/package.json",
+  "apps/desktop/package.json",
+  "apps/packaged/package.json",
+  "apps/web/package.json",
+  "deploy/Dockerfile",
+  "deploy/docker-compose.yml",
+  "design-templates/last30days/scripts/lib/vendor/bird-search/package.json",
+  "e2e/package.json",
+  "package.json",
+  "packages/agui-adapter/package.json",
+  "packages/components/package.json",
+  "packages/contracts/package.json",
+  "packages/diagnostics/package.json",
+  "packages/download/package.json",
+  "packages/dsh-runtime/package.json",
+  "packages/host/package.json",
+  "packages/launcher-proto/package.json",
+  "packages/metatool/package.json",
+  "packages/platform/package.json",
+  "packages/plugin-runtime/package.json",
+  "packages/registry-protocol/package.json",
+  "packages/release/package.json",
+  "packages/sidecar-proto/package.json",
+  "packages/sidecar/package.json",
+  "packages/standalone/package.json",
+  "plugins/community/import-smoke-test/.claude-plugin/plugin.json",
+  "plugins/open-design/.claude-plugin/plugin.json",
+  "plugins/open-design/.mcp.json",
+  "pnpm-workspace.yaml",
+  "shells/terminal/package.json",
+  "skills/chat-motion-overlay/assets/remotion-template/package.json",
+  "tools/dev/package.json",
+  "tools/pack/docker-compose.yml",
+  "tools/pack/package.json",
+  "tools/release/package.json",
+  "tools/serve/package.json"
+ ],
+ "mcp_files": [
+  "plugins/open-design/.mcp.json"
+ ],
+ "installers": [
+  ".claude/skills/od-contribute/install.sh",
+  ".claude/skills/od-contribute/scripts/setup-workspace.sh",
+  ".github/scripts/release/installed_acceptance.py",
+  "apps/daemon/src/agent-protocol/acp/updates.ts",
+  "apps/daemon/src/installation.ts",
+  "apps/daemon/src/migration/update-apply-observations.ts",
+  "apps/daemon/src/plugins/installer.ts",
+  "apps/daemon/tests/installation.test.ts",
+  "apps/daemon/tests/setup.ts",
+  "apps/daemon/tests/update-apply-observations.test.ts",
+  "apps/daemon/tests/update-lifecycle-observations.test.ts",
+  "apps/desktop/src/main/installer-observations.ts",
+  "apps/desktop/src/main/update-lifecycle-observations.ts",
+  "apps/desktop/src/main/update-menu.ts",
+  "apps/desktop/src/main/update-preflight.ts",
+  "apps/desktop/src/main/updater.ts",
+  "apps/desktop/tests/main/update-desktop-ready.test.ts",
+  "apps/desktop/tests/main/update-lifecycle-observations.test.ts",
+  "apps/desktop/tests/main/update-menu.test.ts",
+  "apps/desktop/tests/main/update-preflight.test.ts",
+  "apps/desktop/tests/main/updater-host-boundary.test.ts",
+  "apps/desktop/tests/main/updater.test.ts",
+  "apps/web/src/lib/updater.ts",
+  "apps/web/src/observability/install.ts",
+  "apps/web/tests/lib/updater.test.ts",
+  "apps/web/tests/update-surface-real-data.test.ts",
+  "deploy/scripts/install.sh",
+  "deploy/scripts/uninstall.sh",
+  "deploy/scripts/update.sh",
+  "deploy/tests/install.test.ts",
+  "design-templates/last30days/scripts/lib/setup_wizard.py",
+  "e2e/tests/packaged/update-scenario.test.ts",
+  "e2e/tests/updater-fixture.test.ts",
+  "e2e/ui/updater-popup-stacking.test.ts",
+  "packages/contracts/src/analytics/update-lifecycle.ts",
+  "packages/contracts/src/plugins/installed.ts",
+  "packages/sidecar/src/bootstrap.ts",
+  "packages/standalone/src/update.ts",
+  "scripts/install-unsafe-dmg.sh",
+  "shells/terminal/ps1/install.ps1",
+  "shells/terminal/sh/install.sh",
+  "tools/release/resources/dsh-bootstrap/install-dsh.ps1",
+  "tools/release/resources/dsh-bootstrap/install-dsh.sh",
+  "tools/serve/src/updater-fixture.ts",
+  "tools/serve/tests/updater-fixture.test.ts"
+ ],
+ "license_files": [
+  "LICENSE",
+  "apps/desktop/vendor/dom-to-pptx/LICENSE",
+  "design-templates/guizang-ppt/LICENSE",
+  "design-templates/html-ppt-zhangzara-8-bit-orbit/LICENSE",
+  "design-templates/html-ppt-zhangzara-biennale-yellow/LICENSE",
+  "design-templates/html-ppt-zhangzara-block-frame/LICENSE",
+  "design-templates/html-ppt-zhangzara-blue-professional/LICENSE",
+  "design-templates/html-ppt-zhangzara-bold-poster/LICENSE",
+  "design-templates/html-ppt-zhangzara-broadside/LICENSE",
+  "design-templates/html-ppt-zhangzara-capsule/LICENSE",
+  "design-templates/html-ppt-zhangzara-cartesian/LICENSE",
+  "design-templates/html-ppt-zhangzara-cobalt-grid/LICENSE",
+  "design-templates/html-ppt-zhangzara-coral/LICENSE",
+  "design-templates/html-ppt-zhangzara-creative-mode/LICENSE",
+  "design-templates/html-ppt-zhangzara-daisy-days/LICENSE",
+  "design-templates/html-ppt-zhangzara-editorial-tri-tone/LICENSE",
+  "design-templates/html-ppt-zhangzara-grove/LICENSE",
+  "design-templates/html-ppt-zhangzara-long-table/LICENSE",
+  "design-templates/html-ppt-zhangzara-mat/LICENSE",
+  "design-templates/html-ppt-zhangzara-monochrome/LICENSE",
+  "design-templates/html-ppt-zhangzara-neo-grid-bold/LICENSE",
+  "design-templates/html-ppt-zhangzara-peoples-platform/LICENSE",
+  "design-templates/html-ppt-zhangzara-pin-and-paper/LICENSE",
+  "design-templates/html-ppt-zhangzara-pink-script/LICENSE",
+  "design-templates/html-ppt-zhangzara-playful/LICENSE",
+  "design-templates/html-ppt-zhangzara-raw-grid/LICENSE",
+  "design-templates/html-ppt-zhangzara-retro-windows/LICENSE",
+  "design-templates/html-ppt-zhangzara-retro-zine/LICENSE",
+  "design-templates/html-ppt-zhangzara-sakura-chroma/LICENSE",
+  "design-templates/html-ppt-zhangzara-scatterbrain/LICENSE",
+  "design-templates/html-ppt-zhangzara-signal/LICENSE",
+  "design-templates/html-ppt-zhangzara-soft-editorial/LICENSE",
+  "design-templates/html-ppt-zhangzara-stencil-tablet/LICENSE",
+  "design-templates/html-ppt-zhangzara-studio/LICENSE",
+  "design-templates/html-ppt-zhangzara-vellum/LICENSE",
+  "design-templates/html-ppt/LICENSE",
+  "design-templates/last30days/LICENSE",
+  "design-templates/last30days/scripts/lib/vendor/bird-search/LICENSE",
+  "plugins/_official/examples/frontend-slides/LICENSE",
+  "plugins/_official/examples/fs-creative-voltage/LICENSE",
+  "plugins/_official/examples/fs-editorial-forest/LICENSE",
+  "plugins/_official/examples/fs-electric-studio/LICENSE",
+  "plugins/_official/examples/fs-emerald-editorial/LICENSE",
+  "plugins/_official/examples/fs-notebook-tabs/LICENSE",
+  "plugins/_official/examples/hps-academic-paper/LICENSE",
+  "plugins/_official/examples/hps-bauhaus/LICENSE",
+  "plugins/_official/examples/hps-memphis-pop/LICENSE",
+  "plugins/_official/examples/hps-retro-tv/LICENSE",
+  "plugins/_official/examples/hps-true-blueprint/LICENSE",
+  "plugins/_official/examples/hps-y2k-chrome/LICENSE",
+  "plugins/_official/examples/huashu-annual-letter/LICENSE",
+  "plugins/_official/examples/huashu-bento-insight/LICENSE",
+  "plugins/_official/examples/huashu-golden-circle/LICENSE",
+  "plugins/_official/examples/huashu-keynote-black/LICENSE",
+  "plugins/_official/examples/huashu-luxe-whitespace/LICENSE",
+  "plugins/_official/examples/huashu-pentagram-grid/LICENSE",
+  "plugins/_official/examples/huashu-slides/LICENSE",
+  "plugins/_official/examples/huashu-sparkline-arc/LICENSE",
+  "plugins/_official/examples/huashu-takram-soft-tech/LICENSE",
+  "plugins/_official/examples/ve-midnight-editorial/LICENSE",
+  "plugins/_official/examples/ve-terminal-mono/LICENSE",
+  "plugins/_official/examples/webgl-depth-gallery/LICENSE",
+  "plugins/_official/examples/webgl-distortion-grain/LICENSE",
+  "plugins/_official/examples/webgl-horizontal-parallax/LICENSE",
+  "plugins/_official/examples/webgl-pixel-reveal-gallery/LICENSE",
+  "plugins/community/hallmark/LICENSE",
+  "plugins/community/humanize-ppt/LICENSE",
+  "skills/brandkit/LICENSE",
+  "skills/brutalist-skill/LICENSE",
+  "skills/emil-design-eng/LICENSE",
+  "skills/frontend-design/LICENSE.txt",
+  "skills/gpt-tasteskill/LICENSE",
+  "skills/hatch-pet/LICENSE.txt",
+  "skills/image-to-code-skill/LICENSE",
+  "skills/imagegen-frontend-mobile/LICENSE",
+  "skills/imagegen-frontend-web/LICENSE",
+  "skills/minimalist-skill/LICENSE",
+  "skills/output-skill/LICENSE",
+  "skills/redesign-skill/LICENSE",
+  "skills/review-animations/LICENSE",
+  "skills/soft-skill/LICENSE",
+  "skills/stitch-skill/LICENSE",
+  "skills/taste-skill-v1/LICENSE",
+  "skills/taste-skill/LICENSE",
+  "skills/web-clone/LICENSE",
+  "skills/web-design-guidelines/LICENSE",
+  "skills/writing-guidelines/LICENSE",
+  "tools/pack/resources/win/7zip/License.txt"
+ ],
+ "skills": [
+  {
+   "path": ".claude/skills/od-contribute/SKILL.md",
+   "name": "od-contribute",
+   "description": "One-click contribution flow for OpenDesign (nexu-io/open-design) \u2014 even for non-coders. Pick one of four cards (ship a Skill or Design System you made with OD; translate docs; fix a typo / write a blog; report a bug), the agent validates an",
+   "bytes": 14142
+  },
+  {
+   "path": "apps/daemon/tests/fixtures/plugin-fixtures/sample-plugin/SKILL.md",
+   "name": "sample-plugin",
+   "description": "Phase 1 sample plugin synthesizing a SKILL.md frontmatter for backwards-compat tests.",
+   "bytes": 691
+  },
+  {
+   "path": "design-templates/audio-jingle/SKILL.md",
+   "name": "audio-jingle",
+   "description": "|",
+   "bytes": 4436
+  },
+  {
+   "path": "design-templates/blog-post/SKILL.md",
+   "name": "blog-post",
+   "description": "|",
+   "bytes": 2899
+  },
+  {
+   "path": "design-templates/clinical-case-report/SKILL.md",
+   "name": "clinical-case-report",
+   "description": "|",
+   "bytes": 8855
+  },
+  {
+   "path": "design-templates/contact-widget/SKILL.md",
+   "name": "contact-widget",
+   "description": "Self-contained floating chat widget with welcome screen, social links, meeting button, and message input. Single HTML file, zero dependencies.",
+   "bytes": 6346
+  },
+  {
+   "path": "design-templates/critique/SKILL.md",
+   "name": "critique",
+   "description": "|",
+   "bytes": 9684
+  },
+  {
+   "path": "design-templates/dashboard/SKILL.md",
+   "name": "dashboard",
+   "description": "|",
+   "bytes": 2771
+  },
+  {
+   "path": "design-templates/dating-web/SKILL.md",
+   "name": "dating-web",
+   "description": "|",
+   "bytes": 3905
+  },
+  {
+   "path": "design-templates/dcf-valuation/SKILL.md",
+   "name": "dcf-valuation",
+   "description": "|",
+   "bytes": 4709
+  },
+  {
+   "path": "design-templates/digital-eguide/SKILL.md",
+   "name": "digital-eguide",
+   "description": "|",
+   "bytes": 3708
+  },
+  {
+   "path": "design-templates/docs-page/SKILL.md",
+   "name": "docs-page",
+   "description": "|",
+   "bytes": 3015
+  },
+  {
+   "path": "design-templates/email-marketing/SKILL.md",
+   "name": "email-marketing",
+   "description": "|",
+   "bytes": 3488
+  },
+  {
+   "path": "design-templates/eng-runbook/SKILL.md",
+   "name": "eng-runbook",
+   "description": "|",
+   "bytes": 1540
+  },
+  {
+   "path": "design-templates/finance-report/SKILL.md",
+   "name": "finance-report",
+   "description": "|",
+   "bytes": 2138
+  },
+  {
+   "path": "design-templates/flowai-live-dashboard-template/SKILL.md",
+   "name": "flowai-live-dashboard-template",
+   "description": "|",
+   "bytes": 3522
+  },
+  {
+   "path": "design-templates/gamified-app/SKILL.md",
+   "name": "gamified-app",
+   "description": "|",
+   "bytes": 4503
+  },
+  {
+   "path": "design-templates/github-dashboard/SKILL.md",
+   "name": "github-dashboard",
+   "description": "|",
+   "bytes": 7363
+  },
+  {
+   "path": "design-templates/guizang-ppt/SKILL.md",
+   "name": "magazine-web-ppt",
+   "description": "|",
+   "bytes": 19299
+  },
+  {
+   "path": "design-templates/hr-onboarding/SKILL.md",
+   "name": "hr-onboarding",
+   "description": "|",
+   "bytes": 1595
+  },
+  {
+   "path": "design-templates/html-ppt-course-module/SKILL.md",
+   "name": "html-ppt-course-module",
+   "description": "|",
+   "bytes": 5656
+  },
+  {
+   "path": "design-templates/html-ppt-graphify-dark-graph/SKILL.md",
+   "name": "html-ppt-graphify-dark-graph",
+   "description": "|",
+   "bytes": 5626
+  },
+  {
+   "path": "design-templates/html-ppt-hermes-cyber-terminal/SKILL.md",
+   "name": "html-ppt-hermes-cyber-terminal",
+   "description": "|",
+   "bytes": 5563
+  },
+  {
+   "path": "design-templates/html-ppt-knowledge-arch-blueprint/SKILL.md",
+   "name": "html-ppt-knowledge-arch-blueprint",
+   "description": "|",
+   "bytes": 5676
+  },
+  {
+   "path": "design-templates/html-ppt-obsidian-claude-gradient/SKILL.md",
+   "name": "html-ppt-obsidian-claude-gradient",
+   "description": "|",
+   "bytes": 5636
+  },
+  {
+   "path": "design-templates/html-ppt-pitch-deck/SKILL.md",
+   "name": "html-ppt-pitch-deck",
+   "description": "|",
+   "bytes": 5558
+  },
+  {
+   "path": "design-templates/html-ppt-presenter-mode-reveal/SKILL.md",
+   "name": "html-ppt-presenter-mode",
+   "description": "|",
+   "bytes": 5543
+  },
+  {
+   "path": "design-templates/html-ppt-product-launch/SKILL.md",
+   "name": "html-ppt-product-launch",
+   "description": "|",
+   "bytes": 5479
+  },
+  {
+   "path": "design-templates/html-ppt-taste-brutalist/SKILL.md",
+   "name": "html-ppt-taste-brutalist",
+   "description": "16:9 HTML deck in tactical-telemetry / CRT-terminal taste. Deactivated-CRT charcoal slides, white-phosphor monospace, hazard-red accent, scanline overlay, ASCII syntax, density over decoration. Distilled from Leonxlnx/taste-skill `brutalist",
+   "bytes": 4861
+  },
+  {
+   "path": "design-templates/html-ppt-taste-editorial/SKILL.md",
+   "name": "html-ppt-taste-editorial",
+   "description": "16:9 HTML deck in editorial-minimalist taste. Warm cream slides, serif display + grotesque body, hairline rules, monospace meta, generous macro-whitespace, one accent. Distilled from Leonxlnx/taste-skill `minimalist-skill`.",
+   "bytes": 4282
+  },
+  {
+   "path": "design-templates/html-ppt-tech-sharing/SKILL.md",
+   "name": "html-ppt-tech-sharing",
+   "description": "|",
+   "bytes": 5461
+  },
+  {
+   "path": "design-templates/html-ppt-testing-safety-alert/SKILL.md",
+   "name": "html-ppt-testing-safety-alert",
+   "description": "|",
+   "bytes": 5776
+  },
+  {
+   "path": "design-templates/html-ppt-weekly-report/SKILL.md",
+   "name": "html-ppt-weekly-report",
+   "description": "|",
+   "bytes": 5467
+  },
+  {
+   "path": "design-templates/html-ppt-xhs-pastel-card/SKILL.md",
+   "name": "html-ppt-xhs-pastel-card",
+   "description": "|",
+   "bytes": 5512
+  },
+  {
+   "path": "design-templates/html-ppt-xhs-white-editorial/SKILL.md",
+   "name": "html-ppt-xhs-white-editorial",
+   "description": "|",
+   "bytes": 5645
+  },
+  {
+   "path": "design-templates/html-ppt-zhangzara-8-bit-orbit/SKILL.md",
+   "name": "html-ppt-zhangzara-8-bit-orbit",
+   "description": "|",
+   "bytes": 4847
+  },
+  {
+   "path": "design-templates/html-ppt-zhangzara-biennale-yellow/SKILL.md",
+   "name": "html-ppt-zhangzara-biennale-yellow",
+   "description": "|",
+   "bytes": 4966
+  },
+  {
+   "path": "design-templates/html-ppt-zhangzara-block-frame/SKILL.md",
+   "name": "html-ppt-zhangzara-block-frame",
+   "description": "|",
+   "bytes": 4929
+  },
+  {
+   "path": "design-templates/html-ppt-zhangzara-blue-professional/SKILL.md",
+   "name": "html-ppt-zhangzara-blue-professional",
+   "description": "|",
+   "bytes": 4910
+  },
+  {
+   "path": "design-templates/html-ppt-zhangzara-bold-poster/SKILL.md",
+   "name": "html-ppt-zhangzara-bold-poster",
+   "description": "|",
+   "bytes": 4877
+  },
+  {
+   "path": "design-templates/html-ppt-zhangzara-broadside/SKILL.md",
+   "name": "html-ppt-zhangzara-broadside",
+   "description": "|",
+   "bytes": 4910
+  },
+  {
+   "path": "design-templates/html-ppt-zhangzara-capsule/SKILL.md",
+   "name": "html-ppt-zhangzara-capsule",
+   "description": "|",
+   "bytes": 4786
+  },
+  {
+   "path": "design-templates/html-ppt-zhangzara-cartesian/SKILL.md",
+   "name": "html-ppt-zhangzara-cartesian",
+   "description": "|",
+   "bytes": 5049
+  },
+  {
+   "path": "design-templates/html-ppt-zhangzara-cobalt-grid/SKILL.md",
+   "name": "html-ppt-zhangzara-cobalt-grid",
+   "description": "|",
+   "bytes": 4991
+  },
+  {
+   "path": "design-templates/html-ppt-zhangzara-coral/SKILL.md",
+   "name": "html-ppt-zhangzara-coral",
+   "description": "|",
+   "bytes": 4832
+  },
+  {
+   "path": "design-templates/html-ppt-zhangzara-creative-mode/SKILL.md",
+   "name": "html-ppt-zhangzara-creative-mode",
+   "description": "|",
+   "bytes": 5399
+  },
+  {
+   "path": "design-templates/html-ppt-zhangzara-daisy-days/SKILL.md",
+   "name": "html-ppt-zhangzara-daisy-days",
+   "description": "|",
+   "bytes": 5097
+  },
+  {
+   "path": "design-templates/html-ppt-zhangzara-editorial-tri-tone/SKILL.md",
+   "name": "html-ppt-zhangzara-editorial-tri-tone",
+   "description": "|",
+   "bytes": 5380
+  },
+  {
+   "path": "design-templates/html-ppt-zhangzara-grove/SKILL.md",
+   "name": "html-ppt-zhangzara-grove",
+   "description": "|",
+   "bytes": 5007
+  },
+  {
+   "path": "design-templates/html-ppt-zhangzara-long-table/SKILL.md",
+   "name": "html-ppt-zhangzara-long-table",
+   "description": "|",
+   "bytes": 4874
+  },
+  {
+   "path": "design-templates/html-ppt-zhangzara-mat/SKILL.md",
+   "name": "html-ppt-zhangzara-mat",
+   "description": "|",
+   "bytes": 4969
+  },
+  {
+   "path": "design-templates/html-ppt-zhangzara-monochrome/SKILL.md",
+   "name": "html-ppt-zhangzara-monochrome",
+   "description": "|",
+   "bytes": 4891
+  },
+  {
+   "path": "design-templates/html-ppt-zhangzara-neo-grid-bold/SKILL.md",
+   "name": "html-ppt-zhangzara-neo-grid-bold",
+   "description": "|",
+   "bytes": 5294
+  },
+  {
+   "path": "design-templates/html-ppt-zhangzara-peoples-platform/SKILL.md",
+   "name": "html-ppt-zhangzara-peoples-platform",
+   "description": "|",
+   "bytes": 5466
+  },
+  {
+   "path": "design-templates/html-ppt-zhangzara-pin-and-paper/SKILL.md",
+   "name": "html-ppt-zhangzara-pin-and-paper",
+   "description": "|",
+   "bytes": 5562
+  },
+  {
+   "path": "design-templates/html-ppt-zhangzara-pink-script/SKILL.md",
+   "name": "html-ppt-zhangzara-pink-script",
+   "description": "|",
+   "bytes": 5388
+  },
+  {
+   "path": "design-templates/html-ppt-zhangzara-playful/SKILL.md",
+   "name": "html-ppt-zhangzara-playful",
+   "description": "|",
+   "bytes": 4928
+  },
+  {
+   "path": "design-templates/html-ppt-zhangzara-raw-grid/SKILL.md",
+   "name": "html-ppt-zhangzara-raw-grid",
+   "description": "|",
+   "bytes": 4923
+  },
+  {
+   "path": "design-templates/html-ppt-zhangzara-retro-windows/SKILL.md",
+   "name": "html-ppt-zhangzara-retro-windows",
+   "description": "|",
+   "bytes": 4902
+  },
+  {
+   "path": "design-templates/html-ppt-zhangzara-retro-zine/SKILL.md",
+   "name": "html-ppt-zhangzara-retro-zine",
+   "description": "|",
+   "bytes": 4815
+  },
+  {
+   "path": "design-templates/html-ppt-zhangzara-sakura-chroma/SKILL.md",
+   "name": "html-ppt-zhangzara-sakura-chroma",
+   "description": "|",
+   "bytes": 5151
+  },
+  {
+   "path": "design-templates/html-ppt-zhangzara-scatterbrain/SKILL.md",
+   "name": "html-ppt-zhangzara-scatterbrain",
+   "description": "|",
+   "bytes": 5067
+  },
+  {
+   "path": "design-templates/html-ppt-zhangzara-signal/SKILL.md",
+   "name": "html-ppt-zhangzara-signal",
+   "description": "|",
+   "bytes": 4862
+  },
+  {
+   "path": "design-templates/html-ppt-zhangzara-soft-editorial/SKILL.md",
+   "name": "html-ppt-zhangzara-soft-editorial",
+   "description": "|",
+   "bytes": 5349
+  },
+  {
+   "path": "design-templates/html-ppt-zhangzara-stencil-tablet/SKILL.md",
+   "name": "html-ppt-zhangzara-stencil-tablet",
+   "description": "|",
+   "bytes": 5521
+  },
+  {
+   "path": "design-templates/html-ppt-zhangzara-studio/SKILL.md",
+   "name": "html-ppt-zhangzara-studio",
+   "description": "|",
+   "bytes": 4870
+  },
+  {
+   "path": "design-templates/html-ppt-zhangzara-vellum/SKILL.md",
+   "name": "html-ppt-zhangzara-vellum",
+   "description": "|",
+   "bytes": 4935
+  },
+  {
+   "path": "design-templates/html-ppt/SKILL.md",
+   "name": "html-ppt",
+   "description": "|",
+   "bytes": 16237
+  },
+  {
+   "path": "design-templates/hyperframes/SKILL.md",
+   "name": "hyperframes",
+   "description": "Create video compositions, animations, title cards, overlays, captions, voiceovers, audio-reactive visuals, and scene transitions in HyperFrames HTML. Use when asked to build any HTML-based video content, add captions or subtitles synced to",
+   "bytes": 28341
+  },
+  {
+   "path": "design-templates/ib-pitch-book/SKILL.md",
+   "name": "ib-pitch-book",
+   "description": "|",
+   "bytes": 8120
+  },
+  {
+   "path": "design-templates/image-poster/SKILL.md",
+   "name": "image-poster",
+   "description": "|",
+   "bytes": 3604
+  },
+  {
+   "path": "design-templates/invoice/SKILL.md",
+   "name": "invoice",
+   "description": "|",
+   "bytes": 1396
+  },
+  {
+   "path": "design-templates/kami-deck/SKILL.md",
+   "name": "kami-deck",
+   "description": "|",
+   "bytes": 8885
+  },
+  {
+   "path": "design-templates/kami-landing/SKILL.md",
+   "name": "kami-landing",
+   "description": ">",
+   "bytes": 9539
+  },
+  {
+   "path": "design-templates/kanban-board/SKILL.md",
+   "name": "kanban-board",
+   "description": "|",
+   "bytes": 1556
+  },
+  {
+   "path": "design-templates/last30days/SKILL.md",
+   "name": "last30days",
+   "description": "|",
+   "bytes": 5228
+  },
+  {
+   "path": "design-templates/live-artifact/SKILL.md",
+   "name": "live-artifact",
+   "description": "|",
+   "bytes": 8892
+  },
+  {
+   "path": "design-templates/live-dashboard/SKILL.md",
+   "name": "live-dashboard",
+   "description": "|",
+   "bytes": 8391
+  },
+  {
+   "path": "design-templates/magazine-poster/SKILL.md",
+   "name": "magazine-poster",
+   "description": "|",
+   "bytes": 3598
+  },
+  {
+   "path": "design-templates/meeting-notes/SKILL.md",
+   "name": "meeting-notes",
+   "description": "|",
+   "bytes": 1307
+  },
+  {
+   "path": "design-templates/mobile-app/SKILL.md",
+   "name": "mobile-app",
+   "description": "|",
+   "bytes": 3860
+  },
+  {
+   "path": "design-templates/mobile-onboarding/SKILL.md",
+   "name": "mobile-onboarding",
+   "description": "|",
+   "bytes": 1582
+  },
+  {
+   "path": "design-templates/motion-frames/SKILL.md",
+   "name": "motion-frames",
+   "description": "|",
+   "bytes": 3694
+  },
+  {
+   "path": "design-templates/open-design-landing-deck/SKILL.md",
+   "name": "open-design-landing-deck",
+   "description": "|",
+   "bytes": 10031
+  },
+  {
+   "path": "design-templates/open-design-landing/SKILL.md",
+   "name": "open-design-landing",
+   "description": ">",
+   "bytes": 12251
+  },
+  {
+   "path": "design-templates/orbit-general/SKILL.md",
+   "name": "orbit-general",
+   "description": "|",
+   "bytes": 11273
+  },
+  {
+   "path": "design-templates/orbit-github/SKILL.md",
+   "name": "orbit-github",
+   "description": "|",
+   "bytes": 7474
+  },
+  {
+   "path": "design-templates/orbit-gmail/SKILL.md",
+   "name": "orbit-gmail",
+   "description": "|",
+   "bytes": 7679
+  },
+  {
+   "path": "design-templates/orbit-linear/SKILL.md",
+   "name": "orbit-linear",
+   "description": "|",
+   "bytes": 7946
+  },
+  {
+   "path": "design-templates/orbit-notion/SKILL.md",
+   "name": "orbit-notion",
+   "description": "|",
+   "bytes": 8435
+  },
+  {
+   "path": "design-templates/pm-spec/SKILL.md",
+   "name": "pm-spec",
+   "description": "|",
+   "bytes": 1555
+  },
+  {
+   "path": "design-templates/pricing-page/SKILL.md",
+   "name": "pricing-page",
+   "description": "|",
+   "bytes": 2847
+  },
+  {
+   "path": "design-templates/replit-deck/SKILL.md",
+   "name": "replit-deck",
+   "description": "|",
+   "bytes": 13282
+  },
+  {
+   "path": "design-templates/saas-landing/SKILL.md",
+   "name": "saas-landing",
+   "description": "|",
+   "bytes": 4618
+  },
+  {
+   "path": "design-templates/simple-deck/SKILL.md",
+   "name": "simple-deck",
+   "description": "|",
+   "bytes": 5681
+  },
+  {
+   "path": "design-templates/social-carousel/SKILL.md",
+   "name": "social-carousel",
+   "description": "|",
+   "bytes": 3883
+  },
+  {
+   "path": "design-templates/social-media-dashboard/SKILL.md",
+   "name": "social-media-dashboard",
+   "description": "|",
+   "bytes": 5652
+  },
+  {
+   "path": "design-templates/social-media-matrix-tracker-template/SKILL.md",
+   "name": "social-media-matrix-tracker-template",
+   "description": "|",
+   "bytes": 4848
+  },
+  {
+   "path": "design-templates/sprite-animation/SKILL.md",
+   "name": "sprite-animation",
+   "description": "|",
+   "bytes": 4241
+  },
+  {
+   "path": "design-templates/team-okrs/SKILL.md",
+   "name": "team-okrs",
+   "description": "|",
+   "bytes": 1316
+  },
+  {
+   "path": "design-templates/trading-analysis-dashboard-template/SKILL.md",
+   "name": "trading-analysis-dashboard-template",
+   "description": "|",
+   "bytes": 2459
+  },
+  {
+   "path": "design-templates/tweaks/SKILL.md",
+   "name": "tweaks",
+   "description": "|",
+   "bytes": 11515
+  },
+  {
+   "path": "design-templates/video-shortform/SKILL.md",
+   "name": "video-shortform",
+   "description": "|",
+   "bytes": 4627
+  },
+  {
+   "path": "design-templates/waitlist-page/SKILL.md",
+   "name": "waitlist-page",
+   "description": "|",
+   "bytes": 13961
+  },
+  {
+   "path": "design-templates/web-prototype-taste-brutalist/SKILL.md",
+   "name": "web-prototype-taste-brutalist",
+   "description": "Swiss industrial-print web prototype. Newsprint canvas, monolithic black grotesque, viewport-bleeding numerals, hairline grid dividers, hazard-red accent, ASCII syntax decoration. Distilled from Leonxlnx/taste-skill `brutalist-skill` (Swiss",
+   "bytes": 4040
+  },
+  {
+   "path": "design-templates/web-prototype-taste-editorial/SKILL.md",
+   "name": "web-prototype-taste-editorial",
+   "description": "Editorial-minimalist web prototype. Warm monochrome canvas, serif display + grotesque body, 1px hairline borders, muted pastel chips, generous macro-whitespace, ambient micro-motion. Distilled from Leonxlnx/taste-skill `minimalist-skill`.",
+   "bytes": 3305
+  },
+  {
+   "path": "design-templates/web-prototype-taste-soft/SKILL.md",
+   "name": "web-prototype-taste-soft",
+   "description": "Apple-tier soft web prototype. Silver/cream canvas, double-bezel cards, button-in-button CTAs, generous squircle radii, spring motion, ambient mesh. Distilled from Leonxlnx/taste-skill `soft-skill` + sections 4\u20138 of `taste-skill`.",
+   "bytes": 4159
+  },
+  {
+   "path": "design-templates/web-prototype/SKILL.md",
+   "name": "web-prototype",
+   "description": "|",
+   "bytes": 5554
+  },
+  {
+   "path": "design-templates/webgl-experience/SKILL.md",
+   "name": "webgl-experience",
+   "description": "|",
+   "bytes": 3659
+  },
+  {
+   "path": "design-templates/weekly-update/SKILL.md",
+   "name": "weekly-update",
+   "description": "|",
+   "bytes": 2764
+  },
+  {
+   "path": "design-templates/wireframe-annotated/SKILL.md",
+   "name": "wireframe-annotated",
+   "description": "|",
+   "bytes": 3933
+  },
+  {
+   "path": "design-templates/wireframe-greybox/SKILL.md",
+   "name": "wireframe-greybox",
+   "description": "|",
+   "bytes": 3853
+  },
+  {
+   "path": "design-templates/wireframe-mobile-flow/SKILL.md",
+   "name": "wireframe-mobile-flow",
+   "description": "|",
+   "bytes": 4270
+  },
+  {
+   "path": "design-templates/wireframe-sketch/SKILL.md",
+   "name": "wireframe-sketch",
+   "description": "|",
+   "bytes": 4030
+  },
+  {
+   "path": "design-templates/worker-visualizer/SKILL.md",
+   "name": "worker-visualizer",
+   "description": "|",
+   "bytes": 4033
+  },
+  {
+   "path": "design-templates/x-research/SKILL.md",
+   "name": "x-research",
+   "description": "|",
+   "bytes": 3920
+  },
+  {
+   "path": "docs/examples/saas-landing-skill/SKILL.md",
+   "name": "saas-landing",
+   "description": "|",
+   "bytes": 4497
+  },
+  {
+   "path": "plugins/_official/atoms/build-test/SKILL.md",
+   "name": "build-test",
+   "description": "Run the project's build / typecheck / lint / test commands and emit the build.passing + tests.passing signals devloop convergence reads.",
+   "bytes": 2500
+  },
+  {
+   "path": "plugins/_official/atoms/code-import/SKILL.md",
+   "name": "code-import",
+   "description": "Read an existing repository's structure into the project cwd as a normalised snapshot the agent can analyse without re-walking the tree on every turn.",
+   "bytes": 2423
+  },
+  {
+   "path": "plugins/_official/atoms/critique-theater/SKILL.md",
+   "name": "critique-theater",
+   "description": "Five-dimension design quality review \u2014 score the artifact against craft, brand, accessibility, and copy, then fix what falls short before handing it over.",
+   "bytes": 2576
+  },
+  {
+   "path": "plugins/_official/atoms/design-extract/SKILL.md",
+   "name": "design-extract",
+   "description": "Extract design tokens (color / typography / spacing) from imported source code, screenshots, or Figma exports into the canonical token bag token-map consumes.",
+   "bytes": 2214
+  },
+  {
+   "path": "plugins/_official/atoms/diff-review/SKILL.md",
+   "name": "diff-review",
+   "description": "Render the patch-edit run's accumulated changes as a reviewable diff, surface it through a GenUI choice surface, and persist the user's accept / reject decision into the artifact manifest.",
+   "bytes": 2066
+  },
+  {
+   "path": "plugins/_official/atoms/direction-picker/SKILL.md",
+   "name": "direction-picker",
+   "description": "Resolves the visual direction at the plan stage from the brief and design system, without asking the user.",
+   "bytes": 1893
+  },
+  {
+   "path": "plugins/_official/atoms/discovery-question-form/SKILL.md",
+   "name": "discovery-question-form",
+   "description": "Structured clarification form for unresolved material requirements.",
+   "bytes": 6017
+  },
+  {
+   "path": "plugins/_official/atoms/figma-extract/SKILL.md",
+   "name": "figma-extract",
+   "description": "Pull a Figma file's node tree, design tokens, and embedded assets into the project cwd as a structured snapshot.",
+   "bytes": 2475
+  },
+  {
+   "path": "plugins/_official/atoms/handoff/SKILL.md",
+   "name": "handoff",
+   "description": "Push the run's accepted artifact to a downstream collaboration surface (cli, other code agents, cloud, desktop) and stamp the artifact manifest with the export target.",
+   "bytes": 2197
+  },
+  {
+   "path": "plugins/_official/atoms/patch-edit/SKILL.md",
+   "name": "patch-edit",
+   "description": "Apply one rewrite-plan step at a time as small reviewable file edits, never rewriting whole files when a localised change suffices.",
+   "bytes": 1909
+  },
+  {
+   "path": "plugins/_official/atoms/rewrite-plan/SKILL.md",
+   "name": "rewrite-plan",
+   "description": "Author a long-running multi-file rewrite plan that subsequent patch-edit + diff-review + build-test stages will execute, with explicit ownership boundaries and patch-safety guarantees.",
+   "bytes": 2078
+  },
+  {
+   "path": "plugins/_official/atoms/todo-write/SKILL.md",
+   "name": "todo-write",
+   "description": "TodoWrite-driven plan that the agent commits to before generation.",
+   "bytes": 899
+  },
+  {
+   "path": "plugins/_official/atoms/token-map/SKILL.md",
+   "name": "token-map",
+   "description": "Map an extracted Figma / source-code token bag onto the active OD design system, producing a deterministic mapping the generate stage can consume.",
+   "bytes": 5470
+  },
+  {
+   "path": "plugins/_official/examples/article-magazine/SKILL.md",
+   "name": "article-magazine",
+   "description": "Huashu / huashu-md-html-inspired magazine article layout for turning Markdown or notes into a polished long-form HTML essay.",
+   "bytes": 2525
+  },
+  {
+   "path": "plugins/_official/examples/audio-jingle/SKILL.md",
+   "name": "audio-jingle",
+   "description": "|",
+   "bytes": 4436
+  },
+  {
+   "path": "plugins/_official/examples/blog-post/SKILL.md",
+   "name": "blog-post",
+   "description": "|",
+   "bytes": 2914
+  },
+  {
+   "path": "plugins/_official/examples/card-twitter/SKILL.md",
+   "name": "card-twitter",
+   "description": "Twitter quote or data card designed to pair with a post.",
+   "bytes": 1835
+  },
+  {
+   "path": "plugins/_official/examples/card-xiaohongshu/SKILL.md",
+   "name": "card-xiaohongshu",
+   "description": "Xiaohongshu-style knowledge cards, arranged as a swipeable multi-card carousel.",
+   "bytes": 2354
+  },
+  {
+   "path": "plugins/_official/examples/clinical-case-report/SKILL.md",
+   "name": "clinical-case-report",
+   "description": "|",
+   "bytes": 8855
+  },
+  {
+   "path": "plugins/_official/examples/codex-interactive-capability-map/SKILL.md",
+   "name": "codex-interactive-capability-map",
+   "description": "Turn a long-form article, thread, memo, or product narrative into a compact clickable capability map with a workflow loop, use-case matrix, and responsive detail panel.",
+   "bytes": 3818
+  },
+  {
+   "path": "plugins/_official/examples/critique/SKILL.md",
+   "name": "critique",
+   "description": "|",
+   "bytes": 9684
+  },
+  {
+   "path": "plugins/_official/examples/dashboard/SKILL.md",
+   "name": "dashboard",
+   "description": "|",
+   "bytes": 2771
+  },
+  {
+   "path": "plugins/_official/examples/data-report/SKILL.md",
+   "name": "data-report",
+   "description": "Turns CSV, Excel, or JSON data into a polished visual report page.",
+   "bytes": 2618
+  },
+  {
+   "path": "plugins/_official/examples/dating-web/SKILL.md",
+   "name": "dating-web",
+   "description": "|",
+   "bytes": 3919
+  },
+  {
+   "path": "plugins/_official/examples/dcf-valuation/SKILL.md",
+   "name": "dcf-valuation",
+   "description": "|",
+   "bytes": 4709
+  },
+  {
+   "path": "plugins/_official/examples/deck-guizang-editorial/SKILL.md",
+   "name": "deck-guizang-editorial",
+   "description": "|",
+   "bytes": 5786
+  },
+  {
+   "path": "plugins/_official/examples/deck-open-slide-canvas/SKILL.md",
+   "name": "deck-open-slide-canvas",
+   "description": "|",
+   "bytes": 5143
+  },
+  {
+   "path": "plugins/_official/examples/deck-swiss-international/SKILL.md",
+   "name": "deck-swiss-international",
+   "description": "|",
+   "bytes": 7098
+  },
+  {
+   "path": "plugins/_official/examples/design-brief/SKILL.md",
+   "name": "design-brief",
+   "description": "|",
+   "bytes": 13805
+  },
+  {
+   "path": "plugins/_official/examples/digital-eguide/SKILL.md",
+   "name": "digital-eguide",
+   "description": "|",
+   "bytes": 3523
+  },
+  {
+   "path": "plugins/_official/examples/doc-kami-parchment/SKILL.md",
+   "name": "doc-kami-parchment",
+   "description": "Warm parchment canvas (#f5f4ed), monochrome ink-blue accent (#1B365D), one serif family, and editorial-grade typography.",
+   "bytes": 4821
+  },
+  {
+   "path": "plugins/_official/examples/docs-page/SKILL.md",
+   "name": "docs-page",
+   "description": "|",
+   "bytes": 3015
+  },
+  {
+   "path": "plugins/_official/examples/email-marketing/SKILL.md",
+   "name": "email-marketing",
+   "description": "|",
+   "bytes": 3502
+  },
+  {
+   "path": "plugins/_official/examples/eng-runbook/SKILL.md",
+   "name": "eng-runbook",
+   "description": "|",
+   "bytes": 1540
+  },
+  {
+   "path": "plugins/_official/examples/finance-report/SKILL.md",
+   "name": "finance-report",
+   "description": "|",
+   "bytes": 2153
+  },
+  {
+   "path": "plugins/_official/examples/flowai-live-dashboard-template/SKILL.md",
+   "name": "flowai-live-dashboard-template",
+   "description": "|",
+   "bytes": 3522
+  },
+  {
+   "path": "plugins/_official/examples/frame-data-chart-nyt/SKILL.md",
+   "name": "frame-data-chart-nyt",
+   "description": "NYT-newsroom typography, staggered reveal animation, and editorial-grade charts (line, bar, or range band).",
+   "bytes": 3907
+  },
+  {
+   "path": "plugins/_official/examples/frame-flowchart-sticky/SKILL.md",
+   "name": "frame-flowchart-sticky",
+   "description": "SVG curve connectors, sticky-note nodes, and cursor interaction with a whiteboard-brainstorm feel.",
+   "bytes": 3736
+  },
+  {
+   "path": "plugins/_official/examples/frame-glitch-title/SKILL.md",
+   "name": "frame-glitch-title",
+   "description": "Digital glitch, chromatic offset, and data-corruption title frame for video transitions or cyberpunk heroes.",
+   "bytes": 3733
+  },
+  {
+   "path": "plugins/_official/examples/frame-light-leak-cinema/SKILL.md",
+   "name": "frame-light-leak-cinema",
+   "description": "Film light leaks, grain, 16:9 letterbox, and large serif type for cinematic openings or chapter cards.",
+   "bytes": 4021
+  },
+  {
+   "path": "plugins/_official/examples/frame-liquid-bg-hero/SKILL.md",
+   "name": "frame-liquid-bg-hero",
+   "description": "WebGL-style fluid displacement background with a quote overlay, suited to video intros, landing heroes, or posters.",
+   "bytes": 4111
+  },
+  {
+   "path": "plugins/_official/examples/frame-logo-outro/SKILL.md",
+   "name": "frame-logo-outro",
+   "description": "Segmented logo assembly, glow bloom, and tagline reveal for video outros or brand closing frames.",
+   "bytes": 3887
+  },
+  {
+   "path": "plugins/_official/examples/frame-macos-notification/SKILL.md",
+   "name": "frame-macos-notification",
+   "description": "Realistic macOS notification banner with app icon, title, and body, suited to video overlays or product teasers.",
+   "bytes": 3878
+  },
+  {
+   "path": "plugins/_official/examples/frontend-slides/SKILL.md",
+   "name": "frontend-slides",
+   "description": "|",
+   "bytes": 7558
+  },
+  {
+   "path": "plugins/_official/examples/fs-creative-voltage/SKILL.md",
+   "name": "fs-creative-voltage",
+   "description": "|",
+   "bytes": 10102
+  },
+  {
+   "path": "plugins/_official/examples/fs-editorial-forest/SKILL.md",
+   "name": "fs-editorial-forest",
+   "description": "|",
+   "bytes": 8426
+  },
+  {
+   "path": "plugins/_official/examples/fs-electric-studio/SKILL.md",
+   "name": "fs-electric-studio",
+   "description": "|",
+   "bytes": 10432
+  },
+  {
+   "path": "plugins/_official/examples/fs-emerald-editorial/SKILL.md",
+   "name": "fs-emerald-editorial",
+   "description": "|",
+   "bytes": 11233
+  },
+  {
+   "path": "plugins/_official/examples/fs-notebook-tabs/SKILL.md",
+   "name": "fs-notebook-tabs",
+   "description": "|",
+   "bytes": 9570
+  },
+  {
+   "path": "plugins/_official/examples/gamified-app/SKILL.md",
+   "name": "gamified-app",
+   "description": "|",
+   "bytes": 4518
+  },
+  {
+   "path": "plugins/_official/examples/github-dashboard/SKILL.md",
+   "name": "github-dashboard",
+   "description": "|",
+   "bytes": 7363
+  },
+  {
+   "path": "plugins/_official/examples/guizang-ppt/SKILL.md",
+   "name": "magazine-web-ppt",
+   "description": "|",
+   "bytes": 19313
+  },
+  {
+   "path": "plugins/_official/examples/hatch-pet/SKILL.md",
+   "name": "hatch-pet",
+   "description": "Create, repair, validate, preview, and package Codex-compatible animated pet spritesheets from character art, screenshots, generated images, or visual references. Use when a user wants to hatch a Codex pet, create a custom animated pet, or ",
+   "bytes": 23869
+  },
+  {
+   "path": "plugins/_official/examples/hps-academic-paper/SKILL.md",
+   "name": "hps-academic-paper",
+   "description": "|",
+   "bytes": 10149
+  },
+  {
+   "path": "plugins/_official/examples/hps-bauhaus/SKILL.md",
+   "name": "hps-bauhaus",
+   "description": "|",
+   "bytes": 9614
+  },
+  {
+   "path": "plugins/_official/examples/hps-memphis-pop/SKILL.md",
+   "name": "hps-memphis-pop",
+   "description": "|",
+   "bytes": 9061
+  },
+  {
+   "path": "plugins/_official/examples/hps-retro-tv/SKILL.md",
+   "name": "hps-retro-tv",
+   "description": "|",
+   "bytes": 10220
+  },
+  {
+   "path": "plugins/_official/examples/hps-true-blueprint/SKILL.md",
+   "name": "hps-true-blueprint",
+   "description": "|",
+   "bytes": 9801
+  },
+  {
+   "path": "plugins/_official/examples/hps-y2k-chrome/SKILL.md",
+   "name": "hps-y2k-chrome",
+   "description": "|",
+   "bytes": 9520
+  },
+  {
+   "path": "plugins/_official/examples/hr-onboarding/SKILL.md",
+   "name": "hr-onboarding",
+   "description": "|",
+   "bytes": 1595
+  },
+  {
+   "path": "plugins/_official/examples/html-ppt-course-module/SKILL.md",
+   "name": "html-ppt-course-module",
+   "description": "|",
+   "bytes": 5671
+  },
+  {
+   "path": "plugins/_official/examples/html-ppt-graphify-dark-graph/SKILL.md",
+   "name": "html-ppt-graphify-dark-graph",
+   "description": "|",
+   "bytes": 5641
+  },
+  {
+   "path": "plugins/_official/examples/html-ppt-hermes-cyber-terminal/SKILL.md",
+   "name": "html-ppt-hermes-cyber-terminal",
+   "description": "|",
+   "bytes": 5578
+  },
+  {
+   "path": "plugins/_official/examples/html-ppt-knowledge-arch-blueprint/SKILL.md",
+   "name": "html-ppt-knowledge-arch-blueprint",
+   "description": "|",
+   "bytes": 5691
+  },
+  {
+   "path": "plugins/_official/examples/html-ppt-obsidian-claude-gradient/SKILL.md",
+   "name": "html-ppt-obsidian-claude-gradient",
+   "description": "|",
+   "bytes": 5651
+  },
+  {
+   "path": "plugins/_official/examples/html-ppt-pitch-deck/SKILL.md",
+   "name": "html-ppt-pitch-deck",
+   "description": "|",
+   "bytes": 5573
+  },
+  {
+   "path": "plugins/_official/examples/html-ppt-presenter-mode-reveal/SKILL.md",
+   "name": "html-ppt-presenter-mode",
+   "description": "|",
+   "bytes": 5558
+  },
+  {
+   "path": "plugins/_official/examples/html-ppt-product-launch/SKILL.md",
+   "name": "html-ppt-product-launch",
+   "description": "|",
+   "bytes": 5494
+  },
+  {
+   "path": "plugins/_official/examples/html-ppt-taste-brutalist/SKILL.md",
+   "name": "html-ppt-taste-brutalist",
+   "description": "16:9 HTML deck in tactical-telemetry / CRT-terminal taste. Deactivated-CRT charcoal slides, white-phosphor monospace, hazard-red accent, scanline overlay, ASCII syntax, density over decoration. Distilled from Leonxlnx/taste-skill `brutalist",
+   "bytes": 4861
+  },
+  {
+   "path": "plugins/_official/examples/html-ppt-taste-editorial/SKILL.md",
+   "name": "html-ppt-taste-editorial",
+   "description": "16:9 HTML deck in editorial-minimalist taste. Warm cream slides, serif display + grotesque body, hairline rules, monospace meta, generous macro-whitespace, one accent. Distilled from Leonxlnx/taste-skill `minimalist-skill`.",
+   "bytes": 3921
+  },
+  {
+   "path": "plugins/_official/examples/html-ppt-tech-sharing/SKILL.md",
+   "name": "html-ppt-tech-sharing",
+   "description": "|",
+   "bytes": 5476
+  },
+  {
+   "path": "plugins/_official/examples/html-ppt-testing-safety-alert/SKILL.md",
+   "name": "html-ppt-testing-safety-alert",
+   "description": "|",
+   "bytes": 5791
+  },
+  {
+   "path": "plugins/_official/examples/html-ppt-weekly-report/SKILL.md",
+   "name": "html-ppt-weekly-report",
+   "description": "|",
+   "bytes": 5482
+  },
+  {
+   "path": "plugins/_official/examples/html-ppt-xhs-pastel-card/SKILL.md",
+   "name": "html-ppt-xhs-pastel-card",
+   "description": "|",
+   "bytes": 5527
+  },
+  {
+   "path": "plugins/_official/examples/html-ppt-xhs-white-editorial/SKILL.md",
+   "name": "html-ppt-xhs-white-editorial",
+   "description": "|",
+   "bytes": 5660
+  },
+  {
+   "path": "plugins/_official/examples/html-ppt-zhangzara-8-bit-orbit/SKILL.md",
+   "name": "html-ppt-zhangzara-8-bit-orbit",
+   "description": "|",
+   "bytes": 4847
+  },
+  {
+   "path": "plugins/_official/examples/html-ppt-zhangzara-biennale-yellow/SKILL.md",
+   "name": "html-ppt-zhangzara-biennale-yellow",
+   "description": "|",
+   "bytes": 4966
+  },
+  {
+   "path": "plugins/_official/examples/html-ppt-zhangzara-block-frame/SKILL.md",
+   "name": "html-ppt-zhangzara-block-frame",
+   "description": "|",
+   "bytes": 4929
+  },
+  {
+   "path": "plugins/_official/examples/html-ppt-zhangzara-blue-professional/SKILL.md",
+   "name": "html-ppt-zhangzara-blue-professional",
+   "description": "|",
+   "bytes": 4910
+  },
+  {
+   "path": "plugins/_official/examples/html-ppt-zhangzara-bold-poster/SKILL.md",
+   "name": "html-ppt-zhangzara-bold-poster",
+   "description": "|",
+   "bytes": 4877
+  },
+  {
+   "path": "plugins/_official/examples/html-ppt-zhangzara-broadside/SKILL.md",
+   "name": "html-ppt-zhangzara-broadside",
+   "description": "|",
+   "bytes": 4910
+  },
+  {
+   "path": "plugins/_official/examples/html-ppt-zhangzara-capsule/SKILL.md",
+   "name": "html-ppt-zhangzara-capsule",
+   "description": "|",
+   "bytes": 4786
+  },
+  {
+   "path": "plugins/_official/examples/html-ppt-zhangzara-cartesian/SKILL.md",
+   "name": "html-ppt-zhangzara-cartesian",
+   "description": "|",
+   "bytes": 5049
+  },
+  {
+   "path": "plugins/_official/examples/html-ppt-zhangzara-cobalt-grid/SKILL.md",
+   "name": "html-ppt-zhangzara-cobalt-grid",
+   "description": "|",
+   "bytes": 4991
+  },
+  {
+   "path": "plugins/_official/examples/html-ppt-zhangzara-coral/SKILL.md",
+   "name": "html-ppt-zhangzara-coral",
+   "description": "|",
+   "bytes": 4832
+  },
+  {
+   "path": "plugins/_official/examples/html-ppt-zhangzara-creative-mode/SKILL.md",
+   "name": "html-ppt-zhangzara-creative-mode",
+   "description": "|",
+   "bytes": 5399
+  },
+  {
+   "path": "plugins/_official/examples/html-ppt-zhangzara-daisy-days/SKILL.md",
+   "name": "html-ppt-zhangzara-daisy-days",
+   "description": "|",
+   "bytes": 5097
+  },
+  {
+   "path": "plugins/_official/examples/html-ppt-zhangzara-editorial-tri-tone/SKILL.md",
+   "name": "html-ppt-zhangzara-editorial-tri-tone",
+   "description": "|",
+   "bytes": 5380
+  },
+  {
+   "path": "plugins/_official/examples/html-ppt-zhangzara-grove/SKILL.md",
+   "name": "html-ppt-zhangzara-grove",
+   "description": "|",
+   "bytes": 5007
+  },
+  {
+   "path": "plugins/_official/examples/html-ppt-zhangzara-long-table/SKILL.md",
+   "name": "html-ppt-zhangzara-long-table",
+   "description": "|",
+   "bytes": 4874
+  },
+  {
+   "path": "plugins/_official/examples/html-ppt-zhangzara-mat/SKILL.md",
+   "name": "html-ppt-zhangzara-mat",
+   "description": "|",
+   "bytes": 4969
+  },
+  {
+   "path": "plugins/_official/examples/html-ppt-zhangzara-monochrome/SKILL.md",
+   "name": "html-ppt-zhangzara-monochrome",
+   "description": "|",
+   "bytes": 4891
+  },
+  {
+   "path": "plugins/_official/examples/html-ppt-zhangzara-neo-grid-bold/SKILL.md",
+   "name": "html-ppt-zhangzara-neo-grid-bold",
+   "description": "|",
+   "bytes": 5294
+  },
+  {
+   "path": "plugins/_official/examples/html-ppt-zhangzara-peoples-platform/SKILL.md",
+   "name": "html-ppt-zhangzara-peoples-platform",
+   "description": "|",
+   "bytes": 5466
+  },
+  {
+   "path": "plugins/_official/examples/html-ppt-zhangzara-pin-and-paper/SKILL.md",
+   "name": "html-ppt-zhangzara-pin-and-paper",
+   "description": "|",
+   "bytes": 5562
+  },
+  {
+   "path": "plugins/_official/examples/html-ppt-zhangzara-pink-script/SKILL.md",
+   "name": "html-ppt-zhangzara-pink-script",
+   "description": "|",
+   "bytes": 5388
+  },
+  {
+   "path": "plugins/_official/examples/html-ppt-zhangzara-playful/SKILL.md",
+   "name": "html-ppt-zhangzara-playful",
+   "description": "|",
+   "bytes": 4928
+  },
+  {
+   "path": "plugins/_official/examples/html-ppt-zhangzara-raw-grid/SKILL.md",
+   "name": "html-ppt-zhangzara-raw-grid",
+   "description": "|",
+   "bytes": 4923
+  },
+  {
+   "path": "plugins/_official/examples/html-ppt-zhangzara-retro-windows/SKILL.md",
+   "name": "html-ppt-zhangzara-retro-windows",
+   "description": "|",
+   "bytes": 4902
+  },
+  {
+   "path": "plugins/_official/examples/html-ppt-zhangzara-retro-zine/SKILL.md",
+   "name": "html-ppt-zhangzara-retro-zine",
+   "description": "|",
+   "bytes": 4815
+  },
+  {
+   "path": "plugins/_official/examples/html-ppt-zhangzara-sakura-chroma/SKILL.md",
+   "name": "html-ppt-zhangzara-sakura-chroma",
+   "description": "|",
+   "bytes": 5151
+  },
+  {
+   "path": "plugins/_official/examples/html-ppt-zhangzara-scatterbrain/SKILL.md",
+   "name": "html-ppt-zhangzara-scatterbrain",
+   "description": "|",
+   "bytes": 5067
+  },
+  {
+   "path": "plugins/_official/examples/html-ppt-zhangzara-signal/SKILL.md",
+   "name": "html-ppt-zhangzara-signal",
+   "description": "|",
+   "bytes": 4862
+  },
+  {
+   "path": "plugins/_official/examples/html-ppt-zhangzara-soft-editorial/SKILL.md",
+   "name": "html-ppt-zhangzara-soft-editorial",
+   "description": "|",
+   "bytes": 5349
+  },
+  {
+   "path": "plugins/_official/examples/html-ppt-zhangzara-stencil-tablet/SKILL.md",
+   "name": "html-ppt-zhangzara-stencil-tablet",
+   "description": "|",
+   "bytes": 5521
+  },
+  {
+   "path": "plugins/_official/examples/html-ppt-zhangzara-studio/SKILL.md",
+   "name": "html-ppt-zhangzara-studio",
+   "description": "|",
+   "bytes": 4870
+  },
+  {
+   "path": "plugins/_official/examples/html-ppt-zhangzara-vellum/SKILL.md",
+   "name": "html-ppt-zhangzara-vellum",
+   "description": "|",
+   "bytes": 4935
+  },
+  {
+   "path": "plugins/_official/examples/html-ppt/SKILL.md",
+   "name": "html-ppt",
+   "description": "|",
+   "bytes": 15984
+  },
+  {
+   "path": "plugins/_official/examples/huashu-annual-letter/SKILL.md",
+   "name": "huashu-annual-letter",
+   "description": "|",
+   "bytes": 9716
+  },
+  {
+   "path": "plugins/_official/examples/huashu-bento-insight/SKILL.md",
+   "name": "huashu-bento-insight",
+   "description": "|",
+   "bytes": 11213
+  },
+  {
+   "path": "plugins/_official/examples/huashu-golden-circle/SKILL.md",
+   "name": "huashu-golden-circle",
+   "description": "|",
+   "bytes": 10861
+  },
+  {
+   "path": "plugins/_official/examples/huashu-keynote-black/SKILL.md",
+   "name": "huashu-keynote-black",
+   "description": "|",
+   "bytes": 10627
+  },
+  {
+   "path": "plugins/_official/examples/huashu-luxe-whitespace/SKILL.md",
+   "name": "huashu-luxe-whitespace",
+   "description": "|",
+   "bytes": 11312
+  },
+  {
+   "path": "plugins/_official/examples/huashu-pentagram-grid/SKILL.md",
+   "name": "huashu-pentagram-grid",
+   "description": "|",
+   "bytes": 10124
+  },
+  {
+   "path": "plugins/_official/examples/huashu-slides/SKILL.md",
+   "name": "huashu-slides",
+   "description": "|",
+   "bytes": 9282
+  },
+  {
+   "path": "plugins/_official/examples/huashu-sparkline-arc/SKILL.md",
+   "name": "huashu-sparkline-arc",
+   "description": "|",
+   "bytes": 11230
+  },
+  {
+   "path": "plugins/_official/examples/huashu-takram-soft-tech/SKILL.md",
+   "name": "huashu-takram-soft-tech",
+   "description": "|",
+   "bytes": 11714
+  },
+  {
+   "path": "plugins/_official/examples/hyperframes/SKILL.md",
+   "name": "hyperframes",
+   "description": "Create video compositions, animations, title cards, overlays, captions, voiceovers, audio-reactive visuals, and scene transitions in HyperFrames HTML. Use when asked to build any HTML-based video content, add captions or subtitles synced to",
+   "bytes": 28341
+  },
+  {
+   "path": "plugins/_official/examples/ib-pitch-book/SKILL.md",
+   "name": "ib-pitch-book",
+   "description": "|",
+   "bytes": 8135
+  },
+  {
+   "path": "plugins/_official/examples/image-poster/SKILL.md",
+   "name": "image-poster",
+   "description": "|",
+   "bytes": 3604
+  },
+  {
+   "path": "plugins/_official/examples/invoice/SKILL.md",
+   "name": "invoice",
+   "description": "|",
+   "bytes": 1396
+  },
+  {
+   "path": "plugins/_official/examples/kami-deck/SKILL.md",
+   "name": "kami-deck",
+   "description": "|",
+   "bytes": 8899
+  },
+  {
+   "path": "plugins/_official/examples/kami-landing/SKILL.md",
+   "name": "kami-landing",
+   "description": ">",
+   "bytes": 9553
+  },
+  {
+   "path": "plugins/_official/examples/kanban-board/SKILL.md",
+   "name": "kanban-board",
+   "description": "|",
+   "bytes": 1556
+  },
+  {
+   "path": "plugins/_official/examples/last30days/SKILL.md",
+   "name": "last30days",
+   "description": "|",
+   "bytes": 5015
+  },
+  {
+   "path": "plugins/_official/examples/live-artifact/SKILL.md",
+   "name": "live-artifact",
+   "description": "|",
+   "bytes": 7905
+  },
+  {
+   "path": "plugins/_official/examples/live-dashboard/SKILL.md",
+   "name": "live-dashboard",
+   "description": "|",
+   "bytes": 8405
+  },
+  {
+   "path": "plugins/_official/examples/magazine-poster/SKILL.md",
+   "name": "magazine-poster",
+   "description": "|",
+   "bytes": 3581
+  },
+  {
+   "path": "plugins/_official/examples/meeting-notes/SKILL.md",
+   "name": "meeting-notes",
+   "description": "|",
+   "bytes": 1307
+  },
+  {
+   "path": "plugins/_official/examples/mobile-app/SKILL.md",
+   "name": "mobile-app",
+   "description": "|",
+   "bytes": 3860
+  },
+  {
+   "path": "plugins/_official/examples/mobile-onboarding/SKILL.md",
+   "name": "mobile-onboarding",
+   "description": "|",
+   "bytes": 1597
+  },
+  {
+   "path": "plugins/_official/examples/mockup-device-3d/SKILL.md",
+   "name": "mockup-device-3d",
+   "description": "Static iPhone and MacBook 3D-style showcase with real HTML embedded on screens, glass-lens refraction, and 360-degree turntable composition.",
+   "bytes": 4469
+  },
+  {
+   "path": "plugins/_official/examples/motion-frames/SKILL.md",
+   "name": "motion-frames",
+   "description": "|",
+   "bytes": 3708
+  },
+  {
+   "path": "plugins/_official/examples/od-plugin-contribute-open-design/SKILL.md",
+   "name": "od-plugin-contribute-open-design",
+   "description": "Open a pull request adding a local OpenDesign plugin to the OpenDesign community catalog using gh CLI.",
+   "bytes": 1421
+  },
+  {
+   "path": "plugins/_official/examples/od-plugin-publish-github/SKILL.md",
+   "name": "od-plugin-publish-github",
+   "description": "Publish a local OpenDesign plugin to a new public GitHub repository using gh CLI.",
+   "bytes": 1338
+  },
+  {
+   "path": "plugins/_official/examples/open-design-homepage/SKILL.md",
+   "name": "open-design-homepage",
+   "description": "A pixel-faithful, self-contained mirror of the live open-design.ai homepage \u2014 an interactive React Three Fiber / Next.js hero with a real-time 3D wordmark, sticker collage, variable fonts, and scroll-driven motion. First-party showcase of t",
+   "bytes": 2705
+  },
+  {
+   "path": "plugins/_official/examples/open-design-landing-deck/SKILL.md",
+   "name": "open-design-landing-deck",
+   "description": "|",
+   "bytes": 10045
+  },
+  {
+   "path": "plugins/_official/examples/open-design-landing/SKILL.md",
+   "name": "open-design-landing",
+   "description": ">",
+   "bytes": 12264
+  },
+  {
+   "path": "plugins/_official/examples/orbit-general/SKILL.md",
+   "name": "orbit-general",
+   "description": "|",
+   "bytes": 10885
+  },
+  {
+   "path": "plugins/_official/examples/orbit-github/SKILL.md",
+   "name": "orbit-github",
+   "description": "|",
+   "bytes": 7063
+  },
+  {
+   "path": "plugins/_official/examples/orbit-gmail/SKILL.md",
+   "name": "orbit-gmail",
+   "description": "|",
+   "bytes": 7271
+  },
+  {
+   "path": "plugins/_official/examples/orbit-linear/SKILL.md",
+   "name": "orbit-linear",
+   "description": "|",
+   "bytes": 7535
+  },
+  {
+   "path": "plugins/_official/examples/orbit-notion/SKILL.md",
+   "name": "orbit-notion",
+   "description": "|",
+   "bytes": 8018
+  },
+  {
+   "path": "plugins/_official/examples/pm-spec/SKILL.md",
+   "name": "pm-spec",
+   "description": "|",
+   "bytes": 1555
+  },
+  {
+   "path": "plugins/_official/examples/poster-hero/SKILL.md",
+   "name": "poster-hero",
+   "description": "Vertical poster or Moments-style share image with strong visual impact.",
+   "bytes": 2013
+  },
+  {
+   "path": "plugins/_official/examples/ppt-keynote/SKILL.md",
+   "name": "ppt-keynote",
+   "description": "|",
+   "bytes": 3405
+  },
+  {
+   "path": "plugins/_official/examples/pptx-html-fidelity-audit/SKILL.md",
+   "name": "pptx-html-fidelity-audit",
+   "description": "Audit a python-pptx export against its source HTML deck, identify layout/content drift (footer overflow, cropped content, missing italic/em, lost styling, off-rhythm spacing), and re-export with strict footer-rail + cursor-flow layout disci",
+   "bytes": 14169
+  },
+  {
+   "path": "plugins/_official/examples/pricing-page/SKILL.md",
+   "name": "pricing-page",
+   "description": "|",
+   "bytes": 2847
+  },
+  {
+   "path": "plugins/_official/examples/replit-deck/SKILL.md",
+   "name": "replit-deck",
+   "description": "|",
+   "bytes": 13282
+  },
+  {
+   "path": "plugins/_official/examples/resume-modern/SKILL.md",
+   "name": "resume-modern",
+   "description": "Modern minimal resume, single A4 page, ready for print or PDF export.",
+   "bytes": 2123
+  },
+  {
+   "path": "plugins/_official/examples/saas-landing/SKILL.md",
+   "name": "saas-landing",
+   "description": "|",
+   "bytes": 4618
+  },
+  {
+   "path": "plugins/_official/examples/simple-deck/SKILL.md",
+   "name": "simple-deck",
+   "description": "|",
+   "bytes": 5681
+  },
+  {
+   "path": "plugins/_official/examples/social-carousel/SKILL.md",
+   "name": "social-carousel",
+   "description": "|",
+   "bytes": 3897
+  },
+  {
+   "path": "plugins/_official/examples/social-media-dashboard/SKILL.md",
+   "name": "social-media-dashboard",
+   "description": "|",
+   "bytes": 5652
+  },
+  {
+   "path": "plugins/_official/examples/social-media-matrix-tracker-template/SKILL.md",
+   "name": "social-media-matrix-tracker-template",
+   "description": "|",
+   "bytes": 4862
+  },
+  {
+   "path": "plugins/_official/examples/social-reddit-card/SKILL.md",
+   "name": "social-reddit-card",
+   "description": "Realistic Reddit post card with vote rail and comment count, suited to video overlays or story sharing.",
+   "bytes": 3546
+  },
+  {
+   "path": "plugins/_official/examples/social-spotify-card/SKILL.md",
+   "name": "social-spotify-card",
+   "description": "Spotify Now Playing-style card with album art, progress bar, and playback controls, suited to video overlays or personal homepages.",
+   "bytes": 3850
+  },
+  {
+   "path": "plugins/_official/examples/social-x-post-card/SKILL.md",
+   "name": "social-x-post-card",
+   "description": "Realistic X post card with engagement metrics (likes, reposts, views), suited to video overlays or shareable image cards.",
+   "bytes": 3689
+  },
+  {
+   "path": "plugins/_official/examples/sprite-animation/SKILL.md",
+   "name": "sprite-animation",
+   "description": "|",
+   "bytes": 4255
+  },
+  {
+   "path": "plugins/_official/examples/team-okrs/SKILL.md",
+   "name": "team-okrs",
+   "description": "|",
+   "bytes": 1316
+  },
+  {
+   "path": "plugins/_official/examples/trading-analysis-dashboard-template/SKILL.md",
+   "name": "trading-analysis-dashboard-template",
+   "description": "|",
+   "bytes": 2459
+  },
+  {
+   "path": "plugins/_official/examples/tweaks/SKILL.md",
+   "name": "tweaks",
+   "description": "|",
+   "bytes": 8804
+  },
+  {
+   "path": "plugins/_official/examples/ve-midnight-editorial/SKILL.md",
+   "name": "ve-midnight-editorial",
+   "description": "|",
+   "bytes": 10556
+  },
+  {
+   "path": "plugins/_official/examples/ve-terminal-mono/SKILL.md",
+   "name": "ve-terminal-mono",
+   "description": "|",
+   "bytes": 10009
+  },
+  {
+   "path": "plugins/_official/examples/velar-luxury-real-estate/SKILL.md",
+   "name": "velar-luxury-real-estate",
+   "description": "Use this plugin when the user wants a high-end luxury real-estate / architecture landing page with cinematic scroll choreography: a typewriter preloader that lifts away, a scroll-driven house image that rises from below and scales up while ",
+   "bytes": 10655
+  },
+  {
+   "path": "plugins/_official/examples/vfx-text-cursor/SKILL.md",
+   "name": "vfx-text-cursor",
+   "description": "Cursor light trail, chromatic rays, and directional flares for word-by-word quote reveals in video intros.",
+   "bytes": 3696
+  },
+  {
+   "path": "plugins/_official/examples/video-hyperframes/SKILL.md",
+   "name": "video-hyperframes",
+   "description": "Hyperframes / Remotion-compatible continuous frame animation with autoplay support.",
+   "bytes": 2707
+  },
+  {
+   "path": "plugins/_official/examples/video-shortform/SKILL.md",
+   "name": "video-shortform",
+   "description": "|",
+   "bytes": 4479
+  },
+  {
+   "path": "plugins/_official/examples/waitlist-page/SKILL.md",
+   "name": "waitlist-page",
+   "description": "|",
+   "bytes": 13975
+  },
+  {
+   "path": "plugins/_official/examples/web-prototype-taste-brutalist/SKILL.md",
+   "name": "web-prototype-taste-brutalist",
+   "description": "Swiss industrial-print web prototype. Newsprint canvas, monolithic black grotesque, viewport-bleeding numerals, hairline grid dividers, hazard-red accent, ASCII syntax decoration. Distilled from Leonxlnx/taste-skill `brutalist-skill` (Swiss",
+   "bytes": 4019
+  },
+  {
+   "path": "plugins/_official/examples/web-prototype-taste-editorial/SKILL.md",
+   "name": "web-prototype-taste-editorial",
+   "description": "Editorial-minimalist web prototype. Warm monochrome canvas, serif display + grotesque body, 1px hairline borders, muted pastel chips, generous macro-whitespace, ambient micro-motion. Distilled from Leonxlnx/taste-skill `minimalist-skill`.",
+   "bytes": 3305
+  },
+  {
+   "path": "plugins/_official/examples/web-prototype-taste-soft/SKILL.md",
+   "name": "web-prototype-taste-soft",
+   "description": "Apple-tier soft web prototype. Silver/cream canvas, double-bezel cards, button-in-button CTAs, generous squircle radii, spring motion, ambient mesh. Distilled from Leonxlnx/taste-skill `soft-skill` + sections 4\u20138 of `taste-skill`.",
+   "bytes": 4159
+  },
+  {
+   "path": "plugins/_official/examples/web-prototype/SKILL.md",
+   "name": "web-prototype",
+   "description": "|",
+   "bytes": 5865
+  },
+  {
+   "path": "plugins/_official/examples/webgl-aurora-veil/SKILL.md",
+   "name": "webgl-aurora-veil",
+   "description": "|",
+   "bytes": 1353
+  },
+  {
+   "path": "plugins/_official/examples/webgl-caustic-pool/SKILL.md",
+   "name": "webgl-caustic-pool",
+   "description": "|",
+   "bytes": 1369
+  },
+  {
+   "path": "plugins/_official/examples/webgl-depth-gallery/SKILL.md",
+   "name": "webgl-depth-gallery",
+   "description": "|",
+   "bytes": 1489
+  },
+  {
+   "path": "plugins/_official/examples/webgl-distortion-grain/SKILL.md",
+   "name": "webgl-distortion-grain",
+   "description": "|",
+   "bytes": 1431
+  },
+  {
+   "path": "plugins/_official/examples/webgl-experience/SKILL.md",
+   "name": "webgl-experience",
+   "description": "|",
+   "bytes": 3659
+  },
+  {
+   "path": "plugins/_official/examples/webgl-halftone-drift/SKILL.md",
+   "name": "webgl-halftone-drift",
+   "description": "|",
+   "bytes": 1401
+  },
+  {
+   "path": "plugins/_official/examples/webgl-holographic-foil/SKILL.md",
+   "name": "webgl-holographic-foil",
+   "description": "|",
+   "bytes": 1413
+  },
+  {
+   "path": "plugins/_official/examples/webgl-horizontal-parallax/SKILL.md",
+   "name": "webgl-horizontal-parallax",
+   "description": "|",
+   "bytes": 1485
+  },
+  {
+   "path": "plugins/_official/examples/webgl-liquid-iridescence/SKILL.md",
+   "name": "webgl-liquid-iridescence",
+   "description": "|",
+   "bytes": 1377
+  },
+  {
+   "path": "plugins/_official/examples/webgl-liquid-metal/SKILL.md",
+   "name": "webgl-liquid-metal",
+   "description": "|",
+   "bytes": 3451
+  },
+  {
+   "path": "plugins/_official/examples/webgl-neon-grid/SKILL.md",
+   "name": "webgl-neon-grid",
+   "description": "|",
+   "bytes": 3401
+  },
+  {
+   "path": "plugins/_official/examples/webgl-particle-galaxy/SKILL.md",
+   "name": "webgl-particle-galaxy",
+   "description": "|",
+   "bytes": 3794
+  },
+  {
+   "path": "plugins/_official/examples/webgl-pixel-reveal-gallery/SKILL.md",
+   "name": "webgl-pixel-reveal-gallery",
+   "description": "|",
+   "bytes": 1488
+  },
+  {
+   "path": "plugins/_official/examples/webgl-raymarched-hero/SKILL.md",
+   "name": "webgl-raymarched-hero",
+   "description": "|",
+   "bytes": 3475
+  },
+  {
+   "path": "plugins/_official/examples/webgl-voronoi-cells/SKILL.md",
+   "name": "webgl-voronoi-cells",
+   "description": "|",
+   "bytes": 1409
+  },
+  {
+   "path": "plugins/_official/examples/weekly-update/SKILL.md",
+   "name": "weekly-update",
+   "description": "|",
+   "bytes": 2764
+  },
+  {
+   "path": "plugins/_official/examples/wireframe-annotated/SKILL.md",
+   "name": "wireframe-annotated",
+   "description": "|",
+   "bytes": 3933
+  },
+  {
+   "path": "plugins/_official/examples/wireframe-greybox/SKILL.md",
+   "name": "wireframe-greybox",
+   "description": "|",
+   "bytes": 3853
+  },
+  {
+   "path": "plugins/_official/examples/wireframe-mobile-flow/SKILL.md",
+   "name": "wireframe-mobile-flow",
+   "description": "|",
+   "bytes": 4270
+  },
+  {
+   "path": "plugins/_official/examples/wireframe-sketch/SKILL.md",
+   "name": "wireframe-sketch",
+   "description": "|",
+   "bytes": 4030
+  },
+  {
+   "path": "plugins/_official/examples/worker-visualizer/SKILL.md",
+   "name": "worker-visualizer",
+   "description": "|",
+   "bytes": 4033
+  },
+  {
+   "path": "plugins/_official/examples/x-research/SKILL.md",
+   "name": "x-research",
+   "description": "|",
+   "bytes": 3920
+  },
+  {
+   "path": "plugins/_official/scenarios/od-code-migration/SKILL.md",
+   "name": "od-code-migration",
+   "description": "Default reference pipeline for the code-migration taskKind \u2014 code-import \u2192 design-extract \u2192 token-map \u2192 rewrite-plan \u2192 patch-edit \u2194 build-test devloop \u2192 diff-review \u2192 handoff.",
+   "bytes": 1537
+  },
+  {
+   "path": "plugins/_official/scenarios/od-default/SKILL.md",
+   "name": "od-default",
+   "description": "Hidden fallback scenario for free-form Home prompts. Infer the task type and ask only when routing is materially ambiguous.",
+   "bytes": 3678
+  },
+  {
+   "path": "plugins/_official/scenarios/od-design-refine/SKILL.md",
+   "name": "",
+   "description": "",
+   "bytes": 828
+  },
+  {
+   "path": "plugins/_official/scenarios/od-figma-migration/SKILL.md",
+   "name": "od-figma-migration",
+   "description": "Default reference pipeline for the figma-migration taskKind \u2014 figma-extract \u2192 token-map \u2192 generate \u2192 critique.",
+   "bytes": 1509
+  },
+  {
+   "path": "plugins/_official/scenarios/od-media-generation/SKILL.md",
+   "name": "od-media-generation",
+   "description": "Default reference pipeline for image, video, and audio projects \u2014 routes through media-image / media-video / media-audio atoms based on the project kind, wraps the output in a live artifact, and devloops on critique-theater until the score ",
+   "bytes": 2889
+  },
+  {
+   "path": "plugins/_official/scenarios/od-new-generation/SKILL.md",
+   "name": "od-new-generation",
+   "description": "Default reference pipeline for the new-generation taskKind \u2014 discovery \u2192 plan \u2192 generate \u2192 critique with a critique-theater devloop.",
+   "bytes": 1328
+  },
+  {
+   "path": "plugins/_official/scenarios/od-next-strategy/SKILL.md",
+   "name": "od-next-strategy",
+   "description": "Bundled OD Next V2 strategy entrypoint for route-locked planning and Build execution.",
+   "bytes": 1149
+  },
+  {
+   "path": "plugins/_official/scenarios/od-nextjs-export/SKILL.md",
+   "name": "",
+   "description": "",
+   "bytes": 872
+  },
+  {
+   "path": "plugins/_official/scenarios/od-plugin-authoring/SKILL.md",
+   "name": "od-plugin-authoring",
+   "description": "Guided scenario for creating an OpenDesign plugin folder that can be installed into My plugins.",
+   "bytes": 1776
+  },
+  {
+   "path": "plugins/_official/scenarios/od-react-export/SKILL.md",
+   "name": "",
+   "description": "",
+   "bytes": 872
+  },
+  {
+   "path": "plugins/_official/scenarios/od-share-to-community/SKILL.md",
+   "name": "od-share-to-community",
+   "description": "Package the user's just-finished work as an OpenDesign plugin without asking for fields the project files already answer, then surface the existing Add-to-My-plugins / Open-Design-PR buttons.",
+   "bytes": 6380
+  },
+  {
+   "path": "plugins/_official/scenarios/od-tune-collab/SKILL.md",
+   "name": "od-tune-collab",
+   "description": "Default reference pipeline for the tune-collab taskKind \u2014 pick a direction, patch-edit the existing artifact, critique, hand off.",
+   "bytes": 1138
+  },
+  {
+   "path": "plugins/_official/scenarios/od-vue-export/SKILL.md",
+   "name": "",
+   "description": "",
+   "bytes": 830
+  },
+  {
+   "path": "plugins/_official/scenarios/od-web-effect-extractor/SKILL.md",
+   "name": "od-web-effect-extractor",
+   "description": "Extract visual effects, animation systems, Canvas/WebGL/Shader behavior, and interaction details from a reference website, then rebuild them as an editable OpenDesign web artifact.",
+   "bytes": 6499
+  },
+  {
+   "path": "plugins/_official/video-templates/frame-bold-poster/SKILL.md",
+   "name": "video-template-frame-bold-poster",
+   "description": "Use this plugin when the user wants a \"Bold Poster Frame\" HyperFrames motion video \u2014 A 1970s European editorial poster in motion \u2014 a red rule draws across, a giant tilted figure drops in, a three-line headline rises line-by-line, an italic ",
+   "bytes": 1612
+  },
+  {
+   "path": "plugins/_official/video-templates/frame-bold-signal/SKILL.md",
+   "name": "video-template-frame-bold-signal",
+   "description": "Use this plugin when the user wants a \"Bold Signal Frame\" HyperFrames motion video \u2014 Bold colored card on a dark gradient \u2014 big section number, nav breadcrumb, orange card sliding in, title rising.",
+   "bytes": 1430
+  },
+  {
+   "path": "plugins/_official/video-templates/frame-build-minimal/SKILL.md",
+   "name": "video-template-frame-build-minimal",
+   "description": "Use this plugin when the user wants a \"Build Minimal Frame\" HyperFrames motion video \u2014 Luxury-minimal whitespace hero \u2014 single word reveals letter by letter, warm-gold hairline, breathing indicators.",
+   "bytes": 1500
+  },
+  {
+   "path": "plugins/_official/video-templates/frame-creative-voltage/SKILL.md",
+   "name": "video-template-frame-creative-voltage",
+   "description": "Use this plugin when the user wants a \"Creative Voltage Frame\" HyperFrames motion video \u2014 Electric split with hand-drawn script \u2014 offset panels slide in, display title rises with an outlined word, script strokes itself in.",
+   "bytes": 1512
+  },
+  {
+   "path": "plugins/_official/video-templates/frame-data-chart-nyt/SKILL.md",
+   "name": "video-template-frame-data-chart-nyt",
+   "description": "Use this plugin when the user wants a \"NYT-Style Data Chart Frame\" HyperFrames motion video \u2014 NYT-newsroom typography, staggered reveal animation, and editorial-grade charts (line, bar, or range band).",
+   "bytes": 1320
+  },
+  {
+   "path": "plugins/_official/video-templates/frame-data-rollup/SKILL.md",
+   "name": "video-template-frame-data-rollup",
+   "description": "Use this plugin when the user wants a \"Data Rollup Frame\" HyperFrames motion video \u2014 A native Remotion data frame \u2014 bars grow from zero by real data via spring physics while the figures roll 0\u2192target in sync.",
+   "bytes": 1460
+  },
+  {
+   "path": "plugins/_official/video-templates/frame-decision-tree/SKILL.md",
+   "name": "video-template-frame-decision-tree",
+   "description": "Use this plugin when the user wants a \"Decision Tree\" HyperFrames motion video \u2014 Animated flowchart with branching paths",
+   "bytes": 1284
+  },
+  {
+   "path": "plugins/_official/video-templates/frame-electric-studio/SKILL.md",
+   "name": "video-template-frame-electric-studio",
+   "description": "Use this plugin when the user wants a \"Electric Studio Frame\" HyperFrames motion video \u2014 Two-panel split with quote as hero \u2014 white/blue panels open from center, accent bar grows, quote reveals line by line.",
+   "bytes": 1462
+  },
+  {
+   "path": "plugins/_official/video-templates/frame-glitch-title/SKILL.md",
+   "name": "video-template-frame-glitch-title",
+   "description": "Use this plugin when the user wants a \"Glitch Title Frame\" HyperFrames motion video \u2014 Digital glitch, chromatic offset, and data-corruption title frame for video transitions or cyberpunk heroes.",
+   "bytes": 1303
+  },
+  {
+   "path": "plugins/_official/video-templates/frame-kinetic-type/SKILL.md",
+   "name": "video-template-frame-kinetic-type",
+   "description": "Use this plugin when the user wants a \"Kinetic Type\" HyperFrames motion video \u2014 Bold kinetic typography promo",
+   "bytes": 1255
+  },
+  {
+   "path": "plugins/_official/video-templates/frame-light-leak-cinema/SKILL.md",
+   "name": "video-template-frame-light-leak-cinema",
+   "description": "Use this plugin when the user wants a \"Light-Leak Cinematic Frame\" HyperFrames motion video \u2014 Film light leaks, grain, 16:9 letterbox, and large serif type for cinematic openings or chapter cards.",
+   "bytes": 1317
+  },
+  {
+   "path": "plugins/_official/video-templates/frame-liquid-bg-hero/SKILL.md",
+   "name": "video-template-frame-liquid-bg-hero",
+   "description": "Use this plugin when the user wants a \"Liquid Background Hero\" HyperFrames motion video \u2014 WebGL-style fluid displacement background with a quote overlay, suited to video intros, landing heroes, or posters.",
+   "bytes": 1332
+  },
+  {
+   "path": "plugins/_official/video-templates/frame-logo-outro/SKILL.md",
+   "name": "video-template-frame-logo-outro",
+   "description": "Use this plugin when the user wants a \"Logo Outro Frame\" HyperFrames motion video \u2014 Segmented logo assembly, glow bloom, and tagline reveal for video outros or brand closing frames.",
+   "bytes": 1269
+  },
+  {
+   "path": "plugins/_official/video-templates/frame-nyt-graph/SKILL.md",
+   "name": "video-template-frame-nyt-graph",
+   "description": "Use this plugin when the user wants a \"NYT Graph\" HyperFrames motion video \u2014 Animated data chart in print editorial style",
+   "bytes": 1292
+  },
+  {
+   "path": "plugins/_official/video-templates/frame-pentagram-stat/SKILL.md",
+   "name": "video-template-frame-pentagram-stat",
+   "description": "Use this plugin when the user wants a \"Pentagram Stat Frame\" HyperFrames motion video \u2014 Swiss-grid statistic anchor \u2014 giant number, red accent, growing bars, black data bar. Rational and editorial.",
+   "bytes": 1540
+  },
+  {
+   "path": "plugins/_official/video-templates/frame-play-mode/SKILL.md",
+   "name": "video-template-frame-play-mode",
+   "description": "Use this plugin when the user wants a \"Play Mode\" HyperFrames motion video \u2014 Playful elastic animations",
+   "bytes": 1234
+  },
+  {
+   "path": "plugins/_official/video-templates/frame-product-promo-30s/SKILL.md",
+   "name": "video-template-frame-product-promo-30s",
+   "description": "Use this plugin when the user wants a \"Product Promo \u00b7 30s\" HyperFrames motion video \u2014 Multi-scene 30-second product promo: problem-type intro, brand reveal, benefits flowchart, product surfaces, value pillars, foundation, CTA outro. Forked",
+   "bytes": 1777
+  },
+  {
+   "path": "plugins/_official/video-templates/frame-product-promo/SKILL.md",
+   "name": "video-template-frame-product-promo",
+   "description": "Use this plugin when the user wants a \"Product Promo\" HyperFrames motion video \u2014 Multi-scene product showcase with SVG assets",
+   "bytes": 1294
+  },
+  {
+   "path": "plugins/_official/video-templates/frame-swiss-grid/SKILL.md",
+   "name": "video-template-frame-swiss-grid",
+   "description": "Use this plugin when the user wants a \"Swiss Grid\" HyperFrames motion video \u2014 Structured grid layout",
+   "bytes": 1245
+  },
+  {
+   "path": "plugins/_official/video-templates/frame-takram-organic/SKILL.md",
+   "name": "video-template-frame-takram-organic",
+   "description": "Use this plugin when the user wants a \"Takram Organic Frame\" HyperFrames motion video \u2014 Soft-tech radial node graph as art \u2014 frosted rounded card, curved links drawing in, nodes popping outward, gentle float.",
+   "bytes": 1543
+  },
+  {
+   "path": "plugins/_official/video-templates/frame-vignelli/SKILL.md",
+   "name": "video-template-frame-vignelli",
+   "description": "Use this plugin when the user wants a \"Vignelli\" HyperFrames motion video \u2014 Bold typography with red accents",
+   "bytes": 1251
+  },
+  {
+   "path": "plugins/_official/video-templates/frame-warm-grain/SKILL.md",
+   "name": "video-template-frame-warm-grain",
+   "description": "Use this plugin when the user wants a \"Warm Grain\" HyperFrames motion video \u2014 Cream aesthetic with grain texture",
+   "bytes": 1264
+  },
+  {
+   "path": "plugins/_official/video-templates/vfx-text-cursor/SKILL.md",
+   "name": "video-template-vfx-text-cursor",
+   "description": "Use this plugin when the user wants a \"VFX Text Cursor\" HyperFrames motion video \u2014 Cursor light trail, chromatic rays, and directional flares for word-by-word quote reveals in video intros.",
+   "bytes": 1280
+  },
+  {
+   "path": "plugins/community/agent-skill-principal-ui-ux-architect-motion-choreographer-awwwards-tier-mqu4mbbj/SKILL.md",
+   "name": "high-end-visual-design",
+   "description": "Teaches the AI to design like a high-end agency. Defines the exact fonts, spacing, shadows, card structures, and animations that make a website feel expensive. Blocks all the common defaults that make AI designs look cheap or generic.",
+   "bytes": 10655
+  },
+  {
+   "path": "plugins/community/atelier-zero-image-generation-prompt-pack-mrrxpegw/SKILL.md",
+   "name": "",
+   "description": "",
+   "bytes": 10025
+  },
+  {
+   "path": "plugins/community/clone-audit-mrlv3nl4/SKILL.md",
+   "name": "clone-audit-mrlv3nl4",
+   "description": "Audit cloned or reimplemented websites for fidelity gaps, tracking scripts, source-brand and language residue, placeholders, and risky external dependencies. Use before handoff or deployment, or when asked to review a website clone for clea",
+   "bytes": 4194
+  },
+  {
+   "path": "plugins/community/deep-think-maximum-cognitive-effort-protocol-mq8kvw92/SKILL.md",
+   "name": "deep-think-maximum-cognitive-effort-protocol-mq8kvw92",
+   "description": "Use this plugin when the user wants a maximum-effort reasoning workflow for a complex, high-stakes, or ambiguous task.",
+   "bytes": 6739
+  },
+  {
+   "path": "plugins/community/design-system-source-context-mr0bb87z/SKILL.md",
+   "name": "",
+   "description": "",
+   "bytes": 8985
+  },
+  {
+   "path": "plugins/community/g2-design-system-ui-kit-mqgbmh2w/SKILL.md",
+   "name": "",
+   "description": "",
+   "bytes": 2086
+  },
+  {
+   "path": "plugins/community/hallmark/SKILL.md",
+   "name": "hallmark",
+   "description": "Anti-AI-slop design skill for greenfield pages, audits, redesigns, and design extraction from URLs or screenshots. Use when the user asks to build a new app or landing page, wants to redesign something, invokes Hallmark by name, or uses aud",
+   "bytes": 62949
+  },
+  {
+   "path": "plugins/community/humanize-ppt/SKILL.md",
+   "name": "humanize-ppt",
+   "description": ">-",
+   "bytes": 15987
+  },
+  {
+   "path": "plugins/community/import-smoke-test/SKILL.md",
+   "name": "community-import-smoke-test",
+   "description": "A portable community plugin for validating OpenDesign plugin import flows.",
+   "bytes": 844
+  },
+  {
+   "path": "plugins/community/registry-starter/SKILL.md",
+   "name": "community-registry-starter",
+   "description": "A small community registry starter plugin used to verify OpenDesign marketplace install flows.",
+   "bytes": 292
+  },
+  {
+   "path": "plugins/spec/examples/create-hyperframes-launch/SKILL.md",
+   "name": "create-hyperframes-launch",
+   "description": "Use this plugin when the user wants a HyperFrames-ready HTML motion composition, launch animation, kinetic typography clip, product reveal, or social video made from code.",
+   "bytes": 923
+  },
+  {
+   "path": "plugins/spec/examples/create-image-campaign/SKILL.md",
+   "name": "create-image-campaign",
+   "description": "Use this plugin when the user wants image assets, posters, social visuals, ad concepts, or a small campaign image system from a creative brief.",
+   "bytes": 788
+  },
+  {
+   "path": "plugins/spec/examples/create-live-artifact-ops/SKILL.md",
+   "name": "create-live-artifact-ops",
+   "description": "Create a refreshable live operations artifact for customer success, support, or launch review workflows.",
+   "bytes": 950
+  },
+  {
+   "path": "plugins/spec/examples/create-prototype-dashboard/SKILL.md",
+   "name": "create-prototype-dashboard",
+   "description": "Create a polished operations dashboard prototype with dense KPIs, status tables, and a focused command-center layout.",
+   "bytes": 1044
+  },
+  {
+   "path": "plugins/spec/examples/create-slides-pitch/SKILL.md",
+   "name": "create-slides-pitch",
+   "description": "Create a concise HTML pitch deck for an early-stage product, with a strong narrative arc and finance-ready slide structure.",
+   "bytes": 972
+  },
+  {
+   "path": "plugins/spec/examples/create-video-storyboard/SKILL.md",
+   "name": "create-video-storyboard",
+   "description": "Use this plugin when the user wants a video concept, storyboard, shot list, prompt pack, or render-ready motion brief for a product, campaign, or explainer.",
+   "bytes": 795
+  },
+  {
+   "path": "plugins/spec/examples/deploy-vercel-static/SKILL.md",
+   "name": "deploy-vercel-static",
+   "description": "Use this plugin when the user wants to deploy an accepted static web artifact to Vercel or prepare an equivalent deployment handoff with preview and production URLs.",
+   "bytes": 738
+  },
+  {
+   "path": "plugins/spec/examples/export-nextjs-handoff/SKILL.md",
+   "name": "export-nextjs-handoff",
+   "description": "Use this plugin when the user wants an accepted OpenDesign artifact converted into a Next.js App Router handoff with clean components, styles, assets, and implementation notes.",
+   "bytes": 797
+  },
+  {
+   "path": "plugins/spec/examples/extend-plugin-author/SKILL.md",
+   "name": "extend-plugin-author",
+   "description": "Use this plugin when the user wants to create, improve, validate, publish, or submit an OpenDesign plugin using the plugin spec, examples, and PR workflow.",
+   "bytes": 743
+  },
+  {
+   "path": "plugins/spec/examples/import-screenshot-to-prototype/SKILL.md",
+   "name": "import-screenshot-to-prototype",
+   "description": "Use this plugin when the user provides a screenshot or image reference and wants it reconstructed as an editable OpenDesign prototype with sensible components, layout, and responsive behavior.",
+   "bytes": 999
+  },
+  {
+   "path": "plugins/spec/examples/refine-critique-loop/SKILL.md",
+   "name": "refine-critique-loop",
+   "description": "Use this plugin when the user has an existing OpenDesign artifact and wants targeted critique, patching, brand tightening, responsive fixes, or quality improvement without starting over.",
+   "bytes": 772
+  },
+  {
+   "path": "plugins/spec/examples/share-github-pr/SKILL.md",
+   "name": "share-github-pr",
+   "description": "Use this plugin when the user wants to package an accepted plugin or artifact as a GitHub pull request for OpenDesign or another target repository.",
+   "bytes": 693
+  },
+  {
+   "path": "skills/8-bit-orbit-video-template/SKILL.md",
+   "name": "8-bit-orbit-video-template",
+   "description": "|",
+   "bytes": 2343
+  },
+  {
+   "path": "skills/ad-creative/SKILL.md",
+   "name": "ad-creative",
+   "description": "|",
+   "bytes": 1217
+  },
+  {
+   "path": "skills/after-hours-editorial-template/SKILL.md",
+   "name": "after-hours-editorial-template",
+   "description": "|",
+   "bytes": 2497
+  },
+  {
+   "path": "skills/agent-browser/SKILL.md",
+   "name": "agent-browser",
+   "description": "|",
+   "bytes": 8666
+  },
+  {
+   "path": "skills/ai-music-album/SKILL.md",
+   "name": "ai-music-album",
+   "description": "|",
+   "bytes": 1314
+  },
+  {
+   "path": "skills/algorithmic-art/SKILL.md",
+   "name": "algorithmic-art",
+   "description": "|",
+   "bytes": 1409
+  },
+  {
+   "path": "skills/apple-hig/SKILL.md",
+   "name": "apple-hig",
+   "description": "|",
+   "bytes": 1326
+  },
+  {
+   "path": "skills/article-magazine/SKILL.md",
+   "name": "article-magazine",
+   "description": "Huashu / huashu-md-html-inspired magazine article layout for turning Markdown or notes into a polished long-form HTML essay.",
+   "bytes": 2525
+  },
+  {
+   "path": "skills/artifacts-builder/SKILL.md",
+   "name": "artifacts-builder",
+   "description": "|",
+   "bytes": 1387
+  },
+  {
+   "path": "skills/brainstorming/SKILL.md",
+   "name": "brainstorming",
+   "description": "|",
+   "bytes": 1200
+  },
+  {
+   "path": "skills/brand-extract/SKILL.md",
+   "name": "brand-extract",
+   "description": "|",
+   "bytes": 12523
+  },
+  {
+   "path": "skills/brand-guidelines/SKILL.md",
+   "name": "brand-guidelines",
+   "description": "|",
+   "bytes": 1384
+  },
+  {
+   "path": "skills/brandkit/SKILL.md",
+   "name": "brandkit",
+   "description": "|",
+   "bytes": 16517
+  },
+  {
+   "path": "skills/brutalist-skill/SKILL.md",
+   "name": "industrial-brutalist-ui",
+   "description": "|",
+   "bytes": 9009
+  },
+  {
+   "path": "skills/canvas-design/SKILL.md",
+   "name": "canvas-design",
+   "description": "|",
+   "bytes": 1359
+  },
+  {
+   "path": "skills/card-twitter/SKILL.md",
+   "name": "card-twitter",
+   "description": "Twitter quote or data card designed to pair with a post.",
+   "bytes": 1835
+  },
+  {
+   "path": "skills/card-xiaohongshu/SKILL.md",
+   "name": "card-xiaohongshu",
+   "description": "Xiaohongshu-style knowledge cards, arranged as a swipeable multi-card carousel.",
+   "bytes": 2354
+  },
+  {
+   "path": "skills/chat-motion-overlay/SKILL.md",
+   "name": "chat-motion-overlay",
+   "description": "Generate configurable chat motion overlays from a transcript or screenshot, including plain bubble scenes, app-style chat containers, optional device frames, preset or uploaded avatars, nickname display rules, and transparent-video-ready Re",
+   "bytes": 4806
+  },
+  {
+   "path": "skills/color-expert/SKILL.md",
+   "name": "color-expert",
+   "description": "|",
+   "bytes": 1324
+  },
+  {
+   "path": "skills/competitive-ads-extractor/SKILL.md",
+   "name": "competitive-ads-extractor",
+   "description": "|",
+   "bytes": 1374
+  },
+  {
+   "path": "skills/copywriting/SKILL.md",
+   "name": "copywriting",
+   "description": "|",
+   "bytes": 1192
+  },
+  {
+   "path": "skills/creative-director/SKILL.md",
+   "name": "creative-director",
+   "description": "|",
+   "bytes": 2857
+  },
+  {
+   "path": "skills/d3-visualization/SKILL.md",
+   "name": "d3-visualization",
+   "description": "|",
+   "bytes": 2091
+  },
+  {
+   "path": "skills/data-report/SKILL.md",
+   "name": "data-report",
+   "description": "Turns CSV, Excel, or JSON data into a polished visual report page.",
+   "bytes": 2618
+  },
+  {
+   "path": "skills/deck-guizang-editorial/SKILL.md",
+   "name": "deck-guizang-editorial",
+   "description": "Editorial magazine meets e-ink: 10 layouts and 5 palettes (Ink, Indigo Porcelain, Forest Ink, Kraft Paper, Dune).",
+   "bytes": 4700
+  },
+  {
+   "path": "skills/deck-open-slide-canvas/SKILL.md",
+   "name": "deck-open-slide-canvas",
+   "description": "Locked 1920x1080 canvas deck with React component-level free composition, not bound to a fixed template.",
+   "bytes": 3962
+  },
+  {
+   "path": "skills/deck-swiss-international/SKILL.md",
+   "name": "deck-swiss-international",
+   "description": "16-column grid, one saturated accent, and 22 locked layouts (Klein Blue, Lemon, Mint, Safety Orange).",
+   "bytes": 5919
+  },
+  {
+   "path": "skills/design-brief/SKILL.md",
+   "name": "design-brief",
+   "description": "|",
+   "bytes": 13805
+  },
+  {
+   "path": "skills/design-consultation/SKILL.md",
+   "name": "design-consultation",
+   "description": "|",
+   "bytes": 1251
+  },
+  {
+   "path": "skills/design-md/SKILL.md",
+   "name": "design-md",
+   "description": "|",
+   "bytes": 1174
+  },
+  {
+   "path": "skills/design-review/SKILL.md",
+   "name": "design-review",
+   "description": "|",
+   "bytes": 1204
+  },
+  {
+   "path": "skills/digits-fintech-swiss-template/SKILL.md",
+   "name": "digits-fintech-swiss-template",
+   "description": "|",
+   "bytes": 1901
+  },
+  {
+   "path": "skills/doc-kami-parchment/SKILL.md",
+   "name": "doc-kami-parchment",
+   "description": "Warm parchment canvas (#f5f4ed), monochrome ink-blue accent (#1B365D), one serif family, and editorial-grade typography.",
+   "bytes": 4821
+  },
+  {
+   "path": "skills/doc/SKILL.md",
+   "name": "doc",
+   "description": "|",
+   "bytes": 1064
+  },
+  {
+   "path": "skills/docx/SKILL.md",
+   "name": "docx",
+   "description": "|",
+   "bytes": 1280
+  },
+  {
+   "path": "skills/domain-name-brainstormer/SKILL.md",
+   "name": "domain-name-brainstormer",
+   "description": "|",
+   "bytes": 1369
+  },
+  {
+   "path": "skills/ecommerce-image-workflow/SKILL.md",
+   "name": "ecommerce-image-workflow",
+   "description": "|",
+   "bytes": 9685
+  },
+  {
+   "path": "skills/editorial-burgundy-principles-template/SKILL.md",
+   "name": "editorial-burgundy-principles-template",
+   "description": "|",
+   "bytes": 1902
+  },
+  {
+   "path": "skills/emil-design-eng/SKILL.md",
+   "name": "emil-design-eng",
+   "description": "|",
+   "bytes": 28127
+  },
+  {
+   "path": "skills/emilkowalski-motion/SKILL.md",
+   "name": "emilkowalski-motion",
+   "description": "|",
+   "bytes": 2581
+  },
+  {
+   "path": "skills/enhance-prompt/SKILL.md",
+   "name": "enhance-prompt",
+   "description": "|",
+   "bytes": 1204
+  },
+  {
+   "path": "skills/export-download-debugging/SKILL.md",
+   "name": "export-download-debugging",
+   "description": "|",
+   "bytes": 2900
+  },
+  {
+   "path": "skills/fal-3d/SKILL.md",
+   "name": "fal-3d",
+   "description": "|",
+   "bytes": 1161
+  },
+  {
+   "path": "skills/fal-generate/SKILL.md",
+   "name": "fal-generate",
+   "description": "|",
+   "bytes": 1223
+  },
+  {
+   "path": "skills/fal-image-edit/SKILL.md",
+   "name": "fal-image-edit",
+   "description": "|",
+   "bytes": 1202
+  },
+  {
+   "path": "skills/fal-kling-o3/SKILL.md",
+   "name": "fal-kling-o3",
+   "description": "|",
+   "bytes": 1107
+  },
+  {
+   "path": "skills/fal-lip-sync/SKILL.md",
+   "name": "fal-lip-sync",
+   "description": "|",
+   "bytes": 1230
+  },
+  {
+   "path": "skills/fal-realtime/SKILL.md",
+   "name": "fal-realtime",
+   "description": "|",
+   "bytes": 1206
+  },
+  {
+   "path": "skills/fal-restore/SKILL.md",
+   "name": "fal-restore",
+   "description": "|",
+   "bytes": 1209
+  },
+  {
+   "path": "skills/fal-train/SKILL.md",
+   "name": "fal-train",
+   "description": "|",
+   "bytes": 1169
+  },
+  {
+   "path": "skills/fal-tryon/SKILL.md",
+   "name": "fal-tryon",
+   "description": "|",
+   "bytes": 1225
+  },
+  {
+   "path": "skills/fal-upscale/SKILL.md",
+   "name": "fal-upscale",
+   "description": "|",
+   "bytes": 1144
+  },
+  {
+   "path": "skills/fal-video-edit/SKILL.md",
+   "name": "fal-video-edit",
+   "description": "|",
+   "bytes": 1208
+  },
+  {
+   "path": "skills/fal-vision/SKILL.md",
+   "name": "fal-vision",
+   "description": "|",
+   "bytes": 1183
+  },
+  {
+   "path": "skills/faq-page/SKILL.md",
+   "name": "faq-page",
+   "description": "|",
+   "bytes": 4086
+  },
+  {
+   "path": "skills/field-notes-editorial-template/SKILL.md",
+   "name": "field-notes-editorial-template",
+   "description": "|",
+   "bytes": 2377
+  },
+  {
+   "path": "skills/figma-code-connect-components/SKILL.md",
+   "name": "figma-code-connect-components",
+   "description": "|",
+   "bytes": 1205
+  },
+  {
+   "path": "skills/figma-create-design-system-rules/SKILL.md",
+   "name": "figma-create-design-system-rules",
+   "description": "|",
+   "bytes": 1233
+  },
+  {
+   "path": "skills/figma-create-new-file/SKILL.md",
+   "name": "figma-create-new-file",
+   "description": "|",
+   "bytes": 1133
+  },
+  {
+   "path": "skills/figma-generate-design/SKILL.md",
+   "name": "figma-generate-design",
+   "description": "|",
+   "bytes": 1205
+  },
+  {
+   "path": "skills/figma-generate-library/SKILL.md",
+   "name": "figma-generate-library",
+   "description": "|",
+   "bytes": 1247
+  },
+  {
+   "path": "skills/figma-implement-design/SKILL.md",
+   "name": "figma-implement-design",
+   "description": "|",
+   "bytes": 1195
+  },
+  {
+   "path": "skills/figma-use/SKILL.md",
+   "name": "figma-use",
+   "description": "|",
+   "bytes": 1181
+  },
+  {
+   "path": "skills/flutter-animating-apps/SKILL.md",
+   "name": "flutter-animating-apps",
+   "description": "|",
+   "bytes": 1168
+  },
+  {
+   "path": "skills/frame-data-chart-nyt/SKILL.md",
+   "name": "frame-data-chart-nyt",
+   "description": "NYT-newsroom typography, staggered reveal animation, and editorial-grade charts (line, bar, or range band).",
+   "bytes": 3907
+  },
+  {
+   "path": "skills/frame-flowchart-sticky/SKILL.md",
+   "name": "frame-flowchart-sticky",
+   "description": "SVG curve connectors, sticky-note nodes, and cursor interaction with a whiteboard-brainstorm feel.",
+   "bytes": 3736
+  },
+  {
+   "path": "skills/frame-glitch-title/SKILL.md",
+   "name": "frame-glitch-title",
+   "description": "Digital glitch, chromatic offset, and data-corruption title frame for video transitions or cyberpunk heroes.",
+   "bytes": 3733
+  },
+  {
+   "path": "skills/frame-light-leak-cinema/SKILL.md",
+   "name": "frame-light-leak-cinema",
+   "description": "Film light leaks, grain, 16:9 letterbox, and large serif type for cinematic openings or chapter cards.",
+   "bytes": 4021
+  },
+  {
+   "path": "skills/frame-liquid-bg-hero/SKILL.md",
+   "name": "frame-liquid-bg-hero",
+   "description": "WebGL-style fluid displacement background with a quote overlay, suited to video intros, landing heroes, or posters.",
+   "bytes": 4111
+  },
+  {
+   "path": "skills/frame-logo-outro/SKILL.md",
+   "name": "frame-logo-outro",
+   "description": "Segmented logo assembly, glow bloom, and tagline reveal for video outros or brand closing frames.",
+   "bytes": 3887
+  },
+  {
+   "path": "skills/frame-macos-notification/SKILL.md",
+   "name": "frame-macos-notification",
+   "description": "Realistic macOS notification banner with app icon, title, and body, suited to video overlays or product teasers.",
+   "bytes": 3878
+  },
+  {
+   "path": "skills/frontend-design/SKILL.md",
+   "name": "frontend-design",
+   "description": "|",
+   "bytes": 5240
+  },
+  {
+   "path": "skills/frontend-dev/SKILL.md",
+   "name": "frontend-dev",
+   "description": "|",
+   "bytes": 1213
+  },
+  {
+   "path": "skills/frontend-skill/SKILL.md",
+   "name": "frontend-skill",
+   "description": "|",
+   "bytes": 1169
+  },
+  {
+   "path": "skills/frontend-slides/SKILL.md",
+   "name": "frontend-slides",
+   "description": "|",
+   "bytes": 1257
+  },
+  {
+   "path": "skills/full-page-screenshot/SKILL.md",
+   "name": "full-page-screenshot",
+   "description": "|",
+   "bytes": 1273
+  },
+  {
+   "path": "skills/gif-sticker-maker/SKILL.md",
+   "name": "gif-sticker-maker",
+   "description": "|",
+   "bytes": 1225
+  },
+  {
+   "path": "skills/gpt-tasteskill/SKILL.md",
+   "name": "gpt-taste",
+   "description": "|",
+   "bytes": 8489
+  },
+  {
+   "path": "skills/gsap-core/SKILL.md",
+   "name": "gsap-core",
+   "description": "|",
+   "bytes": 15075
+  },
+  {
+   "path": "skills/gsap-frameworks/SKILL.md",
+   "name": "gsap-frameworks",
+   "description": "|",
+   "bytes": 10581
+  },
+  {
+   "path": "skills/gsap-performance/SKILL.md",
+   "name": "gsap-performance",
+   "description": "|",
+   "bytes": 4457
+  },
+  {
+   "path": "skills/gsap-plugins/SKILL.md",
+   "name": "gsap-plugins",
+   "description": "|",
+   "bytes": 21908
+  },
+  {
+   "path": "skills/gsap-react/SKILL.md",
+   "name": "gsap-react",
+   "description": "|",
+   "bytes": 6867
+  },
+  {
+   "path": "skills/gsap-scrolltrigger/SKILL.md",
+   "name": "gsap-scrolltrigger",
+   "description": "|",
+   "bytes": 18799
+  },
+  {
+   "path": "skills/gsap-timeline/SKILL.md",
+   "name": "gsap-timeline",
+   "description": "|",
+   "bytes": 4702
+  },
+  {
+   "path": "skills/gsap-utils/SKILL.md",
+   "name": "gsap-utils",
+   "description": "|",
+   "bytes": 12403
+  },
+  {
+   "path": "skills/hand-drawn-diagrams/SKILL.md",
+   "name": "hand-drawn-diagrams",
+   "description": "|",
+   "bytes": 1348
+  },
+  {
+   "path": "skills/hatch-pet/SKILL.md",
+   "name": "hatch-pet",
+   "description": "Create, repair, validate, preview, and package Codex-compatible animated pet spritesheets from character art, screenshots, generated images, or visual references. Use when a user wants to hatch a Codex pet, create a custom animated pet, or ",
+   "bytes": 23854
+  },
+  {
+   "path": "skills/html-ppt-retro-quarterly-review/SKILL.md",
+   "name": "html-ppt-retro-quarterly-review",
+   "description": "|",
+   "bytes": 2267
+  },
+  {
+   "path": "skills/image-enhancer/SKILL.md",
+   "name": "image-enhancer",
+   "description": "|",
+   "bytes": 1327
+  },
+  {
+   "path": "skills/image-to-code-skill/SKILL.md",
+   "name": "image-to-code",
+   "description": "|",
+   "bytes": 37014
+  },
+  {
+   "path": "skills/imagegen-frontend-mobile/SKILL.md",
+   "name": "imagegen-frontend-mobile",
+   "description": "|",
+   "bytes": 40864
+  },
+  {
+   "path": "skills/imagegen-frontend-web/SKILL.md",
+   "name": "imagegen-frontend-web",
+   "description": "|",
+   "bytes": 37433
+  },
+  {
+   "path": "skills/imagegen/SKILL.md",
+   "name": "imagegen",
+   "description": "|",
+   "bytes": 1201
+  },
+  {
+   "path": "skills/imagen/SKILL.md",
+   "name": "imagen",
+   "description": "|",
+   "bytes": 1115
+  },
+  {
+   "path": "skills/impeccable-design-polish/SKILL.md",
+   "name": "impeccable-design-polish",
+   "description": "|",
+   "bytes": 2941
+  },
+  {
+   "path": "skills/library-curator/SKILL.md",
+   "name": "library-curator",
+   "description": "|",
+   "bytes": 2301
+  },
+  {
+   "path": "skills/login-flow/SKILL.md",
+   "name": "login-flow",
+   "description": "Mobile login and authentication flow screens",
+   "bytes": 1383
+  },
+  {
+   "path": "skills/marketing-psychology/SKILL.md",
+   "name": "marketing-psychology",
+   "description": "|",
+   "bytes": 1266
+  },
+  {
+   "path": "skills/minimalist-skill/SKILL.md",
+   "name": "minimalist-ui",
+   "description": "|",
+   "bytes": 8462
+  },
+  {
+   "path": "skills/minimax-docx/SKILL.md",
+   "name": "minimax-docx",
+   "description": "|",
+   "bytes": 1207
+  },
+  {
+   "path": "skills/minimax-pdf/SKILL.md",
+   "name": "minimax-pdf",
+   "description": "|",
+   "bytes": 1183
+  },
+  {
+   "path": "skills/mockup-device-3d/SKILL.md",
+   "name": "mockup-device-3d",
+   "description": "Static iPhone and MacBook 3D-style showcase with real HTML embedded on screens, glass-lens refraction, and 360-degree turntable composition.",
+   "bytes": 4469
+  },
+  {
+   "path": "skills/nanobanana-ppt/SKILL.md",
+   "name": "nanobanana-ppt",
+   "description": "|",
+   "bytes": 1236
+  },
+  {
+   "path": "skills/od-next-media-inputs/SKILL.md",
+   "name": "od-next-media-inputs",
+   "description": "|",
+   "bytes": 4473
+  },
+  {
+   "path": "skills/output-skill/SKILL.md",
+   "name": "full-output-enforcement",
+   "description": "|",
+   "bytes": 3126
+  },
+  {
+   "path": "skills/paywall-upgrade-cro/SKILL.md",
+   "name": "paywall-upgrade-cro",
+   "description": "|",
+   "bytes": 1239
+  },
+  {
+   "path": "skills/pdf/SKILL.md",
+   "name": "pdf",
+   "description": "|",
+   "bytes": 1199
+  },
+  {
+   "path": "skills/pixelbin-media/SKILL.md",
+   "name": "pixelbin-media",
+   "description": "|",
+   "bytes": 1161
+  },
+  {
+   "path": "skills/plan-design-review/SKILL.md",
+   "name": "plan-design-review",
+   "description": "|",
+   "bytes": 1255
+  },
+  {
+   "path": "skills/platform-design/SKILL.md",
+   "name": "platform-design",
+   "description": "|",
+   "bytes": 1282
+  },
+  {
+   "path": "skills/poster-hero/SKILL.md",
+   "name": "poster-hero",
+   "description": "Vertical poster or Moments-style share image with strong visual impact.",
+   "bytes": 2013
+  },
+  {
+   "path": "skills/ppt-keynote/SKILL.md",
+   "name": "ppt-keynote",
+   "description": "Apple Keynote-quality slides, one card per screen, with keyboard left/right navigation.",
+   "bytes": 2229
+  },
+  {
+   "path": "skills/pptx-generator/SKILL.md",
+   "name": "pptx-generator",
+   "description": "|",
+   "bytes": 1117
+  },
+  {
+   "path": "skills/pptx-html-fidelity-audit/SKILL.md",
+   "name": "pptx-html-fidelity-audit",
+   "description": "Audit a python-pptx export against its source HTML deck, identify layout/content drift (footer overflow, cropped content, missing italic/em, lost styling, off-rhythm spacing), and re-export with strict footer-rail + cursor-flow layout disci",
+   "bytes": 14169
+  },
+  {
+   "path": "skills/pptx/SKILL.md",
+   "name": "pptx",
+   "description": "|",
+   "bytes": 1221
+  },
+  {
+   "path": "skills/pr-feedback-quality-gate/SKILL.md",
+   "name": "pr-feedback-quality-gate",
+   "description": "|",
+   "bytes": 2286
+  },
+  {
+   "path": "skills/redesign-skill/SKILL.md",
+   "name": "redesign-existing-projects",
+   "description": "|",
+   "bytes": 15651
+  },
+  {
+   "path": "skills/reference-design-contract/SKILL.md",
+   "name": "reference-design-contract",
+   "description": "|",
+   "bytes": 5366
+  },
+  {
+   "path": "skills/release-notes-one-pager/SKILL.md",
+   "name": "release-notes-one-pager",
+   "description": "|",
+   "bytes": 3750
+  },
+  {
+   "path": "skills/remotion/SKILL.md",
+   "name": "remotion",
+   "description": "|",
+   "bytes": 1204
+  },
+  {
+   "path": "skills/replicate/SKILL.md",
+   "name": "replicate",
+   "description": "|",
+   "bytes": 1178
+  },
+  {
+   "path": "skills/research-decision-room/SKILL.md",
+   "name": "research-decision-room",
+   "description": "|",
+   "bytes": 6286
+  },
+  {
+   "path": "skills/resume-modern/SKILL.md",
+   "name": "resume-modern",
+   "description": "Modern minimal resume, single A4 page, ready for print or PDF export.",
+   "bytes": 2123
+  },
+  {
+   "path": "skills/review-animations/SKILL.md",
+   "name": "review-animations",
+   "description": "|",
+   "bytes": 8816
+  },
+  {
+   "path": "skills/screenshot/SKILL.md",
+   "name": "screenshot",
+   "description": "|",
+   "bytes": 1162
+  },
+  {
+   "path": "skills/screenshots-marketing/SKILL.md",
+   "name": "screenshots-marketing",
+   "description": "|",
+   "bytes": 1202
+  },
+  {
+   "path": "skills/shadcn-ui/SKILL.md",
+   "name": "shadcn-ui",
+   "description": "|",
+   "bytes": 1161
+  },
+  {
+   "path": "skills/shader-dev/SKILL.md",
+   "name": "shader-dev",
+   "description": "|",
+   "bytes": 1198
+  },
+  {
+   "path": "skills/slack-gif-creator/SKILL.md",
+   "name": "slack-gif-creator",
+   "description": "|",
+   "bytes": 1262
+  },
+  {
+   "path": "skills/slides/SKILL.md",
+   "name": "slides",
+   "description": "|",
+   "bytes": 1147
+  },
+  {
+   "path": "skills/social-reddit-card/SKILL.md",
+   "name": "social-reddit-card",
+   "description": "Realistic Reddit post card with vote rail and comment count, suited to video overlays or story sharing.",
+   "bytes": 3546
+  },
+  {
+   "path": "skills/social-spotify-card/SKILL.md",
+   "name": "social-spotify-card",
+   "description": "Spotify Now Playing-style card with album art, progress bar, and playback controls, suited to video overlays or personal homepages.",
+   "bytes": 3850
+  },
+  {
+   "path": "skills/social-x-post-card/SKILL.md",
+   "name": "social-x-post-card",
+   "description": "Realistic X post card with engagement metrics (likes, reposts, views), suited to video overlays or shareable image cards.",
+   "bytes": 3689
+  },
+  {
+   "path": "skills/soft-skill/SKILL.md",
+   "name": "high-end-visual-design",
+   "description": "|",
+   "bytes": 11130
+  },
+  {
+   "path": "skills/sora/SKILL.md",
+   "name": "sora",
+   "description": "|",
+   "bytes": 1157
+  },
+  {
+   "path": "skills/speech/SKILL.md",
+   "name": "speech",
+   "description": "|",
+   "bytes": 1162
+  },
+  {
+   "path": "skills/stitch-loop/SKILL.md",
+   "name": "stitch-loop",
+   "description": "|",
+   "bytes": 1194
+  },
+  {
+   "path": "skills/stitch-skill/SKILL.md",
+   "name": "stitch-design-taste",
+   "description": "|",
+   "bytes": 12461
+  },
+  {
+   "path": "skills/swiftui-design/SKILL.md",
+   "name": "swiftui-design",
+   "description": "|",
+   "bytes": 1319
+  },
+  {
+   "path": "skills/swiss-creative-mode-template/SKILL.md",
+   "name": "swiss-creative-mode-template",
+   "description": "|",
+   "bytes": 2322
+  },
+  {
+   "path": "skills/swiss-user-research-video-template/SKILL.md",
+   "name": "swiss-user-research-video-template",
+   "description": "|",
+   "bytes": 2716
+  },
+  {
+   "path": "skills/taste-skill-v1/SKILL.md",
+   "name": "design-taste-frontend-v1",
+   "description": "|",
+   "bytes": 21782
+  },
+  {
+   "path": "skills/taste-skill/SKILL.md",
+   "name": "design-taste-frontend",
+   "description": "|",
+   "bytes": 87915
+  },
+  {
+   "path": "skills/theme-factory/SKILL.md",
+   "name": "theme-factory",
+   "description": "|",
+   "bytes": 1313
+  },
+  {
+   "path": "skills/threejs/SKILL.md",
+   "name": "threejs",
+   "description": "|",
+   "bytes": 1169
+  },
+  {
+   "path": "skills/ui-skills/SKILL.md",
+   "name": "ui-skills",
+   "description": "|",
+   "bytes": 1160
+  },
+  {
+   "path": "skills/ui-ux-pro-max/SKILL.md",
+   "name": "ui-ux-pro-max",
+   "description": "|",
+   "bytes": 1933
+  },
+  {
+   "path": "skills/venice-audio-music/SKILL.md",
+   "name": "venice-audio-music",
+   "description": "|",
+   "bytes": 1185
+  },
+  {
+   "path": "skills/venice-audio-speech/SKILL.md",
+   "name": "venice-audio-speech",
+   "description": "|",
+   "bytes": 1181
+  },
+  {
+   "path": "skills/venice-image-edit/SKILL.md",
+   "name": "venice-image-edit",
+   "description": "|",
+   "bytes": 1049
+  },
+  {
+   "path": "skills/venice-image-generate/SKILL.md",
+   "name": "venice-image-generate",
+   "description": "|",
+   "bytes": 1049
+  },
+  {
+   "path": "skills/venice-video/SKILL.md",
+   "name": "venice-video",
+   "description": "|",
+   "bytes": 1019
+  },
+  {
+   "path": "skills/vfx-text-cursor/SKILL.md",
+   "name": "vfx-text-cursor",
+   "description": "Cursor light trail, chromatic rays, and directional flares for word-by-word quote reveals in video intros.",
+   "bytes": 3696
+  },
+  {
+   "path": "skills/video-downloader/SKILL.md",
+   "name": "video-downloader",
+   "description": "|",
+   "bytes": 1355
+  },
+  {
+   "path": "skills/video-hyperframes/SKILL.md",
+   "name": "video-hyperframes",
+   "description": "Hyperframes / Remotion-compatible continuous frame animation with autoplay support.",
+   "bytes": 2707
+  },
+  {
+   "path": "skills/web-artifacts-builder/SKILL.md",
+   "name": "web-artifacts-builder",
+   "description": "|",
+   "bytes": 1347
+  },
+  {
+   "path": "skills/web-clone/SKILL.md",
+   "name": "web-clone",
+   "description": ">",
+   "bytes": 21271
+  },
+  {
+   "path": "skills/web-design-guidelines/SKILL.md",
+   "name": "web-design-guidelines",
+   "description": "|",
+   "bytes": 2418
+  },
+  {
+   "path": "skills/weread-year-in-review-video-template/SKILL.md",
+   "name": "weread-year-in-review-video-template",
+   "description": "|",
+   "bytes": 3213
+  },
+  {
+   "path": "skills/wpds/SKILL.md",
+   "name": "wpds",
+   "description": "|",
+   "bytes": 1131
+  },
+  {
+   "path": "skills/writing-guidelines/SKILL.md",
+   "name": "writing-guidelines",
+   "description": "|",
+   "bytes": 2367
+  },
+  {
+   "path": "skills/youtube-clipper/SKILL.md",
+   "name": "youtube-clipper",
+   "description": "|",
+   "bytes": 1191
+  },
+  {
+   "path": "tools/release/tests/fixtures/catalog/design-templates/deck-one/SKILL.md",
+   "name": "Deck One",
+   "description": "A small deck template fixture.",
+   "bytes": 144
+  },
+  {
+   "path": "tools/release/tests/fixtures/catalog/skills/alpha/SKILL.md",
+   "name": "Alpha Skill",
+   "description": "First fixture skill with a runnable demo.",
+   "bytes": 363
+  },
+  {
+   "path": "tools/release/tests/fixtures/catalog/skills/beta/SKILL.md",
+   "name": "Beta Skill",
+   "description": "Instruction-only fixture skill.",
+   "bytes": 154
+  }
+ ],
+ "agents": [],
+ "commands": {
+  "count": 1,
+  "files": [
+   ".claude/commands/od-contribute.md"
+  ]
+ },
+ "hooks": {
+  "count": 28,
+  "files": [
+   "apps/web/src/components/Theater/hooks/useCritiqueReplay.ts",
+   "apps/web/src/components/Theater/hooks/useCritiqueStream.ts",
+   "apps/web/src/components/Theater/hooks/useCritiqueTheaterEnabled.ts",
+   "apps/web/src/hooks/useAnchoredPopover.ts",
+   "apps/web/src/hooks/useCoalescedCallback.ts",
+   "apps/web/src/hooks/useDesignMdState.ts",
+   "apps/web/src/hooks/useDismissOnOutsideInteraction.ts",
+   "apps/web/src/hooks/useEventStream.ts",
+   "apps/web/src/hooks/useFinalizeProject.ts",
+   "apps/web/src/hooks/useGlideIndicator.ts",
+   "apps/web/src/hooks/useLiquidGlass.ts",
+   "apps/web/src/hooks/useModalWindowDragGuard.ts",
+   "apps/web/src/hooks/useProjectDetail.ts",
+   "apps/web/src/hooks/useProjectRunStatuses.ts",
+   "apps/web/src/hooks/useTerminalLaunch.ts",
+   "apps/web/tests/components/Theater/hooks/useCritiqueReplay.test.tsx",
+   "apps/web/tests/components/Theater/hooks/useCritiqueStream.test.tsx",
+   "apps/web/tests/components/Theater/hooks/useCritiqueTheaterEnabled.test.tsx",
+   "apps/web/tests/hooks/useBrandReadyPrompt.test.tsx",
+   "apps/web/tests/hooks/useCoalescedCallback.test.tsx",
+   "apps/web/tests/hooks/useDesignMdState.test.tsx",
+   "apps/web/tests/hooks/useDismissOnOutsideInteraction.test.tsx",
+   "apps/web/tests/hooks/useEventStream.test.tsx",
+   "apps/web/tests/hooks/useFinalizeProject.test.tsx",
+   "apps/web/tests/hooks/useModalWindowDragGuard.test.tsx",
+   "apps/web/tests/hooks/useProjectDetail.test.tsx",
+   "apps/web/tests/hooks/useProjectRunStatuses.test.tsx",
+   "apps/web/tests/hooks/w82-design-md-files-single-flight.test.tsx"
+  ]
+ },
+ "indicators": {
+  "mcp": {
+   "count": 200,
+   "files": [
+    "CHANGELOG.md",
+    "apps/daemon/package.json",
+    "apps/daemon/scripts/verify-amr-real-vela.mjs",
+    "apps/daemon/src/agent-protocol/README.md",
+    "apps/daemon/src/agent-protocol/acp/index.ts",
+    "apps/daemon/src/agent-protocol/acp/session-params.ts",
+    "apps/daemon/src/agent-protocol/acp/session.ts",
+    "apps/daemon/src/agent-protocol/acp/stdio-mcp.ts",
+    "apps/daemon/src/agent-protocol/dsh-profile/frames.ts",
+    "apps/daemon/src/agent-protocol/dsh-profile/session.ts",
+    "apps/daemon/src/agent-protocol/dsh-profile/types.ts",
+    "apps/daemon/src/agent-protocol/index.ts",
+    "apps/daemon/src/agents.ts",
+    "apps/daemon/src/cli.ts",
+    "apps/daemon/src/connectionTest.ts",
+    "apps/daemon/src/copilot-stream.ts",
+    "apps/daemon/src/mcp-agent-install.ts",
+    "apps/daemon/src/mcp-config.ts",
+    "apps/daemon/src/mcp-live-artifacts-server.ts",
+    "apps/daemon/src/mcp-routes.ts",
+    "apps/daemon/src/mcp-tokens.ts",
+    "apps/daemon/src/mcp.ts",
+    "apps/daemon/src/plugins/apply.ts",
+    "apps/daemon/src/plugins/persistence.ts",
+    "apps/daemon/src/plugins/resolve-snapshot.ts",
+    "apps/daemon/src/plugins/snapshot-diff.ts",
+    "apps/daemon/src/plugins/snapshots.ts",
+    "apps/daemon/src/prompts/system.ts",
+    "apps/daemon/src/routes/routine.ts",
+    "apps/daemon/src/routes/runs.ts",
+    "apps/daemon/src/routines.ts",
+    "apps/daemon/src/run-tool-bundle.ts",
+    "apps/daemon/src/runtimes/chat-run-context.ts",
+    "apps/daemon/src/runtimes/defs/claude.ts",
+    "apps/daemon/src/runtimes/defs/codebuddy.ts",
+    "apps/daemon/src/runtimes/mcp.ts",
+    "apps/daemon/src/runtimes/od-next-exact-input.ts",
+    "apps/daemon/src/runtimes/types.ts",
+    "apps/daemon/src/server.ts",
+    "apps/daemon/src/services/run-analytics-lifecycle.ts",
+    "apps/daemon/src/strategies/od-next/initial-prompt-bundle-service.ts",
+    "apps/daemon/src/strategies/od-next/task-input-snapshot.ts",
+    "apps/daemon/tests/acp-inflight-tool-rows.test.ts",
+    "apps/daemon/tests/acp-stage-timeout-classification.test.ts",
+    "apps/daemon/tests/acp-stdio-mcp-wiring.test.ts",
+    "apps/daemon/tests/acp-stdio-mcp.test.ts",
+    "apps/daemon/tests/acp.test.ts",
+    "apps/daemon/tests/agent-protocol/acp-memory-peer.ts",
+    "apps/daemon/tests/agent-protocol/dsh-profile.test.ts",
+    "apps/daemon/tests/amr-acp-integration.test.ts",
+    "apps/daemon/tests/codex-app-server-session.test.ts",
+    "apps/daemon/tests/comment-attachments.test.ts",
+    "apps/daemon/tests/mcp-agent-install.test.ts",
+    "apps/daemon/tests/mcp-brief-app.test.ts",
+    "apps/daemon/tests/mcp-config.test.ts",
+    "apps/daemon/tests/mcp-fatal-wiring.test.ts",
+    "apps/daemon/tests/mcp-spawn.test.ts",
+    "apps/daemon/tests/memory-llm-dedupe.test.ts",
+    "apps/daemon/tests/observability/task-observation-rollout.test.ts",
+    "apps/daemon/tests/od-next-automatic-simple-server.test.ts"
+   ]
+  },
+  "network": {
+   "count": 501,
+   "files": [
+    ".claude/skills/od-contribute/install.sh",
+    ".claude/skills/od-contribute/scripts/discover-doc-gaps.sh",
+    ".claude/skills/od-contribute/scripts/validate-markdown.sh",
+    ".github/actions/bake-previews/action.yml",
+    ".github/scripts/agent-pr-explore-sandbox.sh",
+    ".github/scripts/convergence.py",
+    ".github/scripts/dsh-upstream-drift.ts",
+    ".github/scripts/lib/feishu/client.ts",
+    ".github/scripts/lib/github.py",
+    ".github/scripts/lib/r2.py",
+    ".github/scripts/lib/workload_products.py",
+    ".github/scripts/provision-agent-pr-explore-runner.sh",
+    ".github/scripts/publish_whats_new.py",
+    ".github/scripts/release.py",
+    ".github/scripts/release/resolve-daily-beta-recovery.ts",
+    ".github/scripts/release/smoke-artifacts.ts",
+    ".github/scripts/rerun_infra_cancel.py",
+    ".github/workflows/backport-automerge.yml",
+    ".github/workflows/bake-plugin-previews-automerge.yml",
+    ".github/workflows/ci.yml",
+    ".github/workflows/contributor-card-bot.yml",
+    ".github/workflows/discord-resolved.yml",
+    ".github/workflows/dsh-bootstrap-publish.yml",
+    ".github/workflows/e2e-coverage-reminder.yml",
+    ".github/workflows/release-beta.yml",
+    ".github/workflows/release-exact.yml",
+    ".github/workflows/release-prerelease.yml",
+    ".github/workflows/release-rollback.yml",
+    ".github/workflows/release-stable.yml",
+    "apps/daemon/src/artifacts/create.ts",
+    "apps/daemon/src/brands/safe-fetch.ts",
+    "apps/daemon/src/byok-tools.ts",
+    "apps/daemon/src/cli.ts",
+    "apps/daemon/src/collab/account-billing-summary-cache.ts",
+    "apps/daemon/src/collab/persistent-sync-cache.ts",
+    "apps/daemon/src/collab/proactive-content-pull.ts",
+    "apps/daemon/src/community-pets-sync.ts",
+    "apps/daemon/src/connectionTest.ts",
+    "apps/daemon/src/connectors/composio.ts",
+    "apps/daemon/src/connectors/routes.ts",
+    "apps/daemon/src/deploy.ts",
+    "apps/daemon/src/design-systems/shadcn-import.ts",
+    "apps/daemon/src/design-systems/source-context.ts",
+    "apps/daemon/src/design/handoff-design.ts",
+    "apps/daemon/src/handoff-cli.ts",
+    "apps/daemon/src/integrations/elevenlabs-voices.ts",
+    "apps/daemon/src/integrations/provider-models.ts",
+    "apps/daemon/src/live-artifacts/refresh.ts",
+    "apps/daemon/src/mcp-bootstrap.ts",
+    "apps/daemon/src/mcp-live-artifacts-server.ts",
+    "apps/daemon/src/mcp-workspace-context.ts",
+    "apps/daemon/src/mcp.ts",
+    "apps/daemon/src/media/index.ts",
+    "apps/daemon/src/memory-llm.ts",
+    "apps/daemon/src/plugins/plugin-asset-cache.ts",
+    "apps/daemon/src/plugins/share-helpers.ts",
+    "apps/daemon/src/research/tavily.ts",
+    "apps/daemon/src/routes/chat.ts",
+    "apps/daemon/src/routes/media.ts",
+    "apps/daemon/src/routes/memory.ts"
+   ]
+  },
+  "telemetry": {
+   "count": 493,
+   "files": [
+    ".github/workflows/main-prerelease-win-smoke.yml",
+    ".github/workflows/refresh-plugin-popularity.yml",
+    ".github/workflows/release-beta.yml",
+    ".github/workflows/release-prerelease-smoke.yml",
+    ".github/workflows/release-prerelease.yml",
+    ".github/workflows/release-stable.yml",
+    ".gitignore",
+    "apps/daemon/package.json",
+    "apps/daemon/src/agent-protocol/acp/session.ts",
+    "apps/daemon/src/agent-protocol/acp/tool-execution-lifecycle.ts",
+    "apps/daemon/src/agent-protocol/acp/updates.ts",
+    "apps/daemon/src/agent-protocol/core/json-line-stream.ts",
+    "apps/daemon/src/analytics.ts",
+    "apps/daemon/src/app-config.ts",
+    "apps/daemon/src/app-version.ts",
+    "apps/daemon/src/chat-artifacts/telemetry.ts",
+    "apps/daemon/src/connectors/composio-curation.ts",
+    "apps/daemon/src/connectors/composio-descriptions.ts",
+    "apps/daemon/src/connectors/composio.ts",
+    "apps/daemon/src/critique/orchestrator.ts",
+    "apps/daemon/src/db.ts",
+    "apps/daemon/src/installation.ts",
+    "apps/daemon/src/integrations/diagnostic-relay.ts",
+    "apps/daemon/src/integrations/telemetry-relay.ts",
+    "apps/daemon/src/integrations/vela.ts",
+    "apps/daemon/src/langfuse-bridge.ts",
+    "apps/daemon/src/langfuse-trace.ts",
+    "apps/daemon/src/mcp-observability.ts",
+    "apps/daemon/src/mcp.ts",
+    "apps/daemon/src/memory.ts",
+    "apps/daemon/src/migration/index.ts",
+    "apps/daemon/src/migration/update-apply-observations.ts",
+    "apps/daemon/src/observability/delivery-state.ts",
+    "apps/daemon/src/observability/eval-context.ts",
+    "apps/daemon/src/observability/main-run-observation.ts",
+    "apps/daemon/src/observability/run-exporter.ts",
+    "apps/daemon/src/observability/run-terminal-lifecycle.ts",
+    "apps/daemon/src/observability/task-observation-aggregation.ts",
+    "apps/daemon/src/observability/task-observation-otlp-exporter.ts",
+    "apps/daemon/src/observability/task-observation-rollout.ts",
+    "apps/daemon/src/orbit.ts",
+    "apps/daemon/src/plugins/installer.ts",
+    "apps/daemon/src/prompt-telemetry.ts",
+    "apps/daemon/src/prompts/directions.ts",
+    "apps/daemon/src/prompts/stable-sections.ts",
+    "apps/daemon/src/prompts/system.ts",
+    "apps/daemon/src/redact.ts",
+    "apps/daemon/src/routes/attribution.ts",
+    "apps/daemon/src/routes/chat.ts",
+    "apps/daemon/src/routes/collab-context.ts",
+    "apps/daemon/src/routes/media.ts",
+    "apps/daemon/src/routes/project/comments.ts",
+    "apps/daemon/src/routes/project/conversations.ts",
+    "apps/daemon/src/routes/project/index.ts",
+    "apps/daemon/src/routes/runs.ts",
+    "apps/daemon/src/routes/telemetry.ts",
+    "apps/daemon/src/routes/vela.ts",
+    "apps/daemon/src/run-analytics-observability.ts",
+    "apps/daemon/src/run-diagnostics.ts",
+    "apps/daemon/src/run-failure-classification.ts"
+   ]
+  },
+  "background": {
+   "count": 1968,
+   "files": [
+    ".claude-plugin/marketplace.json",
+    ".claude/skills/od-contribute/scripts/discover-doc-gaps.sh",
+    ".github/ISSUE_TEMPLATE/bug-report.yml",
+    ".github/actions/bake-previews/action.yml",
+    ".github/actions/setup-workspace/action.yml",
+    ".github/config/convergence.json",
+    ".github/config/postinstall.json",
+    ".github/config/scopes.json",
+    ".github/scripts/agent-pr-explore-sandbox.sh",
+    ".github/scripts/dsh-upstream-drift.ts",
+    ".github/scripts/provision-agent-pr-explore-runner.sh",
+    ".github/scripts/publish_whats_new.py",
+    ".github/workflows/bake-plugin-previews-gc.yml",
+    ".github/workflows/bake-plugin-previews.yml",
+    ".github/workflows/ci.yml",
+    ".github/workflows/critique-conformance.yml",
+    ".github/workflows/cut-patch-release.yml",
+    ".github/workflows/cut-release.yml",
+    ".github/workflows/dsh-upstream-drift.yml",
+    ".github/workflows/e2e-coverage-reminder.yml",
+    ".github/workflows/main-prerelease-win-smoke.yml",
+    ".github/workflows/metrics.yml",
+    ".github/workflows/notify-daily-feishu.yml",
+    ".github/workflows/notify-release-feishu.yml",
+    ".github/workflows/pr-author-inactivity.yml",
+    ".github/workflows/refresh-contributors-wall.yml",
+    ".github/workflows/refresh-plugin-popularity.yml",
+    ".github/workflows/release-beta.yml",
+    ".github/workflows/release-prerelease-tests.yml",
+    ".github/workflows/release-prerelease.yml",
+    ".github/workflows/release-stable.yml",
+    ".github/workflows/stale-issues.yml",
+    ".github/workflows/ui-extended-main.yml",
+    ".github/workflows/visual-baseline.yml",
+    ".github/workflows/whats-new-publish.yml",
+    ".gitignore",
+    "apps/closure/src/fixture.ts",
+    "apps/closure/tests/closure.test.ts",
+    "apps/daemon/bin/od.mjs",
+    "apps/daemon/package.json",
+    "apps/daemon/scripts/verify-amr-real-vela.mjs",
+    "apps/daemon/src/agent-protocol/acp/index.ts",
+    "apps/daemon/src/agent-protocol/acp/models.ts",
+    "apps/daemon/src/agent-protocol/acp/rpc.ts",
+    "apps/daemon/src/agent-protocol/acp/session.ts",
+    "apps/daemon/src/agent-protocol/acp/tool-execution-lifecycle.ts",
+    "apps/daemon/src/agent-protocol/codex-app-server/normalize.ts",
+    "apps/daemon/src/agent-protocol/codex-app-server/session.ts",
+    "apps/daemon/src/agent-protocol/index.ts",
+    "apps/daemon/src/agent-protocol/pi-rpc/events.ts",
+    "apps/daemon/src/agent-protocol/pi-rpc/index.ts",
+    "apps/daemon/src/agent-protocol/pi-rpc/internal.ts",
+    "apps/daemon/src/agent-protocol/pi-rpc/models.ts",
+    "apps/daemon/src/agent-protocol/pi-rpc/session.ts",
+    "apps/daemon/src/agent-session-resume.ts",
+    "apps/daemon/src/amr-stderr-filter.ts",
+    "apps/daemon/src/analytics.ts",
+    "apps/daemon/src/app-config.ts",
+    "apps/daemon/src/app-version.ts",
+    "apps/daemon/src/artifact-focus-marker.ts"
+   ]
+  },
+  "browser": {
+   "count": 389,
+   "files": [
+    ".github/ISSUE_TEMPLATE/preview-v0.8.0-feedback.yml",
+    ".github/actions/bake-previews/action.yml",
+    ".github/actions/configure-ci-parallelism/action.yml",
+    ".github/actions/setup-playwright/action.yml",
+    ".github/config/convergence.json",
+    ".github/config/scopes.json",
+    ".github/scripts/agent-pr-explore-sandbox.sh",
+    ".github/scripts/provision-agent-pr-explore-runner.sh",
+    ".github/scripts/rerun_infra_cancel.py",
+    ".github/scripts/scopes.py",
+    ".github/workflows/catalog-publish.yml",
+    ".github/workflows/ci.yml",
+    ".github/workflows/e2e-coverage-reminder.yml",
+    ".github/workflows/release-prerelease-tests.yml",
+    ".github/workflows/ui-extended-main.yml",
+    ".github/workflows/visual-baseline.yml",
+    ".gitignore",
+    "apps/daemon/src/brands/prefetch.ts",
+    "apps/daemon/src/browser-sessions.ts",
+    "apps/daemon/src/browser/browser-use-diagnostics.ts",
+    "apps/daemon/src/cli.ts",
+    "apps/daemon/src/critique/__fixtures__/run-prerelease.ts",
+    "apps/daemon/src/design/claude-design-import.ts",
+    "apps/daemon/src/export-cli-routing.ts",
+    "apps/daemon/src/import-export-routes.ts",
+    "apps/daemon/src/inline-assets.ts",
+    "apps/daemon/src/integrations/vela.ts",
+    "apps/daemon/src/mcp-bootstrap.ts",
+    "apps/daemon/src/mcp-config.ts",
+    "apps/daemon/src/mcp-install-info.ts",
+    "apps/daemon/src/mcp-managed-registration.ts",
+    "apps/daemon/src/mcp-routes.ts",
+    "apps/daemon/src/media/index.ts",
+    "apps/daemon/src/memory-llm.ts",
+    "apps/daemon/src/plugins/pipeline.ts",
+    "apps/daemon/src/prompts/core-slim.ts",
+    "apps/daemon/src/prompts/media-contract.ts",
+    "apps/daemon/src/prompts/official-system.ts",
+    "apps/daemon/src/routes/project/index.ts",
+    "apps/daemon/src/routes/runs.ts",
+    "apps/daemon/src/routes/telemetry.ts",
+    "apps/daemon/src/runtimes/chat-run-messages.ts",
+    "apps/daemon/src/runtimes/defs/amp.ts",
+    "apps/daemon/src/runtimes/defs/atomcode.ts",
+    "apps/daemon/src/runtimes/defs/claude.ts",
+    "apps/daemon/src/runtimes/defs/copilot.ts",
+    "apps/daemon/src/runtimes/defs/cursor-agent.ts",
+    "apps/daemon/src/runtimes/defs/grok-build.ts",
+    "apps/daemon/src/runtimes/od-next-exact-input.ts",
+    "apps/daemon/src/runtimes/opencode-log.ts",
+    "apps/daemon/src/runtimes/plain-stream.ts",
+    "apps/daemon/src/server.ts",
+    "apps/daemon/tests/browser-use-diagnostics.test.ts",
+    "apps/daemon/tests/claude-design-import.test.ts",
+    "apps/daemon/tests/cli-lint.test.ts",
+    "apps/daemon/tests/cli-run-steer.test.ts",
+    "apps/daemon/tests/cli-startup.test.ts",
+    "apps/daemon/tests/cli-templates.test.ts",
+    "apps/daemon/tests/daemon-lifecycle.test.ts",
+    "apps/daemon/tests/export-cli-routing.test.ts"
+   ]
+  },
+  "shell_exec": {
+   "count": 668,
+   "files": [
+    ".github/scripts/agent-pr-explore-sandbox.sh",
+    ".github/scripts/convergence.py",
+    ".github/scripts/dsh-upstream-drift.ts",
+    ".github/scripts/pack.py",
+    ".github/scripts/postinstall.py",
+    ".github/scripts/r2.ts",
+    ".github/scripts/release/resolve-daily-beta-recovery.ts",
+    ".github/scripts/release/resolve-patch-cut.ts",
+    ".github/scripts/rerun_infra_cancel.py",
+    ".github/scripts/scopes.py",
+    ".github/scripts/workspace.py",
+    ".github/workflows/agent-pr-explore-sandbox.yml",
+    ".github/workflows/release-exact.yml",
+    "apps/daemon/scripts/verify-amr-real-vela.mjs",
+    "apps/daemon/src/agent-companion-setup.ts",
+    "apps/daemon/src/agent-protocol/acp/constants.ts",
+    "apps/daemon/src/agent-protocol/acp/models.ts",
+    "apps/daemon/src/agent-protocol/acp/session-params.ts",
+    "apps/daemon/src/agent-protocol/acp/stdio-mcp.ts",
+    "apps/daemon/src/agent-protocol/acp/types.ts",
+    "apps/daemon/src/agent-protocol/acp/updates.ts",
+    "apps/daemon/src/agent-protocol/codex-app-server/cleanup-owner.ts",
+    "apps/daemon/src/agent-protocol/codex-app-server/session.ts",
+    "apps/daemon/src/agent-protocol/codex-app-server/thread-cleanup.ts",
+    "apps/daemon/src/agent-protocol/core/json-line-stream.ts",
+    "apps/daemon/src/agent-protocol/dsh-profile/session.ts",
+    "apps/daemon/src/agent-protocol/pi-rpc/session.ts",
+    "apps/daemon/src/api-token-auth.ts",
+    "apps/daemon/src/app-config.ts",
+    "apps/daemon/src/artifacts/deliverable-syntax-quotes.ts",
+    "apps/daemon/src/artifacts/text-suppression.ts",
+    "apps/daemon/src/automation-proposals.ts",
+    "apps/daemon/src/automation-routine-evolution.ts",
+    "apps/daemon/src/brands/design-md-input.ts",
+    "apps/daemon/src/brands/engine/seed.ts",
+    "apps/daemon/src/brands/fonts.ts",
+    "apps/daemon/src/brands/imagery-fallback.ts",
+    "apps/daemon/src/brands/logo-fallback.ts",
+    "apps/daemon/src/brands/prefetch.ts",
+    "apps/daemon/src/brands/provisional.ts",
+    "apps/daemon/src/brands/seed-fallback.ts",
+    "apps/daemon/src/brands/seed.ts",
+    "apps/daemon/src/browser-sessions.ts",
+    "apps/daemon/src/browser/browser-open.ts",
+    "apps/daemon/src/chat-artifacts/store.ts",
+    "apps/daemon/src/chat-artifacts/video-cover.ts",
+    "apps/daemon/src/cli.ts",
+    "apps/daemon/src/codex-cli.ts",
+    "apps/daemon/src/codex-config-normalize.ts",
+    "apps/daemon/src/collab/collab-cloud-error.ts",
+    "apps/daemon/src/collab/comment-relay-outbox.ts",
+    "apps/daemon/src/collab/public-file-failure.ts",
+    "apps/daemon/src/collab/public-file-publication-store.ts",
+    "apps/daemon/src/collab/sync-snapshot-store.ts",
+    "apps/daemon/src/connectionTest.ts",
+    "apps/daemon/src/conversation-fork-title.ts",
+    "apps/daemon/src/critique/orchestrator.ts",
+    "apps/daemon/src/critique/parsers/v1.ts",
+    "apps/daemon/src/critique/persistence.ts",
+    "apps/daemon/src/daemon-url.ts"
+   ]
+  },
+  "env_secrets": {
+   "count": 820,
+   "files": [
+    ".claude/skills/od-contribute/scripts/check-prereqs.sh",
+    ".claude/skills/od-contribute/scripts/config.sh",
+    ".github/actions/bake-previews/action.yml",
+    ".github/actions/setup-workspace/action.yml",
+    ".github/scripts/agent-pr-explore-local.sh",
+    ".github/scripts/agent-pr-explore-sandbox.sh",
+    ".github/scripts/convergence.py",
+    ".github/scripts/dsh-upstream-drift.ts",
+    ".github/scripts/handoff.py",
+    ".github/scripts/lib/feishu/client.ts",
+    ".github/scripts/lib/github.py",
+    ".github/scripts/lib/r2.py",
+    ".github/scripts/pack.py",
+    ".github/scripts/postinstall.py",
+    ".github/scripts/provision-agent-pr-explore-runner.sh",
+    ".github/scripts/publish_whats_new.py",
+    ".github/scripts/release.py",
+    ".github/scripts/release/build-mac.sh",
+    ".github/scripts/release/cache/mac.sh",
+    ".github/scripts/release/github/cleanup-artifacts.sh",
+    ".github/scripts/release/publish-beta-common.ps1",
+    ".github/scripts/release/report/mac.sh",
+    ".github/scripts/release/resolve-daily-beta-recovery.ts",
+    ".github/scripts/release/smoke-artifacts.ts",
+    ".github/scripts/release_notice.ts",
+    ".github/scripts/release_notification.ts",
+    ".github/scripts/rerun_infra_cancel.py",
+    ".github/scripts/runners.py",
+    ".github/scripts/scopes.py",
+    ".github/scripts/workspace.py",
+    ".github/workflows/agent-pr-explore-sandbox.yml",
+    ".github/workflows/autofix.atom.yml",
+    ".github/workflows/backport-automerge.yml",
+    ".github/workflows/backport-label-guard.yml",
+    ".github/workflows/backport.yml",
+    ".github/workflows/bake-plugin-previews-automerge.yml",
+    ".github/workflows/bake-plugin-previews-gc.yml",
+    ".github/workflows/bake-plugin-previews-pr.yml",
+    ".github/workflows/bake-plugin-previews-release.yml",
+    ".github/workflows/bake-plugin-previews.yml",
+    ".github/workflows/cache-maintenance.yml",
+    ".github/workflows/catalog-publish.yml",
+    ".github/workflows/catalog-validate.yml",
+    ".github/workflows/ci.yml",
+    ".github/workflows/comment.atom.yml",
+    ".github/workflows/contributor-card-bot.yml",
+    ".github/workflows/contributor-maintainer-check.yml",
+    ".github/workflows/convergence-exact.atom.yml",
+    ".github/workflows/convergence.atom.yml",
+    ".github/workflows/cut-patch-release.yml",
+    ".github/workflows/cut-release.yml",
+    ".github/workflows/discord-resolved.yml",
+    ".github/workflows/docker-image.yml",
+    ".github/workflows/dsh-bootstrap-publish.yml",
+    ".github/workflows/dsh-upstream-drift.yml",
+    ".github/workflows/e2e-coverage-reminder.yml",
+    ".github/workflows/finalize-release.yml",
+    ".github/workflows/fork-pr-workflow-approval.yml",
+    ".github/workflows/main-prerelease-win-smoke.yml",
+    ".github/workflows/metrics.yml"
+   ]
+  },
+  "home_writes": {
+   "count": 124,
+   "files": [
+    ".claude/skills/od-contribute/install.sh",
+    ".claude/skills/od-contribute/scripts/config.sh",
+    ".github/actions/setup-workspace/action.yml",
+    ".github/scripts/agent-pr-explore-sandbox.sh",
+    ".github/scripts/provision-agent-pr-explore-runner.sh",
+    "apps/daemon/src/agent-session-resume.ts",
+    "apps/daemon/src/browser-sessions.ts",
+    "apps/daemon/src/cli.ts",
+    "apps/daemon/src/codex-cli.ts",
+    "apps/daemon/src/codex-config-normalize.ts",
+    "apps/daemon/src/codex-pets.ts",
+    "apps/daemon/src/codex-rollout-usage.ts",
+    "apps/daemon/src/community-pets-sync.ts",
+    "apps/daemon/src/deploy.ts",
+    "apps/daemon/src/diagnostics-export.ts",
+    "apps/daemon/src/home-expansion.ts",
+    "apps/daemon/src/import-export-routes.ts",
+    "apps/daemon/src/integrations/vela.ts",
+    "apps/daemon/src/mcp-agent-install.ts",
+    "apps/daemon/src/mcp-install-info.ts",
+    "apps/daemon/src/mcp-routes.ts",
+    "apps/daemon/src/media/config.ts",
+    "apps/daemon/src/routes/static-resource.ts",
+    "apps/daemon/src/runtimes/codex-model-preflight.ts",
+    "apps/daemon/src/runtimes/defs/amr.ts",
+    "apps/daemon/src/runtimes/defs/antigravity.ts",
+    "apps/daemon/src/runtimes/defs/deepseek-harness.ts",
+    "apps/daemon/src/runtimes/defs/reasonix.ts",
+    "apps/daemon/src/runtimes/env.ts",
+    "apps/daemon/src/runtimes/executables.ts",
+    "apps/daemon/src/runtimes/local-profiles.ts",
+    "apps/daemon/src/runtimes/mmd-routes.ts",
+    "apps/daemon/src/runtimes/opencode-log.ts",
+    "apps/daemon/src/runtimes/paths.ts",
+    "apps/daemon/src/runtimes/qwen-settings.ts",
+    "apps/daemon/src/server.ts",
+    "apps/daemon/tests/app-config.test.ts",
+    "apps/daemon/tests/codex-config-normalize.test.ts",
+    "apps/daemon/tests/codex-provider-env-key.test.ts",
+    "apps/daemon/tests/codex-rollout-usage.test.ts",
+    "apps/daemon/tests/export-inline-route.test.ts",
+    "apps/daemon/tests/fixtures/fake-vela.mjs",
+    "apps/daemon/tests/fixtures/w123-export-acp-inflight-frames.ts",
+    "apps/daemon/tests/home-expansion.test.ts",
+    "apps/daemon/tests/mcp-install-codex.test.ts",
+    "apps/daemon/tests/media/config.test.ts",
+    "apps/daemon/tests/plugins-uninstall-traversal.test.ts",
+    "apps/daemon/tests/resolve-data-dir.test.ts",
+    "apps/daemon/tests/runtimes/agent-runtime-env.test.ts",
+    "apps/daemon/tests/runtimes/auth-probe-4456.test.ts",
+    "apps/daemon/tests/runtimes/env-and-detection.test.ts",
+    "apps/daemon/tests/runtimes/models-and-paths.test.ts",
+    "apps/daemon/tests/security-import-folder-dotfiles.test.ts",
+    "apps/packaged/src/download-attribution.ts",
+    "apps/packaged/src/headless.ts",
+    "apps/packaged/src/paths.ts",
+    "apps/web/src/components/ChatComposer.tsx",
+    "apps/web/src/components/SettingsDialog.tsx",
+    "apps/web/src/components/pet/PetSettings.tsx",
+    "apps/web/src/components/use-everywhere/agent-guide.ts"
+   ]
+  },
+  "self_update": {
+   "count": 28,
+   "files": [
+    ".claude/skills/od-contribute/install.sh",
+    ".github/scripts/agent-pr-explore-local.sh",
+    ".github/scripts/provision-agent-pr-explore-runner.sh",
+    ".github/scripts/release/assets/win.ps1",
+    "apps/daemon/src/connectionTest.ts",
+    "apps/daemon/src/runtimes/defs/atomcode.ts",
+    "apps/daemon/src/runtimes/defs/grok-build.ts",
+    "apps/daemon/src/runtimes/detection.ts",
+    "apps/daemon/src/runtimes/executables.ts",
+    "apps/daemon/tests/connection-test.test.ts",
+    "apps/daemon/tests/run-failure-classification.test.ts",
+    "apps/daemon/tests/runtimes/executable-fallback.test.ts",
+    "apps/daemon/tests/runtimes/executables.test.ts",
+    "apps/packaged/src/index.ts",
+    "apps/web/src/hooks/useAnchoredPopover.ts",
+    "design-templates/last30days/scripts/lib/xurl_x.py",
+    "e2e/tests/amr/tool-preview.test.ts",
+    "e2e/tests/dialog/opencode-preview-recovery.test.ts",
+    "e2e/tests/dialog/tool-argument-stream.test.ts",
+    "e2e/tests/packaged-launcher-update-loop.test.ts",
+    "mocks/scripts/upload-recording.sh",
+    "packages/platform/src/toolchain.ts",
+    "packages/platform/tests/index.test.ts",
+    "plugins/_official/examples/open-design-homepage/assets/_next/static/chunks/1098c2541054fc77.js",
+    "plugins/_official/examples/open-design-homepage/assets/_next/static/chunks/1ed7a178f7acd3df.js",
+    "plugins/community/humanize-ppt/scripts/humanize_ppt_v2.py",
+    "skills/pptx-html-fidelity-audit/scripts/extract_pptx.py",
+    "skills/pptx-html-fidelity-audit/scripts/verify_layout.py"
+   ]
+  },
+  "llm_api": {
+   "count": 465,
+   "files": [
+    ".claude-plugin/marketplace.json",
+    ".github/scripts/provision-agent-pr-explore-runner.sh",
+    "apps/daemon/src/agent-protocol/acp/rpc.ts",
+    "apps/daemon/src/app-config.ts",
+    "apps/daemon/src/byok-tools.ts",
+    "apps/daemon/src/claude-diagnostics.ts",
+    "apps/daemon/src/cli.ts",
+    "apps/daemon/src/codex-config-normalize.ts",
+    "apps/daemon/src/codex-rollout-usage.ts",
+    "apps/daemon/src/connectionTest.ts",
+    "apps/daemon/src/design/finalize-design.ts",
+    "apps/daemon/src/design/handoff-design.ts",
+    "apps/daemon/src/import-export-routes.ts",
+    "apps/daemon/src/integrations/aihubmix.ts",
+    "apps/daemon/src/integrations/google-models.ts",
+    "apps/daemon/src/integrations/openai-chat-token-params.ts",
+    "apps/daemon/src/integrations/provider-models.ts",
+    "apps/daemon/src/integrations/vela-errors.ts",
+    "apps/daemon/src/langfuse-trace.ts",
+    "apps/daemon/src/mcp-apps/brief-resource.ts",
+    "apps/daemon/src/mcp.ts",
+    "apps/daemon/src/media-adapters/seed.ts",
+    "apps/daemon/src/media-adapters/video.ts",
+    "apps/daemon/src/media/config.ts",
+    "apps/daemon/src/media/index.ts",
+    "apps/daemon/src/media/models.ts",
+    "apps/daemon/src/memory-llm.ts",
+    "apps/daemon/src/memory.ts",
+    "apps/daemon/src/plugins/export.ts",
+    "apps/daemon/src/plugins/publish.ts",
+    "apps/daemon/src/prompts/media-contract.ts",
+    "apps/daemon/src/prompts/system.ts",
+    "apps/daemon/src/redact.ts",
+    "apps/daemon/src/routes/chat.ts",
+    "apps/daemon/src/routes/memory.ts",
+    "apps/daemon/src/run-analytics-observability.ts",
+    "apps/daemon/src/run-failure-classification.ts",
+    "apps/daemon/src/runtimes/auth.ts",
+    "apps/daemon/src/runtimes/byok-opencode.ts",
+    "apps/daemon/src/runtimes/codex-model-preflight.ts",
+    "apps/daemon/src/runtimes/defs/amr.ts",
+    "apps/daemon/src/runtimes/defs/atomcode.ts",
+    "apps/daemon/src/runtimes/defs/hermes.ts",
+    "apps/daemon/src/runtimes/defs/opencode.ts",
+    "apps/daemon/src/runtimes/defs/pi.ts",
+    "apps/daemon/src/runtimes/executables.ts",
+    "apps/daemon/src/runtimes/json-event-stream.ts",
+    "apps/daemon/src/runtimes/launch.ts",
+    "apps/daemon/src/runtimes/metadata.ts",
+    "apps/daemon/src/runtimes/mmd-routes.ts",
+    "apps/daemon/src/runtimes/qwen-settings.ts",
+    "apps/daemon/src/runtimes/types.ts",
+    "apps/daemon/src/server.ts",
+    "apps/daemon/tests/acp-format-usage.test.ts",
+    "apps/daemon/tests/acp-service-failure.test.ts",
+    "apps/daemon/tests/acp.test.ts",
+    "apps/daemon/tests/agent-protocol/tool-execution-lifecycle.test.ts",
+    "apps/daemon/tests/aihubmix-asset-ssrf.test.ts",
+    "apps/daemon/tests/amr-acp-integration.test.ts",
+    "apps/daemon/tests/app-config.test.ts"
+   ]
+  }
+ }
+}

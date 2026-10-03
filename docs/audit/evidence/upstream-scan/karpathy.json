@@ -1,0 +1,90 @@
+{
+ "repo": "karpathy",
+ "head": "2c606141936f1eeef17fa3043a72095b4765b9c2",
+ "totals": {
+  "files": 9,
+  "bytes": 37694,
+  "submodules": []
+ },
+ "top_dirs": {
+  "(root)": 5,
+  ".claude-plugin": 2,
+  ".cursor": 1,
+  "skills": 1
+ },
+ "extensions": {
+  ".md": 6,
+  ".json": 2,
+  ".mdc": 1
+ },
+ "host_dirs": [
+  ".claude-plugin",
+  ".cursor"
+ ],
+ "manifests": [
+  ".claude-plugin/marketplace.json",
+  ".claude-plugin/plugin.json"
+ ],
+ "mcp_files": [],
+ "installers": [],
+ "license_files": [],
+ "skills": [
+  {
+   "path": "skills/karpathy-guidelines/SKILL.md",
+   "name": "karpathy-guidelines",
+   "description": "Behavioral guidelines to reduce common LLM coding mistakes. Use when writing, reviewing, or refactoring code to avoid overcomplication, make surgical changes, surface assumptions, and define verifiable success criteria.",
+   "bytes": 2518
+  }
+ ],
+ "agents": [],
+ "commands": {
+  "count": 0,
+  "files": []
+ },
+ "hooks": {
+  "count": 0,
+  "files": []
+ },
+ "indicators": {
+  "mcp": {
+   "count": 0,
+   "files": []
+  },
+  "network": {
+   "count": 0,
+   "files": []
+  },
+  "telemetry": {
+   "count": 0,
+   "files": []
+  },
+  "background": {
+   "count": 0,
+   "files": []
+  },
+  "browser": {
+   "count": 0,
+   "files": []
+  },
+  "shell_exec": {
+   "count": 0,
+   "files": []
+  },
+  "env_secrets": {
+   "count": 0,
+   "files": []
+  },
+  "home_writes": {
+   "count": 0,
+   "files": []
+  },
+  "self_update": {
+   "count": 0,
+   "files": []
+  },
+  "llm_api": {
+   "count": 0,
+   "files": []
+  }
+ }
+}

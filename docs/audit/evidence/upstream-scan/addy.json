@@ -1,0 +1,353 @@
+{
+ "repo": "addy",
+ "head": "a06bc63b3f8b829c14b0bbf53d99fefc39d58092",
+ "totals": {
+  "files": 211,
+  "bytes": 1054954,
+  "submodules": []
+ },
+ "top_dirs": {
+  "evals": 84,
+  "skills": 32,
+  "docs": 18,
+  "scripts": 14,
+  ".claude": 10,
+  ".gemini": 9,
+  "commands": 9,
+  "hooks": 9,
+  "(root)": 8,
+  "references": 7,
+  "agents": 4,
+  ".claude-plugin": 2,
+  ".github": 2,
+  ".agents": 1,
+  ".codex-plugin": 1,
+  ".opencode": 1
+ },
+ "extensions": {
+  ".md": 108,
+  ".js": 33,
+  ".json": 32,
+  ".toml": 18,
+  ".sh": 8,
+  "(none)": 4,
+  ".yml": 2,
+  ".py": 2,
+  ".html": 1,
+  ".diff": 1,
+  ".tsx": 1,
+  ".patch": 1
+ },
+ "host_dirs": [
+  ".claude",
+  ".claude-plugin",
+  ".codex-plugin",
+  ".agents",
+  ".gemini",
+  ".opencode"
+ ],
+ "manifests": [
+  ".agents/plugins/marketplace.json",
+  ".claude-plugin/marketplace.json",
+  ".claude-plugin/plugin.json",
+  ".codex-plugin/plugin.json",
+  "evals/fixtures/ci-cd-and-automation/package.json",
+  "evals/fixtures/test-driven-development/package.json",
+  "plugin.json"
+ ],
+ "mcp_files": [],
+ "installers": [],
+ "license_files": [
+  "LICENSE"
+ ],
+ "skills": [
+  {
+   "path": "skills/api-and-interface-design/SKILL.md",
+   "name": "api-and-interface-design",
+   "description": "Guides stable API and interface design. Use when designing APIs, module boundaries, or any public interface. Use when creating REST or GraphQL endpoints, defining type contracts between modules, or establishing boundaries between frontend a",
+   "bytes": 14886
+  },
+  {
+   "path": "skills/browser-testing-with-devtools/SKILL.md",
+   "name": "browser-testing-with-devtools",
+   "description": "Tests in real browsers via Chrome DevTools MCP. Use when building or debugging anything that runs in a browser. Use when you need to inspect the DOM, capture console errors, analyze network requests, profile performance, or verify visual ou",
+   "bytes": 14539
+  },
+  {
+   "path": "skills/ci-cd-and-automation/SKILL.md",
+   "name": "ci-cd-and-automation",
+   "description": "Automates CI/CD pipeline setup. Use when setting up or modifying build and deployment pipelines. Use when you need to automate quality gates, configure test runners in CI, or establish deployment strategies.",
+   "bytes": 11332
+  },
+  {
+   "path": "skills/code-review-and-quality/SKILL.md",
+   "name": "code-review-and-quality",
+   "description": "Conducts multi-axis code review. Use before merging any change. Use when reviewing code written by yourself, another agent, or a human. Use when you need to assess code quality across multiple dimensions before it enters the main branch. Us",
+   "bytes": 20976
+  },
+  {
+   "path": "skills/code-simplification/SKILL.md",
+   "name": "code-simplification",
+   "description": "Simplifies code for clarity. Use when refactoring code for clarity without changing behavior. Use when code works but is harder to read, maintain, or extend than it should be. Use when reviewing code that has accumulated unnecessary complex",
+   "bytes": 13545
+  },
+  {
+   "path": "skills/constraint-driven-development/SKILL.md",
+   "name": "constraint-driven-development",
+   "description": "Establishes a project's quality bar as a written contract and stops agents quietly lowering it. Interviews the user on which dimensions matter, supplies sane default thresholds when they have no number in mind, records everything in CONSTRA",
+   "bytes": 21008
+  },
+  {
+   "path": "skills/context-engineering/SKILL.md",
+   "name": "context-engineering",
+   "description": "Optimizes agent context setup. Use when starting a new session, when agent output quality degrades, when switching between tasks, or when you need to configure rules files and context for a project.",
+   "bytes": 15486
+  },
+  {
+   "path": "skills/debugging-and-error-recovery/SKILL.md",
+   "name": "debugging-and-error-recovery",
+   "description": "Guides systematic root-cause debugging. Use when tests fail, builds break, something that worked yesterday broke, behavior doesn't match expectations, or you encounter any unexpected error. Use when you need to figure out what broke and why",
+   "bytes": 10913
+  },
+  {
+   "path": "skills/deprecation-and-migration/SKILL.md",
+   "name": "deprecation-and-migration",
+   "description": "Manages deprecation and migration. Use when removing old systems, APIs, or features. Use when migrating users from one implementation to another. Use when migrating a database schema in production, such as renaming or dropping a column with",
+   "bytes": 12642
+  },
+  {
+   "path": "skills/documentation-and-adrs/SKILL.md",
+   "name": "documentation-and-adrs",
+   "description": "Records decisions and documentation. Use when you need to document an architecture decision (ADR) or the reasoning behind a design choice, when changing public APIs, shipping features, or when you need to record context that future engineer",
+   "bytes": 9859
+  },
+  {
+   "path": "skills/doubt-driven-development/SKILL.md",
+   "name": "doubt-driven-development",
+   "description": "Subjects every non-trivial decision to a fresh-context adversarial review before it stands. Use when you want every assumption cross-examined before proceeding, when stress-testing a plan for hidden failure modes, when correctness matters m",
+   "bytes": 16647
+  },
+  {
+   "path": "skills/frontend-ui-engineering/SKILL.md",
+   "name": "frontend-ui-engineering",
+   "description": "Builds production-quality, accessible, responsive user-facing UIs. Use when building or modifying interfaces and pages, creating components, implementing layouts, meeting WCAG accessibility requirements, managing state, or when the output n",
+   "bytes": 11712
+  },
+  {
+   "path": "skills/git-workflow-and-versioning/SKILL.md",
+   "name": "git-workflow-and-versioning",
+   "description": "Structures git workflow practices. Use when making any code change. Use when committing, branching, resolving conflicts, splitting uncommitted work in a messy working tree into clean atomic commits, opening or reviewing a pull request (PR),",
+   "bytes": 14141
+  },
+  {
+   "path": "skills/idea-refine/SKILL.md",
+   "name": "idea-refine",
+   "description": "Refines raw ideas into sharp, actionable concepts through structured divergent and convergent thinking. Use when an idea is still vague, when you need to stress-test assumptions before committing to a plan, or when you want to expand option",
+   "bytes": 8111
+  },
+  {
+   "path": "skills/incremental-implementation/SKILL.md",
+   "name": "incremental-implementation",
+   "description": "Delivers changes incrementally in thin, verifiable slices. Use when implementing any feature or change that touches more than one file, or when picking up the next task from a plan. Use when rolling a change out behind a feature flag, when ",
+   "bytes": 9629
+  },
+  {
+   "path": "skills/interview-me/SKILL.md",
+   "name": "interview-me",
+   "description": "Extracts what the user actually wants instead of what they think they should want. Achieves this through one-question-at-a-time interview until ~95% confidence about the underlying intent. Use when an ask is underspecified (\"build me X\" wit",
+   "bytes": 15080
+  },
+  {
+   "path": "skills/observability-and-instrumentation/SKILL.md",
+   "name": "observability-and-instrumentation",
+   "description": "Instruments code so production behavior is visible and diagnosable. Use when adding logging, metrics, tracing, or alerting. Use when shipping any feature that runs in production and you need evidence it works. Use when production issues are",
+   "bytes": 13948
+  },
+  {
+   "path": "skills/performance-optimization/SKILL.md",
+   "name": "performance-optimization",
+   "description": "Optimizes application performance across frontend, backend, queries, and databases. Use when performance requirements exist, when you suspect performance regressions, when Core Web Vitals or load times need improvement, when N+1 query patte",
+   "bytes": 16678
+  },
+  {
+   "path": "skills/planning-and-task-breakdown/SKILL.md",
+   "name": "planning-and-task-breakdown",
+   "description": "Breaks work into ordered tasks. Use when you have a spec or clear requirements and need to break work into implementable tasks. Use when a task feels too large to start, when you need to estimate scope, or when parallel work is possible.",
+   "bytes": 10564
+  },
+  {
+   "path": "skills/security-and-hardening/SKILL.md",
+   "name": "security-and-hardening",
+   "description": "Hardens code against vulnerabilities. Use when auditing an input handler for vulnerabilities, when handling user input, authentication, data storage, or external integrations, or when checking a login flow is safe against the OWASP Top Ten.",
+   "bytes": 17559
+  },
+  {
+   "path": "skills/shipping-and-launch/SKILL.md",
+   "name": "shipping-and-launch",
+   "description": "Prepares production launches. Use when preparing to deploy to production, or when asking what needs to be in place before shipping. Use when you need a pre-launch checklist, when setting up monitoring, when planning a staged rollout, or whe",
+   "bytes": 11409
+  },
+  {
+   "path": "skills/source-driven-development/SKILL.md",
+   "name": "source-driven-development",
+   "description": "Grounds every implementation decision in official documentation. Use when you want to verify an approach against the official docs before implementing it, or when you want authoritative, source-cited code free from outdated patterns. Use wh",
+   "bytes": 10038
+  },
+  {
+   "path": "skills/spec-driven-development/SKILL.md",
+   "name": "spec-driven-development",
+   "description": "Creates specs before coding. Use when starting a new project, feature, or significant change and no specification exists yet. Use when drafting a PRD or requirements document with objectives and scope, or when requirements are unclear, ambi",
+   "bytes": 13096
+  },
+  {
+   "path": "skills/test-driven-development/SKILL.md",
+   "name": "test-driven-development",
+   "description": "Drives development with tests using the red-green-refactor loop. Use when implementing any logic, fixing any bug, or changing any behavior. Use when you need to prove that code works, when a bug report arrives, or when you're about to modif",
+   "bytes": 16517
+  },
+  {
+   "path": "skills/using-agent-skills/SKILL.md",
+   "name": "using-agent-skills",
+   "description": "Discovers and invokes agent skills. Use when starting a session, or when you need to decide which skill or workflow applies to the piece of work at hand. This is the meta-skill that governs how all other skills are discovered and invoked.",
+   "bytes": 10446
+  }
+ ],
+ "agents": [
+  {
+   "path": "agents/code-reviewer.md",
+   "name": "code-reviewer",
+   "bytes": 3995
+  },
+  {
+   "path": "agents/security-auditor.md",
+   "name": "security-auditor",
+   "bytes": 4992
+  },
+  {
+   "path": "agents/test-engineer.md",
+   "name": "test-engineer",
+   "bytes": 3275
+  },
+  {
+   "path": "agents/web-performance-auditor.md",
+   "name": "web-performance-auditor",
+   "bytes": 12278
+  }
+ ],
+ "commands": {
+  "count": 9,
+  "files": [
+   ".claude/commands/build.md",
+   ".claude/commands/code-simplify.md",
+   ".claude/commands/constraints.md",
+   ".claude/commands/plan.md",
+   ".claude/commands/review.md",
+   ".claude/commands/ship.md",
+   ".claude/commands/spec.md",
+   ".claude/commands/test.md",
+   ".claude/commands/webperf.md"
+  ]
+ },
+ "hooks": {
+  "count": 9,
+  "files": [
+   "hooks/SDD-CACHE.md",
+   "hooks/SIMPLIFY-IGNORE.md",
+   "hooks/sdd-cache-post.sh",
+   "hooks/sdd-cache-pre.sh",
+   "hooks/sdd-cache-test.sh",
+   "hooks/session-start-test.sh",
+   "hooks/session-start.sh",
+   "hooks/simplify-ignore-test.sh",
+   "hooks/simplify-ignore.sh"
+  ]
+ },
+ "indicators": {
+  "mcp": {
+   "count": 4,
+   "files": [
+    "AGENTS.md",
+    "docs/agents.md",
+    "references/orchestration-patterns.md",
+    "skills/browser-testing-with-devtools/SKILL.md"
+   ]
+  },
+  "network": {
+   "count": 3,
+   "files": [
+    "hooks/sdd-cache-post.sh",
+    "hooks/sdd-cache-pre.sh",
+    "hooks/sdd-cache-test.sh"
+   ]
+  },
+  "telemetry": {
+   "count": 0,
+   "files": []
+  },
+  "background": {
+   "count": 0,
+   "files": []
+  },
+  "browser": {
+   "count": 4,
+   "files": [
+    ".gemini/commands/webperf.toml",
+    "commands/webperf.toml",
+    "scripts/run-evals.js",
+    "scripts/validate-reference-links-test.js"
+   ]
+  },
+  "shell_exec": {
+   "count": 7,
+   "files": [
+    "scripts/floor-guard-reference-test.js",
+    "scripts/lib/skill-lint.js",
+    "scripts/run-evals-test.js",
+    "scripts/run-evals.js",
+    "scripts/validate-artifact-paths-test.js",
+    "scripts/validate-commands-test.js",
+    "scripts/validate-reference-links-test.js"
+   ]
+  },
+  "env_secrets": {
+   "count": 15,
+   "files": [
+    ".gemini/commands/build.toml",
+    ".gemini/commands/constraints.toml",
+    ".gemini/commands/review.toml",
+    ".gemini/commands/ship.toml",
+    ".gemini/commands/webperf.toml",
+    "commands/build.toml",
+    "commands/constraints.toml",
+    "commands/review.toml",
+    "commands/ship.toml",
+    "commands/webperf.toml",
+    "evals/cases/ci-cd-and-automation.json",
+    "evals/cases/security-and-hardening.json",
+    "hooks/session-start-test.sh",
+    "hooks/simplify-ignore-test.sh",
+    "scripts/lib/skill-lint-test.js"
+   ]
+  },
+  "home_writes": {
+   "count": 3,
+   "files": [
+    "hooks/sdd-cache-test.sh",
+    "hooks/simplify-ignore-test.sh",
+    "scripts/validate-reference-links.js"
+   ]
+  },
+  "self_update": {
+   "count": 1,
+   "files": [
+    ".github/workflows/test-plugin-install.yml"
+   ]
+  },
+  "llm_api": {
+   "count": 1,
+   "files": [
+    ".github/workflows/test-plugin-install.yml"
+   ]
+  }
+ }
+}

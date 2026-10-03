@@ -1,0 +1,164 @@
+{
+ "repo": "beyondseo",
+ "head": "c160b9d7ba3f8a8c9a11fd042ea218e61183d43b",
+ "totals": {
+  "files": 221,
+  "bytes": 2779292,
+  "submodules": []
+ },
+ "top_dirs": {
+  "playbooks": 109,
+  "src": 26,
+  "docs": 22,
+  "scripts": 14,
+  "tests": 14,
+  "(root)": 11,
+  "examples": 10,
+  ".github": 7,
+  "references": 5,
+  "assets": 3
+ },
+ "extensions": {
+  ".md": 137,
+  ".py": 52,
+  ".json": 8,
+  ".yml": 6,
+  ".csv": 6,
+  "(none)": 3,
+  ".png": 3,
+  ".html": 2,
+  ".cff": 1,
+  ".txt": 1,
+  ".toml": 1,
+  ".css": 1
+ },
+ "host_dirs": [],
+ "manifests": [
+  "pyproject.toml",
+  "scripts/setup.py"
+ ],
+ "mcp_files": [],
+ "installers": [
+  "scripts/install_skill.py",
+  "scripts/setup.py"
+ ],
+ "license_files": [
+  "LICENSE",
+  "THIRD_PARTY_NOTICES.md",
+  "playbooks/reputation-seo/third-party-authority-article-system.md"
+ ],
+ "skills": [
+  {
+   "path": "SKILL.md",
+   "name": "beyondseo",
+   "description": "Audit websites, apply authorised SEO improvements and plan content, competitors and backlinks with evidence, design checks and optional project monitoring.",
+   "bytes": 17032
+  }
+ ],
+ "agents": [],
+ "commands": {
+  "count": 0,
+  "files": []
+ },
+ "hooks": {
+  "count": 0,
+  "files": []
+ },
+ "indicators": {
+  "mcp": {
+   "count": 1,
+   "files": [
+    "tests/test_portability.py"
+   ]
+  },
+  "network": {
+   "count": 6,
+   "files": [
+    "src/beyondseo/discovery.py",
+    "src/beyondseo/engine.py",
+    "src/beyondseo/network.py",
+    "src/beyondseo/render.py",
+    "tests/test_crawler.py",
+    "tests/test_website_work.py"
+   ]
+  },
+  "telemetry": {
+   "count": 0,
+   "files": []
+  },
+  "background": {
+   "count": 4,
+   "files": [
+    "tests/test_crawler.py",
+    "tests/test_hosting_transports.py",
+    "tests/test_trial_regressions.py",
+    "tests/test_website_work.py"
+   ]
+  },
+  "browser": {
+   "count": 11,
+   "files": [
+    ".github/workflows/tests.yml",
+    "pyproject.toml",
+    "scripts/install_skill.py",
+    "scripts/setup.py",
+    "src/beyondseo/cli.py",
+    "src/beyondseo/doctor.py",
+    "src/beyondseo/network.py",
+    "src/beyondseo/render.py",
+    "tests/test_crawler.py",
+    "tests/test_discovery_research.py",
+    "tests/test_reports.py"
+   ]
+  },
+  "shell_exec": {
+   "count": 12,
+   "files": [
+    "scripts/check_release.py",
+    "scripts/install_skill.py",
+    "scripts/run.py",
+    "scripts/setup.py",
+    "src/beyondseo/doctor.py",
+    "src/beyondseo/publishing.py",
+    "tests/test_crawler.py",
+    "tests/test_depth_validation.py",
+    "tests/test_discovery_research.py",
+    "tests/test_portability.py",
+    "tests/test_posting_catalog.py",
+    "tests/test_release_hygiene.py"
+   ]
+  },
+  "env_secrets": {
+   "count": 9,
+   "files": [
+    "scripts/check_release.py",
+    "src/beyondseo/doctor.py",
+    "src/beyondseo/projects.py",
+    "src/beyondseo/publishing.py",
+    "tests/test_crawler.py",
+    "tests/test_hosting_transports.py",
+    "tests/test_operations.py",
+    "tests/test_posting_catalog.py",
+    "tests/test_website_work.py"
+   ]
+  },
+  "home_writes": {
+   "count": 1,
+   "files": [
+    "scripts/install_skill.py"
+   ]
+  },
+  "self_update": {
+   "count": 3,
+   "files": [
+    ".github/workflows/tests.yml",
+    "src/beyondseo/cli.py",
+    "src/beyondseo/doctor.py"
+   ]
+  },
+  "llm_api": {
+   "count": 0,
+   "files": []
+  }
+ }
+}

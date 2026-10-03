@@ -1,0 +1,126 @@
+{
+ "repo": "brag",
+ "head": "cb89b9f44309b0bf4e3cb89e685fadf80c7999ed",
+ "totals": {
+  "files": 368,
+  "bytes": 64856849,
+  "submodules": []
+ },
+ "top_dirs": {
+  "skills": 290,
+  "docs": 41,
+  "examples": 20,
+  "(root)": 6,
+  ".agents": 2,
+  ".claude-plugin": 2,
+  ".claude": 2,
+  ".opencode": 2,
+  "scripts": 2,
+  ".codex-plugin": 1
+ },
+ "extensions": {
+  ".ogg": 228,
+  ".wav": 32,
+  ".md": 25,
+  ".jpg": 14,
+  ".mp4": 13,
+  ".html": 12,
+  ".css": 12,
+  "(none)": 10,
+  ".json": 10,
+  ".mp3": 5,
+  ".mjs": 2,
+  ".png": 1,
+  ".js": 1,
+  ".py": 1,
+  ".toml": 1,
+  ".lock": 1
+ },
+ "host_dirs": [
+  ".claude",
+  ".claude-plugin",
+  ".codex-plugin",
+  ".agents",
+  ".opencode"
+ ],
+ "manifests": [
+  ".claude-plugin/marketplace.json",
+  ".claude-plugin/plugin.json",
+  ".codex-plugin/plugin.json",
+  "plugin.json",
+  "skills/brag/scripts/pyproject.toml",
+  "skills/brag/scripts/uv.lock"
+ ],
+ "mcp_files": [],
+ "installers": [],
+ "license_files": [
+  "LICENSE"
+ ],
+ "skills": [
+  {
+   "path": "skills/brag-slim/SKILL.md",
+   "name": "brag-slim",
+   "description": "Turn a project directory or a website URL into a short, shareable launch video with music, motion, and share copy. One file, no bundled assets \u2014 built entirely by the model with the tools already on the machine. Use when someone says \"/brag",
+   "bytes": 7766
+  },
+  {
+   "path": "skills/brag/SKILL.md",
+   "name": "brag",
+   "description": "Turn the current project website into a short, polished, shareable launch video using Hyperframes. Use when someone says \"/brag\", \"let's brag about this\", \"make a launch video\", \"turn this into a video\", or wants to share what they built. R",
+   "bytes": 9111
+  }
+ ],
+ "agents": [],
+ "commands": {
+  "count": 0,
+  "files": []
+ },
+ "hooks": {
+  "count": 0,
+  "files": []
+ },
+ "indicators": {
+  "mcp": {
+   "count": 0,
+   "files": []
+  },
+  "network": {
+   "count": 0,
+   "files": []
+  },
+  "telemetry": {
+   "count": 0,
+   "files": []
+  },
+  "background": {
+   "count": 0,
+   "files": []
+  },
+  "browser": {
+   "count": 1,
+   "files": [
+    ".gitignore"
+   ]
+  },
+  "shell_exec": {
+   "count": 0,
+   "files": []
+  },
+  "env_secrets": {
+   "count": 0,
+   "files": []
+  },
+  "home_writes": {
+   "count": 0,
+   "files": []
+  },
+  "self_update": {
+   "count": 0,
+   "files": []
+  },
+  "llm_api": {
+   "count": 0,
+   "files": []
+  }
+ }
+}

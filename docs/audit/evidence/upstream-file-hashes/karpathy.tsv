@@ -1,0 +1,11 @@
+# karpathy @ 2c606141936f1eeef17fa3043a72095b4765b9c2
+blob_sha1	bytes	path
+f6573543bed69c60dfe917a9c83c3a5816558917	758	.claude-plugin/marketplace.json
+6e885516c084de3cde769ff3f0ed80ef2ea946d9	390	.claude-plugin/plugin.json
+edd317f72af150e842d46e31ecc8e009ff999813	2638	.cursor/rules/karpathy-guidelines.mdc
+daced9bd64f25908ebedeb4701fb406985dc8366	2357	CLAUDE.md
+d1f69408b4f2428b8c9c72cef1eb751317e0f71d	1955	CURSOR.md
+6c4283595e031f158870cd38e4e39d281332d621	14838	EXAMPLES.md
+7cf07a786532bebe01c65179c8e2c3a98cc0a09b	6198	README.md
+1228d8ccbe8f2075948c5202410ffd0dc8b0b042	6042	README.zh.md
+6a62d0441753157ca6ca50479e490c2948033adb	2518	skills/karpathy-guidelines/SKILL.md
