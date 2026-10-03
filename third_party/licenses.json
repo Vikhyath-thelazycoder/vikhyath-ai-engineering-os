@@ -1,0 +1,159 @@
+{
+ "addy": {
+  "attribution": "Copyright (c) 2025 Addy Osmani",
+  "bundled_files": 43,
+  "commit_sha": "a06bc63b3f8b829c14b0bbf53d99fefc39d58092",
+  "license": "MIT",
+  "license_files": [
+   "LICENSE"
+  ],
+  "note": null,
+  "repository": "addyosmani/agent-skills"
+ },
+ "agency": {
+  "attribution": "Copyright (c) 2025 AgentLand Contributors",
+  "bundled_files": 77,
+  "commit_sha": "d3f71c4bb8922d3eea7576237a870dd59b3cdd52",
+  "license": "MIT",
+  "license_files": [
+   "LICENSE"
+  ],
+  "note": null,
+  "repository": "msitarzewski/agency-agents"
+ },
+ "beacon": {
+  "attribution": "Copyright (c) 2026 Asymptote Labs",
+  "bundled_files": 78,
+  "commit_sha": "5937da1cd812660d256c367374b9752316f51cbc",
+  "license": "MIT",
+  "license_files": [
+   "LICENSE"
+  ],
+  "note": null,
+  "repository": "Asymptote-Labs/agent-beacon"
+ },
+ "beyondseo": {
+  "attribution": "Copyright (c) 2026 Muhammad Tahir Ashraf (Beyond Tahir)",
+  "bundled_files": 199,
+  "commit_sha": "c160b9d7ba3f8a8c9a11fd042ea218e61183d43b",
+  "license": "MIT",
+  "license_files": [
+   "LICENSE",
+   "THIRD_PARTY_NOTICES.md"
+  ],
+  "note": null,
+  "repository": "beyondtahir/beyondseo"
+ },
+ "brag": {
+  "attribution": "Copyright (c) 2026 Shunit Haviv Hakimi",
+  "bundled_files": 291,
+  "commit_sha": "cb89b9f44309b0bf4e3cb89e685fadf80c7999ed",
+  "license": "MIT",
+  "license_files": [
+   "LICENSE"
+  ],
+  "note": null,
+  "repository": "latent-spaces/brag"
+ },
+ "ecc": {
+  "attribution": "Copyright (c) 2026 Affaan Mustafa",
+  "bundled_files": 409,
+  "commit_sha": "ef648e01899ba3e8dc6371642deaaf64b4477775",
+  "license": "MIT",
+  "license_files": [
+   "LICENSE"
+  ],
+  "note": null,
+  "repository": "affaan-m/ECC"
+ },
+ "graphify": {
+  "attribution": "Copyright (c) 2026 Safi Shamsi",
+  "bundled_files": 548,
+  "commit_sha": "0b60d47e6cd9338c51143f39f35b6c45c8453385",
+  "license": "Apache-2.0",
+  "license_files": [
+   "LICENSE",
+   "LICENSE-MIT",
+   "NOTICE"
+  ],
+  "note": null,
+  "repository": "Graphify-Labs/graphify"
+ },
+ "gstack": {
+  "attribution": "Copyright (c) 2026 Garry Tan",
+  "bundled_files": 133,
+  "commit_sha": "74512c20a7aca72e722d46bcc6b3954c1677d9ee",
+  "license": "MIT",
+  "license_files": [
+   "LICENSE",
+   "NOTICE.md",
+   "licenses/Apache-2.0.txt"
+  ],
+  "note": null,
+  "repository": "garrytan/gstack"
+ },
+ "karpathy": {
+  "attribution": "forrestchang and contributors",
+  "bundled_files": 2,
+  "commit_sha": "2c606141936f1eeef17fa3043a72095b4765b9c2",
+  "license": "MIT",
+  "license_files": [],
+  "note": "License declared in package metadata; upstream ships no license text.",
+  "repository": "multica-ai/andrej-karpathy-skills"
+ },
+ "opendesign": {
+  "attribution": "Copyright 2026 Open Design contributors",
+  "bundled_files": 516,
+  "commit_sha": "53231d40b778d88eba23f35547bf99485d3ae9fc",
+  "license": "Apache-2.0",
+  "license_files": [
+   "LICENSE"
+  ],
+  "note": null,
+  "repository": "nexu-io/open-design"
+ },
+ "ponytail": {
+  "attribution": "Copyright (c) 2026 DietrichGebert",
+  "bundled_files": 18,
+  "commit_sha": "c982cd411abb53323c4baa1baa3c2f020b8d0b08",
+  "license": "MIT",
+  "license_files": [
+   "LICENSE"
+  ],
+  "note": null,
+  "repository": "DietrichGebert/ponytail"
+ },
+ "taste": {
+  "attribution": "Copyright (c) 2026 Leonxlnx",
+  "bundled_files": 13,
+  "commit_sha": "ce26fc25c0e5e8cab638f883de62d9a86ee5e45b",
+  "license": "MIT",
+  "license_files": [
+   "LICENSE"
+  ],
+  "note": null,
+  "repository": "Leonxlnx/taste-skill"
+ },
+ "uiuxpromax": {
+  "attribution": "Copyright (c) 2024 Next Level Builder",
+  "bundled_files": 286,
+  "commit_sha": "09170eec67eefd46a7ae85de61b40c194020f997",
+  "license": "MIT",
+  "license_files": [
+   "LICENSE"
+  ],
+  "note": null,
+  "repository": "nextlevelbuilder/ui-ux-pro-max-skill"
+ },
+ "unlazy": {
+  "attribution": "Copyright (c) 2026 Leonxlnx",
+  "bundled_files": 31,
+  "commit_sha": "16671491f6679ad9378f52604d3bc2415b4120c7",
+  "license": "MIT",
+  "license_files": [
+   "LICENSE"
+  ],
+  "note": null,
+  "repository": "Leonxlnx/unlazy"
+ }
+}

@@ -16,15 +16,17 @@ import re
 import sys
 from collections import defaultdict
 
-import yaml
-
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+sys.path.insert(0, ROOT)
+from pathlib import Path  # noqa: E402
+
+from vikhyath.bundle.rules import (BUNDLED, classify, compile_rules, known_capabilities,  # noqa: E402
+                                   load_domain_model, load_rules)
+from vikhyath.bundle.rules import read_inventory as _read_inventory  # noqa: E402
+
 STAGING = os.path.join(ROOT, ".staging", "upstream")
 EVIDENCE = os.path.join(ROOT, "docs", "audit", "evidence")
-HERE = os.path.dirname(os.path.abspath(__file__))
 
-DECISIONS = {"COPY", "ADAPT", "WRAP", "REFERENCE", "PRESERVE", "EXCLUDE"}
-BUNDLED = {"COPY", "ADAPT", "WRAP", "PRESERVE"}
 TEXT_EXT = {".md", ".mdx", ".txt", ".json", ".yaml", ".yml", ".toml", ".py", ".js", ".mjs", ".cjs", ".ts",
             ".tsx", ".sh", ".tmpl", ".html", ".css", ".csv", ".go"}
 TRY_EXT = ["", ".md", ".py", ".js", ".mjs", ".cjs", ".ts", ".tmpl", "/index.ts", "/index.js", "/__init__.py", "/SKILL.md"]
@@ -40,57 +42,8 @@ REF_PATTERNS = [
 PY_REL_IMPORT = re.compile(r"^\s*from\s+(\.+)([\w.]*)\s+import\s+([\w, ()]+)", re.M)
 
 
-def glob_to_regex(pattern):
-    out, i = "", 0
-    while i < len(pattern):
-        if pattern.startswith("**/", i):
-            out += "(?:.*/)?"
-            i += 3
-        elif pattern.startswith("**", i):
-            out += ".*"
-            i += 2
-        elif pattern[i] == "*":
-            out += "[^/]*"
-            i += 1
-        elif pattern[i] == "?":
-            out += "[^/]"
-            i += 1
-        else:
-            out += re.escape(pattern[i])
-            i += 1
-    return re.compile("^" + out + "$")
-
-
-def load_yaml(name):
-    with open(os.path.join(HERE, name), encoding="utf-8") as f:
-        return yaml.safe_load(f)
-
-
-def known_capabilities(model):
-    caps = {}
-    for domain, d in model["domains"].items():
-        for sub, meta in d["capabilities"].items():
-            caps[f"{domain}/{sub}"] = meta
-    return caps
-
-
 def read_inventory(repo):
-    rows = []
-    with open(os.path.join(EVIDENCE, "upstream-file-hashes", f"{repo}.tsv"), encoding="utf-8") as f:
-        for line in f:
-            if line.startswith("#") or line.startswith("blob_sha1\t"):
-                continue
-            sha, size, path = line.rstrip("\n").split("\t", 2)
-            rows.append((path, int(size), sha))
-    return rows
-
-
-def classify(repo_rules, path):
-    for rule in repo_rules.get("rules", []):
-        for rx in rule["_rx"]:
-            if rx.match(path):
-                return rule
-    return repo_rules["default"]
+    return _read_inventory(Path(EVIDENCE), repo)
 
 
 def references(text, path):
@@ -132,17 +85,9 @@ def resolve(ref, path, files, dirs):
 
 
 def main():
-    rules_doc, model = load_yaml("extraction-rules.yaml"), load_yaml("domain-model.yaml")
-    caps = known_capabilities(model)
-    errors = []
-    for repo, rr in rules_doc["repos"].items():
-        for rule in rr.get("rules", []) + [rr["default"]]:
-            rule["_rx"] = [glob_to_regex(p) for p in rule.get("paths", [])]
-            if rule["decision"] not in DECISIONS:
-                errors.append(f"{repo}: unknown decision {rule['decision']}")
-            cap = rule.get("capability")
-            if rule["decision"] in BUNDLED and cap not in caps:
-                errors.append(f"{repo}: bundled rule without known capability: {rule.get('paths')} -> {cap}")
+    rules_doc = load_rules()
+    caps = known_capabilities(load_domain_model())
+    errors = compile_rules(rules_doc, caps)
 
     os.makedirs(os.path.join(EVIDENCE, "extraction-matrix"), exist_ok=True)
     summary = {"repos": {}, "capabilities": defaultdict(lambda: {"files": 0, "bytes": 0, "sources": set()})}
