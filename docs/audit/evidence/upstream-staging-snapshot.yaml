@@ -1,0 +1,30 @@
+# Upstream audit staging snapshot (spec §3 staging rule)
+# AUDIT INPUT ONLY — never runtime. Snapshots live in .staging/upstream/ (gitignored).
+# Clone method: git clone --filter=blob:none (full history, blobs fetched on demand).
+# Captured: 2026-10-03
+# previous_pin = v1.0.1 pin from config/capabilities.yaml (null = not in v1.0.1)
+
+snapshots:
+  ecc:        {repo: affaan-m/ECC,                       branch: main, head: ef648e01899ba3e8dc6371642deaaf64b4477775, head_date: 2026-10-01, tracked_files: 4212,  size: 103M, previous_pin: ca185ef5f7667078a1e70a763bd3a9c71c48acf0, commits_since_pin: 428,  license_files: [LICENSE]}
+  addy:       {repo: addyosmani/agent-skills,            branch: main, head: a06bc63b3f8b829c14b0bbf53d99fefc39d58092, head_date: 2026-10-02, tracked_files: 211,   size: 2.8M, previous_pin: d2c37ef6225dd8726cdd369a8030307f48592d26, commits_since_pin: 176,  license_files: [LICENSE]}
+  agency:     {repo: msitarzewski/agency-agents,         branch: main, head: d3f71c4bb8922d3eea7576237a870dd59b3cdd52, head_date: 2026-10-01, tracked_files: 381,   size: 8.3M, previous_pin: 3c9588880b7cafaec325a104899fd8bbe27e7d72, commits_since_pin: 170,  license_files: [LICENSE]}
+  gstack:     {repo: garrytan/gstack,                    branch: main, head: 74512c20a7aca72e722d46bcc6b3954c1677d9ee, head_date: 2026-10-03, tracked_files: 2677,  size: 86M,  previous_pin: 0d1bd5616c0ef096bb7ccee336f63c60ee408618, commits_since_pin: 30,   license_files: [LICENSE, NOTICE.md, licenses/]}
+  karpathy:   {repo: multica-ai/andrej-karpathy-skills,  branch: main, head: 2c606141936f1eeef17fa3043a72095b4765b9c2, head_date: 2026-04-20, tracked_files: 9,     size: 228K, previous_pin: 2c606141936f1eeef17fa3043a72095b4765b9c2, commits_since_pin: 0,    license_files: [], license_note: "MIT declared in plugin.json, SKILL.md frontmatter, README; no LICENSE text file"}
+  unlazy:     {repo: Leonxlnx/unlazy,                    branch: main, head: 16671491f6679ad9378f52604d3bc2415b4120c7, head_date: 2026-09-03, tracked_files: 37,    size: 864K, previous_pin: 473d4b80421c36d733042434cd4b938f81a19ef1, commits_since_pin: 1,    license_files: [LICENSE]}
+  ponytail:   {repo: DietrichGebert/ponytail,            branch: main, head: c982cd411abb53323c4baa1baa3c2f020b8d0b08, head_date: 2026-10-03, tracked_files: 169,   size: 3.8M, previous_pin: 2ed6c52c9d7e5e56942508591085fd45dea277d3, commits_since_pin: 47,   license_files: [LICENSE]}
+  graphify:   {repo: Graphify-Labs/graphify,             branch: v8,   head: 0b60d47e6cd9338c51143f39f35b6c45c8453385, head_date: 2026-10-02, tracked_files: 956,   size: 41M,  previous_pin: 91f4d120b630ee35c79bf3c75ccd186870a808f9, commits_since_pin: 2037, license_files: [LICENSE, LICENSE-MIT, NOTICE], branch_note: "default branch is v8, not main"}
+  opendesign: {repo: nexu-io/open-design,                branch: main, head: 53231d40b778d88eba23f35547bf99485d3ae9fc, head_date: 2026-09-30, tracked_files: 12940, size: 490M, previous_pin: 349748ee36cb641895679bde7b46a8728ed1c1bb, commits_since_pin: 195,  license_files: [LICENSE]}
+  taste:      {repo: Leonxlnx/taste-skill,               branch: main, head: ce26fc25c0e5e8cab638f883de62d9a86ee5e45b, head_date: 2026-09-26, tracked_files: 66,    size: 10M,  previous_pin: null, license_files: [LICENSE]}
+  uiuxpromax: {repo: nextlevelbuilder/ui-ux-pro-max-skill, branch: main, head: 09170eec67eefd46a7ae85de61b40c194020f997, head_date: 2026-09-27, tracked_files: 682, size: 30M,  previous_pin: null, license_files: [LICENSE]}
+  brag:       {repo: latent-spaces/brag,                 branch: main, head: cb89b9f44309b0bf4e3cb89e685fadf80c7999ed, head_date: 2026-10-01, tracked_files: 368,   size: 112M, previous_pin: null, license_files: [LICENSE]}
+  beacon:     {repo: Asymptote-Labs/agent-beacon,        branch: main, head: 5937da1cd812660d256c367374b9752316f51cbc, head_date: 2026-10-02, tracked_files: 1659,  size: 99M,  previous_pin: null, license_files: [LICENSE]}
+  beyondseo:  {repo: beyondtahir/beyondseo,              branch: main, head: c160b9d7ba3f8a8c9a11fd042ea218e61183d43b, head_date: 2026-09-25, tracked_files: 221,   size: 5.5M, previous_pin: null, license_files: [LICENSE]}
+
+excluded:
+  free-for-dev: {repo: ripienaar/free-for-dev, reason: "Explicitly excluded by master spec §3.7. Not fetched. Zero references in current repo (grep -ri 'free-for-dev' → exit 1)."}
+
+open_items_for_phase_1:
+  - "Decide pin target per repo: current HEAD (above) vs. v1.0.1 pin. All v1.0.1 pins verified present in upstream history."
+  - "Graphify: confirm v8 is the intended release line; 2037 commits separate v1.0.1 pin from v8 HEAD."
+  - "Karpathy: no LICENSE text; MIT attribution must be reconstructed or confirmed with upstream."
+  - "Per-file hashing of upstream trees happens in Phase 1 (spec §3 step 5)."

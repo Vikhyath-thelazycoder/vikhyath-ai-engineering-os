@@ -22,3 +22,6 @@ __pycache__/
 # Test output
 coverage/
 .nyc_output/
+
+# Upstream audit staging (complete snapshots; audit input, never runtime)
+.staging/

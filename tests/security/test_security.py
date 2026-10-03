@@ -11,7 +11,8 @@ class TestSecurity(unittest.TestCase):
         self.assertFalse(os.path.exists(mcp_file), ".mcp.json must not exist")
         
         for root, _, files in os.walk(ROOT_DIR):
-            if ".git" in root:
+            # .staging/ holds gitignored upstream audit snapshots, not plugin content (D-003)
+            if ".git" in root or ".staging" in root:
                 continue
             for file in files:
                 if file.endswith((".json", ".yaml", ".yml")) and not file.endswith("CLAUDE.md"):
