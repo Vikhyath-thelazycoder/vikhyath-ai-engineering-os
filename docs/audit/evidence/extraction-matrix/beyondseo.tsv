@@ -1,0 +1,222 @@
+decision	reason	capability	bytes	path
+EXCLUDE	REPO_META		150	.gitattributes
+EXCLUDE	REPO_META		1221	.github/ISSUE_TEMPLATE/bug.yml
+EXCLUDE	REPO_META		548	.github/ISSUE_TEMPLATE/config.yml
+EXCLUDE	REPO_META		452	.github/ISSUE_TEMPLATE/feature.yml
+EXCLUDE	REPO_META		1344	.github/ISSUE_TEMPLATE/installation.yml
+EXCLUDE	REPO_META		533	.github/ISSUE_TEMPLATE/question.yml
+EXCLUDE	REPO_META		300	.github/pull_request_template.md
+EXCLUDE	REPO_META		717	.github/workflows/tests.yml
+EXCLUDE	REPO_META		446	.gitignore
+EXCLUDE	REPO_META		14611	CHANGELOG.md
+COPY	Report assets and citation	seo/reporting	481	CITATION.cff
+EXCLUDE	REPO_META		3339	CONTRIBUTING.md
+COPY	LICENSE	seo/runtime	1093	LICENSE
+EXCLUDE	REPO_META		37299	README.md
+COPY	Security model linked from docs	seo/website-work	1743	SECURITY.md
+ADAPT	SEO house entry; host/installation text replaced by OS routing	seo/auditing	17032	SKILL.md
+COPY	LICENSE	seo/runtime	1067	THIRD_PARTY_NOTICES.md
+COPY	Report assets and citation	seo/reporting	1223	assets/README.md
+COPY	Report assets and citation	seo/reporting	728003	assets/beyondseo-banner.png
+COPY	Report assets and citation	seo/reporting	285832	assets/beyondseo-logo.png
+COPY	Runtime docs referenced by SKILL.md (closure)	seo/research	4688	docs/README.md
+REFERENCE	Host installation guidance (adapter input)		29293	docs/agent-installation.md
+COPY	Runtime docs referenced by SKILL.md (closure)	seo/research	4020	docs/architecture.md
+COPY	Runtime docs referenced by SKILL.md (closure)	seo/research	8735	docs/backlink-posting-guide.md
+COPY	Runtime docs referenced by SKILL.md (closure)	seo/research	30151	docs/backlink-source-catalog.md
+COPY	Runtime docs referenced by SKILL.md (closure)	seo/research	5686	docs/branded-reports.md
+COPY	Runtime docs referenced by SKILL.md (closure)	seo/research	8071	docs/browser-search.md
+COPY	Runtime docs referenced by SKILL.md (closure)	seo/research	4780	docs/browser.md
+COPY	Runtime docs referenced by SKILL.md (closure)	seo/research	11470	docs/deep-research.md
+EXCLUDE	UPSTREAM_DEV		3056	docs/development.md
+COPY	Runtime docs referenced by SKILL.md (closure)	seo/research	15458	docs/discovery-and-competitors.md
+COPY	Runtime docs referenced by SKILL.md (closure)	seo/research	6296	docs/discovery-diagnostics.md
+REFERENCE	Host installation guidance (adapter input)		5902	docs/lovable.md
+COPY	Runtime docs referenced by SKILL.md (closure)	seo/research	8247	docs/operations.md
+COPY	Authorized website work (SEC-11)	seo/website-work	6071	docs/permissions.md
+COPY	Runtime docs referenced by SKILL.md (closure)	seo/research	9024	docs/questions.md
+COPY	Runtime docs referenced by SKILL.md (closure)	seo/research	4310	docs/reputation-prospects.md
+COPY	Runtime docs referenced by SKILL.md (closure)	seo/research	3691	docs/scoring-explained.md
+COPY	Runtime docs referenced by SKILL.md (closure)	seo/research	5657	docs/seo-house.md
+COPY	Runtime docs referenced by SKILL.md (closure)	seo/research	8981	docs/setup.md
+COPY	Runtime docs referenced by SKILL.md (closure)	seo/research	1575	docs/source-catalog-provenance.json
+COPY	Authorized website work (SEC-11)	seo/website-work	17322	docs/website-work.md
+PRESERVE	Runtime self-test + fixtures	seo/runtime	1368	examples/README.md
+PRESERVE	Runtime self-test + fixtures	seo/runtime	2942	examples/audit-walkthrough.md
+PRESERVE	Runtime self-test + fixtures	seo/runtime	174	examples/ftps-connection.json
+PRESERVE	Runtime self-test + fixtures	seo/runtime	680	examples/posting-profile.json
+PRESERVE	Runtime self-test + fixtures	seo/runtime	16999	examples/report-content.json
+PRESERVE	Runtime self-test + fixtures	seo/runtime	149	examples/selectors.json
+PRESERVE	Runtime self-test + fixtures	seo/runtime	268	examples/sftp-connection.json
+PRESERVE	Runtime self-test + fixtures	seo/runtime	401	examples/site/dynamic.html
+PRESERVE	Runtime self-test + fixtures	seo/runtime	800	examples/site/index.html
+PRESERVE	Runtime self-test + fixtures	seo/runtime	34	examples/site/robots.txt
+COPY	Core SEO workflow	seo/auditing	604	playbooks/PLAYBOOK_DEPTH.md
+COPY	AEO and GEO	seo/ai-search	2355	playbooks/aeo-geo/aeo-content-writing-persona.md
+COPY	AEO and GEO	seo/ai-search	4778	playbooks/aeo-geo/ai-friendly-seo-master-workflow.md
+COPY	AEO and GEO	seo/ai-search	470	playbooks/aeo-geo/ai-overview-opportunity-audit.md
+COPY	AEO and GEO	seo/ai-search	3198	playbooks/aeo-geo/ai-search-readiness.md
+COPY	AEO and GEO	seo/ai-search	2694	playbooks/aeo-geo/answer-engine-optimization.md
+COPY	AEO and GEO	seo/ai-search	2143	playbooks/aeo-geo/citations-and-source-worthiness.md
+COPY	AEO and GEO	seo/ai-search	1790	playbooks/aeo-geo/conversation-seo-framework.md
+COPY	Entity SEO	seo/entity	2241	playbooks/aeo-geo/entity-seo.md
+COPY	AEO and GEO	seo/ai-search	2561	playbooks/aeo-geo/generative-engine-optimization.md
+COPY	AEO and GEO	seo/ai-search	2195	playbooks/aeo-geo/geo-ai-citation-optimization.md
+COPY	AEO and GEO	seo/ai-search	2440	playbooks/aeo-geo/topical-authority.md
+COPY	Core SEO workflow	seo/auditing	778	playbooks/audit-modes.md
+COPY	Content quality and E-E-A-T	seo/content	7737	playbooks/audit/content-quality-audit.md
+COPY	On-page and conversion	seo/on-page	8554	playbooks/audit/conversion-seo-audit.md
+COPY	Technical SEO	seo/technical	422	playbooks/audit/crawlability-indexing.md
+COPY	Content quality and E-E-A-T	seo/content	481	playbooks/audit/eeat-ylym-audit.md
+COPY	Full-site audit and prioritization	seo/auditing	12150	playbooks/audit/full-site-audit.md
+COPY	On-page and conversion	seo/on-page	349	playbooks/audit/internal-linking-audit.md
+COPY	Full-site audit and prioritization	seo/auditing	356	playbooks/audit/issue-prioritization.md
+COPY	On-page and conversion	seo/on-page	8352	playbooks/audit/on-page-seo-audit.md
+COPY	Technical SEO	seo/technical	355	playbooks/audit/page-speed-core-web-vitals.md
+COPY	Technical SEO	seo/technical	8299	playbooks/audit/schema-audit.md
+COPY	Technical SEO	seo/technical	9074	playbooks/audit/technical-seo-audit.md
+COPY	Backlinks and reputation	seo/backlinks-reputation	1171	playbooks/backlink-system/anchor-text-strategy.md
+COPY	Backlinks and reputation	seo/backlinks-reputation	2537	playbooks/backlink-system/backlink-audit.md
+COPY	Backlinks and reputation	seo/backlinks-reputation	1229	playbooks/backlink-system/backlink-outreach-prompts.md
+COPY	Backlinks and reputation	seo/backlinks-reputation	1500	playbooks/backlink-system/backlink-quality-scoring.md
+COPY	Backlinks and reputation	seo/backlinks-reputation	15053	playbooks/backlink-system/backlink-source-database.csv
+COPY	Backlinks and reputation	seo/backlinks-reputation	369	playbooks/backlink-system/digital-pr-system.md
+COPY	Backlinks and reputation	seo/backlinks-reputation	1325	playbooks/backlink-system/free-backlink-posting.md
+COPY	Backlinks and reputation	seo/backlinks-reputation	6321	playbooks/backlink-system/free-paid-backlink-source-library.md
+COPY	Backlinks and reputation	seo/backlinks-reputation	343	playbooks/backlink-system/guest-posting-system.md
+COPY	Backlinks and reputation	seo/backlinks-reputation	932	playbooks/backlink-system/link-gap-analysis.md
+COPY	Backlinks and reputation	seo/backlinks-reputation	371	playbooks/backlink-system/niche-edit-evaluation.md
+COPY	Backlinks and reputation	seo/backlinks-reputation	1744	playbooks/backlink-system/paid-backlink-evaluation.md
+COPY	Backlinks and reputation	seo/backlinks-reputation	232742	playbooks/backlink-system/posting-sites.json
+COPY	Backlinks and reputation	seo/backlinks-reputation	2408	playbooks/backlink-system/reputation-growth-plan.md
+COPY	Backlinks and reputation	seo/backlinks-reputation	913	playbooks/backlink-system/toxic-link-risk.md
+COPY	Core SEO workflow	seo/auditing	825	playbooks/capability-detection.md
+COPY	Competitor research	seo/competitor-research	698	playbooks/competitor-research/authority-gap-analysis.md
+COPY	Competitor research	seo/competitor-research	1125	playbooks/competitor-research/competitor-crawl.md
+COPY	Competitor research	seo/competitor-research	2479	playbooks/competitor-research/competitor-discovery.md
+COPY	Competitor research	seo/competitor-research	1256	playbooks/competitor-research/competitor-matrix.md
+COPY	Competitor research	seo/competitor-research	4493	playbooks/competitor-research/content-gap-analysis.md
+COPY	Competitor research	seo/competitor-research	4004	playbooks/competitor-research/serp-gap-analysis.md
+COPY	Competitor research	seo/competitor-research	372	playbooks/competitor-research/service-page-gap-analysis.md
+COPY	Core SEO workflow	seo/auditing	499	playbooks/core/data-quality-rules.md
+COPY	Core SEO workflow	seo/auditing	360	playbooks/core/decision-tree.md
+COPY	Core SEO workflow	seo/auditing	421	playbooks/core/final-output-standards.md
+COPY	Core SEO workflow	seo/auditing	6822	playbooks/core/friendly-advisor.md
+COPY	Core SEO workflow	seo/auditing	462	playbooks/core/no-fluff-rules.md
+COPY	Core SEO workflow	seo/auditing	670	playbooks/core/seo-aeo-definition.md
+COPY	Core SEO workflow	seo/auditing	12493	playbooks/core/seo-house-workflow.md
+COPY	Core SEO workflow	seo/auditing	623	playbooks/core/seo-principles.md
+COPY	Entity SEO	seo/entity	2490	playbooks/entity-seo/entity-seo-knowledge-graph.md
+COPY	Report templates	seo/reporting	355	playbooks/examples/backlink-sheet-style-framework.md
+COPY	Report templates	seo/reporting	356	playbooks/examples/education-report-framework.md
+COPY	Report templates	seo/reporting	343	playbooks/examples/local-clinic-report-framework.md
+COPY	Report templates	seo/reporting	1576	playbooks/examples/sample-final-audit-output.md
+COPY	SEO strategy and plans	seo/strategy	4819	playbooks/industry-playbooks/README.md
+COPY	Search Console/GA/PSI and fallbacks	seo/research	873	playbooks/integrations/beyondseo-reputation-checks.md
+COPY	Search Console/GA/PSI and fallbacks	seo/research	763	playbooks/integrations/fallback-without-apis.md
+COPY	Search Console/GA/PSI and fallbacks	seo/research	388	playbooks/integrations/google-analytics.md
+COPY	Search Console/GA/PSI and fallbacks	seo/research	455	playbooks/integrations/google-search-console.md
+COPY	Search Console/GA/PSI and fallbacks	seo/research	585	playbooks/integrations/native-agent-scraping.md
+COPY	Search Console/GA/PSI and fallbacks	seo/research	399	playbooks/integrations/pagespeed-insights.md
+COPY	Keyword research	seo/keyword-research	4198	playbooks/keyword-research/keyword-clustering.md
+COPY	Keyword research	seo/keyword-research	6461	playbooks/keyword-research/keyword-discovery.md
+COPY	Keyword research	seo/keyword-research	4733	playbooks/keyword-research/keyword-to-page-map.md
+COPY	Keyword research	seo/keyword-research	365	playbooks/keyword-research/local-keyword-research.md
+COPY	Keyword research	seo/keyword-research	365	playbooks/keyword-research/long-tail-keyword-plan.md
+COPY	Keyword research	seo/keyword-research	337	playbooks/keyword-research/money-keyword-selection.md
+COPY	Keyword research	seo/keyword-research	455	playbooks/keyword-research/search-intent-analysis.md
+COPY	Keyword research	seo/keyword-research	379	playbooks/keyword-research/top-5-keyword-defense.md
+COPY	Local SEO	seo/local	3816	playbooks/local-seo/google-business-profile.md
+COPY	Local SEO	seo/local	1226	playbooks/local-seo/local-authority-links.md
+COPY	Local SEO	seo/local	330	playbooks/local-seo/local-landing-pages.md
+COPY	Local SEO	seo/local	1991	playbooks/local-seo/map-pack-audit.md
+COPY	Local SEO	seo/local	387	playbooks/local-seo/nap-citation-audit.md
+COPY	Local SEO	seo/local	367	playbooks/local-seo/review-strategy.md
+COPY	Local SEO	seo/local	362	playbooks/local-seo/service-area-seo.md
+COPY	Core SEO workflow	seo/auditing	568	playbooks/onboarding.md
+COPY	Report templates	seo/reporting	7574	playbooks/reporting/README.md
+COPY	Backlinks and reputation	seo/backlinks-reputation	2352	playbooks/reputation-seo/reputation-proof-stack.md
+COPY	Backlinks and reputation	seo/backlinks-reputation	2100	playbooks/reputation-seo/third-party-authority-article-system.md
+COPY	SEO strategy and plans	seo/strategy	3216	playbooks/strategy/30-day-plan.md
+COPY	SEO strategy and plans	seo/strategy	3892	playbooks/strategy/500-query-growth-model.md
+COPY	SEO strategy and plans	seo/strategy	355	playbooks/strategy/5000-visitor-growth-model.md
+COPY	SEO strategy and plans	seo/strategy	2878	playbooks/strategy/60-day-plan.md
+COPY	SEO strategy and plans	seo/strategy	2558	playbooks/strategy/90-day-plan.md
+COPY	SEO strategy and plans	seo/strategy	342	playbooks/strategy/blog-support-cluster-strategy.md
+COPY	SEO strategy and plans	seo/strategy	300	playbooks/strategy/content-hub-strategy.md
+COPY	SEO strategy and plans	seo/strategy	4686	playbooks/strategy/seo-roadmap-generator.md
+COPY	SEO strategy and plans	seo/strategy	308	playbooks/strategy/service-page-strategy.md
+COPY	Report templates	seo/reporting	484	playbooks/templates/90-day-roadmap-template.md
+COPY	Report templates	seo/reporting	1604	playbooks/templates/ai-friendly-seo-report-template.md
+COPY	Report templates	seo/reporting	391	playbooks/templates/backlink-prospect-template.csv
+COPY	Report templates	seo/reporting	933	playbooks/templates/client-proposal-template.md
+COPY	Report templates	seo/reporting	154	playbooks/templates/competitor-matrix-template.csv
+COPY	Report templates	seo/reporting	3795	playbooks/templates/complete-seo-plan.md
+COPY	Report templates	seo/reporting	127	playbooks/templates/content-calendar-template.csv
+COPY	Report templates	seo/reporting	129	playbooks/templates/issue-log-template.csv
+COPY	Report templates	seo/reporting	242	playbooks/templates/keyword-map-template.csv
+COPY	Report templates	seo/reporting	241	playbooks/templates/local-seo-audit-template.md
+COPY	Report templates	seo/reporting	506	playbooks/templates/page-brief-template.md
+COPY	Report templates	seo/reporting	174	playbooks/templates/selectors-example.json
+COPY	Report templates	seo/reporting	1920	playbooks/templates/seo-audit-report-template.md
+COPY	Report templates	seo/reporting	329	playbooks/templates/seo-growth-plan-template.md
+PRESERVE	Isolated BeyondSEO runtime (bs4 + colorama core)	seo/runtime	1680	pyproject.toml
+COPY	Audit delivery, crawler, measurement boundaries	seo/evidence	6143	references/audit-delivery.md
+COPY	Audit delivery, crawler, measurement boundaries	seo/evidence	16369	references/capabilities.md
+COPY	Audit delivery, crawler, measurement boundaries	seo/evidence	15500	references/crawler.md
+COPY	Audit delivery, crawler, measurement boundaries	seo/evidence	3621	references/measurement-boundaries.md
+COPY	Audit delivery, crawler, measurement boundaries	seo/evidence	12467	references/reputation.md
+PRESERVE	Launcher and helper scripts referenced by SKILL.md	seo/runtime	1348	scripts/backlink_classifier.py
+PRESERVE	Launcher and helper scripts referenced by SKILL.md	seo/runtime	22379	scripts/backlink_sources.py
+EXCLUDE	INSTALLER		2564	scripts/build_skill.py
+EXCLUDE	INSTALLER		1298	scripts/check_docs.py
+PRESERVE	Launcher and helper scripts referenced by SKILL.md	seo/runtime	173	scripts/check_environment.py
+EXCLUDE	INSTALLER		5022	scripts/check_release.py
+PRESERVE	Launcher and helper scripts referenced by SKILL.md	seo/runtime	271	scripts/crawl.py
+PRESERVE	Launcher and helper scripts referenced by SKILL.md	seo/runtime	6614	scripts/import_backlink_pdf.py
+EXCLUDE	INSTALLER		12770	scripts/install_skill.py
+PRESERVE	Launcher and helper scripts referenced by SKILL.md	seo/runtime	307	scripts/report_builder.py
+PRESERVE	Launcher and helper scripts referenced by SKILL.md	seo/runtime	2209	scripts/run.py
+PRESERVE	Launcher and helper scripts referenced by SKILL.md	seo/runtime	4719	scripts/setup.py
+PRESERVE	Launcher and helper scripts referenced by SKILL.md	seo/runtime	808	scripts/url_classifier.py
+EXCLUDE	INSTALLER		4278	scripts/validate_skill.py
+PRESERVE	Isolated BeyondSEO runtime (bs4 + colorama core)	seo/runtime	369	src/beyondseo/__init__.py
+PRESERVE	Isolated BeyondSEO runtime (bs4 + colorama core)	seo/runtime	48	src/beyondseo/__main__.py
+PRESERVE	Isolated BeyondSEO runtime (bs4 + colorama core)	seo/runtime	9614	src/beyondseo/backlinks.py
+PRESERVE	Isolated BeyondSEO runtime (bs4 + colorama core)	seo/runtime	23629	src/beyondseo/cli.py
+PRESERVE	Isolated BeyondSEO runtime (bs4 + colorama core)	seo/runtime	3737	src/beyondseo/content.py
+PRESERVE	Isolated BeyondSEO runtime (bs4 + colorama core)	seo/runtime	16573	src/beyondseo/deep_research.py
+PRESERVE	Isolated BeyondSEO runtime (bs4 + colorama core)	seo/runtime	10916	src/beyondseo/diagnostics.py
+PRESERVE	Isolated BeyondSEO runtime (bs4 + colorama core)	seo/runtime	19742	src/beyondseo/discovery.py
+PRESERVE	Isolated BeyondSEO runtime (bs4 + colorama core)	seo/runtime	17531	src/beyondseo/doctor.py
+PRESERVE	Isolated BeyondSEO runtime (bs4 + colorama core)	seo/runtime	42453	src/beyondseo/engine.py
+PRESERVE	Isolated BeyondSEO runtime (bs4 + colorama core)	seo/runtime	3762	src/beyondseo/evidence.py
+PRESERVE	Isolated BeyondSEO runtime (bs4 + colorama core)	seo/runtime	20293	src/beyondseo/extract.py
+PRESERVE	Isolated BeyondSEO runtime (bs4 + colorama core)	seo/runtime	10385	src/beyondseo/findings.py
+PRESERVE	Isolated BeyondSEO runtime (bs4 + colorama core)	seo/runtime	2522	src/beyondseo/monitor.py
+PRESERVE	Isolated BeyondSEO runtime (bs4 + colorama core)	seo/runtime	22141	src/beyondseo/network.py
+PRESERVE	Isolated BeyondSEO runtime (bs4 + colorama core)	seo/runtime	9729	src/beyondseo/onsite.py
+PRESERVE	Isolated BeyondSEO runtime (bs4 + colorama core)	seo/runtime	30161	src/beyondseo/projects.py
+PRESERVE	Isolated BeyondSEO runtime (bs4 + colorama core)	seo/runtime	16684	src/beyondseo/publishing.py
+PRESERVE	Isolated BeyondSEO runtime (bs4 + colorama core)	seo/runtime	10868	src/beyondseo/render.py
+PRESERVE	Isolated BeyondSEO runtime (bs4 + colorama core)	seo/runtime	285832	src/beyondseo/report_assets/beyondseo-logo.png
+PRESERVE	Isolated BeyondSEO runtime (bs4 + colorama core)	seo/runtime	5556	src/beyondseo/report_assets/report.css
+PRESERVE	Isolated BeyondSEO runtime (bs4 + colorama core)	seo/runtime	31498	src/beyondseo/reports.py
+PRESERVE	Isolated BeyondSEO runtime (bs4 + colorama core)	seo/runtime	24591	src/beyondseo/reputation.py
+PRESERVE	Isolated BeyondSEO runtime (bs4 + colorama core)	seo/runtime	20724	src/beyondseo/research.py
+PRESERVE	Isolated BeyondSEO runtime (bs4 + colorama core)	seo/runtime	5654	src/beyondseo/research_cli.py
+PRESERVE	Isolated BeyondSEO runtime (bs4 + colorama core)	seo/runtime	14442	src/beyondseo/review.py
+PRESERVE	Runtime self-test + fixtures	seo/runtime	6393	tests/test_browser_features.py
+PRESERVE	Runtime self-test + fixtures	seo/runtime	27755	tests/test_crawler.py
+PRESERVE	Runtime self-test + fixtures	seo/runtime	8493	tests/test_deep_research.py
+PRESERVE	Runtime self-test + fixtures	seo/runtime	14869	tests/test_depth_validation.py
+PRESERVE	Runtime self-test + fixtures	seo/runtime	31967	tests/test_discovery_research.py
+PRESERVE	Runtime self-test + fixtures	seo/runtime	12173	tests/test_hosting_transports.py
+PRESERVE	Runtime self-test + fixtures	seo/runtime	11726	tests/test_operations.py
+EXCLUDE	UPSTREAM_DEV		18761	tests/test_portability.py
+PRESERVE	Runtime self-test + fixtures	seo/runtime	12965	tests/test_posting_catalog.py
+EXCLUDE	UPSTREAM_DEV		3427	tests/test_release_hygiene.py
+PRESERVE	Runtime self-test + fixtures	seo/runtime	10850	tests/test_reports.py
+PRESERVE	Runtime self-test + fixtures	seo/runtime	15951	tests/test_reputation.py
+PRESERVE	Runtime self-test + fixtures	seo/runtime	10834	tests/test_trial_regressions.py
+PRESERVE	Runtime self-test + fixtures	seo/runtime	17133	tests/test_website_work.py

@@ -1,0 +1,212 @@
+decision	reason	capability	bytes	path
+EXCLUDE	HOST_PORT		536	.agents/plugins/marketplace.json
+EXCLUDE	HOST_PORT		857	.claude-plugin/marketplace.json
+EXCLUDE	HOST_PORT		517	.claude-plugin/plugin.json
+REFERENCE	Lifecycle command design input for adapters (P19–P22)		3959	.claude/commands/build.md
+REFERENCE	Lifecycle command design input for adapters (P19–P22)		1068	.claude/commands/code-simplify.md
+REFERENCE	Lifecycle command design input for adapters (P19–P22)		2762	.claude/commands/constraints.md
+REFERENCE	Lifecycle command design input for adapters (P19–P22)		805	.claude/commands/plan.md
+REFERENCE	Lifecycle command design input for adapters (P19–P22)		846	.claude/commands/review.md
+REFERENCE	Lifecycle command design input for adapters (P19–P22)		4601	.claude/commands/ship.md
+REFERENCE	Lifecycle command design input for adapters (P19–P22)		913	.claude/commands/spec.md
+REFERENCE	Lifecycle command design input for adapters (P19–P22)		665	.claude/commands/test.md
+REFERENCE	Lifecycle command design input for adapters (P19–P22)		1974	.claude/commands/webperf.md
+EXCLUDE	HOST_PORT		988	.claude/rules/skills-contributing.md
+EXCLUDE	HOST_PORT		1120	.codex-plugin/plugin.json
+REFERENCE	Lifecycle command design input for adapters (P19–P22)		3840	.gemini/commands/build.toml
+REFERENCE	Lifecycle command design input for adapters (P19–P22)		1066	.gemini/commands/code-simplify.toml
+REFERENCE	Lifecycle command design input for adapters (P19–P22)		2775	.gemini/commands/constraints.toml
+REFERENCE	Lifecycle command design input for adapters (P19–P22)		804	.gemini/commands/planning.toml
+REFERENCE	Lifecycle command design input for adapters (P19–P22)		844	.gemini/commands/review.toml
+REFERENCE	Lifecycle command design input for adapters (P19–P22)		4780	.gemini/commands/ship.toml
+REFERENCE	Lifecycle command design input for adapters (P19–P22)		911	.gemini/commands/spec.toml
+REFERENCE	Lifecycle command design input for adapters (P19–P22)		650	.gemini/commands/test.toml
+REFERENCE	Lifecycle command design input for adapters (P19–P22)		1884	.gemini/commands/webperf.toml
+EXCLUDE	REPO_META		19	.gitattributes
+EXCLUDE	REPO_META		2669	.github/ISSUE_TEMPLATE/skill-gap.yml
+EXCLUDE	REPO_META		4791	.github/workflows/test-plugin-install.yml
+EXCLUDE	REPO_META		143	.gitignore
+EXCLUDE	HOST_PORT		10	.opencode/skills
+EXCLUDE	REPO_META		5386	AGENTS.md
+EXCLUDE	REPO_META		4094	CLAUDE.md
+EXCLUDE	REPO_META		8864	CONTRIBUTING.md
+COPY	LICENSE	engineering/planning	1068	LICENSE
+EXCLUDE	REPO_META		26465	README.md
+ADAPT	Reviewer role	engineering/review	3995	agents/code-reviewer.md
+ADAPT	Security auditor role	engineering/security	4992	agents/security-auditor.md
+ADAPT	Test engineer role	testing/strategy	3275	agents/test-engineer.md
+ADAPT	Web performance role	testing/performance	12278	agents/web-performance-auditor.md
+REFERENCE	Lifecycle command design input for adapters (P19–P22)		3840	commands/build.toml
+REFERENCE	Lifecycle command design input for adapters (P19–P22)		1066	commands/code-simplify.toml
+REFERENCE	Lifecycle command design input for adapters (P19–P22)		2775	commands/constraints.toml
+REFERENCE	Lifecycle command design input for adapters (P19–P22)		804	commands/planning.toml
+REFERENCE	Lifecycle command design input for adapters (P19–P22)		844	commands/review.toml
+REFERENCE	Lifecycle command design input for adapters (P19–P22)		4712	commands/ship.toml
+REFERENCE	Lifecycle command design input for adapters (P19–P22)		911	commands/spec.toml
+REFERENCE	Lifecycle command design input for adapters (P19–P22)		650	commands/test.toml
+REFERENCE	Lifecycle command design input for adapters (P19–P22)		2031	commands/webperf.toml
+EXCLUDE	REPO_META		11566	docs/adoption-guide.md
+EXCLUDE	REPO_META		7110	docs/advanced-per-agent-configuration.md
+COPY	Agent usage doc linked from all 4 agents (closure)	engineering/review	6996	docs/agents.md
+EXCLUDE	REPO_META		6613	docs/antigravity-setup.md
+EXCLUDE	REPO_META		2447	docs/codex-setup.md
+EXCLUDE	REPO_META		2437	docs/commandcode-setup.md
+EXCLUDE	REPO_META		15362	docs/comparison.md
+EXCLUDE	REPO_META		3390	docs/copilot-cli-setup.md
+EXCLUDE	REPO_META		10522	docs/copilot-setup.md
+EXCLUDE	REPO_META		8370	docs/cursor-setup.md
+EXCLUDE	REPO_META		7850	docs/developer-onboarding.md
+EXCLUDE	REPO_META		1650	docs/dojo-setup.md
+EXCLUDE	REPO_META		5877	docs/gemini-cli-setup.md
+EXCLUDE	REPO_META		11199	docs/getting-started.md
+EXCLUDE	REPO_META		2386	docs/omp-setup.md
+EXCLUDE	REPO_META		9547	docs/opencode-setup.md
+EXCLUDE	REPO_META		11244	docs/skill-anatomy.md
+EXCLUDE	REPO_META		1471	docs/windsurf-setup.md
+REFERENCE	Skill eval cases reused as P25 acceptance tests		12079	evals/README.md
+REFERENCE	Skill eval cases reused as P25 acceptance tests		1494	evals/cases/api-and-interface-design.json
+REFERENCE	Skill eval cases reused as P25 acceptance tests		1455	evals/cases/browser-testing-with-devtools.json
+REFERENCE	Skill eval cases reused as P25 acceptance tests		1349	evals/cases/ci-cd-and-automation.json
+REFERENCE	Skill eval cases reused as P25 acceptance tests		1506	evals/cases/code-review-and-quality.json
+REFERENCE	Skill eval cases reused as P25 acceptance tests		1377	evals/cases/code-simplification.json
+REFERENCE	Skill eval cases reused as P25 acceptance tests		3353	evals/cases/constraint-driven-development.json
+REFERENCE	Skill eval cases reused as P25 acceptance tests		1390	evals/cases/context-engineering.json
+REFERENCE	Skill eval cases reused as P25 acceptance tests		2078	evals/cases/debugging-and-error-recovery.json
+REFERENCE	Skill eval cases reused as P25 acceptance tests		1502	evals/cases/deprecation-and-migration.json
+REFERENCE	Skill eval cases reused as P25 acceptance tests		1368	evals/cases/documentation-and-adrs.json
+REFERENCE	Skill eval cases reused as P25 acceptance tests		1322	evals/cases/doubt-driven-development.json
+REFERENCE	Skill eval cases reused as P25 acceptance tests		1478	evals/cases/frontend-ui-engineering.json
+REFERENCE	Skill eval cases reused as P25 acceptance tests		1272	evals/cases/git-workflow-and-versioning.json
+REFERENCE	Skill eval cases reused as P25 acceptance tests		1269	evals/cases/idea-refine.json
+REFERENCE	Skill eval cases reused as P25 acceptance tests		1942	evals/cases/incremental-implementation.json
+REFERENCE	Skill eval cases reused as P25 acceptance tests		1197	evals/cases/interview-me.json
+REFERENCE	Skill eval cases reused as P25 acceptance tests		1278	evals/cases/observability-and-instrumentation.json
+REFERENCE	Skill eval cases reused as P25 acceptance tests		1688	evals/cases/performance-optimization.json
+REFERENCE	Skill eval cases reused as P25 acceptance tests		1276	evals/cases/planning-and-task-breakdown.json
+REFERENCE	Skill eval cases reused as P25 acceptance tests		1555	evals/cases/security-and-hardening.json
+REFERENCE	Skill eval cases reused as P25 acceptance tests		1816	evals/cases/shipping-and-launch.json
+REFERENCE	Skill eval cases reused as P25 acceptance tests		1287	evals/cases/source-driven-development.json
+REFERENCE	Skill eval cases reused as P25 acceptance tests		2657	evals/cases/spec-driven-development.json
+REFERENCE	Skill eval cases reused as P25 acceptance tests		3981	evals/cases/test-driven-development.json
+REFERENCE	Skill eval cases reused as P25 acceptance tests		1262	evals/cases/using-agent-skills.json
+REFERENCE	Skill eval cases reused as P25 acceptance tests		693	evals/fixtures/api-and-interface-design/service-brief.md
+REFERENCE	Skill eval cases reused as P25 acceptance tests		186	evals/fixtures/browser-testing-with-devtools/README.md
+REFERENCE	Skill eval cases reused as P25 acceptance tests		869	evals/fixtures/browser-testing-with-devtools/index.html
+REFERENCE	Skill eval cases reused as P25 acceptance tests		511	evals/fixtures/browser-testing-with-devtools/server.js
+REFERENCE	Skill eval cases reused as P25 acceptance tests		132	evals/fixtures/ci-cd-and-automation/package.json
+REFERENCE	Skill eval cases reused as P25 acceptance tests		93	evals/fixtures/ci-cd-and-automation/src/slug.js
+REFERENCE	Skill eval cases reused as P25 acceptance tests		234	evals/fixtures/ci-cd-and-automation/test/slug.test.js
+REFERENCE	Skill eval cases reused as P25 acceptance tests		513	evals/fixtures/code-review-and-quality/user-search.diff
+REFERENCE	Skill eval cases reused as P25 acceptance tests		1592	evals/fixtures/code-simplification/config-parser.js
+REFERENCE	Skill eval cases reused as P25 acceptance tests		452	evals/fixtures/code-simplification/config-parser.test.js
+REFERENCE	Skill eval cases reused as P25 acceptance tests		653	evals/fixtures/context-engineering/context-audit.md
+REFERENCE	Skill eval cases reused as P25 acceptance tests		172	evals/fixtures/debugging-and-error-recovery/pagination.js
+REFERENCE	Skill eval cases reused as P25 acceptance tests		290	evals/fixtures/debugging-and-error-recovery/pagination.test.js
+REFERENCE	Skill eval cases reused as P25 acceptance tests		276	evals/fixtures/debugging-and-error-recovery/time-pressure.md
+REFERENCE	Skill eval cases reused as P25 acceptance tests		504	evals/fixtures/deprecation-and-migration/api-inventory.md
+REFERENCE	Skill eval cases reused as P25 acceptance tests		757	evals/fixtures/documentation-and-adrs/decision-context.md
+REFERENCE	Skill eval cases reused as P25 acceptance tests		672	evals/fixtures/doubt-driven-development/migration-plan.md
+REFERENCE	Skill eval cases reused as P25 acceptance tests		306	evals/fixtures/frontend-ui-engineering/Button.tsx
+REFERENCE	Skill eval cases reused as P25 acceptance tests		530	evals/fixtures/frontend-ui-engineering/design-system.md
+REFERENCE	Skill eval cases reused as P25 acceptance tests		571	evals/fixtures/git-workflow-and-versioning/.eval/working-tree.patch
+REFERENCE	Skill eval cases reused as P25 acceptance tests		129	evals/fixtures/git-workflow-and-versioning/app.js
+REFERENCE	Skill eval cases reused as P25 acceptance tests		228	evals/fixtures/git-workflow-and-versioning/app.test.js
+REFERENCE	Skill eval cases reused as P25 acceptance tests		552	evals/fixtures/incremental-implementation-pressure/draft-export.js
+REFERENCE	Skill eval cases reused as P25 acceptance tests		419	evals/fixtures/incremental-implementation-pressure/scenario.md
+REFERENCE	Skill eval cases reused as P25 acceptance tests		145	evals/fixtures/incremental-implementation/reports.js
+REFERENCE	Skill eval cases reused as P25 acceptance tests		325	evals/fixtures/incremental-implementation/reports.test.js
+REFERENCE	Skill eval cases reused as P25 acceptance tests		311	evals/fixtures/incremental-implementation/tasks/plan.md
+REFERENCE	Skill eval cases reused as P25 acceptance tests		422	evals/fixtures/observability-and-instrumentation/operations.md
+REFERENCE	Skill eval cases reused as P25 acceptance tests		339	evals/fixtures/observability-and-instrumentation/payment-retry.js
+REFERENCE	Skill eval cases reused as P25 acceptance tests		464	evals/fixtures/performance-optimization/benchmark.js
+REFERENCE	Skill eval cases reused as P25 acceptance tests		393	evals/fixtures/performance-optimization/products.js
+REFERENCE	Skill eval cases reused as P25 acceptance tests		854	evals/fixtures/planning-and-task-breakdown/notifications-spec.md
+REFERENCE	Skill eval cases reused as P25 acceptance tests		271	evals/fixtures/security-and-hardening/webhook.js
+REFERENCE	Skill eval cases reused as P25 acceptance tests		414	evals/fixtures/security-and-hardening/webhook.test.js
+REFERENCE	Skill eval cases reused as P25 acceptance tests		288	evals/fixtures/shipping-and-launch/authority-pressure.md
+REFERENCE	Skill eval cases reused as P25 acceptance tests		554	evals/fixtures/shipping-and-launch/launch-status.md
+REFERENCE	Skill eval cases reused as P25 acceptance tests		535	evals/fixtures/source-driven-development/framework-task.md
+REFERENCE	Skill eval cases reused as P25 acceptance tests		1067	evals/fixtures/spec-driven-development-decomposition/portal-brief.md
+REFERENCE	Skill eval cases reused as P25 acceptance tests		689	evals/fixtures/spec-driven-development/billing-brief.md
+REFERENCE	Skill eval cases reused as P25 acceptance tests		131	evals/fixtures/test-driven-development-ecosystem/README.md
+REFERENCE	Skill eval cases reused as P25 acceptance tests		457	evals/fixtures/test-driven-development-ecosystem/ledger.py
+REFERENCE	Skill eval cases reused as P25 acceptance tests		533	evals/fixtures/test-driven-development-ecosystem/test_ledger.py
+REFERENCE	Skill eval cases reused as P25 acceptance tests		394	evals/fixtures/test-driven-development/BUG.md
+REFERENCE	Skill eval cases reused as P25 acceptance tests		787	evals/fixtures/test-driven-development/README.md
+REFERENCE	Skill eval cases reused as P25 acceptance tests		189	evals/fixtures/test-driven-development/package.json
+REFERENCE	Skill eval cases reused as P25 acceptance tests		181	evals/fixtures/test-driven-development/src/split.js
+REFERENCE	Skill eval cases reused as P25 acceptance tests		398	evals/fixtures/test-driven-development/test/split.test.js
+REFERENCE	Skill eval cases reused as P25 acceptance tests		321	evals/fixtures/using-agent-skills/incident.md
+REFERENCE	Skill eval cases reused as P25 acceptance tests		455	evals/plugin/code-review-fires/graders/off-by-one.md
+REFERENCE	Skill eval cases reused as P25 acceptance tests		142	evals/plugin/code-review-fires/graders/severity-labels.md
+REFERENCE	Skill eval cases reused as P25 acceptance tests		112	evals/plugin/code-review-fires/graders/skill-fired.md
+REFERENCE	Skill eval cases reused as P25 acceptance tests		1240	evals/plugin/code-review-fires/prompt.md
+REFERENCE	Skill eval cases reused as P25 acceptance tests		136	evals/plugin/code-review-stays-quiet-on-commit-message/graders/not-fired.md
+REFERENCE	Skill eval cases reused as P25 acceptance tests		914	evals/plugin/code-review-stays-quiet-on-commit-message/prompt.md
+REFERENCE	Skill eval cases reused as P25 acceptance tests		136	evals/plugin/code-review-stays-quiet/graders/not-fired.md
+REFERENCE	Skill eval cases reused as P25 acceptance tests		125	evals/plugin/code-review-stays-quiet/graders/tdd-fired.md
+REFERENCE	Skill eval cases reused as P25 acceptance tests		389	evals/plugin/code-review-stays-quiet/prompt.md
+REFERENCE	Skill eval cases reused as P25 acceptance tests		400	evals/skill-impact.md
+EXCLUDE	REPO_META		8398	hooks/SDD-CACHE.md
+EXCLUDE	REPO_META		4534	hooks/SIMPLIFY-IGNORE.md
+EXCLUDE	REPO_META		4567	hooks/sdd-cache-post.sh
+EXCLUDE	REPO_META		4261	hooks/sdd-cache-pre.sh
+EXCLUDE	REPO_META		11298	hooks/sdd-cache-test.sh
+EXCLUDE	REPO_META		1436	hooks/session-start-test.sh
+EXCLUDE	REPO_META		1675	hooks/session-start.sh
+EXCLUDE	REPO_META		17807	hooks/simplify-ignore-test.sh
+EXCLUDE	REPO_META		14480	hooks/simplify-ignore.sh
+EXCLUDE	REPO_META		130	plugin.json
+COPY	Shared reference (closure)	design/accessibility	5206	references/accessibility-checklist.md
+COPY	Shared reference (closure)	engineering/completion	3798	references/definition-of-done.md
+COPY	Shared reference (closure)	engineering/release	5129	references/observability-checklist.md
+COPY	Shared reference (closure)	engineering/planning	18201	references/orchestration-patterns.md
+COPY	Shared reference (closure)	engineering/performance	13139	references/performance-checklist.md
+COPY	Shared reference linked from skills (closure)	engineering/security	14360	references/security-checklist.md
+COPY	Shared reference (closure)	testing/strategy	7460	references/testing-patterns.md
+EXCLUDE	REPO_META		11424	scripts/floor-guard-reference-test.js
+EXCLUDE	REPO_META		25444	scripts/lib/skill-lint-test.js
+EXCLUDE	REPO_META		25294	scripts/lib/skill-lint.js
+EXCLUDE	REPO_META		23277	scripts/run-evals-test.js
+EXCLUDE	REPO_META		26079	scripts/run-evals.js
+EXCLUDE	REPO_META		7514	scripts/validate-artifact-paths-test.js
+EXCLUDE	REPO_META		4880	scripts/validate-artifact-paths.js
+EXCLUDE	REPO_META		8618	scripts/validate-commands-test.js
+EXCLUDE	REPO_META		8691	scripts/validate-commands.js
+EXCLUDE	REPO_META		19013	scripts/validate-reference-links-test.js
+EXCLUDE	REPO_META		7718	scripts/validate-reference-links.js
+EXCLUDE	REPO_META		2401	scripts/validate-skills.js
+EXCLUDE	REPO_META		905	scripts/validate-versions-test.js
+EXCLUDE	REPO_META		919	scripts/validate-versions.js
+ADAPT	Interface design, ADRs	engineering/architecture	14886	skills/api-and-interface-design/SKILL.md
+ADAPT	Rewrite without DevTools MCP into the §23A ladder	testing/browser-fallback	14539	skills/browser-testing-with-devtools/SKILL.md
+ADAPT	Release and production readiness	engineering/release	11332	skills/ci-cd-and-automation/SKILL.md
+ADAPT	Multi-axis review	engineering/review	20976	skills/code-review-and-quality/SKILL.md
+ADAPT	Behavior-preserving simplification	engineering/simplicity	13545	skills/code-simplification/SKILL.md
+ADAPT	Implementation discipline	engineering/implementation	21008	skills/constraint-driven-development/SKILL.md
+ADAPT	Implementation discipline	engineering/implementation	10681	skills/constraint-driven-development/references/floor-guard.md
+REFERENCE	Design input for the OS context engine (P9)		15486	skills/context-engineering/SKILL.md
+ADAPT	Root-cause debugging	engineering/debugging	10913	skills/debugging-and-error-recovery/SKILL.md
+ADAPT	Deprecation and migration	engineering/migration	12642	skills/deprecation-and-migration/SKILL.md
+ADAPT	Interface design, ADRs	engineering/architecture	9859	skills/documentation-and-adrs/SKILL.md
+ADAPT	Implementation discipline	engineering/implementation	16647	skills/doubt-driven-development/SKILL.md
+ADAPT	Frontend engineering	engineering/frontend	11712	skills/frontend-ui-engineering/SKILL.md
+ADAPT	Release and production readiness	engineering/release	14141	skills/git-workflow-and-versioning/SKILL.md
+ADAPT	Requirements and planning	engineering/planning	8111	skills/idea-refine/SKILL.md
+ADAPT	Requirements and planning	engineering/planning	20284	skills/idea-refine/examples.md
+ADAPT	Requirements and planning	engineering/planning	5404	skills/idea-refine/frameworks.md
+ADAPT	Requirements and planning	engineering/planning	5738	skills/idea-refine/refinement-criteria.md
+ADAPT	Requirements and planning	engineering/planning	342	skills/idea-refine/scripts/idea-refine.sh
+ADAPT	Implementation discipline	engineering/implementation	9629	skills/incremental-implementation/SKILL.md
+ADAPT	Requirements and planning	engineering/planning	15080	skills/interview-me/SKILL.md
+ADAPT	Release and production readiness	engineering/release	13948	skills/observability-and-instrumentation/SKILL.md
+ADAPT	Performance + optimization-patterns reference	engineering/performance	16678	skills/performance-optimization/SKILL.md
+ADAPT	Performance + optimization-patterns reference	engineering/performance	9692	skills/performance-optimization/references/optimization-patterns.md
+ADAPT	Requirements and planning	engineering/planning	10564	skills/planning-and-task-breakdown/SKILL.md
+ADAPT	Security hardening + hardening-patterns reference	engineering/security	17559	skills/security-and-hardening/SKILL.md
+ADAPT	Security hardening + hardening-patterns reference	engineering/security	13036	skills/security-and-hardening/references/hardening-patterns.md
+ADAPT	Release and production readiness	engineering/release	11409	skills/shipping-and-launch/SKILL.md
+ADAPT	Implementation discipline	engineering/implementation	10038	skills/source-driven-development/SKILL.md
+ADAPT	Requirements and planning	engineering/planning	13096	skills/spec-driven-development/SKILL.md
+ADAPT	TDD loop	testing/strategy	16517	skills/test-driven-development/SKILL.md
+EXCLUDE	SUPERSEDED		10446	skills/using-agent-skills/SKILL.md

@@ -1,0 +1,369 @@
+decision	reason	capability	bytes	path
+EXCLUDE	DOC_ASSET		17	.agents/skills/brag
+EXCLUDE	DOC_ASSET		22	.agents/skills/brag-slim
+EXCLUDE	DOC_ASSET		487	.claude-plugin/marketplace.json
+EXCLUDE	DOC_ASSET		436	.claude-plugin/plugin.json
+EXCLUDE	DOC_ASSET		17	.claude/skills/brag
+EXCLUDE	DOC_ASSET		22	.claude/skills/brag-slim
+EXCLUDE	DOC_ASSET		1164	.codex-plugin/plugin.json
+EXCLUDE	DOC_ASSET		135	.gitattributes
+EXCLUDE	DOC_ASSET		354	.gitignore
+EXCLUDE	DOC_ASSET		17	.opencode/skills/brag
+EXCLUDE	DOC_ASSET		22	.opencode/skills/brag-slim
+COPY	LICENSE	media/launch-video	1076	LICENSE
+REFERENCE	Product notes		3297	PRODUCT.md
+EXCLUDE	DOC_ASSET		6236	README.md
+EXCLUDE	DOC_ASSET		491	docs/.gitignore
+EXCLUDE	DOC_ASSET		2078	docs/README.md
+EXCLUDE	DOC_ASSET		2608784	docs/assets/brag-about-brag.mp4
+EXCLUDE	DOC_ASSET		72723	docs/assets/brag-slim/brag.jpg
+EXCLUDE	DOC_ASSET		2003965	docs/assets/brag-slim/brag.mp4
+EXCLUDE	DOC_ASSET		52009	docs/assets/hero-poster.jpg
+EXCLUDE	DOC_ASSET		378061	docs/assets/hero.png
+EXCLUDE	DOC_ASSET		211007	docs/examples/fish-flight-school/brag.jpg
+EXCLUDE	DOC_ASSET		4627651	docs/examples/fish-flight-school/brag.mp4
+EXCLUDE	DOC_ASSET		9774	docs/examples/fish-flight-school/index.html
+EXCLUDE	DOC_ASSET		426193	docs/examples/fish-flight-school/site.jpg
+EXCLUDE	DOC_ASSET		14676	docs/examples/fish-flight-school/styles.css
+EXCLUDE	DOC_ASSET		46005	docs/examples/full/fish-flight-school/brag.jpg
+EXCLUDE	DOC_ASSET		3629774	docs/examples/full/fish-flight-school/brag.mp4
+EXCLUDE	DOC_ASSET		4664	docs/examples/full/fish-flight-school/index.html
+EXCLUDE	DOC_ASSET		64279	docs/examples/full/fish-flight-school/site.jpg
+EXCLUDE	DOC_ASSET		12585	docs/examples/full/fish-flight-school/styles.css
+EXCLUDE	DOC_ASSET		235126	docs/examples/full/horse-tinder/brag.jpg
+EXCLUDE	DOC_ASSET		5190760	docs/examples/full/horse-tinder/brag.mp4
+EXCLUDE	DOC_ASSET		4668	docs/examples/full/horse-tinder/index.html
+EXCLUDE	DOC_ASSET		429575	docs/examples/full/horse-tinder/site.jpg
+EXCLUDE	DOC_ASSET		13281	docs/examples/full/horse-tinder/styles.css
+EXCLUDE	DOC_ASSET		110062	docs/examples/full/taxi-for-taxis/brag.jpg
+EXCLUDE	DOC_ASSET		1961805	docs/examples/full/taxi-for-taxis/brag.mp4
+EXCLUDE	DOC_ASSET		5237	docs/examples/full/taxi-for-taxis/index.html
+EXCLUDE	DOC_ASSET		154045	docs/examples/full/taxi-for-taxis/site.jpg
+EXCLUDE	DOC_ASSET		13249	docs/examples/full/taxi-for-taxis/styles.css
+EXCLUDE	DOC_ASSET		237702	docs/examples/horse-tinder/brag.jpg
+EXCLUDE	DOC_ASSET		4935751	docs/examples/horse-tinder/brag.mp4
+EXCLUDE	DOC_ASSET		9202	docs/examples/horse-tinder/index.html
+EXCLUDE	DOC_ASSET		446799	docs/examples/horse-tinder/site.jpg
+EXCLUDE	DOC_ASSET		13805	docs/examples/horse-tinder/styles.css
+EXCLUDE	DOC_ASSET		197391	docs/examples/taxi-for-taxis/brag.jpg
+EXCLUDE	DOC_ASSET		4527238	docs/examples/taxi-for-taxis/brag.mp4
+EXCLUDE	DOC_ASSET		8670	docs/examples/taxi-for-taxis/index.html
+EXCLUDE	DOC_ASSET		386888	docs/examples/taxi-for-taxis/site.jpg
+EXCLUDE	DOC_ASSET		14135	docs/examples/taxi-for-taxis/styles.css
+EXCLUDE	DOC_ASSET		16384	docs/index.html
+EXCLUDE	DOC_ASSET		3848	docs/main.js
+EXCLUDE	DOC_ASSET		1447	docs/other-agents.md
+EXCLUDE	DOC_ASSET		30062	docs/styles.css
+REFERENCE	Example outputs		1578	examples/bicycles-for-snakes/PRODUCT.md
+REFERENCE	Example outputs		2562709	examples/bicycles-for-snakes/brag.mp4
+REFERENCE	Example outputs		8735	examples/bicycles-for-snakes/index.html
+REFERENCE	Example outputs		12259	examples/bicycles-for-snakes/styles.css
+REFERENCE	Example outputs		1661	examples/fish-flight-school/PRODUCT.md
+REFERENCE	Example outputs		3629774	examples/fish-flight-school/brag.mp4
+REFERENCE	Example outputs		4664	examples/fish-flight-school/index.html
+REFERENCE	Example outputs		12585	examples/fish-flight-school/styles.css
+REFERENCE	Example outputs		1559	examples/horse-tinder/PRODUCT.md
+REFERENCE	Example outputs		5190760	examples/horse-tinder/brag.mp4
+REFERENCE	Example outputs		4668	examples/horse-tinder/index.html
+REFERENCE	Example outputs		13281	examples/horse-tinder/styles.css
+REFERENCE	Example outputs		1742	examples/psychologists-for-chatbots/PRODUCT.md
+REFERENCE	Example outputs		1697696	examples/psychologists-for-chatbots/brag.mp4
+REFERENCE	Example outputs		3652	examples/psychologists-for-chatbots/index.html
+REFERENCE	Example outputs		8880	examples/psychologists-for-chatbots/styles.css
+REFERENCE	Example outputs		1565	examples/taxi-for-taxis/PRODUCT.md
+REFERENCE	Example outputs		1961805	examples/taxi-for-taxis/brag.mp4
+REFERENCE	Example outputs		5237	examples/taxi-for-taxis/index.html
+REFERENCE	Example outputs		13249	examples/taxi-for-taxis/styles.css
+EXCLUDE	DOC_ASSET		556	plugin.json
+EXCLUDE	DOC_ASSET		740	scripts/check-brag-slim.mjs
+EXCLUDE	DOC_ASSET		2005	scripts/check-docs.mjs
+PRESERVE	Self-contained launch video (default path; closes G-2)	media/launch-video	7766	skills/brag-slim/SKILL.md
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	9111	skills/brag/SKILL.md
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	985	skills/brag/assets/music/README.md
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	80788	skills/brag/assets/music/cues/happy-beats-business-moves-vol-1-by-ende-dot-app.music-cues.json
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	1253	skills/brag/assets/music/cues/happy-beats-business-moves-vol-1-by-ende-dot-app.music-cues.md
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	38548	skills/brag/assets/music/cues/happy-beats-business-moves-vol-10-by-ende-dot-app.music-cues.json
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	1263	skills/brag/assets/music/cues/happy-beats-business-moves-vol-10-by-ende-dot-app.music-cues.md
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	47432	skills/brag/assets/music/cues/happy-beats-business-moves-vol-11-by-ende-dot-app.music-cues.json
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	1248	skills/brag/assets/music/cues/happy-beats-business-moves-vol-11-by-ende-dot-app.music-cues.md
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	59326	skills/brag/assets/music/cues/happy-beats-business-moves-vol-12-by-ende-dot-app.music-cues.json
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	1255	skills/brag/assets/music/cues/happy-beats-business-moves-vol-12-by-ende-dot-app.music-cues.md
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	58762	skills/brag/assets/music/cues/happy-beats-business-moves-vol-9-by-ende-dot-app.music-cues.json
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	1255	skills/brag/assets/music/cues/happy-beats-business-moves-vol-9-by-ende-dot-app.music-cues.md
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	3936384	skills/brag/assets/music/happy-beats-business-moves-vol-1-by-ende-dot-app.mp3
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	1441152	skills/brag/assets/music/happy-beats-business-moves-vol-10-by-ende-dot-app.mp3
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	2103552	skills/brag/assets/music/happy-beats-business-moves-vol-11-by-ende-dot-app.mp3
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	2817792	skills/brag/assets/music/happy-beats-business-moves-vol-12-by-ende-dot-app.mp3
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	2728512	skills/brag/assets/music/happy-beats-business-moves-vol-9-by-ende-dot-app.mp3
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	12489	skills/brag/assets/sfx/casino/card-fan-1.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	18363	skills/brag/assets/sfx/casino/card-fan-2.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	9624	skills/brag/assets/sfx/casino/card-place-1.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	8046	skills/brag/assets/sfx/casino/card-place-2.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	11503	skills/brag/assets/sfx/casino/card-place-3.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	9618	skills/brag/assets/sfx/casino/card-place-4.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	10690	skills/brag/assets/sfx/casino/card-shove-1.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	10445	skills/brag/assets/sfx/casino/card-shove-2.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	9948	skills/brag/assets/sfx/casino/card-shove-3.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	10875	skills/brag/assets/sfx/casino/card-shove-4.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	30002	skills/brag/assets/sfx/casino/card-shuffle.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	8833	skills/brag/assets/sfx/casino/card-slide-1.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	9042	skills/brag/assets/sfx/casino/card-slide-2.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	9164	skills/brag/assets/sfx/casino/card-slide-3.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	7912	skills/brag/assets/sfx/casino/card-slide-4.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	9180	skills/brag/assets/sfx/casino/card-slide-5.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	8780	skills/brag/assets/sfx/casino/card-slide-6.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	9580	skills/brag/assets/sfx/casino/card-slide-7.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	9863	skills/brag/assets/sfx/casino/card-slide-8.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	12715	skills/brag/assets/sfx/casino/cards-pack-open-1.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	10918	skills/brag/assets/sfx/casino/cards-pack-open-2.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	5720	skills/brag/assets/sfx/casino/chip-lay-1.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6123	skills/brag/assets/sfx/casino/chip-lay-2.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6327	skills/brag/assets/sfx/casino/chip-lay-3.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6356	skills/brag/assets/sfx/casino/chips-collide-1.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	5987	skills/brag/assets/sfx/casino/chips-collide-2.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6301	skills/brag/assets/sfx/casino/chips-collide-3.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6038	skills/brag/assets/sfx/casino/chips-collide-4.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	9374	skills/brag/assets/sfx/casino/chips-handle-1.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	8639	skills/brag/assets/sfx/casino/chips-handle-2.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6261	skills/brag/assets/sfx/casino/chips-handle-3.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	7347	skills/brag/assets/sfx/casino/chips-handle-4.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	8909	skills/brag/assets/sfx/casino/chips-handle-6.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6469	skills/brag/assets/sfx/casino/chips-stack-1.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	5642	skills/brag/assets/sfx/casino/chips-stack-2.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	7203	skills/brag/assets/sfx/casino/chips-stack-3.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6095	skills/brag/assets/sfx/casino/chips-stack-4.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	5749	skills/brag/assets/sfx/casino/chips-stack-5.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	5821	skills/brag/assets/sfx/casino/chips-stack-6.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	10278	skills/brag/assets/sfx/casino/dice-grab-1.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	11437	skills/brag/assets/sfx/casino/dice-grab-2.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	19388	skills/brag/assets/sfx/casino/dice-shake-1.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	19976	skills/brag/assets/sfx/casino/dice-shake-2.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	19722	skills/brag/assets/sfx/casino/dice-shake-3.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	9523	skills/brag/assets/sfx/casino/dice-throw-1.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	7545	skills/brag/assets/sfx/casino/dice-throw-2.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	9231	skills/brag/assets/sfx/casino/dice-throw-3.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	8410	skills/brag/assets/sfx/casino/die-throw-1.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	9824	skills/brag/assets/sfx/casino/die-throw-2.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	10018	skills/brag/assets/sfx/casino/die-throw-3.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	8159	skills/brag/assets/sfx/casino/die-throw-4.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6353	skills/brag/assets/sfx/impact/footstep_carpet_000.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6301	skills/brag/assets/sfx/impact/footstep_carpet_003.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6301	skills/brag/assets/sfx/impact/footstep_carpet_004.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	5808	skills/brag/assets/sfx/impact/footstep_concrete_000.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6308	skills/brag/assets/sfx/impact/footstep_concrete_001.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6255	skills/brag/assets/sfx/impact/footstep_concrete_002.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	5805	skills/brag/assets/sfx/impact/footstep_concrete_003.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	5912	skills/brag/assets/sfx/impact/footstep_concrete_004.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	8290	skills/brag/assets/sfx/impact/footstep_grass_000.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	8313	skills/brag/assets/sfx/impact/footstep_grass_001.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	8278	skills/brag/assets/sfx/impact/footstep_grass_002.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	8129	skills/brag/assets/sfx/impact/footstep_grass_003.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	7800	skills/brag/assets/sfx/impact/footstep_grass_004.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	7880	skills/brag/assets/sfx/impact/footstep_snow_000.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	7794	skills/brag/assets/sfx/impact/footstep_snow_001.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	7694	skills/brag/assets/sfx/impact/footstep_snow_002.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	7860	skills/brag/assets/sfx/impact/footstep_snow_003.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	7630	skills/brag/assets/sfx/impact/footstep_snow_004.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	5949	skills/brag/assets/sfx/impact/footstep_wood_000.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	5929	skills/brag/assets/sfx/impact/footstep_wood_001.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	5895	skills/brag/assets/sfx/impact/footstep_wood_002.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6207	skills/brag/assets/sfx/impact/footstep_wood_003.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	5799	skills/brag/assets/sfx/impact/footstep_wood_004.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	13915	skills/brag/assets/sfx/impact/impactBell_heavy_000.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	9429	skills/brag/assets/sfx/impact/impactBell_heavy_003.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6529	skills/brag/assets/sfx/impact/impactBell_heavy_004.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	5827	skills/brag/assets/sfx/impact/impactGeneric_light_000.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	5636	skills/brag/assets/sfx/impact/impactGeneric_light_001.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	5795	skills/brag/assets/sfx/impact/impactGeneric_light_002.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	5792	skills/brag/assets/sfx/impact/impactGeneric_light_003.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	5747	skills/brag/assets/sfx/impact/impactGeneric_light_004.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	7661	skills/brag/assets/sfx/impact/impactGlass_heavy_002.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6544	skills/brag/assets/sfx/impact/impactGlass_light_001.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6562	skills/brag/assets/sfx/impact/impactGlass_light_002.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6618	skills/brag/assets/sfx/impact/impactGlass_light_003.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	8400	skills/brag/assets/sfx/impact/impactGlass_medium_000.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	8341	skills/brag/assets/sfx/impact/impactGlass_medium_002.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	8397	skills/brag/assets/sfx/impact/impactGlass_medium_004.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6110	skills/brag/assets/sfx/impact/impactMetal_heavy_000.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	5634	skills/brag/assets/sfx/impact/impactMetal_heavy_002.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	5788	skills/brag/assets/sfx/impact/impactMetal_heavy_004.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6804	skills/brag/assets/sfx/impact/impactMetal_light_002.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	9023	skills/brag/assets/sfx/impact/impactMetal_light_003.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	7117	skills/brag/assets/sfx/impact/impactMetal_medium_000.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6151	skills/brag/assets/sfx/impact/impactMetal_medium_001.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	5857	skills/brag/assets/sfx/impact/impactMetal_medium_002.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6964	skills/brag/assets/sfx/impact/impactMetal_medium_003.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	5744	skills/brag/assets/sfx/impact/impactMetal_medium_004.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	11481	skills/brag/assets/sfx/impact/impactMining_001.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	12016	skills/brag/assets/sfx/impact/impactPlank_medium_000.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	12082	skills/brag/assets/sfx/impact/impactPlank_medium_001.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	12313	skills/brag/assets/sfx/impact/impactPlank_medium_002.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	12138	skills/brag/assets/sfx/impact/impactPlank_medium_003.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	12084	skills/brag/assets/sfx/impact/impactPlank_medium_004.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	10032	skills/brag/assets/sfx/impact/impactPlate_heavy_000.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	8713	skills/brag/assets/sfx/impact/impactPlate_heavy_001.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	10188	skills/brag/assets/sfx/impact/impactPlate_heavy_002.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	8490	skills/brag/assets/sfx/impact/impactPlate_heavy_003.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	11092	skills/brag/assets/sfx/impact/impactPlate_heavy_004.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	10474	skills/brag/assets/sfx/impact/impactPlate_light_000.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	11730	skills/brag/assets/sfx/impact/impactPlate_light_001.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	9932	skills/brag/assets/sfx/impact/impactPlate_light_002.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	10626	skills/brag/assets/sfx/impact/impactPlate_light_003.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	11928	skills/brag/assets/sfx/impact/impactPlate_light_004.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	10921	skills/brag/assets/sfx/impact/impactPlate_medium_000.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	11491	skills/brag/assets/sfx/impact/impactPlate_medium_001.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	10250	skills/brag/assets/sfx/impact/impactPlate_medium_002.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	11616	skills/brag/assets/sfx/impact/impactPlate_medium_003.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	10803	skills/brag/assets/sfx/impact/impactPlate_medium_004.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	11617	skills/brag/assets/sfx/impact/impactPunch_heavy_000.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	10861	skills/brag/assets/sfx/impact/impactPunch_heavy_001.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	9025	skills/brag/assets/sfx/impact/impactPunch_heavy_002.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	10029	skills/brag/assets/sfx/impact/impactPunch_heavy_003.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	10452	skills/brag/assets/sfx/impact/impactPunch_heavy_004.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	8800	skills/brag/assets/sfx/impact/impactPunch_medium_000.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	8701	skills/brag/assets/sfx/impact/impactPunch_medium_001.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	10399	skills/brag/assets/sfx/impact/impactPunch_medium_002.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	9509	skills/brag/assets/sfx/impact/impactPunch_medium_003.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	10032	skills/brag/assets/sfx/impact/impactPunch_medium_004.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6570	skills/brag/assets/sfx/impact/impactSoft_heavy_000.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6689	skills/brag/assets/sfx/impact/impactSoft_heavy_001.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6749	skills/brag/assets/sfx/impact/impactSoft_heavy_002.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6665	skills/brag/assets/sfx/impact/impactSoft_heavy_003.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6478	skills/brag/assets/sfx/impact/impactSoft_heavy_004.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	5351	skills/brag/assets/sfx/impact/impactSoft_medium_000.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	5506	skills/brag/assets/sfx/impact/impactSoft_medium_001.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	5358	skills/brag/assets/sfx/impact/impactSoft_medium_002.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	5392	skills/brag/assets/sfx/impact/impactSoft_medium_003.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	5438	skills/brag/assets/sfx/impact/impactSoft_medium_004.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6509	skills/brag/assets/sfx/impact/impactTin_medium_000.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6603	skills/brag/assets/sfx/impact/impactTin_medium_001.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6156	skills/brag/assets/sfx/impact/impactTin_medium_002.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6541	skills/brag/assets/sfx/impact/impactTin_medium_003.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6362	skills/brag/assets/sfx/impact/impactTin_medium_004.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6233	skills/brag/assets/sfx/impact/impactWood_heavy_000.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6239	skills/brag/assets/sfx/impact/impactWood_heavy_001.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6146	skills/brag/assets/sfx/impact/impactWood_heavy_002.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6181	skills/brag/assets/sfx/impact/impactWood_heavy_003.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6253	skills/brag/assets/sfx/impact/impactWood_heavy_004.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6343	skills/brag/assets/sfx/impact/impactWood_light_000.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6373	skills/brag/assets/sfx/impact/impactWood_light_001.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6366	skills/brag/assets/sfx/impact/impactWood_light_002.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6381	skills/brag/assets/sfx/impact/impactWood_light_003.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6395	skills/brag/assets/sfx/impact/impactWood_light_004.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6575	skills/brag/assets/sfx/impact/impactWood_medium_000.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6555	skills/brag/assets/sfx/impact/impactWood_medium_001.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6607	skills/brag/assets/sfx/impact/impactWood_medium_002.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6598	skills/brag/assets/sfx/impact/impactWood_medium_003.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6481	skills/brag/assets/sfx/impact/impactWood_medium_004.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	4848	skills/brag/assets/sfx/interface/bong_001.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	4876	skills/brag/assets/sfx/interface/click_001.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	4275	skills/brag/assets/sfx/interface/click_002.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	4371	skills/brag/assets/sfx/interface/click_003.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	4486	skills/brag/assets/sfx/interface/click_004.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	4410	skills/brag/assets/sfx/interface/click_005.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	5859	skills/brag/assets/sfx/interface/drop_001.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6411	skills/brag/assets/sfx/interface/drop_002.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6288	skills/brag/assets/sfx/interface/drop_003.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	7266	skills/brag/assets/sfx/interface/error_005.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	8288	skills/brag/assets/sfx/interface/error_006.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	5473	skills/brag/assets/sfx/interface/glitch_002.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	5225	skills/brag/assets/sfx/interface/glitch_004.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6339	skills/brag/assets/sfx/interface/select_008.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6753	skills/brag/assets/sfx/interface/switch_001.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	7097	skills/brag/assets/sfx/interface/switch_002.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	7248	skills/brag/assets/sfx/interface/switch_004.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	7814	skills/brag/assets/sfx/interface/switch_005.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	7873	skills/brag/assets/sfx/interface/switch_006.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	7921	skills/brag/assets/sfx/interface/switch_007.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	25260	skills/brag/assets/sfx/keyboard/keypress-001.wav
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	25260	skills/brag/assets/sfx/keyboard/keypress-002.wav
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	25260	skills/brag/assets/sfx/keyboard/keypress-003.wav
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	25260	skills/brag/assets/sfx/keyboard/keypress-004.wav
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	25260	skills/brag/assets/sfx/keyboard/keypress-005.wav
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	25260	skills/brag/assets/sfx/keyboard/keypress-006.wav
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	25260	skills/brag/assets/sfx/keyboard/keypress-007.wav
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	25260	skills/brag/assets/sfx/keyboard/keypress-008.wav
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	25260	skills/brag/assets/sfx/keyboard/keypress-009.wav
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	25260	skills/brag/assets/sfx/keyboard/keypress-010.wav
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	25260	skills/brag/assets/sfx/keyboard/keypress-011.wav
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	25260	skills/brag/assets/sfx/keyboard/keypress-012.wav
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	25260	skills/brag/assets/sfx/keyboard/keypress-013.wav
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	25260	skills/brag/assets/sfx/keyboard/keypress-014.wav
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	25260	skills/brag/assets/sfx/keyboard/keypress-015.wav
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	25260	skills/brag/assets/sfx/keyboard/keypress-016.wav
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	25260	skills/brag/assets/sfx/keyboard/keypress-017.wav
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	25260	skills/brag/assets/sfx/keyboard/keypress-018.wav
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	25260	skills/brag/assets/sfx/keyboard/keypress-019.wav
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	25260	skills/brag/assets/sfx/keyboard/keypress-020.wav
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	25260	skills/brag/assets/sfx/keyboard/keypress-021.wav
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	25260	skills/brag/assets/sfx/keyboard/keypress-022.wav
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	25260	skills/brag/assets/sfx/keyboard/keypress-023.wav
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	25260	skills/brag/assets/sfx/keyboard/keypress-024.wav
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	25260	skills/brag/assets/sfx/keyboard/keypress-025.wav
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	25260	skills/brag/assets/sfx/keyboard/keypress-026.wav
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	25260	skills/brag/assets/sfx/keyboard/keypress-027.wav
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	25260	skills/brag/assets/sfx/keyboard/keypress-028.wav
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	25260	skills/brag/assets/sfx/keyboard/keypress-029.wav
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	25260	skills/brag/assets/sfx/keyboard/keypress-030.wav
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	25260	skills/brag/assets/sfx/keyboard/keypress-031.wav
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	25260	skills/brag/assets/sfx/keyboard/keypress-032.wav
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	405942	skills/brag/assets/sfx/sfx-analysis.json
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	7055	skills/brag/assets/sfx/sfx-analysis.md
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	4983	skills/brag/assets/sfx/ui/click1.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	4656	skills/brag/assets/sfx/ui/click2.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	4880	skills/brag/assets/sfx/ui/click3.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	4558	skills/brag/assets/sfx/ui/click4.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	4532	skills/brag/assets/sfx/ui/click5.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	4686	skills/brag/assets/sfx/ui/mouseclick1.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	5932	skills/brag/assets/sfx/ui/rollover1.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	4701	skills/brag/assets/sfx/ui/rollover2.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	5188	skills/brag/assets/sfx/ui/rollover4.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	5258	skills/brag/assets/sfx/ui/rollover5.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6104	skills/brag/assets/sfx/ui/switch1.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6456	skills/brag/assets/sfx/ui/switch10.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6248	skills/brag/assets/sfx/ui/switch11.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	4588	skills/brag/assets/sfx/ui/switch12.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	4467	skills/brag/assets/sfx/ui/switch13.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	4522	skills/brag/assets/sfx/ui/switch14.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6325	skills/brag/assets/sfx/ui/switch15.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6991	skills/brag/assets/sfx/ui/switch16.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6686	skills/brag/assets/sfx/ui/switch17.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	7633	skills/brag/assets/sfx/ui/switch18.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	7177	skills/brag/assets/sfx/ui/switch19.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6042	skills/brag/assets/sfx/ui/switch2.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6965	skills/brag/assets/sfx/ui/switch20.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	7453	skills/brag/assets/sfx/ui/switch21.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	7116	skills/brag/assets/sfx/ui/switch22.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	7177	skills/brag/assets/sfx/ui/switch23.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6340	skills/brag/assets/sfx/ui/switch24.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	7130	skills/brag/assets/sfx/ui/switch25.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6031	skills/brag/assets/sfx/ui/switch26.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6445	skills/brag/assets/sfx/ui/switch27.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	5916	skills/brag/assets/sfx/ui/switch28.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6769	skills/brag/assets/sfx/ui/switch29.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6270	skills/brag/assets/sfx/ui/switch3.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	7151	skills/brag/assets/sfx/ui/switch30.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	8180	skills/brag/assets/sfx/ui/switch31.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	7868	skills/brag/assets/sfx/ui/switch32.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	8530	skills/brag/assets/sfx/ui/switch33.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	7910	skills/brag/assets/sfx/ui/switch34.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6935	skills/brag/assets/sfx/ui/switch35.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6616	skills/brag/assets/sfx/ui/switch36.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6822	skills/brag/assets/sfx/ui/switch37.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	7303	skills/brag/assets/sfx/ui/switch38.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6477	skills/brag/assets/sfx/ui/switch4.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6181	skills/brag/assets/sfx/ui/switch5.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6610	skills/brag/assets/sfx/ui/switch6.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	5707	skills/brag/assets/sfx/ui/switch7.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6253	skills/brag/assets/sfx/ui/switch8.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6009	skills/brag/assets/sfx/ui/switch9.ogg
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	18208	skills/brag/references/audio.md
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6049	skills/brag/references/step-1-inspect.md
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	13151	skills/brag/references/step-2-plan.md
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	14780	skills/brag/references/step-3-compose.md
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6228	skills/brag/references/step-4-deliver.md
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6677	skills/brag/references/tones.md
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	10751	skills/brag/scripts/analyze_music_cues.py
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	248	skills/brag/scripts/pyproject.toml
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	170626	skills/brag/scripts/uv.lock
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	7766	skills/brag/slim.md

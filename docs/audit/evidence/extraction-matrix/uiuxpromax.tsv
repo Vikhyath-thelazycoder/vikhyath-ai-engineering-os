@@ -1,0 +1,683 @@
+decision	reason	capability	bytes	path
+EXCLUDE	REPO_META		1070	.claude-plugin/marketplace.json
+EXCLUDE	REPO_META		815	.claude-plugin/plugin.json
+ADAPT	Brand and banners	design/brand	7071	.claude/skills/banner-design/SKILL.md
+ADAPT	Brand and banners	design/brand	4993	.claude/skills/banner-design/references/banner-sizes-and-styles.md
+ADAPT	Brand and banners	design/brand	3926	.claude/skills/brand/SKILL.md
+ADAPT	Brand and banners	design/brand	4224	.claude/skills/brand/references/approval-checklist.md
+ADAPT	Brand and banners	design/brand	5110	.claude/skills/brand/references/asset-organization.md
+ADAPT	Brand and banners	design/brand	3572	.claude/skills/brand/references/brand-guideline-template.md
+ADAPT	Brand and banners	design/brand	4254	.claude/skills/brand/references/color-palette-management.md
+ADAPT	Brand and banners	design/brand	1926	.claude/skills/brand/references/consistency-checklist.md
+ADAPT	Brand and banners	design/brand	5464	.claude/skills/brand/references/logo-usage-rules.md
+ADAPT	Brand and banners	design/brand	1763	.claude/skills/brand/references/messaging-framework.md
+ADAPT	Brand and banners	design/brand	5042	.claude/skills/brand/references/typography-specifications.md
+ADAPT	Brand and banners	design/brand	3842	.claude/skills/brand/references/update.md
+ADAPT	Brand and banners	design/brand	1884	.claude/skills/brand/references/visual-identity.md
+ADAPT	Brand and banners	design/brand	1997	.claude/skills/brand/references/voice-framework.md
+ADAPT	Brand and banners	design/brand	9182	.claude/skills/brand/scripts/extract-colors.cjs
+ADAPT	Brand and banners	design/brand	9677	.claude/skills/brand/scripts/inject-brand-context.cjs
+ADAPT	Brand and banners	design/brand	14209	.claude/skills/brand/scripts/sync-brand-to-tokens.cjs
+ADAPT	Brand and banners	design/brand	12460	.claude/skills/brand/scripts/tests/test_sync_brand_to_tokens.py
+ADAPT	Brand and banners	design/brand	10173	.claude/skills/brand/scripts/validate-asset.cjs
+ADAPT	Brand and banners	design/brand	6638	.claude/skills/brand/templates/brand-guidelines-starter.md
+ADAPT	Token architecture	design/design-system	7458	.claude/skills/design-system/SKILL.md
+ADAPT	Token architecture	design/design-system	1038	.claude/skills/design-system/data/slide-backgrounds.csv
+ADAPT	Token architecture	design/design-system	8631	.claude/skills/design-system/data/slide-charts.csv
+ADAPT	Token architecture	design/design-system	877	.claude/skills/design-system/data/slide-color-logic.csv
+ADAPT	Token architecture	design/design-system	6427	.claude/skills/design-system/data/slide-copy.csv
+ADAPT	Token architecture	design/design-system	981	.claude/skills/design-system/data/slide-layout-logic.csv
+ADAPT	Token architecture	design/design-system	8760	.claude/skills/design-system/data/slide-layouts.csv
+ADAPT	Token architecture	design/design-system	8232	.claude/skills/design-system/data/slide-strategies.csv
+ADAPT	Token architecture	design/design-system	735	.claude/skills/design-system/data/slide-typography.csv
+ADAPT	Token architecture	design/design-system	6914	.claude/skills/design-system/references/component-specs.md
+ADAPT	Token architecture	design/design-system	4986	.claude/skills/design-system/references/component-tokens.md
+ADAPT	Token architecture	design/design-system	4562	.claude/skills/design-system/references/primitive-tokens.md
+ADAPT	Token architecture	design/design-system	4245	.claude/skills/design-system/references/semantic-tokens.md
+ADAPT	Token architecture	design/design-system	4771	.claude/skills/design-system/references/states-and-variants.md
+ADAPT	Token architecture	design/design-system	5633	.claude/skills/design-system/references/tailwind-integration.md
+ADAPT	Token architecture	design/design-system	5365	.claude/skills/design-system/references/token-architecture.md
+ADAPT	Token architecture	design/design-system	2726	.claude/skills/design-system/scripts/embed-tokens.cjs
+ADAPT	Token architecture	design/design-system	13116	.claude/skills/design-system/scripts/fetch-background.py
+ADAPT	Token architecture	design/design-system	28595	.claude/skills/design-system/scripts/generate-slide.py
+ADAPT	Token architecture	design/design-system	4968	.claude/skills/design-system/scripts/generate-tokens.cjs
+ADAPT	Token architecture	design/design-system	13187	.claude/skills/design-system/scripts/html-token-validator.py
+ADAPT	Token architecture	design/design-system	9674	.claude/skills/design-system/scripts/search-slides.py
+ADAPT	Token architecture	design/design-system	973	.claude/skills/design-system/scripts/slide-token-validator.py
+ADAPT	Token architecture	design/design-system	14756	.claude/skills/design-system/scripts/slide_search_core.py
+ADAPT	Token architecture	design/design-system	1895	.claude/skills/design-system/scripts/tests/test_validate_tokens.py
+ADAPT	Token architecture	design/design-system	5942	.claude/skills/design-system/scripts/validate-tokens.cjs
+ADAPT	Token architecture	design/design-system	7184	.claude/skills/design-system/templates/design-tokens-starter.json
+ADAPT	UI styling and design guidance	design/frontend	14126	.claude/skills/design/SKILL.md
+ADAPT	UI styling and design guidance	design/frontend	13385	.claude/skills/design/data/cip/deliverables.csv
+ADAPT	UI styling and design guidance	design/frontend	4935	.claude/skills/design/data/cip/industries.csv
+ADAPT	UI styling and design guidance	design/frontend	5205	.claude/skills/design/data/cip/mockup-contexts.csv
+ADAPT	UI styling and design guidance	design/frontend	5967	.claude/skills/design/data/cip/styles.csv
+ADAPT	UI styling and design guidance	design/frontend	2250	.claude/skills/design/data/icon/styles.csv
+ADAPT	UI styling and design guidance	design/frontend	10674	.claude/skills/design/data/logo/colors.csv
+ADAPT	UI styling and design guidance	design/frontend	13274	.claude/skills/design/data/logo/industries.csv
+ADAPT	UI styling and design guidance	design/frontend	13678	.claude/skills/design/data/logo/styles.csv
+ADAPT	UI styling and design guidance	design/frontend	4993	.claude/skills/design/references/banner-sizes-and-styles.md
+ADAPT	UI styling and design guidance	design/frontend	1735	.claude/skills/design/references/cip-deliverable-guide.md
+ADAPT	UI styling and design guidance	design/frontend	4301	.claude/skills/design/references/cip-design.md
+ADAPT	UI styling and design guidance	design/frontend	2493	.claude/skills/design/references/cip-prompt-engineering.md
+ADAPT	UI styling and design guidance	design/frontend	2357	.claude/skills/design/references/cip-style-guide.md
+ADAPT	UI styling and design guidance	design/frontend	5778	.claude/skills/design/references/design-routing.md
+ADAPT	UI styling and design guidance	design/frontend	4151	.claude/skills/design/references/icon-design.md
+ADAPT	UI styling and design guidance	design/frontend	3341	.claude/skills/design/references/logo-color-psychology.md
+ADAPT	UI styling and design guidance	design/frontend	4253	.claude/skills/design/references/logo-design.md
+ADAPT	UI styling and design guidance	design/frontend	4314	.claude/skills/design/references/logo-prompt-engineering.md
+ADAPT	UI styling and design guidance	design/frontend	3435	.claude/skills/design/references/logo-style-guide.md
+ADAPT	UI styling and design guidance	design/frontend	2580	.claude/skills/design/references/slides-copywriting-formulas.md
+ADAPT	UI styling and design guidance	design/frontend	153	.claude/skills/design/references/slides-create.md
+ADAPT	UI styling and design guidance	design/frontend	9004	.claude/skills/design/references/slides-html-template.md
+ADAPT	UI styling and design guidance	design/frontend	3667	.claude/skills/design/references/slides-layout-patterns.md
+ADAPT	UI styling and design guidance	design/frontend	2691	.claude/skills/design/references/slides-strategies.md
+ADAPT	UI styling and design guidance	design/frontend	1742	.claude/skills/design/references/slides.md
+ADAPT	UI styling and design guidance	design/frontend	11294	.claude/skills/design/references/social-photos-design.md
+ADAPT	UI styling and design guidance	design/frontend	8062	.claude/skills/design/scripts/cip/core.py
+ADAPT	UI styling and design guidance	design/frontend	19647	.claude/skills/design/scripts/cip/generate.py
+ADAPT	UI styling and design guidance	design/frontend	13941	.claude/skills/design/scripts/cip/render-html.py
+ADAPT	UI styling and design guidance	design/frontend	4524	.claude/skills/design/scripts/cip/search.py
+ADAPT	UI styling and design guidance	design/frontend	17151	.claude/skills/design/scripts/icon/generate.py
+ADAPT	UI styling and design guidance	design/frontend	6023	.claude/skills/design/scripts/logo/core.py
+ADAPT	UI styling and design guidance	design/frontend	27346	.claude/skills/design/scripts/logo/generate.py
+ADAPT	UI styling and design guidance	design/frontend	4745	.claude/skills/design/scripts/logo/search.py
+ADAPT	UI styling and design guidance	design/frontend	10380	.claude/skills/design/scripts/logo/tests/test_generate.py
+ADAPT	Slides	media/presentation	1720	.claude/skills/slides/SKILL.md
+ADAPT	Slides	media/presentation	2580	.claude/skills/slides/references/copywriting-formulas.md
+ADAPT	Slides	media/presentation	153	.claude/skills/slides/references/create.md
+ADAPT	Slides	media/presentation	9004	.claude/skills/slides/references/html-template.md
+ADAPT	Slides	media/presentation	3667	.claude/skills/slides/references/layout-patterns.md
+ADAPT	Slides	media/presentation	2691	.claude/skills/slides/references/slide-strategies.md
+ADAPT	UI styling and design guidance	design/frontend	11357	.claude/skills/ui-styling/LICENSE.txt
+ADAPT	UI styling and design guidance	design/frontend	10945	.claude/skills/ui-styling/SKILL.md
+ADAPT	UI styling and design guidance	design/frontend	4373	.claude/skills/ui-styling/canvas-fonts/ArsenalSC-OFL.txt
+ADAPT	UI styling and design guidance	design/frontend	165848	.claude/skills/ui-styling/canvas-fonts/ArsenalSC-Regular.ttf
+ADAPT	UI styling and design guidance	design/frontend	94528	.claude/skills/ui-styling/canvas-fonts/BigShoulders-Bold.ttf
+ADAPT	UI styling and design guidance	design/frontend	4397	.claude/skills/ui-styling/canvas-fonts/BigShoulders-OFL.txt
+ADAPT	UI styling and design guidance	design/frontend	94396	.claude/skills/ui-styling/canvas-fonts/BigShoulders-Regular.ttf
+ADAPT	UI styling and design guidance	design/frontend	4390	.claude/skills/ui-styling/canvas-fonts/Boldonse-OFL.txt
+ADAPT	UI styling and design guidance	design/frontend	77168	.claude/skills/ui-styling/canvas-fonts/Boldonse-Regular.ttf
+ADAPT	UI styling and design guidance	design/frontend	90952	.claude/skills/ui-styling/canvas-fonts/BricolageGrotesque-Bold.ttf
+ADAPT	UI styling and design guidance	design/frontend	4403	.claude/skills/ui-styling/canvas-fonts/BricolageGrotesque-OFL.txt
+ADAPT	UI styling and design guidance	design/frontend	90920	.claude/skills/ui-styling/canvas-fonts/BricolageGrotesque-Regular.ttf
+ADAPT	UI styling and design guidance	design/frontend	107352	.claude/skills/ui-styling/canvas-fonts/CrimsonPro-Bold.ttf
+ADAPT	UI styling and design guidance	design/frontend	108828	.claude/skills/ui-styling/canvas-fonts/CrimsonPro-Italic.ttf
+ADAPT	UI styling and design guidance	design/frontend	4394	.claude/skills/ui-styling/canvas-fonts/CrimsonPro-OFL.txt
+ADAPT	UI styling and design guidance	design/frontend	106696	.claude/skills/ui-styling/canvas-fonts/CrimsonPro-Regular.ttf
+ADAPT	UI styling and design guidance	design/frontend	4392	.claude/skills/ui-styling/canvas-fonts/DMMono-OFL.txt
+ADAPT	UI styling and design guidance	design/frontend	48852	.claude/skills/ui-styling/canvas-fonts/DMMono-Regular.ttf
+ADAPT	UI styling and design guidance	design/frontend	4410	.claude/skills/ui-styling/canvas-fonts/EricaOne-OFL.txt
+ADAPT	UI styling and design guidance	design/frontend	24872	.claude/skills/ui-styling/canvas-fonts/EricaOne-Regular.ttf
+ADAPT	UI styling and design guidance	design/frontend	78304	.claude/skills/ui-styling/canvas-fonts/GeistMono-Bold.ttf
+ADAPT	UI styling and design guidance	design/frontend	4388	.claude/skills/ui-styling/canvas-fonts/GeistMono-OFL.txt
+ADAPT	UI styling and design guidance	design/frontend	78232	.claude/skills/ui-styling/canvas-fonts/GeistMono-Regular.ttf
+ADAPT	UI styling and design guidance	design/frontend	4381	.claude/skills/ui-styling/canvas-fonts/Gloock-OFL.txt
+ADAPT	UI styling and design guidance	design/frontend	95156	.claude/skills/ui-styling/canvas-fonts/Gloock-Regular.ttf
+ADAPT	UI styling and design guidance	design/frontend	136008	.claude/skills/ui-styling/canvas-fonts/IBMPlexMono-Bold.ttf
+ADAPT	UI styling and design guidance	design/frontend	4363	.claude/skills/ui-styling/canvas-fonts/IBMPlexMono-OFL.txt
+ADAPT	UI styling and design guidance	design/frontend	133796	.claude/skills/ui-styling/canvas-fonts/IBMPlexMono-Regular.ttf
+ADAPT	UI styling and design guidance	design/frontend	161000	.claude/skills/ui-styling/canvas-fonts/IBMPlexSerif-Bold.ttf
+ADAPT	UI styling and design guidance	design/frontend	169840	.claude/skills/ui-styling/canvas-fonts/IBMPlexSerif-BoldItalic.ttf
+ADAPT	UI styling and design guidance	design/frontend	170004	.claude/skills/ui-styling/canvas-fonts/IBMPlexSerif-Italic.ttf
+ADAPT	UI styling and design guidance	design/frontend	160380	.claude/skills/ui-styling/canvas-fonts/IBMPlexSerif-Regular.ttf
+ADAPT	UI styling and design guidance	design/frontend	68084	.claude/skills/ui-styling/canvas-fonts/InstrumentSans-Bold.ttf
+ADAPT	UI styling and design guidance	design/frontend	70004	.claude/skills/ui-styling/canvas-fonts/InstrumentSans-BoldItalic.ttf
+ADAPT	UI styling and design guidance	design/frontend	69900	.claude/skills/ui-styling/canvas-fonts/InstrumentSans-Italic.ttf
+ADAPT	UI styling and design guidance	design/frontend	4403	.claude/skills/ui-styling/canvas-fonts/InstrumentSans-OFL.txt
+ADAPT	UI styling and design guidance	design/frontend	68028	.claude/skills/ui-styling/canvas-fonts/InstrumentSans-Regular.ttf
+ADAPT	UI styling and design guidance	design/frontend	70868	.claude/skills/ui-styling/canvas-fonts/InstrumentSerif-Italic.ttf
+ADAPT	UI styling and design guidance	design/frontend	69312	.claude/skills/ui-styling/canvas-fonts/InstrumentSerif-Regular.ttf
+ADAPT	UI styling and design guidance	design/frontend	4394	.claude/skills/ui-styling/canvas-fonts/Italiana-OFL.txt
+ADAPT	UI styling and design guidance	design/frontend	27184	.claude/skills/ui-styling/canvas-fonts/Italiana-Regular.ttf
+ADAPT	UI styling and design guidance	design/frontend	114828	.claude/skills/ui-styling/canvas-fonts/JetBrainsMono-Bold.ttf
+ADAPT	UI styling and design guidance	design/frontend	4399	.claude/skills/ui-styling/canvas-fonts/JetBrainsMono-OFL.txt
+ADAPT	UI styling and design guidance	design/frontend	114904	.claude/skills/ui-styling/canvas-fonts/JetBrainsMono-Regular.ttf
+ADAPT	UI styling and design guidance	design/frontend	154308	.claude/skills/ui-styling/canvas-fonts/Jura-Light.ttf
+ADAPT	UI styling and design guidance	design/frontend	154488	.claude/skills/ui-styling/canvas-fonts/Jura-Medium.ttf
+ADAPT	UI styling and design guidance	design/frontend	4380	.claude/skills/ui-styling/canvas-fonts/Jura-OFL.txt
+ADAPT	UI styling and design guidance	design/frontend	4449	.claude/skills/ui-styling/canvas-fonts/LibreBaskerville-OFL.txt
+ADAPT	UI styling and design guidance	design/frontend	147584	.claude/skills/ui-styling/canvas-fonts/LibreBaskerville-Regular.ttf
+ADAPT	UI styling and design guidance	design/frontend	133828	.claude/skills/ui-styling/canvas-fonts/Lora-Bold.ttf
+ADAPT	UI styling and design guidance	design/frontend	140332	.claude/skills/ui-styling/canvas-fonts/Lora-BoldItalic.ttf
+ADAPT	UI styling and design guidance	design/frontend	139328	.claude/skills/ui-styling/canvas-fonts/Lora-Italic.ttf
+ADAPT	UI styling and design guidance	design/frontend	4423	.claude/skills/ui-styling/canvas-fonts/Lora-OFL.txt
+ADAPT	UI styling and design guidance	design/frontend	133888	.claude/skills/ui-styling/canvas-fonts/Lora-Regular.ttf
+ADAPT	UI styling and design guidance	design/frontend	79208	.claude/skills/ui-styling/canvas-fonts/NationalPark-Bold.ttf
+ADAPT	UI styling and design guidance	design/frontend	4399	.claude/skills/ui-styling/canvas-fonts/NationalPark-OFL.txt
+ADAPT	UI styling and design guidance	design/frontend	76424	.claude/skills/ui-styling/canvas-fonts/NationalPark-Regular.ttf
+ADAPT	UI styling and design guidance	design/frontend	4363	.claude/skills/ui-styling/canvas-fonts/NothingYouCouldDo-OFL.txt
+ADAPT	UI styling and design guidance	design/frontend	32020	.claude/skills/ui-styling/canvas-fonts/NothingYouCouldDo-Regular.ttf
+ADAPT	UI styling and design guidance	design/frontend	55392	.claude/skills/ui-styling/canvas-fonts/Outfit-Bold.ttf
+ADAPT	UI styling and design guidance	design/frontend	4389	.claude/skills/ui-styling/canvas-fonts/Outfit-OFL.txt
+ADAPT	UI styling and design guidance	design/frontend	54912	.claude/skills/ui-styling/canvas-fonts/Outfit-Regular.ttf
+ADAPT	UI styling and design guidance	design/frontend	51072	.claude/skills/ui-styling/canvas-fonts/PixelifySans-Medium.ttf
+ADAPT	UI styling and design guidance	design/frontend	4395	.claude/skills/ui-styling/canvas-fonts/PixelifySans-OFL.txt
+ADAPT	UI styling and design guidance	design/frontend	4366	.claude/skills/ui-styling/canvas-fonts/PoiretOne-OFL.txt
+ADAPT	UI styling and design guidance	design/frontend	45244	.claude/skills/ui-styling/canvas-fonts/PoiretOne-Regular.ttf
+ADAPT	UI styling and design guidance	design/frontend	34420	.claude/skills/ui-styling/canvas-fonts/RedHatMono-Bold.ttf
+ADAPT	UI styling and design guidance	design/frontend	4394	.claude/skills/ui-styling/canvas-fonts/RedHatMono-OFL.txt
+ADAPT	UI styling and design guidance	design/frontend	34488	.claude/skills/ui-styling/canvas-fonts/RedHatMono-Regular.ttf
+ADAPT	UI styling and design guidance	design/frontend	4394	.claude/skills/ui-styling/canvas-fonts/Silkscreen-OFL.txt
+ADAPT	UI styling and design guidance	design/frontend	31960	.claude/skills/ui-styling/canvas-fonts/Silkscreen-Regular.ttf
+ADAPT	UI styling and design guidance	design/frontend	59704	.claude/skills/ui-styling/canvas-fonts/SmoochSans-Medium.ttf
+ADAPT	UI styling and design guidance	design/frontend	4396	.claude/skills/ui-styling/canvas-fonts/SmoochSans-OFL.txt
+ADAPT	UI styling and design guidance	design/frontend	76248	.claude/skills/ui-styling/canvas-fonts/Tektur-Medium.ttf
+ADAPT	UI styling and design guidance	design/frontend	4385	.claude/skills/ui-styling/canvas-fonts/Tektur-OFL.txt
+ADAPT	UI styling and design guidance	design/frontend	75604	.claude/skills/ui-styling/canvas-fonts/Tektur-Regular.ttf
+ADAPT	UI styling and design guidance	design/frontend	191304	.claude/skills/ui-styling/canvas-fonts/WorkSans-Bold.ttf
+ADAPT	UI styling and design guidance	design/frontend	175772	.claude/skills/ui-styling/canvas-fonts/WorkSans-BoldItalic.ttf
+ADAPT	UI styling and design guidance	design/frontend	174280	.claude/skills/ui-styling/canvas-fonts/WorkSans-Italic.ttf
+ADAPT	UI styling and design guidance	design/frontend	4397	.claude/skills/ui-styling/canvas-fonts/WorkSans-OFL.txt
+ADAPT	UI styling and design guidance	design/frontend	188916	.claude/skills/ui-styling/canvas-fonts/WorkSans-Regular.ttf
+ADAPT	UI styling and design guidance	design/frontend	4398	.claude/skills/ui-styling/canvas-fonts/YoungSerif-OFL.txt
+ADAPT	UI styling and design guidance	design/frontend	105136	.claude/skills/ui-styling/canvas-fonts/YoungSerif-Regular.ttf
+ADAPT	UI styling and design guidance	design/frontend	7888	.claude/skills/ui-styling/references/canvas-design-system.md
+ADAPT	UI styling and design guidance	design/frontend	9976	.claude/skills/ui-styling/references/shadcn-accessibility.md
+ADAPT	UI styling and design guidance	design/frontend	11155	.claude/skills/ui-styling/references/shadcn-components.md
+ADAPT	UI styling and design guidance	design/frontend	8672	.claude/skills/ui-styling/references/shadcn-theming.md
+ADAPT	UI styling and design guidance	design/frontend	10171	.claude/skills/ui-styling/references/tailwind-customization.md
+ADAPT	UI styling and design guidance	design/frontend	8270	.claude/skills/ui-styling/references/tailwind-responsive.md
+ADAPT	UI styling and design guidance	design/frontend	9980	.claude/skills/ui-styling/references/tailwind-utilities.md
+ADAPT	UI styling and design guidance	design/frontend	53248	.claude/skills/ui-styling/scripts/.coverage
+ADAPT	UI styling and design guidance	design/frontend	444	.claude/skills/ui-styling/scripts/requirements.txt
+ADAPT	UI styling and design guidance	design/frontend	8799	.claude/skills/ui-styling/scripts/shadcn_add.py
+ADAPT	UI styling and design guidance	design/frontend	15712	.claude/skills/ui-styling/scripts/tailwind_config_gen.py
+ADAPT	UI styling and design guidance	design/frontend	35121	.claude/skills/ui-styling/scripts/tests/coverage-ui.json
+ADAPT	UI styling and design guidance	design/frontend	52	.claude/skills/ui-styling/scripts/tests/requirements.txt
+ADAPT	UI styling and design guidance	design/frontend	9919	.claude/skills/ui-styling/scripts/tests/test_shadcn_add.py
+ADAPT	UI styling and design guidance	design/frontend	19154	.claude/skills/ui-styling/scripts/tests/test_tailwind_config_gen.py
+ADAPT	Engine usage instructions; script paths rewritten to the bundled engine	design/design-system	15969	.claude/skills/ui-ux-pro-max/SKILL.md
+EXCLUDE	DUPLICATE		11046	.claude/skills/ui-ux-pro-max/data/app-interface.csv
+EXCLUDE	DUPLICATE		2392	.claude/skills/ui-ux-pro-max/data/catalog-summary.json
+EXCLUDE	DUPLICATE		23365	.claude/skills/ui-ux-pro-max/data/charts.csv
+EXCLUDE	DUPLICATE		37940	.claude/skills/ui-ux-pro-max/data/colors.csv
+EXCLUDE	DUPLICATE		36686	.claude/skills/ui-ux-pro-max/data/data-provenance.json
+EXCLUDE	DUPLICATE		433127	.claude/skills/ui-ux-pro-max/data/google-font-licenses.json
+EXCLUDE	DUPLICATE		747241	.claude/skills/ui-ux-pro-max/data/google-fonts.csv
+EXCLUDE	DUPLICATE		57945	.claude/skills/ui-ux-pro-max/data/icons.csv
+EXCLUDE	DUPLICATE		25449	.claude/skills/ui-ux-pro-max/data/landing.csv
+EXCLUDE	DUPLICATE		14679	.claude/skills/ui-ux-pro-max/data/motion.csv
+EXCLUDE	DUPLICATE		823933	.claude/skills/ui-ux-pro-max/data/phosphor-icons-upstream.json
+EXCLUDE	DUPLICATE		75623	.claude/skills/ui-ux-pro-max/data/products.csv
+EXCLUDE	DUPLICATE		15080	.claude/skills/ui-ux-pro-max/data/react-performance.csv
+EXCLUDE	DUPLICATE		19863	.claude/skills/ui-ux-pro-max/data/stacks/angular.csv
+EXCLUDE	DUPLICATE		14591	.claude/skills/ui-ux-pro-max/data/stacks/astro.csv
+EXCLUDE	DUPLICATE		27327	.claude/skills/ui-ux-pro-max/data/stacks/avalonia.csv
+EXCLUDE	DUPLICATE		14192	.claude/skills/ui-ux-pro-max/data/stacks/flutter.csv
+EXCLUDE	DUPLICATE		16551	.claude/skills/ui-ux-pro-max/data/stacks/html-tailwind.csv
+EXCLUDE	DUPLICATE		33577	.claude/skills/ui-ux-pro-max/data/stacks/javafx.csv
+EXCLUDE	DUPLICATE		12295	.claude/skills/ui-ux-pro-max/data/stacks/jetpack-compose.csv
+EXCLUDE	DUPLICATE		20163	.claude/skills/ui-ux-pro-max/data/stacks/laravel.csv
+EXCLUDE	DUPLICATE		18687	.claude/skills/ui-ux-pro-max/data/stacks/nextjs.csv
+EXCLUDE	DUPLICATE		28700	.claude/skills/ui-ux-pro-max/data/stacks/nuxt-ui.csv
+EXCLUDE	DUPLICATE		23014	.claude/skills/ui-ux-pro-max/data/stacks/nuxtjs.csv
+EXCLUDE	DUPLICATE		14049	.claude/skills/ui-ux-pro-max/data/stacks/react-native.csv
+EXCLUDE	DUPLICATE		21166	.claude/skills/ui-ux-pro-max/data/stacks/react.csv
+EXCLUDE	DUPLICATE		23184	.claude/skills/ui-ux-pro-max/data/stacks/shadcn.csv
+EXCLUDE	DUPLICATE		15078	.claude/skills/ui-ux-pro-max/data/stacks/svelte.csv
+EXCLUDE	DUPLICATE		15323	.claude/skills/ui-ux-pro-max/data/stacks/swiftui.csv
+EXCLUDE	DUPLICATE		46769	.claude/skills/ui-ux-pro-max/data/stacks/threejs.csv
+EXCLUDE	DUPLICATE		30091	.claude/skills/ui-ux-pro-max/data/stacks/uno.csv
+EXCLUDE	DUPLICATE		24692	.claude/skills/ui-ux-pro-max/data/stacks/uwp.csv
+EXCLUDE	DUPLICATE		12813	.claude/skills/ui-ux-pro-max/data/stacks/vue.csv
+EXCLUDE	DUPLICATE		27890	.claude/skills/ui-ux-pro-max/data/stacks/winui.csv
+EXCLUDE	DUPLICATE		24158	.claude/skills/ui-ux-pro-max/data/stacks/wpf.csv
+EXCLUDE	DUPLICATE		149478	.claude/skills/ui-ux-pro-max/data/styles.csv
+EXCLUDE	DUPLICATE		49997	.claude/skills/ui-ux-pro-max/data/typography.csv
+EXCLUDE	DUPLICATE		77360	.claude/skills/ui-ux-pro-max/data/ui-reasoning.csv
+EXCLUDE	DUPLICATE		27516	.claude/skills/ui-ux-pro-max/data/ux-guidelines.csv
+ADAPT	Skill references	design/design-system	10909	.claude/skills/ui-ux-pro-max/references/pro-rules.md
+ADAPT	Skill references	design/design-system	24526	.claude/skills/ui-ux-pro-max/references/quick-reference.md
+EXCLUDE	DUPLICATE		41236	.claude/skills/ui-ux-pro-max/scripts/core.py
+EXCLUDE	DUPLICATE		71537	.claude/skills/ui-ux-pro-max/scripts/design_system.py
+EXCLUDE	DUPLICATE		5824	.claude/skills/ui-ux-pro-max/scripts/reasoning_contract.py
+EXCLUDE	DUPLICATE		9373	.claude/skills/ui-ux-pro-max/scripts/search.py
+EXCLUDE	DUPLICATE		1079	.claude/skills/ui-ux-pro-max/scripts/tests/fixtures/catalogs/google-api.json
+EXCLUDE	DUPLICATE		1772	.claude/skills/ui-ux-pro-max/scripts/tests/fixtures/catalogs/google-catalog.json
+EXCLUDE	DUPLICATE		480	.claude/skills/ui-ux-pro-max/scripts/tests/fixtures/catalogs/google-existing.csv
+EXCLUDE	DUPLICATE		328	.claude/skills/ui-ux-pro-max/scripts/tests/fixtures/catalogs/google-metadata.json
+EXCLUDE	DUPLICATE		97	.claude/skills/ui-ux-pro-max/scripts/tests/fixtures/catalogs/google-overrides.json
+EXCLUDE	DUPLICATE		495	.claude/skills/ui-ux-pro-max/scripts/tests/fixtures/catalogs/icons-curated.csv
+EXCLUDE	DUPLICATE		571	.claude/skills/ui-ux-pro-max/scripts/tests/fixtures/catalogs/phosphor-core.json
+EXCLUDE	DUPLICATE		370	.claude/skills/ui-ux-pro-max/scripts/tests/fixtures/catalogs/phosphor-package.json
+EXCLUDE	DUPLICATE		87	.claude/skills/ui-ux-pro-max/scripts/tests/fixtures/catalogs/phosphor-react-exports.json
+EXCLUDE	DUPLICATE		81	.claude/skills/ui-ux-pro-max/scripts/tests/fixtures/catalogs/phosphor-react-package.json
+EXCLUDE	DUPLICATE		89426	.claude/skills/ui-ux-pro-max/scripts/tests/fixtures/relevance-baseline.json
+EXCLUDE	DUPLICATE		36734	.claude/skills/ui-ux-pro-max/scripts/tests/fixtures/relevance-cases.json
+EXCLUDE	DUPLICATE		5079	.claude/skills/ui-ux-pro-max/scripts/tests/fixtures/relevance-thresholds.json
+EXCLUDE	DUPLICATE		19466	.claude/skills/ui-ux-pro-max/scripts/tests/test_catalog_refresh.py
+EXCLUDE	DUPLICATE		2947	.claude/skills/ui-ux-pro-max/scripts/tests/test_catalog_summary_line_endings.py
+EXCLUDE	DUPLICATE		16680	.claude/skills/ui-ux-pro-max/scripts/tests/test_core.py
+EXCLUDE	DUPLICATE		8954	.claude/skills/ui-ux-pro-max/scripts/tests/test_core_data_quality.py
+EXCLUDE	DUPLICATE		19513	.claude/skills/ui-ux-pro-max/scripts/tests/test_data_contracts.py
+EXCLUDE	DUPLICATE		9815	.claude/skills/ui-ux-pro-max/scripts/tests/test_design_system_mode.py
+EXCLUDE	DUPLICATE		2261	.claude/skills/ui-ux-pro-max/scripts/tests/test_design_system_stack.py
+EXCLUDE	DUPLICATE		8375	.claude/skills/ui-ux-pro-max/scripts/tests/test_native_desktop_stack_freshness.py
+EXCLUDE	DUPLICATE		8430	.claude/skills/ui-ux-pro-max/scripts/tests/test_relevance_evaluator.py
+EXCLUDE	DUPLICATE		4305	.claude/skills/ui-ux-pro-max/scripts/tests/test_skill_script_paths.py
+EXCLUDE	DUPLICATE		7425	.claude/skills/ui-ux-pro-max/scripts/tests/test_style_taxonomy.py
+EXCLUDE	DUPLICATE		5874	.claude/skills/ui-ux-pro-max/scripts/tests/test_text_layout_resilience.py
+EXCLUDE	DUPLICATE		7701	.claude/skills/ui-ux-pro-max/scripts/tests/test_web_stack_freshness.py
+EXCLUDE	DUPLICATE		52230	.claude/skills/ui-ux-pro-max/scripts/validate_data.py
+EXCLUDE	REPO_META		392	.gitattributes
+EXCLUDE	REPO_META		1157	.github/ISSUE_TEMPLATE/bug_report.yml
+EXCLUDE	REPO_META		731	.github/ISSUE_TEMPLATE/feature_request.yml
+EXCLUDE	REPO_META		650	.github/PULL_REQUEST_TEMPLATE.md
+EXCLUDE	REPO_META		2179	.github/workflows/bump-versions.yml
+EXCLUDE	REPO_META		11087	.github/workflows/check-asset-sync.yml
+EXCLUDE	REPO_META		9562	.github/workflows/refresh-catalogs.yml
+EXCLUDE	REPO_META		2156	.github/workflows/release.yml
+EXCLUDE	REPO_META		894	.github/workflows/smoke-stacks.yml
+EXCLUDE	REPO_META		2040	.github/workflows/tests.yml
+EXCLUDE	REPO_META		568	.gitignore
+EXCLUDE	REPO_META		640	.releaserc.json
+EXCLUDE	REPO_META		5562	CLAUDE.md
+EXCLUDE	REPO_META		2110	CODE_OF_CONDUCT.md
+EXCLUDE	REPO_META		5403	CONTRIBUTING.md
+COPY	LICENSE	design/design-system	1075	LICENSE
+EXCLUDE	REPO_META		35313	README.id.md
+EXCLUDE	REPO_META		33248	README.ko.md
+EXCLUDE	REPO_META		37133	README.md
+EXCLUDE	REPO_META		40937	README.vi.md
+EXCLUDE	REPO_META		34114	README.zh.md
+EXCLUDE	REPO_META		1499	SECURITY.md
+EXCLUDE	INSTALLER		36	cli/.gitignore
+EXCLUDE	INSTALLER		39	cli/.npmignore
+EXCLUDE	INSTALLER		3371	cli/README.md
+EXCLUDE	INSTALLER		11046	cli/assets/data/app-interface.csv
+EXCLUDE	INSTALLER		2392	cli/assets/data/catalog-summary.json
+EXCLUDE	INSTALLER		23365	cli/assets/data/charts.csv
+EXCLUDE	INSTALLER		37940	cli/assets/data/colors.csv
+EXCLUDE	INSTALLER		36686	cli/assets/data/data-provenance.json
+EXCLUDE	INSTALLER		433127	cli/assets/data/google-font-licenses.json
+EXCLUDE	INSTALLER		747241	cli/assets/data/google-fonts.csv
+EXCLUDE	INSTALLER		57945	cli/assets/data/icons.csv
+EXCLUDE	INSTALLER		25449	cli/assets/data/landing.csv
+EXCLUDE	INSTALLER		14679	cli/assets/data/motion.csv
+EXCLUDE	INSTALLER		823933	cli/assets/data/phosphor-icons-upstream.json
+EXCLUDE	INSTALLER		75623	cli/assets/data/products.csv
+EXCLUDE	INSTALLER		15080	cli/assets/data/react-performance.csv
+EXCLUDE	INSTALLER		19863	cli/assets/data/stacks/angular.csv
+EXCLUDE	INSTALLER		14591	cli/assets/data/stacks/astro.csv
+EXCLUDE	INSTALLER		27327	cli/assets/data/stacks/avalonia.csv
+EXCLUDE	INSTALLER		14192	cli/assets/data/stacks/flutter.csv
+EXCLUDE	INSTALLER		16551	cli/assets/data/stacks/html-tailwind.csv
+EXCLUDE	INSTALLER		33577	cli/assets/data/stacks/javafx.csv
+EXCLUDE	INSTALLER		12295	cli/assets/data/stacks/jetpack-compose.csv
+EXCLUDE	INSTALLER		20163	cli/assets/data/stacks/laravel.csv
+EXCLUDE	INSTALLER		18687	cli/assets/data/stacks/nextjs.csv
+EXCLUDE	INSTALLER		28700	cli/assets/data/stacks/nuxt-ui.csv
+EXCLUDE	INSTALLER		23014	cli/assets/data/stacks/nuxtjs.csv
+EXCLUDE	INSTALLER		14049	cli/assets/data/stacks/react-native.csv
+EXCLUDE	INSTALLER		21166	cli/assets/data/stacks/react.csv
+EXCLUDE	INSTALLER		23184	cli/assets/data/stacks/shadcn.csv
+EXCLUDE	INSTALLER		15078	cli/assets/data/stacks/svelte.csv
+EXCLUDE	INSTALLER		15323	cli/assets/data/stacks/swiftui.csv
+EXCLUDE	INSTALLER		46769	cli/assets/data/stacks/threejs.csv
+EXCLUDE	INSTALLER		30091	cli/assets/data/stacks/uno.csv
+EXCLUDE	INSTALLER		24692	cli/assets/data/stacks/uwp.csv
+EXCLUDE	INSTALLER		12813	cli/assets/data/stacks/vue.csv
+EXCLUDE	INSTALLER		27890	cli/assets/data/stacks/winui.csv
+EXCLUDE	INSTALLER		24158	cli/assets/data/stacks/wpf.csv
+EXCLUDE	INSTALLER		149478	cli/assets/data/styles.csv
+EXCLUDE	INSTALLER		49997	cli/assets/data/typography.csv
+EXCLUDE	INSTALLER		77360	cli/assets/data/ui-reasoning.csv
+EXCLUDE	INSTALLER		27516	cli/assets/data/ux-guidelines.csv
+EXCLUDE	INSTALLER		41236	cli/assets/scripts/core.py
+EXCLUDE	INSTALLER		71537	cli/assets/scripts/design_system.py
+EXCLUDE	INSTALLER		5824	cli/assets/scripts/reasoning_contract.py
+EXCLUDE	INSTALLER		9373	cli/assets/scripts/search.py
+EXCLUDE	INSTALLER		1079	cli/assets/scripts/tests/fixtures/catalogs/google-api.json
+EXCLUDE	INSTALLER		1772	cli/assets/scripts/tests/fixtures/catalogs/google-catalog.json
+EXCLUDE	INSTALLER		480	cli/assets/scripts/tests/fixtures/catalogs/google-existing.csv
+EXCLUDE	INSTALLER		328	cli/assets/scripts/tests/fixtures/catalogs/google-metadata.json
+EXCLUDE	INSTALLER		97	cli/assets/scripts/tests/fixtures/catalogs/google-overrides.json
+EXCLUDE	INSTALLER		495	cli/assets/scripts/tests/fixtures/catalogs/icons-curated.csv
+EXCLUDE	INSTALLER		571	cli/assets/scripts/tests/fixtures/catalogs/phosphor-core.json
+EXCLUDE	INSTALLER		370	cli/assets/scripts/tests/fixtures/catalogs/phosphor-package.json
+EXCLUDE	INSTALLER		87	cli/assets/scripts/tests/fixtures/catalogs/phosphor-react-exports.json
+EXCLUDE	INSTALLER		81	cli/assets/scripts/tests/fixtures/catalogs/phosphor-react-package.json
+EXCLUDE	INSTALLER		89426	cli/assets/scripts/tests/fixtures/relevance-baseline.json
+EXCLUDE	INSTALLER		36734	cli/assets/scripts/tests/fixtures/relevance-cases.json
+EXCLUDE	INSTALLER		5079	cli/assets/scripts/tests/fixtures/relevance-thresholds.json
+EXCLUDE	INSTALLER		19466	cli/assets/scripts/tests/test_catalog_refresh.py
+EXCLUDE	INSTALLER		2947	cli/assets/scripts/tests/test_catalog_summary_line_endings.py
+EXCLUDE	INSTALLER		16680	cli/assets/scripts/tests/test_core.py
+EXCLUDE	INSTALLER		8954	cli/assets/scripts/tests/test_core_data_quality.py
+EXCLUDE	INSTALLER		19513	cli/assets/scripts/tests/test_data_contracts.py
+EXCLUDE	INSTALLER		9815	cli/assets/scripts/tests/test_design_system_mode.py
+EXCLUDE	INSTALLER		2261	cli/assets/scripts/tests/test_design_system_stack.py
+EXCLUDE	INSTALLER		8375	cli/assets/scripts/tests/test_native_desktop_stack_freshness.py
+EXCLUDE	INSTALLER		8430	cli/assets/scripts/tests/test_relevance_evaluator.py
+EXCLUDE	INSTALLER		4305	cli/assets/scripts/tests/test_skill_script_paths.py
+EXCLUDE	INSTALLER		7425	cli/assets/scripts/tests/test_style_taxonomy.py
+EXCLUDE	INSTALLER		5874	cli/assets/scripts/tests/test_text_layout_resilience.py
+EXCLUDE	INSTALLER		7701	cli/assets/scripts/tests/test_web_stack_freshness.py
+EXCLUDE	INSTALLER		52230	cli/assets/scripts/validate_data.py
+EXCLUDE	INSTALLER		7071	cli/assets/skills/banner-design/SKILL.md
+EXCLUDE	INSTALLER		4993	cli/assets/skills/banner-design/references/banner-sizes-and-styles.md
+EXCLUDE	INSTALLER		3926	cli/assets/skills/brand/SKILL.md
+EXCLUDE	INSTALLER		4224	cli/assets/skills/brand/references/approval-checklist.md
+EXCLUDE	INSTALLER		5110	cli/assets/skills/brand/references/asset-organization.md
+EXCLUDE	INSTALLER		3572	cli/assets/skills/brand/references/brand-guideline-template.md
+EXCLUDE	INSTALLER		4254	cli/assets/skills/brand/references/color-palette-management.md
+EXCLUDE	INSTALLER		1926	cli/assets/skills/brand/references/consistency-checklist.md
+EXCLUDE	INSTALLER		5464	cli/assets/skills/brand/references/logo-usage-rules.md
+EXCLUDE	INSTALLER		1763	cli/assets/skills/brand/references/messaging-framework.md
+EXCLUDE	INSTALLER		5042	cli/assets/skills/brand/references/typography-specifications.md
+EXCLUDE	INSTALLER		3842	cli/assets/skills/brand/references/update.md
+EXCLUDE	INSTALLER		1884	cli/assets/skills/brand/references/visual-identity.md
+EXCLUDE	INSTALLER		1997	cli/assets/skills/brand/references/voice-framework.md
+EXCLUDE	INSTALLER		9182	cli/assets/skills/brand/scripts/extract-colors.cjs
+EXCLUDE	INSTALLER		9677	cli/assets/skills/brand/scripts/inject-brand-context.cjs
+EXCLUDE	INSTALLER		14209	cli/assets/skills/brand/scripts/sync-brand-to-tokens.cjs
+EXCLUDE	INSTALLER		12460	cli/assets/skills/brand/scripts/tests/test_sync_brand_to_tokens.py
+EXCLUDE	INSTALLER		10173	cli/assets/skills/brand/scripts/validate-asset.cjs
+EXCLUDE	INSTALLER		6638	cli/assets/skills/brand/templates/brand-guidelines-starter.md
+EXCLUDE	INSTALLER		7458	cli/assets/skills/design-system/SKILL.md
+EXCLUDE	INSTALLER		1038	cli/assets/skills/design-system/data/slide-backgrounds.csv
+EXCLUDE	INSTALLER		8631	cli/assets/skills/design-system/data/slide-charts.csv
+EXCLUDE	INSTALLER		877	cli/assets/skills/design-system/data/slide-color-logic.csv
+EXCLUDE	INSTALLER		6427	cli/assets/skills/design-system/data/slide-copy.csv
+EXCLUDE	INSTALLER		981	cli/assets/skills/design-system/data/slide-layout-logic.csv
+EXCLUDE	INSTALLER		8760	cli/assets/skills/design-system/data/slide-layouts.csv
+EXCLUDE	INSTALLER		8232	cli/assets/skills/design-system/data/slide-strategies.csv
+EXCLUDE	INSTALLER		735	cli/assets/skills/design-system/data/slide-typography.csv
+EXCLUDE	INSTALLER		6914	cli/assets/skills/design-system/references/component-specs.md
+EXCLUDE	INSTALLER		4986	cli/assets/skills/design-system/references/component-tokens.md
+EXCLUDE	INSTALLER		4562	cli/assets/skills/design-system/references/primitive-tokens.md
+EXCLUDE	INSTALLER		4245	cli/assets/skills/design-system/references/semantic-tokens.md
+EXCLUDE	INSTALLER		4771	cli/assets/skills/design-system/references/states-and-variants.md
+EXCLUDE	INSTALLER		5633	cli/assets/skills/design-system/references/tailwind-integration.md
+EXCLUDE	INSTALLER		5365	cli/assets/skills/design-system/references/token-architecture.md
+EXCLUDE	INSTALLER		2726	cli/assets/skills/design-system/scripts/embed-tokens.cjs
+EXCLUDE	INSTALLER		13116	cli/assets/skills/design-system/scripts/fetch-background.py
+EXCLUDE	INSTALLER		28595	cli/assets/skills/design-system/scripts/generate-slide.py
+EXCLUDE	INSTALLER		4968	cli/assets/skills/design-system/scripts/generate-tokens.cjs
+EXCLUDE	INSTALLER		13187	cli/assets/skills/design-system/scripts/html-token-validator.py
+EXCLUDE	INSTALLER		9674	cli/assets/skills/design-system/scripts/search-slides.py
+EXCLUDE	INSTALLER		973	cli/assets/skills/design-system/scripts/slide-token-validator.py
+EXCLUDE	INSTALLER		14756	cli/assets/skills/design-system/scripts/slide_search_core.py
+EXCLUDE	INSTALLER		1895	cli/assets/skills/design-system/scripts/tests/test_validate_tokens.py
+EXCLUDE	INSTALLER		5942	cli/assets/skills/design-system/scripts/validate-tokens.cjs
+EXCLUDE	INSTALLER		7184	cli/assets/skills/design-system/templates/design-tokens-starter.json
+EXCLUDE	INSTALLER		14126	cli/assets/skills/design/SKILL.md
+EXCLUDE	INSTALLER		13385	cli/assets/skills/design/data/cip/deliverables.csv
+EXCLUDE	INSTALLER		4935	cli/assets/skills/design/data/cip/industries.csv
+EXCLUDE	INSTALLER		5205	cli/assets/skills/design/data/cip/mockup-contexts.csv
+EXCLUDE	INSTALLER		5967	cli/assets/skills/design/data/cip/styles.csv
+EXCLUDE	INSTALLER		2250	cli/assets/skills/design/data/icon/styles.csv
+EXCLUDE	INSTALLER		10674	cli/assets/skills/design/data/logo/colors.csv
+EXCLUDE	INSTALLER		13274	cli/assets/skills/design/data/logo/industries.csv
+EXCLUDE	INSTALLER		13678	cli/assets/skills/design/data/logo/styles.csv
+EXCLUDE	INSTALLER		4993	cli/assets/skills/design/references/banner-sizes-and-styles.md
+EXCLUDE	INSTALLER		1735	cli/assets/skills/design/references/cip-deliverable-guide.md
+EXCLUDE	INSTALLER		4301	cli/assets/skills/design/references/cip-design.md
+EXCLUDE	INSTALLER		2493	cli/assets/skills/design/references/cip-prompt-engineering.md
+EXCLUDE	INSTALLER		2357	cli/assets/skills/design/references/cip-style-guide.md
+EXCLUDE	INSTALLER		5778	cli/assets/skills/design/references/design-routing.md
+EXCLUDE	INSTALLER		4151	cli/assets/skills/design/references/icon-design.md
+EXCLUDE	INSTALLER		3341	cli/assets/skills/design/references/logo-color-psychology.md
+EXCLUDE	INSTALLER		4253	cli/assets/skills/design/references/logo-design.md
+EXCLUDE	INSTALLER		4314	cli/assets/skills/design/references/logo-prompt-engineering.md
+EXCLUDE	INSTALLER		3435	cli/assets/skills/design/references/logo-style-guide.md
+EXCLUDE	INSTALLER		2580	cli/assets/skills/design/references/slides-copywriting-formulas.md
+EXCLUDE	INSTALLER		153	cli/assets/skills/design/references/slides-create.md
+EXCLUDE	INSTALLER		9004	cli/assets/skills/design/references/slides-html-template.md
+EXCLUDE	INSTALLER		3667	cli/assets/skills/design/references/slides-layout-patterns.md
+EXCLUDE	INSTALLER		2691	cli/assets/skills/design/references/slides-strategies.md
+EXCLUDE	INSTALLER		1742	cli/assets/skills/design/references/slides.md
+EXCLUDE	INSTALLER		11294	cli/assets/skills/design/references/social-photos-design.md
+EXCLUDE	INSTALLER		8062	cli/assets/skills/design/scripts/cip/core.py
+EXCLUDE	INSTALLER		19647	cli/assets/skills/design/scripts/cip/generate.py
+EXCLUDE	INSTALLER		13941	cli/assets/skills/design/scripts/cip/render-html.py
+EXCLUDE	INSTALLER		4524	cli/assets/skills/design/scripts/cip/search.py
+EXCLUDE	INSTALLER		17151	cli/assets/skills/design/scripts/icon/generate.py
+EXCLUDE	INSTALLER		6023	cli/assets/skills/design/scripts/logo/core.py
+EXCLUDE	INSTALLER		27346	cli/assets/skills/design/scripts/logo/generate.py
+EXCLUDE	INSTALLER		4745	cli/assets/skills/design/scripts/logo/search.py
+EXCLUDE	INSTALLER		10380	cli/assets/skills/design/scripts/logo/tests/test_generate.py
+EXCLUDE	INSTALLER		1720	cli/assets/skills/slides/SKILL.md
+EXCLUDE	INSTALLER		2580	cli/assets/skills/slides/references/copywriting-formulas.md
+EXCLUDE	INSTALLER		153	cli/assets/skills/slides/references/create.md
+EXCLUDE	INSTALLER		9004	cli/assets/skills/slides/references/html-template.md
+EXCLUDE	INSTALLER		3667	cli/assets/skills/slides/references/layout-patterns.md
+EXCLUDE	INSTALLER		2691	cli/assets/skills/slides/references/slide-strategies.md
+EXCLUDE	INSTALLER		11357	cli/assets/skills/ui-styling/LICENSE.txt
+EXCLUDE	INSTALLER		10945	cli/assets/skills/ui-styling/SKILL.md
+EXCLUDE	INSTALLER		7888	cli/assets/skills/ui-styling/references/canvas-design-system.md
+EXCLUDE	INSTALLER		9976	cli/assets/skills/ui-styling/references/shadcn-accessibility.md
+EXCLUDE	INSTALLER		11155	cli/assets/skills/ui-styling/references/shadcn-components.md
+EXCLUDE	INSTALLER		8672	cli/assets/skills/ui-styling/references/shadcn-theming.md
+EXCLUDE	INSTALLER		10171	cli/assets/skills/ui-styling/references/tailwind-customization.md
+EXCLUDE	INSTALLER		8270	cli/assets/skills/ui-styling/references/tailwind-responsive.md
+EXCLUDE	INSTALLER		9980	cli/assets/skills/ui-styling/references/tailwind-utilities.md
+EXCLUDE	INSTALLER		444	cli/assets/skills/ui-styling/scripts/requirements.txt
+EXCLUDE	INSTALLER		8799	cli/assets/skills/ui-styling/scripts/shadcn_add.py
+EXCLUDE	INSTALLER		15712	cli/assets/skills/ui-styling/scripts/tailwind_config_gen.py
+EXCLUDE	INSTALLER		35121	cli/assets/skills/ui-styling/scripts/tests/coverage-ui.json
+EXCLUDE	INSTALLER		52	cli/assets/skills/ui-styling/scripts/tests/requirements.txt
+EXCLUDE	INSTALLER		9919	cli/assets/skills/ui-styling/scripts/tests/test_shadcn_add.py
+EXCLUDE	INSTALLER		19154	cli/assets/skills/ui-styling/scripts/tests/test_tailwind_config_gen.py
+EXCLUDE	INSTALLER		27418	cli/assets/templates/base/quick-reference.md
+EXCLUDE	INSTALLER		26501	cli/assets/templates/base/skill-content.md
+EXCLUDE	INSTALLER		1475	cli/assets/templates/platforms/agent.json
+EXCLUDE	INSTALLER		905	cli/assets/templates/platforms/augment.json
+EXCLUDE	INSTALLER		1475	cli/assets/templates/platforms/claude.json
+EXCLUDE	INSTALLER		1458	cli/assets/templates/platforms/codebuddy.json
+EXCLUDE	INSTALLER		1458	cli/assets/templates/platforms/codewhale.json
+EXCLUDE	INSTALLER		1446	cli/assets/templates/platforms/codex.json
+EXCLUDE	INSTALLER		1455	cli/assets/templates/platforms/continue.json
+EXCLUDE	INSTALLER		1497	cli/assets/templates/platforms/copilot.json
+EXCLUDE	INSTALLER		1449	cli/assets/templates/platforms/cursor.json
+EXCLUDE	INSTALLER		1480	cli/assets/templates/platforms/droid.json
+EXCLUDE	INSTALLER		1453	cli/assets/templates/platforms/gemini.json
+EXCLUDE	INSTALLER		1455	cli/assets/templates/platforms/kilocode.json
+EXCLUDE	INSTALLER		1450	cli/assets/templates/platforms/kiro.json
+EXCLUDE	INSTALLER		1455	cli/assets/templates/platforms/opencode.json
+EXCLUDE	INSTALLER		1446	cli/assets/templates/platforms/qoder.json
+EXCLUDE	INSTALLER		1452	cli/assets/templates/platforms/roocode.json
+EXCLUDE	INSTALLER		1443	cli/assets/templates/platforms/trae.json
+EXCLUDE	INSTALLER		1472	cli/assets/templates/platforms/universal.json
+EXCLUDE	INSTALLER		896	cli/assets/templates/platforms/warp.json
+EXCLUDE	INSTALLER		1455	cli/assets/templates/platforms/windsurf.json
+EXCLUDE	INSTALLER		1446	cli/assets/templates/platforms/zcode.json
+EXCLUDE	INSTALLER		5611	cli/bun.lock
+EXCLUDE	INSTALLER		14830	cli/package-lock.json
+EXCLUDE	INSTALLER		2433	cli/package.json
+EXCLUDE	INSTALLER		373	cli/playwright.config.ts
+EXCLUDE	INSTALLER		1024	cli/scripts/build.mjs
+EXCLUDE	INSTALLER		429	cli/scripts/run-python.mjs
+EXCLUDE	INSTALLER		7396	cli/scripts/sync-assets.mjs
+EXCLUDE	INSTALLER		7781	cli/src/commands/init.ts
+EXCLUDE	INSTALLER		5565	cli/src/commands/uninstall.ts
+EXCLUDE	INSTALLER		3910	cli/src/commands/update.ts
+EXCLUDE	INSTALLER		1322	cli/src/commands/versions.ts
+EXCLUDE	INSTALLER		3390	cli/src/index.ts
+EXCLUDE	INSTALLER		2360	cli/src/types/index.ts
+EXCLUDE	INSTALLER		4028	cli/src/utils/detect.ts
+EXCLUDE	INSTALLER		4144	cli/src/utils/extract.ts
+EXCLUDE	INSTALLER		4000	cli/src/utils/github.ts
+EXCLUDE	INSTALLER		441	cli/src/utils/logger.ts
+EXCLUDE	INSTALLER		13215	cli/src/utils/template.ts
+EXCLUDE	INSTALLER		3292	cli/tests/e2e/agent-query-contract.spec.ts
+EXCLUDE	INSTALLER		2243	cli/tests/e2e/banner-design-path-contract.spec.ts
+EXCLUDE	INSTALLER		1901	cli/tests/e2e/dry-run.spec.ts
+EXCLUDE	INSTALLER		1240	cli/tests/e2e/preview.spec.ts
+EXCLUDE	INSTALLER		1541	cli/tests/e2e/template-script-paths.spec.ts
+EXCLUDE	INSTALLER		396	cli/tsconfig.json
+EXCLUDE	REPO_META		3307	docs/journals/260812-1844-search-data-quality-planning.md
+EXCLUDE	REPO_META		2913	docs/journals/260813-0816-phase-6-accessibility-refresh.md
+EXCLUDE	REPO_META		3263	docs/journals/260813-1622-phase-7-web-stack-freshness.md
+EXCLUDE	REPO_META		3245	docs/journals/260813-1800-search-data-overhaul-completion.md
+EXCLUDE	REPO_META		1774	"docs/\344\270\211\344\270\252 data-scripts-templates \347\232\204\345\214\272\345\210\253.md"
+EXCLUDE	PRODUCT_RUNTIME		52	gallery/.gitignore
+EXCLUDE	PRODUCT_RUNTIME		414	gallery/app/globals.css
+EXCLUDE	PRODUCT_RUNTIME		572	gallery/app/layout.tsx
+EXCLUDE	PRODUCT_RUNTIME		435	gallery/app/page.tsx
+EXCLUDE	PRODUCT_RUNTIME		263	gallery/app/providers.tsx
+EXCLUDE	PRODUCT_RUNTIME		1767	gallery/components/CodeSnippet.tsx
+EXCLUDE	PRODUCT_RUNTIME		1542	gallery/components/ColorPalette.tsx
+EXCLUDE	PRODUCT_RUNTIME		1322	gallery/components/DarkModeToggle.tsx
+EXCLUDE	PRODUCT_RUNTIME		1077	gallery/components/ExpandableSection.tsx
+EXCLUDE	PRODUCT_RUNTIME		3516	gallery/components/FilterBar.tsx
+EXCLUDE	PRODUCT_RUNTIME		3365	gallery/components/GalleryGrid.tsx
+EXCLUDE	PRODUCT_RUNTIME		1653	gallery/components/InteractiveChecklist.tsx
+EXCLUDE	PRODUCT_RUNTIME		3323	gallery/components/MetadataBadges.tsx
+EXCLUDE	PRODUCT_RUNTIME		3133	gallery/components/PhoneMockup.tsx
+EXCLUDE	PRODUCT_RUNTIME		1892	gallery/components/SearchInput.tsx
+EXCLUDE	PRODUCT_RUNTIME		4357	gallery/components/StyleCard.tsx
+EXCLUDE	PRODUCT_RUNTIME		8284	gallery/components/StyleDetailModal.tsx
+EXCLUDE	PRODUCT_RUNTIME		2879	gallery/components/StylePreview.tsx
+EXCLUDE	PRODUCT_RUNTIME		15485	gallery/components/UIControlsShowcase.tsx
+EXCLUDE	PRODUCT_RUNTIME		3277	gallery/components/metadata-badges.test.tsx
+EXCLUDE	PRODUCT_RUNTIME		39	gallery/data/styles.csv
+EXCLUDE	PRODUCT_RUNTIME		842	gallery/lib/colorExtractor.ts
+EXCLUDE	PRODUCT_RUNTIME		3240	gallery/lib/cssGenerator.ts
+EXCLUDE	PRODUCT_RUNTIME		1330	gallery/lib/filterStyles.ts
+EXCLUDE	PRODUCT_RUNTIME		3044	gallery/lib/parseStyles.test.ts
+EXCLUDE	PRODUCT_RUNTIME		4114	gallery/lib/parseStyles.ts
+EXCLUDE	PRODUCT_RUNTIME		883	gallery/lib/types.ts
+EXCLUDE	PRODUCT_RUNTIME		228	gallery/next-env.d.ts
+EXCLUDE	PRODUCT_RUNTIME		93	gallery/next.config.js
+EXCLUDE	PRODUCT_RUNTIME		55584	gallery/package-lock.json
+EXCLUDE	PRODUCT_RUNTIME		668	gallery/package.json
+EXCLUDE	PRODUCT_RUNTIME		83	gallery/postcss.config.js
+EXCLUDE	PRODUCT_RUNTIME		243	gallery/tailwind.config.ts
+EXCLUDE	PRODUCT_RUNTIME		562	gallery/tsconfig.json
+EXCLUDE	PRODUCT_RUNTIME		593	gallery/tsconfig.test.json
+EXCLUDE	REPO_META		15303	preview/xiaomaomi-app.html
+EXCLUDE	REPO_META		23938	projects/healthcare-dashboard/index.html
+EXCLUDE	REPO_META		27816	projects/portfolio-dark/index.html
+EXCLUDE	REPO_META		27754	projects/saas-landing/index.html
+EXCLUDE	REPO_META		1129328	screenshots/website.png
+PRESERVE	Loaded by engine relevance tests (closure)	design/design-system	12374	scripts/evaluate-relevance.py
+EXCLUDE	REPO_META		5572	scripts/generate-catalog-summary.py
+EXCLUDE	REPO_META		26900	scripts/refresh-google-fonts.py
+EXCLUDE	REPO_META		10378	scripts/refresh-icon-catalog.py
+PRESERVE	Loaded by engine relevance tests (closure)	design/design-system	8536	scripts/relevance_metrics.py
+EXCLUDE	REPO_META		3028	scripts/smoke-domains.sh
+EXCLUDE	REPO_META		4417	scripts/smoke-stacks.sh
+EXCLUDE	REPO_META		2360	scripts/sync-release-version.mjs
+EXCLUDE	REPO_META		8342	scripts/validate-agent-guide.py
+EXCLUDE	REPO_META		2861	scripts/validate-csv.py
+EXCLUDE	REPO_META		927	skill.json
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	11046	src/ui-ux-pro-max/data/app-interface.csv
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	2392	src/ui-ux-pro-max/data/catalog-summary.json
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	23365	src/ui-ux-pro-max/data/charts.csv
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	37940	src/ui-ux-pro-max/data/colors.csv
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	36686	src/ui-ux-pro-max/data/data-provenance.json
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	433127	src/ui-ux-pro-max/data/google-font-licenses.json
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	747241	src/ui-ux-pro-max/data/google-fonts.csv
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	57945	src/ui-ux-pro-max/data/icons.csv
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	25449	src/ui-ux-pro-max/data/landing.csv
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	14679	src/ui-ux-pro-max/data/motion.csv
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	823933	src/ui-ux-pro-max/data/phosphor-icons-upstream.json
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	75623	src/ui-ux-pro-max/data/products.csv
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	15080	src/ui-ux-pro-max/data/react-performance.csv
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	19863	src/ui-ux-pro-max/data/stacks/angular.csv
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	14591	src/ui-ux-pro-max/data/stacks/astro.csv
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	27327	src/ui-ux-pro-max/data/stacks/avalonia.csv
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	14192	src/ui-ux-pro-max/data/stacks/flutter.csv
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	16551	src/ui-ux-pro-max/data/stacks/html-tailwind.csv
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	33577	src/ui-ux-pro-max/data/stacks/javafx.csv
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	12295	src/ui-ux-pro-max/data/stacks/jetpack-compose.csv
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	20163	src/ui-ux-pro-max/data/stacks/laravel.csv
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	18687	src/ui-ux-pro-max/data/stacks/nextjs.csv
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	28700	src/ui-ux-pro-max/data/stacks/nuxt-ui.csv
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	23014	src/ui-ux-pro-max/data/stacks/nuxtjs.csv
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	14049	src/ui-ux-pro-max/data/stacks/react-native.csv
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	21166	src/ui-ux-pro-max/data/stacks/react.csv
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	23184	src/ui-ux-pro-max/data/stacks/shadcn.csv
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	15078	src/ui-ux-pro-max/data/stacks/svelte.csv
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	15323	src/ui-ux-pro-max/data/stacks/swiftui.csv
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	46769	src/ui-ux-pro-max/data/stacks/threejs.csv
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	30091	src/ui-ux-pro-max/data/stacks/uno.csv
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	24692	src/ui-ux-pro-max/data/stacks/uwp.csv
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	12813	src/ui-ux-pro-max/data/stacks/vue.csv
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	27890	src/ui-ux-pro-max/data/stacks/winui.csv
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	24158	src/ui-ux-pro-max/data/stacks/wpf.csv
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	149478	src/ui-ux-pro-max/data/styles.csv
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	49997	src/ui-ux-pro-max/data/typography.csv
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	77360	src/ui-ux-pro-max/data/ui-reasoning.csv
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	27516	src/ui-ux-pro-max/data/ux-guidelines.csv
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	41236	src/ui-ux-pro-max/scripts/core.py
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	71537	src/ui-ux-pro-max/scripts/design_system.py
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	5824	src/ui-ux-pro-max/scripts/reasoning_contract.py
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	9373	src/ui-ux-pro-max/scripts/search.py
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	1079	src/ui-ux-pro-max/scripts/tests/fixtures/catalogs/google-api.json
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	1772	src/ui-ux-pro-max/scripts/tests/fixtures/catalogs/google-catalog.json
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	480	src/ui-ux-pro-max/scripts/tests/fixtures/catalogs/google-existing.csv
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	328	src/ui-ux-pro-max/scripts/tests/fixtures/catalogs/google-metadata.json
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	97	src/ui-ux-pro-max/scripts/tests/fixtures/catalogs/google-overrides.json
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	495	src/ui-ux-pro-max/scripts/tests/fixtures/catalogs/icons-curated.csv
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	571	src/ui-ux-pro-max/scripts/tests/fixtures/catalogs/phosphor-core.json
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	370	src/ui-ux-pro-max/scripts/tests/fixtures/catalogs/phosphor-package.json
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	87	src/ui-ux-pro-max/scripts/tests/fixtures/catalogs/phosphor-react-exports.json
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	81	src/ui-ux-pro-max/scripts/tests/fixtures/catalogs/phosphor-react-package.json
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	89426	src/ui-ux-pro-max/scripts/tests/fixtures/relevance-baseline.json
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	36734	src/ui-ux-pro-max/scripts/tests/fixtures/relevance-cases.json
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	5079	src/ui-ux-pro-max/scripts/tests/fixtures/relevance-thresholds.json
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	19466	src/ui-ux-pro-max/scripts/tests/test_catalog_refresh.py
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	2947	src/ui-ux-pro-max/scripts/tests/test_catalog_summary_line_endings.py
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	16680	src/ui-ux-pro-max/scripts/tests/test_core.py
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	8954	src/ui-ux-pro-max/scripts/tests/test_core_data_quality.py
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	19513	src/ui-ux-pro-max/scripts/tests/test_data_contracts.py
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	9815	src/ui-ux-pro-max/scripts/tests/test_design_system_mode.py
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	2261	src/ui-ux-pro-max/scripts/tests/test_design_system_stack.py
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	8375	src/ui-ux-pro-max/scripts/tests/test_native_desktop_stack_freshness.py
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	8430	src/ui-ux-pro-max/scripts/tests/test_relevance_evaluator.py
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	4305	src/ui-ux-pro-max/scripts/tests/test_skill_script_paths.py
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	7425	src/ui-ux-pro-max/scripts/tests/test_style_taxonomy.py
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	5874	src/ui-ux-pro-max/scripts/tests/test_text_layout_resilience.py
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	7701	src/ui-ux-pro-max/scripts/tests/test_web_stack_freshness.py
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	52230	src/ui-ux-pro-max/scripts/validate_data.py
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	27418	src/ui-ux-pro-max/templates/base/quick-reference.md
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	26501	src/ui-ux-pro-max/templates/base/skill-content.md
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	1475	src/ui-ux-pro-max/templates/platforms/agent.json
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	905	src/ui-ux-pro-max/templates/platforms/augment.json
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	1475	src/ui-ux-pro-max/templates/platforms/claude.json
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	1458	src/ui-ux-pro-max/templates/platforms/codebuddy.json
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	1458	src/ui-ux-pro-max/templates/platforms/codewhale.json
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	1446	src/ui-ux-pro-max/templates/platforms/codex.json
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	1455	src/ui-ux-pro-max/templates/platforms/continue.json
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	1497	src/ui-ux-pro-max/templates/platforms/copilot.json
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	1449	src/ui-ux-pro-max/templates/platforms/cursor.json
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	1480	src/ui-ux-pro-max/templates/platforms/droid.json
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	1453	src/ui-ux-pro-max/templates/platforms/gemini.json
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	1455	src/ui-ux-pro-max/templates/platforms/kilocode.json
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	1450	src/ui-ux-pro-max/templates/platforms/kiro.json
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	1455	src/ui-ux-pro-max/templates/platforms/opencode.json
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	1446	src/ui-ux-pro-max/templates/platforms/qoder.json
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	1452	src/ui-ux-pro-max/templates/platforms/roocode.json
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	1443	src/ui-ux-pro-max/templates/platforms/trae.json
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	1472	src/ui-ux-pro-max/templates/platforms/universal.json
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	896	src/ui-ux-pro-max/templates/platforms/warp.json
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	1455	src/ui-ux-pro-max/templates/platforms/windsurf.json
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	1446	src/ui-ux-pro-max/templates/platforms/zcode.json
+EXCLUDE	PRODUCT_RUNTIME		4567	stack/.claude/agents/design-review.md
+EXCLUDE	PRODUCT_RUNTIME		1307	stack/.claude/commands/design-plan.md
+EXCLUDE	PRODUCT_RUNTIME		709	stack/.claude/commands/design-review.md
+EXCLUDE	PRODUCT_RUNTIME		367	stack/.claude/settings.json
+EXCLUDE	PRODUCT_RUNTIME		1368	stack/.github/workflows/design-review.yml
+EXCLUDE	PRODUCT_RUNTIME		390	stack/.gitignore
+EXCLUDE	MCP		376	stack/.mcp.json
+EXCLUDE	PRODUCT_RUNTIME		4350	stack/CLAUDE.md
+EXCLUDE	PRODUCT_RUNTIME		4508	stack/README.md
+EXCLUDE	PRODUCT_RUNTIME		2674	stack/docs/SETUP.md
+EXCLUDE	PRODUCT_RUNTIME		3730	stack/docs/STACK.md
+EXCLUDE	PRODUCT_RUNTIME		3370	stack/docs/WORKFLOW.md
+EXCLUDE	PRODUCT_RUNTIME		2932	stack/examples/juniper-audit/README.md
+EXCLUDE	PRODUCT_RUNTIME		1215	stack/examples/juniper-audit/report.json
+EXCLUDE	PRODUCT_RUNTIME		1267	stack/examples/juniper-audit/report.md
+EXCLUDE	PRODUCT_RUNTIME		515579	stack/examples/juniper-audit/screenshots/desktop-1440.png
+EXCLUDE	PRODUCT_RUNTIME		310986	stack/examples/juniper-audit/screenshots/laptop-1024.png
+EXCLUDE	PRODUCT_RUNTIME		190704	stack/examples/juniper-audit/screenshots/mobile-360.png
+EXCLUDE	PRODUCT_RUNTIME		196801	stack/examples/juniper-audit/screenshots/mobile-390.png
+EXCLUDE	PRODUCT_RUNTIME		282633	stack/examples/juniper-audit/screenshots/tablet-768.png
+EXCLUDE	PRODUCT_RUNTIME		588890	stack/examples/juniper-audit/screenshots/wide-1920.png
+EXCLUDE	PRODUCT_RUNTIME		622	stack/package.json
+EXCLUDE	PRODUCT_RUNTIME		11310	stack/scripts/design-audit.mjs
+EXCLUDE	PRODUCT_RUNTIME		1417	stack/scripts/setup.sh

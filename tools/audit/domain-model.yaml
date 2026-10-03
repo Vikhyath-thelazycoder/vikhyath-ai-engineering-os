@@ -1,0 +1,104 @@
+# Vikhyath OS v2 — domain model (P2 draft). Seeds the single capability registry in P7 (spec §13).
+# Domains are user-facing; upstream repos are provenance only (spec §5).
+#
+# origin: bundled   = built from extracted upstream files (extraction-rules.yaml)
+#         os-native = implemented by the OS core (upstream material only as REFERENCE input)
+#         mixed     = both
+# uses:   other capabilities whose bundled files this capability also loads (canonical-source sharing, spec §37)
+# context_level: deepest level loaded by default when the capability is selected (spec §16; L3 only on demand)
+# browser: none | fallback (lazy, headless first, §23A) | required-for-output (the deliverable itself is visual/video)
+# web_qa_class (testing only, §23A.13): CORE | OPTIONAL | FALLBACK
+
+version: 1
+
+domains:
+
+  engineering:
+    purpose: "Plan, build, review and ship software with completion discipline."
+    capabilities:
+      principles:      {purpose: "Think-before-coding, simplicity-first, surgical changes, goal-driven execution", triggers: [principle, guideline, standards], context_level: L1, runtime: none, network: false, browser: none, origin: bundled}
+      planning:        {purpose: "Requirements intake, specs, task breakdown, plan reviews, living implementation plan", triggers: [plan, spec, requirements, prd, roadmap, "new project", breakdown, scope], context_level: L2, runtime: none, network: false, browser: none, origin: mixed}
+      architecture:    {purpose: "System/interface design, boundaries, ADRs, TRD/ARCHITECTURE docs", triggers: [architecture, "system design", api, interface, boundary, adr, trd], context_level: L2, runtime: none, network: false, browser: none, origin: bundled}
+      implementation:  {purpose: "Incremental, source-grounded, constraint-respecting implementation", triggers: [implement, build, add, create, feature], context_level: L2, runtime: none, network: false, browser: none, origin: bundled}
+      backend:         {purpose: "Backend patterns, data layer, error handling, payments/realtime specialists", triggers: [backend, server, database, endpoint, queue, webhook, payment], context_level: L2, runtime: none, network: false, browser: none, origin: bundled}
+      frontend:        {purpose: "Frontend engineering: components, state, accessibility in code, responsiveness", triggers: [frontend, component, react, vue, ui code, mobile app], context_level: L2, runtime: none, network: false, browser: none, origin: bundled, uses: [design/frontend]}
+      security:        {purpose: "Threat-aware hardening, security review, CSO audit, guardrails", triggers: [security, auth, authentication, authorization, csrf, xss, injection, secret, webhook verification, vulnerability, owasp], context_level: L2, runtime: none, network: false, browser: none, origin: bundled}
+      performance:     {purpose: "Measured performance optimization", triggers: [performance, slow, latency, bundle size, optimize], context_level: L2, runtime: none, network: false, browser: none, origin: bundled}
+      review:          {purpose: "Multi-axis code review, pre-landing review, specialist reviewers", triggers: [review, "code review", pr, diff], context_level: L2, runtime: none, network: false, browser: none, origin: bundled}
+      debugging:       {purpose: "Reproduce, root-cause, fix, regression-test", triggers: [bug, error, crash, failing, broken, debug, investigate], context_level: L2, runtime: none, network: false, browser: none, origin: bundled}
+      simplicity:      {purpose: "YAGNI and minimality review (explicit or plan-review time; never always-on)", triggers: [simplify, yagni, overengineered, "too complex", ponytail], context_level: L2, runtime: none, network: false, browser: none, origin: bundled}
+      completion:      {purpose: "Acceptance gates, evidence-backed completion states, no-placeholder output", triggers: [complete, "don't stop", gates, "definition of done"], context_level: L2, runtime: node, network: false, browser: none, origin: bundled}
+      release:         {purpose: "CI/CD, git workflow, shipping, canary, observability-in-app, retros", triggers: [release, ship, deploy, ci, launch to production, canary, retro], context_level: L2, runtime: none, network: false, browser: none, origin: bundled}
+      migration:       {purpose: "Deprecations, schema/data migrations", triggers: [migrate, migration, deprecate, upgrade], context_level: L2, runtime: none, network: false, browser: none, origin: bundled}
+      documentation:   {purpose: "Project docs (PRD/TRD/ARCHITECTURE/…), ADRs, living docs", triggers: [document, docs, readme, adr], context_level: L2, runtime: none, network: false, browser: none, origin: mixed}
+      ai-systems:      {purpose: "LLM/RAG/agent system design, cost-aware pipelines, prompt and AI security", triggers: [llm, ai, rag, agent, prompt, embedding, model], context_level: L2, runtime: none, network: false, browser: none, origin: bundled}
+      stack-packs:     {purpose: "Language/framework rules, patterns, reviewers; selected by detected stack", triggers: [], context_level: L3, runtime: none, network: false, browser: none, origin: bundled}
+
+  codebase:
+    purpose: "Understand an existing project before changing it; narrow the code surface."
+    capabilities:
+      repository-understanding: {purpose: "Build/refresh the code graph; structure, entry points, modules, communities", triggers: [understand, codebase, architecture of, onboard, explore, existing project], context_level: L2, runtime: python-isolated, network: false, browser: none, origin: bundled}
+      impact-analysis:          {purpose: "Affected-file and dependency impact of a change (graph reverse traversal)", triggers: [impact, affected, "what breaks", dependency, blast radius], context_level: L2, runtime: python-isolated, network: false, browser: none, origin: mixed, uses: [codebase/repository-understanding]}
+      code-search:              {purpose: "Scoped subgraph query/path/explain instead of raw file dumps", triggers: [where is, find, how does, trace], context_level: L1, runtime: python-isolated, network: false, browser: none, origin: mixed, uses: [codebase/repository-understanding]}
+
+  design:
+    purpose: "Product-appropriate, non-generic, accessible interfaces with justified decisions."
+    capabilities:
+      design-direction: {purpose: "Design read, dials, aesthetic direction, redesign (preserve/overhaul)", triggers: [design, premium, look, feel, redesign, aesthetic, landing page, generic], context_level: L2, runtime: none, network: false, browser: none, origin: bundled}
+      visual-quality:   {purpose: "Inspectable anti-slop criteria and polish", triggers: [generic, slop, polish, premium, hierarchy, spacing], context_level: L2, runtime: none, network: false, browser: none, origin: bundled}
+      design-system:    {purpose: "Tokens, components, reference systems, design-system recommendation engine", triggers: [design system, tokens, palette, theme, style guide], context_level: L2, runtime: python-stdlib, network: false, browser: none, origin: bundled}
+      typography:       {purpose: "Type scale, hierarchy, color systems", triggers: [typography, font, type, color, contrast], context_level: L2, runtime: none, network: false, browser: none, origin: bundled}
+      ux:               {purpose: "UX laws, flows, forms, state coverage", triggers: [ux, usability, flow, form, onboarding flow, empty state], context_level: L2, runtime: none, network: false, browser: none, origin: bundled}
+      accessibility:    {purpose: "Accessible design baseline and checklist", triggers: [accessibility, a11y, wcag, screen reader, keyboard], context_level: L2, runtime: none, network: false, browser: none, origin: bundled}
+      motion:           {purpose: "Purposeful motion, animation discipline, reduced motion", triggers: [animation, motion, transition, gsap], context_level: L2, runtime: none, network: false, browser: none, origin: bundled}
+      frontend:         {purpose: "Design-intent implementation (styling, shadcn, platform HIGs, image-to-code)", triggers: [style, css, tailwind, shadcn, ui], context_level: L2, runtime: none, network: false, browser: none, origin: bundled}
+      design-review:    {purpose: "Design review and consultation method, specialist design roles", triggers: [design review, critique, audit design], context_level: L2, runtime: none, network: false, browser: fallback, origin: bundled, uses: [design/visual-quality]}
+      brand:            {purpose: "Brand identity, voice, kits", triggers: [brand, logo, identity, voice], context_level: L2, runtime: none, network: false, browser: none, origin: bundled}
+
+  testing:
+    purpose: "Evidence that implementation meets acceptance criteria — local and scripted first."
+    capabilities:
+      strategy:             {purpose: "Test strategy, TDD, test value audit", triggers: [test, tdd, coverage, test plan], context_level: L2, runtime: none, network: false, browser: none, origin: bundled, web_qa_class: CORE}
+      web-verification:     {purpose: "Local-first ladder: build, types, lint, unit/integration, HTTP/API, DOM/state, console/network capture (§23A)", triggers: [verify, check whether, works, flow, login, checkout, qa], context_level: L2, runtime: os-native, network: local-only, browser: none, origin: mixed, web_qa_class: CORE}
+      security:             {purpose: "Authn/authz, input validation, request and dependency checks", triggers: [security test, pentest, auth test], context_level: L2, runtime: os-native, network: local-only, browser: none, origin: mixed, uses: [engineering/security], web_qa_class: CORE}
+      accessibility:        {purpose: "Automated a11y checks (evidence, not WCAG proof)", triggers: [a11y test, accessibility audit], context_level: L2, runtime: os-native, network: false, browser: fallback, origin: mixed, uses: [design/accessibility], web_qa_class: CORE}
+      performance:          {purpose: "Measured latency, sizes, timings, benchmarks", triggers: [benchmark, perf test, load], context_level: L2, runtime: os-native, network: local-only, browser: none, origin: mixed, web_qa_class: CORE}
+      regression:           {purpose: "Regression and AI/eval regression harnesses", triggers: [regression, eval], context_level: L2, runtime: none, network: false, browser: none, origin: bundled, web_qa_class: CORE}
+      release-verification: {purpose: "Re-verify gates and evidence before claiming completion", triggers: [verify complete, ready to ship, done], context_level: L2, runtime: node, network: false, browser: none, origin: bundled, uses: [engineering/completion], web_qa_class: CORE}
+      browser-fallback:     {purpose: "Bounded headless browser (then visible) only when deterministic checks cannot decide; emits BROWSER_FALLBACK_ACTIVATED", triggers: [visually, overlap, screenshot, open the site, rendering], context_level: L2, runtime: playwright-optional, network: local-only, browser: fallback, origin: mixed, web_qa_class: FALLBACK}
+
+  seo:
+    purpose: "Evidence-based website search and AI-search visibility."
+    capabilities:
+      runtime:               {purpose: "Isolated BeyondSEO engine: crawl, extract, audit, report, compare", triggers: [], context_level: L1, runtime: python-isolated, network: true, browser: fallback, origin: bundled}
+      auditing:              {purpose: "Full-site audit workflow, prioritization, delivery standard", triggers: [seo audit, audit my website, why not ranking], context_level: L2, runtime: python-isolated, network: true, browser: fallback, origin: bundled, uses: [seo/runtime, seo/evidence]}
+      technical:             {purpose: "Crawlability, indexing, schema, Core Web Vitals", triggers: [technical seo, indexing, sitemap, robots, schema, canonical], context_level: L2, runtime: python-isolated, network: true, browser: fallback, origin: bundled, uses: [seo/runtime]}
+      on-page:               {purpose: "On-page, internal linking, conversion SEO", triggers: [on-page, title tag, meta, internal links, conversion], context_level: L2, runtime: python-isolated, network: true, browser: none, origin: bundled, uses: [seo/runtime]}
+      content:               {purpose: "Content quality, E-E-A-T, content gaps", triggers: [content gap, content quality, eeat], context_level: L2, runtime: none, network: true, browser: none, origin: bundled}
+      keyword-research:      {purpose: "Discovery, intent, clustering, keyword-to-page map", triggers: [keyword, search intent], context_level: L2, runtime: none, network: true, browser: none, origin: bundled}
+      competitor-research:   {purpose: "Competitor discovery, matrices, gap analyses", triggers: [competitor, competitors], context_level: L2, runtime: python-isolated, network: true, browser: fallback, origin: bundled, uses: [seo/runtime]}
+      ai-search:             {purpose: "AEO and GEO: answer readiness, AI citations", triggers: [ai search, aeo, geo, answer engine, ai overview, chatgpt visibility], context_level: L2, runtime: none, network: true, browser: none, origin: bundled}
+      entity:                {purpose: "Entity SEO and knowledge-graph presence", triggers: [entity, knowledge graph], context_level: L2, runtime: none, network: true, browser: none, origin: bundled}
+      local:                 {purpose: "Local SEO, GBP, NAP, reviews", triggers: [local seo, google business, map pack], context_level: L2, runtime: none, network: true, browser: none, origin: bundled}
+      backlinks-reputation:  {purpose: "Backlink audit/strategy, reputation evidence", triggers: [backlink, reputation, digital pr], context_level: L2, runtime: python-isolated, network: true, browser: none, origin: bundled, uses: [seo/runtime]}
+      strategy:              {purpose: "30/60/90-day plans, growth models, roadmaps", triggers: [seo plan, 90-day, roadmap, strategy], context_level: L2, runtime: none, network: false, browser: none, origin: bundled}
+      research:              {purpose: "Search/analytics integrations, deep research, discovery docs", triggers: [search console, analytics, research], context_level: L3, runtime: python-isolated, network: true, browser: fallback, origin: bundled}
+      evidence:              {purpose: "FACT/OBSERVATION/INFERENCE/HYPOTHESIS/UNKNOWN evidence model over BeyondSEO capture quality", triggers: [], context_level: L1, runtime: python-isolated, network: false, browser: none, origin: mixed}
+      reporting:             {purpose: "Reports and templates", triggers: [seo report], context_level: L2, runtime: python-isolated, network: false, browser: none, origin: bundled}
+      website-work:          {purpose: "Authorized live-site edits (explicit authorization gate)", triggers: [publish fix to site, ftp, sftp], context_level: L2, runtime: python-isolated, network: true, browser: none, origin: bundled}
+
+  media:
+    purpose: "Launch and showcase artifacts — never activates backend capabilities."
+    capabilities:
+      launch-video: {purpose: "Launch video from project or URL (brag-slim default; full brag when Hyperframes is present)", triggers: [launch video, brag, promo video, video plan], context_level: L2, runtime: python-uv, network: optional, browser: required-for-output, origin: bundled}
+      demo:         {purpose: "UI demo recording and video editing", triggers: [demo, walkthrough, screen recording], context_level: L2, runtime: playwright-optional, network: false, browser: required-for-output, origin: bundled}
+      presentation: {purpose: "Decks, one-pagers, slides", triggers: [slides, deck, presentation, one-pager], context_level: L2, runtime: none, network: false, browser: none, origin: bundled}
+      showcase:     {purpose: "Launch copy and storytelling", triggers: [launch post, showcase, copy, announcement], context_level: L2, runtime: none, network: false, browser: none, origin: bundled}
+
+  observability:
+    purpose: "Structured, redacted events about OS activity; data source for the dashboard."
+    capabilities:
+      events:         {purpose: "Event model and append-only per-project event log", triggers: [], context_level: L1, runtime: os-native, network: false, browser: none, origin: os-native}
+      sessions:       {purpose: "Session/agent state model (SLEEPING…FAILED)", triggers: [], context_level: L1, runtime: os-native, network: false, browser: none, origin: os-native}
+      token-metrics:  {purpose: "Bytes/token estimates and usage per routing decision", triggers: [token usage, cost], context_level: L1, runtime: os-native, network: false, browser: none, origin: os-native}
+      risk-detection: {purpose: "Declarative risky-command/injection/exfiltration rules over OS events", triggers: [], context_level: L1, runtime: os-native, network: false, browser: none, origin: mixed}

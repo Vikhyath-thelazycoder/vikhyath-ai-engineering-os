@@ -1,0 +1,10 @@
+decision	reason	capability	bytes	path
+EXCLUDE	HOST_PORT		758	.claude-plugin/marketplace.json
+EXCLUDE	HOST_PORT		390	.claude-plugin/plugin.json
+EXCLUDE	HOST_PORT		2638	.cursor/rules/karpathy-guidelines.mdc
+EXCLUDE	HOST_PORT		2357	CLAUDE.md
+EXCLUDE	HOST_PORT		1955	CURSOR.md
+COPY	Worked examples (Level 3)	engineering/principles	14838	EXAMPLES.md
+REFERENCE	Attribution source; MIT declared without LICENSE text (L-1)		6198	README.md
+EXCLUDE	HOST_PORT		6042	README.zh.md
+COPY	Four engineering principles	engineering/principles	2518	skills/karpathy-guidelines/SKILL.md

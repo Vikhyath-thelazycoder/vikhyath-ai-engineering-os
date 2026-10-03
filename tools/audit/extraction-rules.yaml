@@ -1,0 +1,377 @@
+# Vikhyath OS v2 — upstream extraction rules (P2 draft; consumed by tools/audit/extraction_matrix.py, later by the P6 bundler)
+#
+# Every tracked upstream file receives exactly one decision: the FIRST rule whose glob matches wins,
+# otherwise the repo default applies. Globs: fnmatch with `**` = any depth.
+# Decisions (spec §38): COPY (verbatim), ADAPT (rewritten into domain form), WRAP (invoked through an OS wrapper),
+# REFERENCE (stays in staging; design input only, never bundled), PRESERVE (intact subsystem), EXCLUDE.
+# D-005 selective real extraction · D-006 dependency closure · D-002 licenses never block (but LICENSE/NOTICE are carried).
+
+version: 1
+
+reason_codes:
+  MCP: "MCP server/config/client (spec §2.1)"
+  ALWAYS_ON: "Always-on hook, daemon or background process (spec §2.5)"
+  TELEMETRY: "Telemetry, analytics or remote egress (spec §44)"
+  INSTALLER: "Upstream installer/updater mutating host config (OS install flow owns this, §34)"
+  HOST_PORT: "Per-host copy of canonical content (adapters render host forms, §2.2)"
+  TRANSLATION: "Translated duplicate of canonical English content"
+  OUT_OF_DOMAIN: "No Vikhyath domain needs it"
+  PRODUCT_RUNTIME: "Upstream product app/daemon/cloud, not a capability"
+  DUPLICATE: "Byte-identical or equivalent copy of a canonical file elsewhere"
+  SUPERSEDED: "Replaced by a better source or by an OS-native mechanism"
+  REPO_META: "Repository plumbing (CI, issue templates, badges, release tooling)"
+  DOC_ASSET: "README/docs imagery or marketing material"
+  UPSTREAM_DEV: "Upstream build/dev/test tooling for excluded code"
+  GENERATED: "Generated artifact; bundle the source instead"
+  PAID_API: "Requires a paid third-party generation API"
+  HOST_SPECIFIC_TOOL: "Requires a proprietary tool not available to the OS (e.g. Figma, Aside)"
+  LICENSE: "License/notice file (carried verbatim with bundled content, D-002)"
+
+repos:
+
+  # ------------------------------------------------------------------ ENGINEERING SOURCES
+  karpathy:
+    default: {decision: EXCLUDE, reason: HOST_PORT}
+    rules:
+      - {paths: ["skills/karpathy-guidelines/SKILL.md"], decision: COPY, capability: engineering/principles, reason: "Four engineering principles"}
+      - {paths: ["EXAMPLES.md"], decision: COPY, capability: engineering/principles, reason: "Worked examples (Level 3)"}
+      - {paths: ["README.md"], decision: REFERENCE, reason: "Attribution source; MIT declared without LICENSE text (L-1)"}
+
+  unlazy:
+    default: {decision: PRESERVE, capability: engineering/completion, reason: "Executable completion discipline; SKILL.md references templates/, references/, scripts/ (closure)"}
+    rules:
+      - {paths: ["LICENSE"], decision: COPY, capability: engineering/completion, reason: LICENSE}
+      - {paths: [".github/**", ".gitignore", "CONTRIBUTING.md", "CHANGELOG.md"], decision: EXCLUDE, reason: REPO_META}
+      - {paths: ["research/**"], decision: PRESERVE, capability: engineering/completion, reason: "Validation protocol linked from references/method.md and token-economy.md (closure)"}
+      - {paths: ["agents/openai.yaml"], decision: REFERENCE, reason: "Codex interface hint; adapter renders its own"}
+      - {paths: ["scripts/install-hooks.mjs"], decision: PRESERVE, capability: engineering/completion, reason: "INERT: required by upstream self-check tests; never invoked by the OS; adapted SKILL.md omits it (§2.3)"}
+      - {paths: ["SKILL.md"], decision: ADAPT, capability: engineering/completion, reason: "Hook-install step rewritten to OS central Stop-hook registration (§2.3)"}
+      - {paths: ["README.md"], decision: EXCLUDE, reason: REPO_META}
+
+  ponytail:
+    default: {decision: EXCLUDE, reason: HOST_PORT}
+    rules:
+      - {paths: ["LICENSE"], decision: COPY, capability: engineering/simplicity, reason: LICENSE}
+      - {paths: ["skills/ponytail/SKILL.md", "skills/ponytail-review/SKILL.md", "skills/ponytail-audit/SKILL.md", "skills/ponytail-debt/SKILL.md", "skills/ponytail-gain/SKILL.md"], decision: ADAPT, capability: engineering/simplicity, reason: "Simplicity/YAGNI discipline; loaded only via routing (never via hooks)"}
+      - {paths: ["skills/ponytail-help/SKILL.md"], decision: EXCLUDE, reason: SUPERSEDED}
+      - {paths: ["examples/**"], decision: COPY, capability: engineering/simplicity, reason: "Worked examples (Level 3)"}
+      - {paths: ["hooks/ponytail-instructions.js"], decision: REFERENCE, reason: "Ruleset text source for lite/full/ultra levels"}
+      - {paths: ["hooks/**", "scripts/**", "plugin.json", "plugin.yaml", "package.json", "opencode.json", "gemini-extension.json", "__init__.py"], decision: EXCLUDE, reason: ALWAYS_ON}
+      - {paths: ["ponytail-mcp/**"], decision: EXCLUDE, reason: MCP}
+      - {paths: ["benchmarks/**"], decision: REFERENCE, reason: "Benchmark methodology for P25 (calls remote LLMs; never bundled)"}
+      - {paths: ["tests/**", "pi-extension/**"], decision: EXCLUDE, reason: UPSTREAM_DEV}
+
+  addy:
+    default: {decision: EXCLUDE, reason: HOST_PORT}
+    rules:
+      - {paths: ["LICENSE"], decision: COPY, capability: engineering/planning, reason: LICENSE}
+      - {paths: ["references/security-checklist.md"], decision: COPY, capability: engineering/security, reason: "Shared reference linked from skills (closure)"}
+      - {paths: ["references/performance-checklist.md"], decision: COPY, capability: engineering/performance, reason: "Shared reference (closure)"}
+      - {paths: ["references/accessibility-checklist.md"], decision: COPY, capability: design/accessibility, reason: "Shared reference (closure)"}
+      - {paths: ["references/testing-patterns.md"], decision: COPY, capability: testing/strategy, reason: "Shared reference (closure)"}
+      - {paths: ["references/definition-of-done.md"], decision: COPY, capability: engineering/completion, reason: "Shared reference (closure)"}
+      - {paths: ["references/observability-checklist.md"], decision: COPY, capability: engineering/release, reason: "Shared reference (closure)"}
+      - {paths: ["references/orchestration-patterns.md"], decision: COPY, capability: engineering/planning, reason: "Shared reference (closure)"}
+      - {paths: ["skills/spec-driven-development/**", "skills/planning-and-task-breakdown/**", "skills/interview-me/**", "skills/idea-refine/**"], decision: ADAPT, capability: engineering/planning, reason: "Requirements and planning"}
+      - {paths: ["skills/api-and-interface-design/**", "skills/documentation-and-adrs/**"], decision: ADAPT, capability: engineering/architecture, reason: "Interface design, ADRs"}
+      - {paths: ["skills/incremental-implementation/**", "skills/source-driven-development/**", "skills/constraint-driven-development/**", "skills/doubt-driven-development/**"], decision: ADAPT, capability: engineering/implementation, reason: "Implementation discipline"}
+      - {paths: ["skills/frontend-ui-engineering/**"], decision: ADAPT, capability: engineering/frontend, reason: "Frontend engineering"}
+      - {paths: ["skills/security-and-hardening/**"], decision: ADAPT, capability: engineering/security, reason: "Security hardening + hardening-patterns reference"}
+      - {paths: ["skills/performance-optimization/**"], decision: ADAPT, capability: engineering/performance, reason: "Performance + optimization-patterns reference"}
+      - {paths: ["skills/code-review-and-quality/**"], decision: ADAPT, capability: engineering/review, reason: "Multi-axis review"}
+      - {paths: ["skills/debugging-and-error-recovery/**"], decision: ADAPT, capability: engineering/debugging, reason: "Root-cause debugging"}
+      - {paths: ["skills/code-simplification/**"], decision: ADAPT, capability: engineering/simplicity, reason: "Behavior-preserving simplification"}
+      - {paths: ["skills/shipping-and-launch/**", "skills/ci-cd-and-automation/**", "skills/git-workflow-and-versioning/**", "skills/observability-and-instrumentation/**"], decision: ADAPT, capability: engineering/release, reason: "Release and production readiness"}
+      - {paths: ["skills/deprecation-and-migration/**"], decision: ADAPT, capability: engineering/migration, reason: "Deprecation and migration"}
+      - {paths: ["skills/test-driven-development/**"], decision: ADAPT, capability: testing/strategy, reason: "TDD loop"}
+      - {paths: ["skills/browser-testing-with-devtools/**"], decision: ADAPT, capability: testing/browser-fallback, reason: "Rewrite without DevTools MCP into the §23A ladder"}
+      - {paths: ["skills/context-engineering/**"], decision: REFERENCE, reason: "Design input for the OS context engine (P9)"}
+      - {paths: ["skills/using-agent-skills/**"], decision: EXCLUDE, reason: SUPERSEDED}
+      - {paths: ["docs/agents.md"], decision: COPY, capability: engineering/review, reason: "Agent usage doc linked from all 4 agents (closure)"}
+      - {paths: ["agents/code-reviewer.md"], decision: ADAPT, capability: engineering/review, reason: "Reviewer role"}
+      - {paths: ["agents/security-auditor.md"], decision: ADAPT, capability: engineering/security, reason: "Security auditor role"}
+      - {paths: ["agents/test-engineer.md"], decision: ADAPT, capability: testing/strategy, reason: "Test engineer role"}
+      - {paths: ["agents/web-performance-auditor.md"], decision: ADAPT, capability: testing/performance, reason: "Web performance role"}
+      - {paths: ["commands/**", ".claude/commands/**", ".gemini/**"], decision: REFERENCE, reason: "Lifecycle command design input for adapters (P19–P22)"}
+      - {paths: ["evals/**"], decision: REFERENCE, reason: "Skill eval cases reused as P25 acceptance tests"}
+      - {paths: ["hooks/**", "scripts/**", ".github/**", "docs/**", "README.md", "AGENTS.md", "CLAUDE.md", "CONTRIBUTING.md", ".gitattributes", ".gitignore", "plugin.json"], decision: EXCLUDE, reason: REPO_META}
+
+  agency:
+    default: {decision: EXCLUDE, reason: OUT_OF_DOMAIN}
+    rules:
+      - {paths: ["LICENSE"], decision: COPY, capability: engineering/architecture, reason: LICENSE}
+      - {paths: ["integrations/mcp-memory/**"], decision: EXCLUDE, reason: MCP}
+      - {paths: ["integrations/**"], decision: EXCLUDE, reason: HOST_PORT}
+      - {paths: ["scripts/**", ".github/**"], decision: EXCLUDE, reason: INSTALLER}
+      - {paths: ["tools.json", "divisions.json"], decision: REFERENCE, reason: "Host install contracts (P3 host audit evidence)"}
+      - {paths: ["design/*.md"], decision: ADAPT, capability: design/design-review, reason: "Design specialist roles (subcapability set in P3)"}
+      - {paths: ["testing/testing-accessibility-auditor.md"], decision: ADAPT, capability: testing/accessibility, reason: "Accessibility auditor role"}
+      - {paths: ["testing/testing-performance-benchmarker.md"], decision: ADAPT, capability: testing/performance, reason: "Performance role"}
+      - {paths: ["testing/testing-api-tester.md", "testing/testing-evidence-collector.md"], decision: ADAPT, capability: testing/web-verification, reason: "API testing and evidence collection"}
+      - {paths: ["testing/testing-reality-checker.md", "testing/testing-test-results-analyzer.md"], decision: ADAPT, capability: testing/release-verification, reason: "Reality check of completion claims"}
+      - {paths: ["testing/*.md"], decision: ADAPT, capability: testing/strategy, reason: "Testing roles"}
+      - {paths: ["security/security-blockchain-security-auditor.md"], decision: EXCLUDE, reason: OUT_OF_DOMAIN}
+      - {paths: ["security/*.md"], decision: ADAPT, capability: engineering/security, reason: "Security specialist roles"}
+      - {paths: ["product/*.md"], decision: ADAPT, capability: engineering/planning, reason: "Product roles for requirements intake"}
+      - {paths: ["project-management/project-management-project-shepherd.md", "project-management/project-manager-senior.md"], decision: ADAPT, capability: engineering/planning, reason: "Plan stewardship"}
+      - {paths: ["marketing/marketing-seo-specialist.md"], decision: ADAPT, capability: seo/strategy, reason: "SEO specialist role"}
+      - {paths: ["marketing/marketing-content-creator.md", "marketing/marketing-video-optimization-specialist.md", "marketing/marketing-short-video-editing-coach.md"], decision: ADAPT, capability: media/launch-video, reason: "Launch content roles"}
+      - {paths: ["specialized/specialized-codebase-archaeologist.md"], decision: ADAPT, capability: codebase/repository-understanding, reason: "Codebase archaeology role"}
+      - {paths: ["specialized/specialized-workflow-architect.md", "specialized/specialized-document-generator.md", "specialized/specialized-model-qa.md"], decision: ADAPT, capability: engineering/documentation, reason: "Workflow/doc/model QA roles"}
+      - {paths: ["engineering/engineering-backend-architect.md", "engineering/engineering-software-architect.md", "engineering/engineering-api-platform-engineer.md", "engineering/engineering-platform-engineer.md"], decision: ADAPT, capability: engineering/architecture, reason: "Architecture roles"}
+      - {paths: ["engineering/engineering-frontend-developer.md", "engineering/engineering-mobile-app-builder.md", "engineering/engineering-i18n-engineer.md"], decision: ADAPT, capability: engineering/frontend, reason: "Frontend/mobile roles"}
+      - {paths: ["engineering/engineering-code-reviewer.md", "engineering/engineering-senior-developer.md"], decision: ADAPT, capability: engineering/review, reason: "Review roles"}
+      - {paths: ["engineering/engineering-codebase-onboarding-engineer.md"], decision: ADAPT, capability: codebase/repository-understanding, reason: "Onboarding role"}
+      - {paths: ["engineering/engineering-database-optimizer.md", "engineering/engineering-database-reliability-engineer.md", "engineering/engineering-data-engineer.md", "engineering/engineering-payments-billing-engineer.md", "engineering/engineering-realtime-collaboration-engineer.md", "engineering/engineering-search-relevance-engineer.md"], decision: ADAPT, capability: engineering/backend, reason: "Backend specialist roles"}
+      - {paths: ["engineering/engineering-identity-access-engineer.md", "engineering/engineering-privacy-engineer.md"], decision: ADAPT, capability: engineering/security, reason: "Identity/privacy roles"}
+      - {paths: ["engineering/engineering-devops-automator.md", "engineering/engineering-sre.md", "engineering/engineering-incident-response-commander.md", "engineering/engineering-git-workflow-master.md"], decision: ADAPT, capability: engineering/release, reason: "Delivery/operations roles"}
+      - {paths: ["engineering/engineering-minimal-change-engineer.md"], decision: ADAPT, capability: engineering/simplicity, reason: "Minimal-change role"}
+      - {paths: ["engineering/engineering-rapid-prototyper.md"], decision: ADAPT, capability: engineering/implementation, reason: "Prototyping role"}
+      - {paths: ["engineering/engineering-ai-engineer.md", "engineering/engineering-prompt-engineer.md", "engineering/engineering-rag-pipeline-engineer.md", "engineering/engineering-multi-agent-systems-architect.md", "engineering/engineering-voice-ai-integration-engineer.md"], decision: ADAPT, capability: engineering/ai-systems, reason: "AI/LLM system roles"}
+      - {paths: ["engineering/engineering-technical-writer.md"], decision: ADAPT, capability: engineering/documentation, reason: "Technical writing role"}
+
+  gstack:
+    default: {decision: EXCLUDE, reason: OUT_OF_DOMAIN}
+    rules:
+      - {paths: ["LICENSE", "NOTICE.md", "licenses/**"], decision: COPY, capability: engineering/review, reason: LICENSE}
+      - {paths: ["**/SKILL.md"], decision: EXCLUDE, reason: GENERATED}
+      - {paths: ["bin/gstack-telemetry*", "bin/gstack-analytics", "supabase/**"], decision: EXCLUDE, reason: TELEMETRY}
+      - {paths: ["bin/gstack-update-check", "gstack-upgrade/**", "setup", "setup-*/**"], decision: EXCLUDE, reason: INSTALLER}
+      - {paths: ["browse/**", "browser-skills/**", "open-gstack-browser/**", "setup-browser-cookies/**", "pair-agent/**", "scrape/**", "skillify/**", "extension/**", "connect-chrome/**", "BROWSER.md"], decision: EXCLUDE, reason: ALWAYS_ON}
+      - {paths: ["scripts/resolvers/**"], decision: REFERENCE, reason: "Placeholder semantics; the OS template renderer (P6/P13) resolves kept placeholders at bundle-build time and drops PREAMBLE/telemetry/gbrain/aside/browse ones"}
+      - {paths: ["lib/cso/**"], decision: REFERENCE, reason: "Bun qualification runtime (docker images); CSO methodology is bundled from cso/"}
+      - {paths: ["office-hours/**", "spec/**"], decision: ADAPT, capability: engineering/planning, reason: "Requirements intake and spec workflows (.tmpl + sections)"}
+      - {paths: ["plan-eng-review/**", "plan-ceo-review/**"], decision: ADAPT, capability: engineering/planning, reason: "Plan review perspectives"}
+      - {paths: ["plan-design-review/**", "design-review/**", "design-consultation/**"], decision: ADAPT, capability: design/design-review, reason: "Design review and consultation method"}
+      - {paths: ["lib/design-catalog.ts"], decision: ADAPT, capability: design/visual-quality, reason: "Anti-pattern catalogue (Apache-derived per NOTICE)"}
+      - {paths: ["review/**"], decision: ADAPT, capability: engineering/review, reason: "Pre-landing review + checklists + specialists"}
+      - {paths: ["investigate/**"], decision: ADAPT, capability: engineering/debugging, reason: "Root-cause investigation"}
+      - {paths: ["qa/sections/browser-setup.md*", "qa/sections/browser-verify.md*"], decision: ADAPT, capability: testing/browser-fallback, reason: "Browser steps rewritten to lazy headless fallback (§23A)"}
+      - {paths: ["qa/**", "qa-only/**"], decision: ADAPT, capability: testing/web-verification, reason: "QA methodology + issue taxonomy (local-first ladder)"}
+      - {paths: ["cso/**"], decision: ADAPT, capability: engineering/security, reason: "Security audit phases (CSO)"}
+      - {paths: ["ship/**", "document-release/**", "canary/**"], decision: ADAPT, capability: engineering/release, reason: "Ship/release/canary methodology"}
+      - {paths: ["retro/**"], decision: ADAPT, capability: engineering/release, reason: "Retrospectives"}
+      - {paths: ["document-generate/**"], decision: ADAPT, capability: engineering/documentation, reason: "Documentation generation"}
+      - {paths: ["health/**", "test-audit/**"], decision: ADAPT, capability: testing/strategy, reason: "Code health and test value audit"}
+      - {paths: ["careful/**", "guard/**", "freeze/**", "unfreeze/**"], decision: ADAPT, capability: engineering/security, reason: "Destructive-command guardrails (opt-in)"}
+      - {paths: ["deslop-shared-libs/**"], decision: ADAPT, capability: engineering/simplicity, reason: "Shared-code extraction review"}
+      - {paths: ["context-save/**", "context-restore/**"], decision: REFERENCE, reason: "Design input for project state (P10)"}
+      - {paths: ["lib/code-intelligence/**"], decision: REFERENCE, reason: "Existing Graphify adapter; design input for P12"}
+      - {paths: ["ETHOS.md", "ARCHITECTURE.md", "DESIGN.md"], decision: REFERENCE, reason: "Methodology background"}
+
+  ecc:
+    default: {decision: EXCLUDE, reason: OUT_OF_DOMAIN}
+    rules:
+      - {paths: ["LICENSE"], decision: COPY, capability: engineering/planning, reason: LICENSE}
+      - {paths: [".mcp.json", "**/*mcp*/**", "skills/mcp-server-patterns/**", "skills/codehealth-mcp/**", "scripts/memory-mcp.mjs"], decision: EXCLUDE, reason: MCP}
+      - {paths: ["hooks/**", "scripts/hooks/**"], decision: REFERENCE, reason: "Hook behaviors; config-protection/format-typecheck/cost-tracker/pre-compact re-implemented as opt-in OS hooks (SEC-01)"}
+      - {paths: ["ecc2/**", "src/**"], decision: EXCLUDE, reason: ALWAYS_ON}
+      - {paths: ["docs/ja-JP/**", "docs/zh-CN/**", "docs/zh-TW/**", "docs/ko-KR/**", "docs/tr/**", "docs/es/**", "docs/pt-BR/**", "README.zh-CN.md"], decision: EXCLUDE, reason: TRANSLATION}
+      - {paths: [".agents/**", ".claude/**", ".codex/**", ".cursor/**", ".kiro/**", ".opencode/**", ".gemini/**", ".trae/**", ".codebuddy/**", ".qwen/**", ".zed/**", ".pi/**", ".adal/**", ".hermes/**", ".kimi/**", ".openclaw/**", "pi/**", "plugins/**", "legacy-command-shims/**", "commands/**"], decision: EXCLUDE, reason: HOST_PORT}
+      - {paths: ["skills/seo/**", "agents/seo-specialist.md"], decision: EXCLUDE, reason: SUPERSEDED}
+      - {paths: ["skills/context-budget/**", "skills/content-hash-cache-pattern/**", "skills/strategic-compact/**", "skills/token-budget-advisor/**", "skills/iterative-retrieval/**", "skills/cost-tracking/**", "docker/context-profiles/**"], decision: REFERENCE, reason: "Design input for the OS context engine and token metrics (P9, P18)"}
+      # closure of selected skills/agents (D-006)
+      - {paths: ["scripts/eval-harness.js", "scripts/lib/eval-harness*", "scripts/lib/eval-harness/**", "docs/architecture/eval-harness-frameworks.md"], decision: PRESERVE, capability: testing/regression, reason: "Run by skills/eval-harness (closure)"}
+      - {paths: ["scripts/setup-package-manager.js", "scripts/lib/package-manager.js", "scripts/lib/utils.js", "scripts/lib/agent-data-home.js", "scripts/lib/path-safety.js"], decision: PRESERVE, capability: testing/strategy, reason: "Run by skills/tdd-workflow (closure)"}
+      - {paths: ["scripts/codemaps/**"], decision: PRESERVE, capability: engineering/documentation, reason: "Run by agents/doc-updater (closure)"}
+      # core engineering
+      - {paths: ["skills/coding-standards/**", "skills/search-first/**"], decision: ADAPT, capability: engineering/principles, reason: "Engineering principles"}
+      - {paths: ["skills/blueprint/**", "skills/intent-driven-development/**", "skills/product-lens/**", "agents/planner.md"], decision: ADAPT, capability: engineering/planning, reason: "Planning"}
+      - {paths: ["skills/hexagonal-architecture/**", "skills/architecture-decision-records/**", "skills/api-design/**", "skills/contract-first/**", "agents/architect.md", "agents/code-architect.md", "agents/type-design-analyzer.md"], decision: ADAPT, capability: engineering/architecture, reason: "Architecture"}
+      - {paths: ["skills/backend-patterns/**", "skills/error-handling/**", "agents/database-reviewer.md"], decision: ADAPT, capability: engineering/backend, reason: "Backend patterns"}
+      - {paths: ["skills/frontend-patterns/**"], decision: ADAPT, capability: engineering/frontend, reason: "Frontend patterns"}
+      - {paths: ["skills/security-review/**", "skills/security-scan/**", "skills/safety-guard/**", "agents/security-reviewer.md"], decision: ADAPT, capability: engineering/security, reason: "Security review"}
+      - {paths: ["agents/performance-optimizer.md"], decision: ADAPT, capability: engineering/performance, reason: "Performance role"}
+      - {paths: ["agents/code-reviewer.md", "agents/comment-analyzer.md", "agents/pr-test-analyzer.md"], decision: ADAPT, capability: engineering/review, reason: "Review roles"}
+      - {paths: ["agents/silent-failure-hunter.md", "agents/build-error-resolver.md", "skills/agent-introspection-debugging/**"], decision: ADAPT, capability: engineering/debugging, reason: "Debugging"}
+      - {paths: ["agents/code-simplifier.md", "agents/refactor-cleaner.md"], decision: ADAPT, capability: engineering/simplicity, reason: "Simplification roles"}
+      - {paths: ["skills/deployment-patterns/**", "skills/docker-patterns/**", "skills/git-workflow/**", "skills/canary-watch/**", "skills/production-audit/**"], decision: ADAPT, capability: engineering/release, reason: "Release"}
+      - {paths: ["skills/database-migrations/**"], decision: ADAPT, capability: engineering/migration, reason: "Migrations"}
+      - {paths: ["skills/living-docs-governance/**", "agents/doc-updater.md"], decision: ADAPT, capability: engineering/documentation, reason: "Docs"}
+      - {paths: ["skills/cost-aware-llm-pipeline/**", "skills/agent-harness-construction/**", "skills/agentic-engineering/**", "skills/prompt-optimizer/**", "skills/regex-vs-llm-structured-text/**", "agents/rag-pipeline-reviewer.md", "agents/mle-reviewer.md"], decision: ADAPT, capability: engineering/ai-systems, reason: "AI/LLM systems"}
+      - {paths: ["skills/delivery-gate/**", "skills/verification-loop/**"], decision: ADAPT, capability: testing/release-verification, reason: "Verification before completion"}
+      # codebase
+      - {paths: ["skills/codebase-onboarding/**", "skills/code-tour/**", "skills/repo-scan/**", "skills/workspace-surface-audit/**", "agents/code-explorer.md", "agents/spec-miner.md"], decision: ADAPT, capability: codebase/repository-understanding, reason: "Codebase understanding"}
+      # testing
+      - {paths: ["skills/tdd-workflow/**", "agents/tdd-guide.md"], decision: ADAPT, capability: testing/strategy, reason: "TDD"}
+      - {paths: ["skills/e2e-testing/**", "skills/browser-qa/**", "skills/click-path-audit/**", "agents/e2e-runner.md"], decision: ADAPT, capability: testing/browser-fallback, reason: "Headless E2E (lazy, fallback per §23A; MCP removed)"}
+      - {paths: ["skills/ai-regression-testing/**", "skills/eval-harness/**"], decision: ADAPT, capability: testing/regression, reason: "Regression and eval harness"}
+      - {paths: ["skills/benchmark/**", "skills/benchmark-methodology/**"], decision: ADAPT, capability: testing/performance, reason: "Benchmarks"}
+      # design
+      - {paths: ["skills/design-system/**"], decision: ADAPT, capability: design/design-system, reason: "Design systems"}
+      - {paths: ["skills/frontend-design-direction/**", "skills/inherit-legacy-style/**"], decision: ADAPT, capability: design/design-direction, reason: "Direction, legacy-style preservation"}
+      - {paths: ["skills/taste-application/**", "skills/taste-distillation/**"], decision: EXCLUDE, reason: PAID_API}
+      - {paths: ["skills/taste/**"], decision: EXCLUDE, reason: OUT_OF_DOMAIN}
+      - {paths: ["skills/make-interfaces-feel-better/**"], decision: ADAPT, capability: design/visual-quality, reason: "UI polish"}
+      - {paths: ["skills/accessibility/**", "skills/frontend-a11y/**", "agents/a11y-architect.md"], decision: ADAPT, capability: design/accessibility, reason: "Accessibility"}
+      - {paths: ["skills/motion-foundations/**", "skills/motion-patterns/**", "skills/motion-advanced/**"], decision: ADAPT, capability: design/motion, reason: "Motion"}
+      # media
+      - {paths: ["skills/ui-demo/**", "skills/video-editing/**", "skills/remotion-video-creation/**"], decision: ADAPT, capability: media/demo, reason: "Demo and video production"}
+      - {paths: ["skills/frontend-slides/**"], decision: ADAPT, capability: media/presentation, reason: "Presentations"}
+      - {paths: ["skills/brand-voice/**", "skills/brand-discovery/**"], decision: ADAPT, capability: design/brand, reason: "Brand voice"}
+      # stack packs (activated by detected stack; Level 3)
+      - {paths: ["rules/common/**", "rules/web/**", "rules/README.md"], decision: ADAPT, capability: engineering/stack-packs, reason: "Cross-language rules"}
+      - {paths: ["rules/**"], decision: ADAPT, capability: engineering/stack-packs, reason: "Language rule packs"}
+      - {paths: ["skills/python-*/**", "skills/django-*/**", "skills/fastapi-patterns/**", "skills/pytorch-patterns/**",
+                 "skills/golang-*/**", "skills/rust-*/**", "skills/java-coding-standards/**", "skills/jpa-patterns/**", "skills/springboot-*/**", "skills/quarkus-*/**",
+                 "skills/kotlin-*/**", "skills/android-clean-architecture/**", "skills/compose-multiplatform-patterns/**",
+                 "skills/swift*/**", "skills/dart-flutter-patterns/**", "skills/flutter-dart-code-review/**",
+                 "skills/cpp-*/**", "skills/csharp-testing/**", "skills/dotnet-patterns/**", "skills/fsharp-testing/**",
+                 "skills/react-*/**", "skills/vue-patterns/**", "skills/nextjs-turbopack/**", "skills/nuxt4-patterns/**", "skills/angular-developer/**", "skills/vite-patterns/**", "skills/bun-runtime/**", "skills/nestjs-patterns/**",
+                 "skills/laravel-*/**", "skills/rails-patterns/**", "skills/perl-*/**",
+                 "skills/postgres-patterns/**", "skills/mysql-patterns/**", "skills/redis-patterns/**", "skills/prisma-patterns/**", "skills/clickhouse-io/**", "skills/kubernetes-patterns/**"],
+         decision: ADAPT, capability: engineering/stack-packs, reason: "Language/framework packs"}
+      - {paths: ["agents/*-reviewer.md", "agents/*-build-resolver.md"], decision: ADAPT, capability: engineering/stack-packs, reason: "Per-language reviewer/build roles"}
+
+  # ------------------------------------------------------------------ CODEBASE
+  graphify:
+    default: {decision: EXCLUDE, reason: UPSTREAM_DEV}
+    rules:
+      - {paths: ["LICENSE", "LICENSE-MIT", "NOTICE"], decision: COPY, capability: codebase/repository-understanding, reason: LICENSE}
+      - {paths: ["graphify/serve.py"], decision: EXCLUDE, reason: MCP}
+      - {paths: ["graphify/mcp_ingest.py"], decision: PRESERVE, capability: codebase/repository-understanding, reason: "EXCEPTION to MCP exclusion: unconditionally imported by extract.py; parses MCP config files as graph data; no server/client/config/runtime (§2.1 satisfied)"}
+      - {paths: ["graphify/always_on/**", "graphify/skill-*.md", "graphify/command-kilo.md"], decision: EXCLUDE, reason: HOST_PORT}
+      - {paths: ["graphify/skills/claude/**"], decision: ADAPT, capability: codebase/repository-understanding, reason: "One canonical codebase skill + references"}
+      - {paths: ["graphify/skills/**"], decision: EXCLUDE, reason: HOST_PORT}
+      - {paths: ["graphify/skill.md"], decision: REFERENCE, reason: "Generic skill text"}
+      - {paths: ["graphify/**", "pyproject.toml", "uv.lock"], decision: PRESERVE, capability: codebase/repository-understanding, reason: "Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)"}
+      - {paths: ["tests/**"], decision: PRESERVE, capability: codebase/repository-understanding, reason: "Runtime self-test (P12)"}
+      - {paths: ["worked/**"], decision: REFERENCE, reason: "Worked examples"}
+
+  # ------------------------------------------------------------------ DESIGN
+  opendesign:
+    default: {decision: EXCLUDE, reason: PRODUCT_RUNTIME}
+    rules:
+      - {paths: ["LICENSE"], decision: COPY, capability: design/visual-quality, reason: LICENSE}
+      - {paths: ["craft/anti-ai-slop.md", "craft/state-coverage.md"], decision: COPY, capability: design/visual-quality, reason: "Inspectable anti-slop criteria (§27)"}
+      - {paths: ["craft/typography*.md", "craft/color.md"], decision: COPY, capability: design/typography, reason: "Typography and color"}
+      - {paths: ["craft/accessibility-baseline.md", "craft/rtl-and-bidi.md"], decision: COPY, capability: design/accessibility, reason: "Accessibility baseline"}
+      - {paths: ["craft/laws-of-ux.md", "craft/form-validation.md"], decision: COPY, capability: design/ux, reason: "UX laws and forms"}
+      - {paths: ["craft/animation-discipline.md"], decision: COPY, capability: design/motion, reason: "Motion discipline"}
+      - {paths: ["craft/README.md", "craft/FUTURE_SECTIONS.md"], decision: REFERENCE, reason: "Index"}
+      - {paths: ["design-systems/*/DESIGN-*.md"], decision: EXCLUDE, reason: TRANSLATION}
+      - {paths: ["design-systems/_schema/**"], decision: REFERENCE, reason: "TS schema tooling; format documented in docs/design-systems.md"}
+      - {paths: ["design-systems/*/DESIGN.md", "design-systems/*/design-tokens.json", "design-systems/*/tokens.css", "design-systems/README.md"], decision: COPY, capability: design/design-system, reason: "154 reference design systems (Level 3, indexed)"}
+      - {paths: ["skills/design-brief/**", "skills/creative-director/**", "skills/reference-design-contract/**", "skills/design-md/**"], decision: ADAPT, capability: design/design-direction, reason: "Design direction"}
+      - {paths: ["skills/design-review/**", "skills/impeccable-design-polish/**", "skills/review-animations/**", "skills/web-design-guidelines/**"], decision: ADAPT, capability: design/design-review, reason: "Design review and polish"}
+      - {paths: ["skills/color-expert/**"], decision: ADAPT, capability: design/typography, reason: "Color"}
+      - {paths: ["skills/frontend-design/**", "skills/frontend-skill/**", "skills/shadcn-ui/**", "skills/platform-design/**", "skills/apple-hig/**", "skills/swiftui-design/**"], decision: ADAPT, capability: design/frontend, reason: "Frontend design implementation"}
+      - {paths: ["skills/emil-design-eng/**", "skills/emilkowalski-motion/**", "skills/gsap-*/**"], decision: ADAPT, capability: design/motion, reason: "Motion engineering"}
+      - {paths: ["skills/brand-guidelines/**", "skills/brand-extract/**", "skills/theme-factory/**"], decision: ADAPT, capability: design/brand, reason: "Brand"}
+      - {paths: ["skills/slides/**", "skills/release-notes-one-pager/**", "skills/remotion/**", "skills/video-hyperframes/**"], decision: ADAPT, capability: media/presentation, reason: "Presentation and video"}
+      - {paths: ["skills/copywriting/**", "skills/marketing-psychology/**"], decision: ADAPT, capability: media/showcase, reason: "Launch copy"}
+      - {paths: ["skills/taste-skill/**", "skills/taste-skill-v1/**", "skills/gpt-tasteskill/**", "skills/soft-skill/**", "skills/minimalist-skill/**", "skills/brutalist-skill/**", "skills/redesign-skill/**", "skills/stitch-skill/**", "skills/brandkit/**", "skills/output-skill/**", "skills/image-to-code-skill/**", "skills/imagegen-frontend-*/**", "skills/ui-ux-pro-max/**"], decision: EXCLUDE, reason: DUPLICATE}
+      - {paths: ["skills/fal-*/**", "skills/venice-*/**", "skills/sora/**", "skills/replicate/**", "skills/imagen/**", "skills/imagegen/**", "skills/nanobanana-ppt/**", "skills/pixelbin-media/**"], decision: EXCLUDE, reason: PAID_API}
+      - {paths: ["skills/figma-*/**", "skills/stitch-loop/**"], decision: EXCLUDE, reason: HOST_SPECIFIC_TOOL}
+
+  taste:
+    default: {decision: EXCLUDE, reason: DOC_ASSET}
+    rules:
+      - {paths: ["LICENSE"], decision: COPY, capability: design/visual-quality, reason: LICENSE}
+      - {paths: ["skills/taste-skill/SKILL.md"], decision: ADAPT, capability: design/visual-quality, reason: "Anti-slop core; split into sections (87 KB)"}
+      - {paths: ["skills/redesign-skill/SKILL.md"], decision: ADAPT, capability: design/design-direction, reason: "Audit-first redesign"}
+      - {paths: ["skills/soft-skill/SKILL.md", "skills/minimalist-skill/SKILL.md", "skills/brutalist-skill/SKILL.md"], decision: ADAPT, capability: design/design-direction, reason: "Aesthetic presets"}
+      - {paths: ["skills/stitch-skill/**"], decision: ADAPT, capability: design/design-system, reason: "DESIGN.md generation"}
+      - {paths: ["skills/brandkit/SKILL.md"], decision: ADAPT, capability: design/brand, reason: "Brand kit"}
+      - {paths: ["skills/output-skill/SKILL.md"], decision: ADAPT, capability: engineering/completion, reason: "No-placeholder output discipline"}
+      - {paths: ["skills/image-to-code-skill/SKILL.md", "skills/imagegen-frontend-web/SKILL.md", "skills/imagegen-frontend-mobile/SKILL.md"], decision: ADAPT, capability: design/frontend, reason: "Host-conditional: requires an image-generation tool"}
+      - {paths: ["skills/taste-skill-v1/SKILL.md", "skills/gpt-tasteskill/SKILL.md"], decision: EXCLUDE, reason: SUPERSEDED}
+      - {paths: ["skills/llms.txt"], decision: REFERENCE, reason: "Index"}
+      - {paths: ["research/**"], decision: REFERENCE, reason: "LLM laziness research (completion design input)"}
+      - {paths: ["skill.sh", "scripts/**", ".github/**", ".claude-plugin/**"], decision: EXCLUDE, reason: REPO_META}
+
+  uiuxpromax:
+    default: {decision: EXCLUDE, reason: REPO_META}
+    rules:
+      - {paths: ["LICENSE"], decision: COPY, capability: design/design-system, reason: LICENSE}
+      - {paths: ["stack/.mcp.json"], decision: EXCLUDE, reason: MCP}
+      - {paths: ["scripts/evaluate-relevance.py", "scripts/relevance_metrics.py"], decision: PRESERVE, capability: design/design-system, reason: "Loaded by engine relevance tests (closure)"}
+      - {paths: ["src/ui-ux-pro-max/**"], decision: PRESERVE, capability: design/design-system, reason: "Stdlib design-intelligence engine + CSV data + tests (164 OK)"}
+      - {paths: [".claude/skills/ui-ux-pro-max/SKILL.md"], decision: ADAPT, capability: design/design-system, reason: "Engine usage instructions; script paths rewritten to the bundled engine"}
+      - {paths: [".claude/skills/ui-ux-pro-max/references/**"], decision: ADAPT, capability: design/design-system, reason: "Skill references"}
+      - {paths: [".claude/skills/ui-ux-pro-max/**"], decision: EXCLUDE, reason: DUPLICATE}
+      - {paths: [".claude/skills/design/**", ".claude/skills/ui-styling/**"], decision: ADAPT, capability: design/frontend, reason: "UI styling and design guidance"}
+      - {paths: [".claude/skills/design-system/**"], decision: ADAPT, capability: design/design-system, reason: "Token architecture"}
+      - {paths: [".claude/skills/brand/**", ".claude/skills/banner-design/**"], decision: ADAPT, capability: design/brand, reason: "Brand and banners"}
+      - {paths: [".claude/skills/slides/**"], decision: ADAPT, capability: media/presentation, reason: "Slides"}
+      - {paths: ["cli/**"], decision: EXCLUDE, reason: INSTALLER}
+      - {paths: ["stack/**", "gallery/**"], decision: EXCLUDE, reason: PRODUCT_RUNTIME}
+
+  # ------------------------------------------------------------------ MEDIA
+  brag:
+    default: {decision: EXCLUDE, reason: DOC_ASSET}
+    rules:
+      - {paths: ["LICENSE"], decision: COPY, capability: media/launch-video, reason: LICENSE}
+      - {paths: ["skills/brag-slim/**"], decision: PRESERVE, capability: media/launch-video, reason: "Self-contained launch video (default path; closes G-2)"}
+      - {paths: ["skills/brag/**"], decision: PRESERVE, capability: media/launch-video, reason: "Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)"}
+      - {paths: ["PRODUCT.md"], decision: REFERENCE, reason: "Product notes"}
+      - {paths: ["examples/**"], decision: REFERENCE, reason: "Example outputs"}
+
+  # ------------------------------------------------------------------ OBSERVABILITY
+  beacon:
+    default: {decision: EXCLUDE, reason: PRODUCT_RUNTIME}
+    rules:
+      - {paths: ["LICENSE"], decision: COPY, capability: observability/risk-detection, reason: LICENSE}
+      - {paths: ["rules/**"], decision: ADAPT, capability: observability/risk-detection, reason: "77 YAML detection rules with tests; evaluated by an OS CEL-subset engine"}
+      - {paths: ["cli/beacon-hooks/cmd/*.go"], decision: REFERENCE, reason: "Per-host hook payload knowledge for adapters/events"}
+      - {paths: ["cli/beacon/internal/endpoint/asymptote/pack/sample-event.jsonl", "docs/concepts/**"], decision: REFERENCE, reason: "Event schema reference (P18)"}
+      - {paths: ["docs/images/**", "docs/logo/**", "images/**", "docs/blog/**"], decision: EXCLUDE, reason: DOC_ASSET}
+
+  # ------------------------------------------------------------------ SEO
+  beyondseo:
+    default: {decision: EXCLUDE, reason: REPO_META}
+    rules:
+      - {paths: ["LICENSE", "THIRD_PARTY_NOTICES.md"], decision: COPY, capability: seo/runtime, reason: LICENSE}
+      - {paths: ["src/**", "pyproject.toml"], decision: PRESERVE, capability: seo/runtime, reason: "Isolated BeyondSEO runtime (bs4 + colorama core)"}
+      - {paths: ["scripts/run.py", "scripts/check_environment.py", "scripts/crawl.py", "scripts/report_builder.py", "scripts/url_classifier.py", "scripts/backlink_classifier.py", "scripts/backlink_sources.py", "scripts/import_backlink_pdf.py", "scripts/setup.py"], decision: PRESERVE, capability: seo/runtime, reason: "Launcher and helper scripts referenced by SKILL.md"}
+      - {paths: ["scripts/install_skill.py", "scripts/build_skill.py", "scripts/check_release.py", "scripts/check_docs.py", "scripts/validate_skill.py"], decision: EXCLUDE, reason: INSTALLER}
+      - {paths: ["tests/test_release_hygiene.py", "tests/test_portability.py", "docs/development.md"], decision: EXCLUDE, reason: UPSTREAM_DEV}
+      - {paths: ["SECURITY.md"], decision: COPY, capability: seo/website-work, reason: "Security model linked from docs"}
+      - {paths: ["tests/**", "examples/**"], decision: PRESERVE, capability: seo/runtime, reason: "Runtime self-test + fixtures"}
+      - {paths: ["SKILL.md"], decision: ADAPT, capability: seo/auditing, reason: "SEO house entry; host/installation text replaced by OS routing"}
+      - {paths: ["playbooks/core/**", "playbooks/audit-modes.md", "playbooks/capability-detection.md", "playbooks/onboarding.md", "playbooks/PLAYBOOK_DEPTH.md"], decision: COPY, capability: seo/auditing, reason: "Core SEO workflow"}
+      - {paths: ["playbooks/audit/technical-seo-audit.md", "playbooks/audit/crawlability-indexing.md", "playbooks/audit/schema-audit.md", "playbooks/audit/page-speed-core-web-vitals.md"], decision: COPY, capability: seo/technical, reason: "Technical SEO"}
+      - {paths: ["playbooks/audit/on-page-seo-audit.md", "playbooks/audit/internal-linking-audit.md", "playbooks/audit/conversion-seo-audit.md"], decision: COPY, capability: seo/on-page, reason: "On-page and conversion"}
+      - {paths: ["playbooks/audit/content-quality-audit.md", "playbooks/audit/eeat-ylym-audit.md"], decision: COPY, capability: seo/content, reason: "Content quality and E-E-A-T"}
+      - {paths: ["playbooks/audit/**"], decision: COPY, capability: seo/auditing, reason: "Full-site audit and prioritization"}
+      - {paths: ["playbooks/aeo-geo/entity-seo.md", "playbooks/entity-seo/**"], decision: COPY, capability: seo/entity, reason: "Entity SEO"}
+      - {paths: ["playbooks/aeo-geo/**"], decision: COPY, capability: seo/ai-search, reason: "AEO and GEO"}
+      - {paths: ["playbooks/keyword-research/**"], decision: COPY, capability: seo/keyword-research, reason: "Keyword research"}
+      - {paths: ["playbooks/competitor-research/**"], decision: COPY, capability: seo/competitor-research, reason: "Competitor research"}
+      - {paths: ["playbooks/local-seo/**"], decision: COPY, capability: seo/local, reason: "Local SEO"}
+      - {paths: ["playbooks/backlink-system/**", "playbooks/reputation-seo/**"], decision: COPY, capability: seo/backlinks-reputation, reason: "Backlinks and reputation"}
+      - {paths: ["playbooks/strategy/**", "playbooks/industry-playbooks/**"], decision: COPY, capability: seo/strategy, reason: "SEO strategy and plans"}
+      - {paths: ["playbooks/templates/**", "playbooks/reporting/**", "playbooks/examples/**"], decision: COPY, capability: seo/reporting, reason: "Report templates"}
+      - {paths: ["playbooks/integrations/**"], decision: COPY, capability: seo/research, reason: "Search Console/GA/PSI and fallbacks"}
+      - {paths: ["references/**"], decision: COPY, capability: seo/evidence, reason: "Audit delivery, crawler, measurement boundaries"}
+      - {paths: ["docs/website-work.md", "docs/permissions.md"], decision: COPY, capability: seo/website-work, reason: "Authorized website work (SEC-11)"}
+      - {paths: ["docs/agent-installation.md", "docs/lovable.md"], decision: REFERENCE, reason: "Host installation guidance (adapter input)"}
+      - {paths: ["docs/*.md", "docs/source-catalog-provenance.json"], decision: COPY, capability: seo/research, reason: "Runtime docs referenced by SKILL.md (closure)"}
+      - {paths: ["assets/**", "CITATION.cff"], decision: COPY, capability: seo/reporting, reason: "Report assets and citation"}
+
+# Gaps reviewed and accepted: the reference is a documentation mention, a self-reference to a generated file,
+# or is removed by the ADAPT rewrite. Matched on (repo, target); every entry carries its reason.
+accepted_gaps:
+  - {repo: agency, target: CONTRIBUTING.md, reason: "Example mention in a persona"}
+  - {repo: beacon, target: docs/README.md, reason: "String inside a detection rule (instruction-surface example)"}
+  - {repo: beyondseo, target: CHANGELOG.md, reason: "Docs index mention"}
+  - {repo: beyondseo, target: CONTRIBUTING.md, reason: "Docs index mention"}
+  - {repo: beyondseo, target: docs/agent-installation.md, reason: "Host-installation text removed by SKILL.md ADAPT"}
+  - {repo: beyondseo, target: docs/lovable.md, reason: "Host-installation text removed by SKILL.md ADAPT"}
+  - {repo: ecc, target: install.sh, reason: "rules/README install instructions replaced by OS stack-pack activation in ADAPT"}
+  - {repo: gstack, target: docs/designs/v2_PLAN.md, reason: "Provenance mention in section manifests"}
+  - {repo: gstack, target: docs/state-root.md, reason: "Comment mention in hook-extract.sh"}
+  - {repo: gstack, target: docs/test-value-bar.md, reason: "Mention inside a REFERENCE resolver"}
+  - {repo: gstack, target: document-generate/SKILL.md, reason: "Template self-reference to its generated output"}
+  - {repo: gstack, target: package.json, reason: "Version-bump example in ship template"}
+  - {repo: gstack, target: scripts/gen-agents-digest.ts, reason: "Upstream build-step mention in ship template; removed in ADAPT"}
+  - {repo: opendesign, target: scripts/sync-design-systems.ts, reason: "Upstream sync tooling mention"}
+  - {repo: opendesign, target: scripts/check-design-system-manifests.ts, reason: "Upstream validation tooling mention"}
+  - {repo: ponytail, target: benchmarks/, reason: "Mention of benchmark results"}
+  - {repo: unlazy, target: scripts/install-hooks.mjs, reason: "Instruction removed by SKILL.md ADAPT; file kept inert for upstream tests"}
+  - {repo: gstack, target: scripts/resolvers/design.ts, reason: "TS import/notice mention; catalogue converted to data at bundle build"}
+  - {repo: gstack, target: scripts/resolvers/constants.ts, reason: "TS import; catalogue converted to data at bundle build"}
+  - {repo: gstack, target: scripts/resolvers/design-checklist.ts, reason: "TS import/mention; resolved at bundle build"}
+  - {repo: opendesign, target: docs/design-systems.md, reason: "Contributor doc mention; format is self-evident from DESIGN.md + tokens"}
+  - {repo: opendesign, target: design-systems/_schema/AGENTS.md, reason: "Schema tooling mention"}
+  - {repo: beyondseo, target: docs/development.md, reason: "Docs index mention of excluded developer guide"}

@@ -1,0 +1,67 @@
+decision	reason	capability	bytes	path
+EXCLUDE	REPO_META		501	.claude-plugin/marketplace.json
+EXCLUDE	REPO_META		447	.claude-plugin/plugin.json
+EXCLUDE	REPO_META		17	.github/FUNDING.yml
+EXCLUDE	REPO_META		959	.github/copilot-instructions.md
+EXCLUDE	DOC_ASSET		8272	CHANGELOG.md
+COPY	LICENSE	design/visual-quality	1065	LICENSE
+EXCLUDE	DOC_ASSET		17499	README.md
+EXCLUDE	DOC_ASSET		0	assets/.gitkeep
+EXCLUDE	DOC_ASSET		99902	assets/readme-banner.webp
+EXCLUDE	DOC_ASSET		17150	assets/readme-buttons/btn-agent-skills.webp
+EXCLUDE	DOC_ASSET		15476	assets/readme-buttons/btn-changelog.webp
+EXCLUDE	DOC_ASSET		12962	assets/readme-buttons/btn-mit.webp
+EXCLUDE	DOC_ASSET		19080	assets/readme-buttons/btn-site.webp
+EXCLUDE	DOC_ASSET		19698	assets/readme-buttons/btn-tools.webp
+EXCLUDE	DOC_ASSET		4864	assets/readme-cta-tasteskill.svg
+EXCLUDE	DOC_ASSET		16024	assets/sponsors/animations-dev.webp
+EXCLUDE	DOC_ASSET		39216	assets/sponsors/emil-animations-dev.webp
+EXCLUDE	DOC_ASSET		1757134	assets/sponsors/fluxion-ai-banner.png
+EXCLUDE	DOC_ASSET		1363728	assets/sponsors/fluxion-ai.png
+EXCLUDE	DOC_ASSET		1174	assets/sponsors/imgly-logo.svg
+EXCLUDE	DOC_ASSET		1924	assets/sponsors/interfaces-dev-icon.webp
+EXCLUDE	DOC_ASSET		11486	assets/sponsors/kimi-icon.png
+EXCLUDE	DOC_ASSET		3939	assets/sponsors/reactbits-icon-dark.svg
+EXCLUDE	DOC_ASSET		3937	assets/sponsors/reactbits-icon-light.svg
+EXCLUDE	DOC_ASSET		12502	assets/sponsors/reactbits-logo-dark.svg
+EXCLUDE	DOC_ASSET		12536	assets/sponsors/reactbits-logo-light.svg
+EXCLUDE	DOC_ASSET		4382	assets/sponsors/sentdm.png
+EXCLUDE	DOC_ASSET		242	assets/sponsors/vercel-logo.svg
+EXCLUDE	DOC_ASSET		17279	assets/taste-skill-logo.png
+EXCLUDE	DOC_ASSET		3280	assets/taste-skill-logo.webp
+EXCLUDE	DOC_ASSET		13296	assets/vercel-oss-program-badge.svg
+EXCLUDE	DOC_ASSET		170130	examples/floria-bottom.webp
+EXCLUDE	DOC_ASSET		568180	examples/floria-full.webp
+EXCLUDE	DOC_ASSET		303012	examples/floria-top.webp
+REFERENCE	LLM laziness research (completion design input)		368	research/README.md
+REFERENCE	LLM laziness research (completion design input)		1870	research/laziness/README.md
+REFERENCE	LLM laziness research (completion design input)		2820	research/laziness/findings/empirical-results.md
+REFERENCE	LLM laziness research (completion design input)		1512	research/laziness/findings/references.md
+REFERENCE	LLM laziness research (completion design input)		3142	research/laziness/remediation/architectural-patterns.md
+REFERENCE	LLM laziness research (completion design input)		2856	research/laziness/remediation/parameter-tuning.md
+REFERENCE	LLM laziness research (completion design input)		3261	research/laziness/remediation/prompt-engineering.md
+REFERENCE	LLM laziness research (completion design input)		2363	research/laziness/remediation/reference-prompts.md
+REFERENCE	LLM laziness research (completion design input)		2124	research/laziness/root-causes/cognitive-shortcuts.md
+REFERENCE	LLM laziness research (completion design input)		2568	research/laziness/root-causes/output-limits.md
+REFERENCE	LLM laziness research (completion design input)		2165	research/laziness/root-causes/rlhf-and-compute.md
+REFERENCE	LLM laziness research (completion design input)		1666	research/laziness/root-causes/training-data-bias.md
+EXCLUDE	REPO_META		1112	scripts/build-emil-sponsor-row.mjs
+EXCLUDE	REPO_META		4228	scripts/convert-readme-assets-webp.mjs
+EXCLUDE	REPO_META		3010	scripts/process-readme-buttons.mjs
+EXCLUDE	REPO_META		2396	scripts/process-sponsor-badge.mjs
+EXCLUDE	REPO_META		897	skill.sh
+ADAPT	Brand kit	design/brand	15992	skills/brandkit/SKILL.md
+ADAPT	Aesthetic presets	design/design-direction	8456	skills/brutalist-skill/SKILL.md
+EXCLUDE	SUPERSEDED		7857	skills/gpt-tasteskill/SKILL.md
+ADAPT	Host-conditional: requires an image-generation tool	design/frontend	36442	skills/image-to-code-skill/SKILL.md
+ADAPT	Host-conditional: requires an image-generation tool	design/frontend	40326	skills/imagegen-frontend-mobile/SKILL.md
+ADAPT	Host-conditional: requires an image-generation tool	design/frontend	36854	skills/imagegen-frontend-web/SKILL.md
+REFERENCE	Index		1846	skills/llms.txt
+ADAPT	Aesthetic presets	design/design-direction	7901	skills/minimalist-skill/SKILL.md
+ADAPT	No-placeholder output discipline	engineering/completion	2592	skills/output-skill/SKILL.md
+ADAPT	Audit-first redesign	design/design-direction	15060	skills/redesign-skill/SKILL.md
+ADAPT	Aesthetic presets	design/design-direction	10561	skills/soft-skill/SKILL.md
+ADAPT	DESIGN.md generation	design/design-system	12053	skills/stitch-skill/DESIGN.md
+ADAPT	DESIGN.md generation	design/design-system	11851	skills/stitch-skill/SKILL.md
+EXCLUDE	SUPERSEDED		21195	skills/taste-skill-v1/SKILL.md
+ADAPT	Anti-slop core; split into sections (87 KB)	design/visual-quality	87253	skills/taste-skill/SKILL.md

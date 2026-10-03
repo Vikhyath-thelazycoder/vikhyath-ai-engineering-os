@@ -1,0 +1,38 @@
+decision	reason	capability	bytes	path
+EXCLUDE	REPO_META		1491	.github/workflows/test.yml
+EXCLUDE	REPO_META		153	.gitignore
+EXCLUDE	REPO_META		16636	CHANGELOG.md
+EXCLUDE	REPO_META		4705	CONTRIBUTING.md
+COPY	LICENSE	engineering/completion	1065	LICENSE
+EXCLUDE	REPO_META		17238	README.md
+PRESERVE	Executable completion discipline; SKILL.md references templates/, references/, scripts/ (closure)	engineering/completion	12742	SECURITY.md
+ADAPT	Hook-install step rewritten to OS central Stop-hook registration (§2.3)	engineering/completion	10520	SKILL.md
+REFERENCE	Codex interface hint; adapter renders its own		250	agents/openai.yaml
+PRESERVE	Executable completion discipline; SKILL.md references templates/, references/, scripts/ (closure)	engineering/completion	471	package.json
+PRESERVE	Executable completion discipline; SKILL.md references templates/, references/, scripts/ (closure)	engineering/completion	5901	references/dispatch.md
+PRESERVE	Executable completion discipline; SKILL.md references templates/, references/, scripts/ (closure)	engineering/completion	15368	references/gates.md
+PRESERVE	Executable completion discipline; SKILL.md references templates/, references/, scripts/ (closure)	engineering/completion	3853	references/method.md
+PRESERVE	Executable completion discipline; SKILL.md references templates/, references/, scripts/ (closure)	engineering/completion	7324	references/orchestration.md
+PRESERVE	Executable completion discipline; SKILL.md references templates/, references/, scripts/ (closure)	engineering/completion	6596	references/parallel.md
+PRESERVE	Executable completion discipline; SKILL.md references templates/, references/, scripts/ (closure)	engineering/completion	3288	references/token-economy.md
+PRESERVE	Validation protocol linked from references/method.md and token-economy.md (closure)	engineering/completion	4442	research/validation-protocol.md
+PRESERVE	Executable completion discipline; SKILL.md references templates/, references/, scripts/ (closure)	engineering/completion	6250	scripts/dispatch-check.mjs
+PRESERVE	Executable completion discipline; SKILL.md references templates/, references/, scripts/ (closure)	engineering/completion	39966	scripts/gate-check.mjs
+PRESERVE	Executable completion discipline; SKILL.md references templates/, references/, scripts/ (closure)	engineering/completion	9540	scripts/gate-lint.mjs
+PRESERVE	INERT: required by upstream self-check tests; never invoked by the OS; adapted SKILL.md omits it (§2.3)	engineering/completion	8639	scripts/install-hooks.mjs
+PRESERVE	Executable completion discipline; SKILL.md references templates/, references/, scripts/ (closure)	engineering/completion	1462	scripts/lib/check-supervisor.mjs
+PRESERVE	Executable completion discipline; SKILL.md references templates/, references/, scripts/ (closure)	engineering/completion	13299	scripts/lib/dispatch.mjs
+PRESERVE	Executable completion discipline; SKILL.md references templates/, references/, scripts/ (closure)	engineering/completion	39395	scripts/lib/gates.mjs
+PRESERVE	Executable completion discipline; SKILL.md references templates/, references/, scripts/ (closure)	engineering/completion	5994	scripts/lib/process-tree.mjs
+PRESERVE	Executable completion discipline; SKILL.md references templates/, references/, scripts/ (closure)	engineering/completion	282	scripts/lib/regex-worker.mjs
+PRESERVE	Executable completion discipline; SKILL.md references templates/, references/, scripts/ (closure)	engineering/completion	9230	scripts/stop-hook.mjs
+PRESERVE	Executable completion discipline; SKILL.md references templates/, references/, scripts/ (closure)	engineering/completion	6492	templates/PLAN.md
+PRESERVE	Executable completion discipline; SKILL.md references templates/, references/, scripts/ (closure)	engineering/completion	2067	templates/gates-leaf.md
+PRESERVE	Executable completion discipline; SKILL.md references templates/, references/, scripts/ (closure)	engineering/completion	2139	templates/gates-node.md
+PRESERVE	Executable completion discipline; SKILL.md references templates/, references/, scripts/ (closure)	engineering/completion	4656	tests/contract-tests.mjs
+PRESERVE	Executable completion discipline; SKILL.md references templates/, references/, scripts/ (closure)	engineering/completion	34447	tests/dispatch-tests.mjs
+PRESERVE	Executable completion discipline; SKILL.md references templates/, references/, scripts/ (closure)	engineering/completion	69156	tests/hardening-tests.mjs
+PRESERVE	Executable completion discipline; SKILL.md references templates/, references/, scripts/ (closure)	engineering/completion	14435	tests/lint-tests.mjs
+PRESERVE	Executable completion discipline; SKILL.md references templates/, references/, scripts/ (closure)	engineering/completion	30761	tests/run-tests.mjs
+PRESERVE	Executable completion discipline; SKILL.md references templates/, references/, scripts/ (closure)	engineering/completion	16171	tests/self-check.mjs
+PRESERVE	Executable completion discipline; SKILL.md references templates/, references/, scripts/ (closure)	engineering/completion	34116	tests/stress-tests.mjs

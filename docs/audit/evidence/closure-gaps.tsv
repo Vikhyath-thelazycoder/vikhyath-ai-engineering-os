@@ -1,0 +1,38 @@
+repo	source	reference	target	target_decision	status
+agency	engineering/engineering-technical-writer.md	CONTRIBUTING.md	CONTRIBUTING.md	EXCLUDE	ACCEPTED: Example mention in a persona
+beacon	rules/sensitive-edit/agent-instruction-surface-modified.rule.yaml	docs/README.md	docs/README.md	EXCLUDE	ACCEPTED: String inside a detection rule (instruction-surface example)
+beyondseo	SKILL.md	docs/agent-installation.md	docs/agent-installation.md	REFERENCE	ACCEPTED: Host-installation text removed by SKILL.md ADAPT
+beyondseo	SKILL.md	docs/lovable.md	docs/lovable.md	REFERENCE	ACCEPTED: Host-installation text removed by SKILL.md ADAPT
+beyondseo	docs/README.md	../CHANGELOG.md	CHANGELOG.md	EXCLUDE	ACCEPTED: Docs index mention
+beyondseo	docs/README.md	../CONTRIBUTING.md	CONTRIBUTING.md	EXCLUDE	ACCEPTED: Docs index mention
+beyondseo	docs/README.md	agent-installation.md	docs/agent-installation.md	REFERENCE	ACCEPTED: Host-installation text removed by SKILL.md ADAPT
+beyondseo	docs/README.md	development.md	docs/development.md	EXCLUDE	ACCEPTED: Docs index mention of excluded developer guide
+beyondseo	docs/deep-research.md	../CONTRIBUTING.md	CONTRIBUTING.md	EXCLUDE	ACCEPTED: Docs index mention
+beyondseo	docs/setup.md	agent-installation.md	docs/agent-installation.md	REFERENCE	ACCEPTED: Host-installation text removed by SKILL.md ADAPT
+beyondseo	references/capabilities.md	../docs/agent-installation.md	docs/agent-installation.md	REFERENCE	ACCEPTED: Host-installation text removed by SKILL.md ADAPT
+beyondseo	scripts/run.py	docs/agent-installation.md	docs/agent-installation.md	REFERENCE	ACCEPTED: Host-installation text removed by SKILL.md ADAPT
+ecc	rules/README.md	./install.sh	install.sh	EXCLUDE	ACCEPTED: rules/README install instructions replaced by OS stack-pack activation in ADAPT
+gstack	NOTICE.md	scripts/resolvers/design.ts	scripts/resolvers/design.ts	REFERENCE	ACCEPTED: TS import/notice mention; catalogue converted to data at bundle build
+gstack	careful/bin/hook-extract.sh	docs/state-root.md	docs/state-root.md	EXCLUDE	ACCEPTED: Comment mention in hook-extract.sh
+gstack	document-generate/SKILL.md.tmpl		document-generate/SKILL.md	EXCLUDE	ACCEPTED: Template self-reference to its generated output
+gstack	freeze/bin/freeze-state.sh	docs/state-root.md	docs/state-root.md	EXCLUDE	ACCEPTED: Comment mention in hook-extract.sh
+gstack	lib/design-catalog.ts	scripts/resolvers/constants.ts	scripts/resolvers/constants.ts	REFERENCE	ACCEPTED: TS import; catalogue converted to data at bundle build
+gstack	lib/design-catalog.ts	scripts/resolvers/design-checklist.ts	scripts/resolvers/design-checklist.ts	REFERENCE	ACCEPTED: TS import/mention; resolved at bundle build
+gstack	lib/design-catalog.ts	scripts/resolvers/design.ts	scripts/resolvers/design.ts	REFERENCE	ACCEPTED: TS import/notice mention; catalogue converted to data at bundle build
+gstack	office-hours/sections/manifest.json	docs/designs/v2_PLAN.md	docs/designs/v2_PLAN.md	EXCLUDE	ACCEPTED: Provenance mention in section manifests
+gstack	plan-ceo-review/sections/manifest.json	docs/designs/v2_PLAN.md	docs/designs/v2_PLAN.md	EXCLUDE	ACCEPTED: Provenance mention in section manifests
+gstack	plan-design-review/sections/manifest.json	docs/designs/v2_PLAN.md	docs/designs/v2_PLAN.md	EXCLUDE	ACCEPTED: Provenance mention in section manifests
+gstack	plan-eng-review/sections/manifest.json	docs/designs/v2_PLAN.md	docs/designs/v2_PLAN.md	EXCLUDE	ACCEPTED: Provenance mention in section manifests
+gstack	qa/sections/manifest.json	docs/designs/v2_PLAN.md	docs/designs/v2_PLAN.md	EXCLUDE	ACCEPTED: Provenance mention in section manifests
+gstack	review/design-checklist.md	scripts/resolvers/design-checklist.ts	scripts/resolvers/design-checklist.ts	REFERENCE	ACCEPTED: TS import/mention; resolved at bundle build
+gstack	review/sections/manifest.json	docs/designs/v2_PLAN.md	docs/designs/v2_PLAN.md	EXCLUDE	ACCEPTED: Provenance mention in section manifests
+gstack	ship/SKILL.md.tmpl	./package.json	package.json	EXCLUDE	ACCEPTED: Version-bump example in ship template
+gstack	ship/SKILL.md.tmpl	scripts/gen-agents-digest.ts	scripts/gen-agents-digest.ts	EXCLUDE	ACCEPTED: Upstream build-step mention in ship template; removed in ADAPT
+gstack	ship/sections/manifest.json	docs/designs/v2_PLAN.md	docs/designs/v2_PLAN.md	EXCLUDE	ACCEPTED: Provenance mention in section manifests
+gstack	spec/sections/manifest.json	docs/designs/v2_PLAN.md	docs/designs/v2_PLAN.md	EXCLUDE	ACCEPTED: Provenance mention in section manifests
+opendesign	design-systems/README.md	../docs/design-systems.md	docs/design-systems.md	EXCLUDE	ACCEPTED: Contributor doc mention; format is self-evident from DESIGN.md + tokens
+opendesign	design-systems/README.md	../scripts/sync-design-systems.ts	scripts/sync-design-systems.ts	EXCLUDE	ACCEPTED: Upstream sync tooling mention
+opendesign	design-systems/README.md	_schema/AGENTS.md	design-systems/_schema/AGENTS.md	REFERENCE	ACCEPTED: Schema tooling mention
+opendesign	design-systems/README.md	docs/design-systems.md	docs/design-systems.md	EXCLUDE	ACCEPTED: Contributor doc mention; format is self-evident from DESIGN.md + tokens
+opendesign	design-systems/README.md	scripts/sync-design-systems.ts	scripts/sync-design-systems.ts	EXCLUDE	ACCEPTED: Upstream sync tooling mention
+ponytail	examples/README.md	../benchmarks/	benchmarks/	REFERENCE	ACCEPTED: Mention of benchmark results
