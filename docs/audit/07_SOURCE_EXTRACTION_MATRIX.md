@@ -100,3 +100,13 @@ The 37 accepted references are listed with reasons in `extraction-rules.yaml →
 |---|---|
 | ECC `skills/taste`, `taste-application`, `taste-distillation`: ADAPT(design) → EXCLUDE | Description check showed they are music-video aesthetics; two require the paid fal.ai API (`FAL_KEY`). Name-based selection was wrong; every ECC pick was then verified against its `description:`. |
 | ECC `skills/security-scan`: ADAPT → EXCLUDE (UNAUDITED_DEPENDENCY) | Requires the external `ecc-agentshield` npm package (global install, `npx`), which is outside the 14 audited upstreams (§43). The OS doctor covers agent-config checks instead. |
+
+## P6 changes (bundle build)
+
+| Change | Why |
+|---|---|
+| gstack `**/SKILL.md` and `*/sections/*.md` (generated): EXCLUDE → REFERENCE | Read by the P6 template renderer to recover methodology expansions; the bundled skill is rendered from `.tmpl` (36 generated section files no longer bundled twice). |
+| ECC `skills/angular-developer/references/mcp.md` → EXCLUDE (MCP) | Angular MCP-server how-to (§2.1). |
+| UI/UX Pro Max `scripts/tests/test_catalog_refresh.py`, `test_catalog_summary_line_endings.py`, `test_skill_script_paths.py`, `fixtures/catalogs/**` → EXCLUDE (UPSTREAM_DEV) | They test upstream catalog-refresh tooling (network) that is not bundled; found when the bundled self-test ran. |
+
+**Bundled after P6: 2,594 files (50.3 MB).** First known-good bundle: `c98667e034f7` (64 files transformed, 0 errors, Unlazy and UI/UX Pro Max self-tests pass from the bundle).

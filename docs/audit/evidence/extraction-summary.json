@@ -96,16 +96,16 @@
   },
   "ecc": {
    "EXCLUDE": {
-    "files": 3531,
-    "bytes": 54049954
+    "files": 3532,
+    "bytes": 54054033
    },
    "COPY": {
     "files": 1,
     "bytes": 1071
    },
    "ADAPT": {
-    "files": 390,
-    "bytes": 2266686
+    "files": 389,
+    "bytes": 2262607
    },
    "REFERENCE": {
     "files": 272,
@@ -140,20 +140,20 @@
   },
   "gstack": {
    "EXCLUDE": {
-    "files": 2436,
-    "bytes": 50305642
+    "files": 2351,
+    "bytes": 47550520
    },
    "REFERENCE": {
-    "files": 108,
-    "bytes": 1670363
+    "files": 229,
+    "bytes": 5116042
    },
    "COPY": {
     "files": 3,
     "bytes": 14896
    },
    "ADAPT": {
-    "files": 130,
-    "bytes": 1504477
+    "files": 94,
+    "bytes": 813920
    }
   },
   "karpathy": {
@@ -226,8 +226,8 @@
   },
   "uiuxpromax": {
    "EXCLUDE": {
-    "files": 396,
-    "bytes": 11802876
+    "files": 409,
+    "bytes": 11834954
    },
    "ADAPT": {
     "files": 190,
@@ -238,8 +238,8 @@
     "bytes": 1075
    },
    "PRESERVE": {
-    "files": 95,
-    "bytes": 3635925
+    "files": 82,
+    "bytes": 3603847
    }
   },
   "unlazy": {
@@ -308,9 +308,9 @@
    ]
   },
   "design/design-review": {
-   "files": 27,
-   "bytes": 331062,
-   "est_tokens": 82765,
+   "files": 25,
+   "bytes": 241924,
+   "est_tokens": 60481,
    "sources": [
     "agency",
     "gstack",
@@ -318,9 +318,9 @@
    ]
   },
   "design/design-system": {
-   "files": 584,
-   "bytes": 9570567,
-   "est_tokens": 2392641,
+   "files": 571,
+   "bytes": 9538489,
+   "est_tokens": 2384622,
    "sources": [
     "ecc",
     "opendesign",
@@ -470,9 +470,9 @@
    ]
   },
   "engineering/planning": {
-   "files": 43,
-   "bytes": 684748,
-   "est_tokens": 171187,
+   "files": 37,
+   "bytes": 432184,
+   "est_tokens": 108046,
    "sources": [
     "addy",
     "agency",
@@ -490,9 +490,9 @@
    ]
   },
   "engineering/release": {
-   "files": 49,
-   "bytes": 565542,
-   "est_tokens": 141385,
+   "files": 35,
+   "bytes": 338574,
+   "est_tokens": 84643,
    "sources": [
     "addy",
     "agency",
@@ -501,9 +501,9 @@
    ]
   },
   "engineering/review": {
-   "files": 33,
-   "bytes": 218380,
-   "est_tokens": 54595,
+   "files": 29,
+   "bytes": 164848,
+   "est_tokens": 41212,
    "sources": [
     "addy",
     "agency",
@@ -512,9 +512,9 @@
    ]
   },
   "engineering/security": {
-   "files": 34,
-   "bytes": 447658,
-   "est_tokens": 111914,
+   "files": 33,
+   "bytes": 432143,
+   "est_tokens": 108035,
    "sources": [
     "addy",
     "agency",
@@ -535,9 +535,9 @@
    ]
   },
   "engineering/stack-packs": {
-   "files": 252,
-   "bytes": 1469343,
-   "est_tokens": 367335,
+   "files": 251,
+   "bytes": 1465264,
+   "est_tokens": 366316,
    "sources": [
     "ecc"
    ]
@@ -723,9 +723,9 @@
    ]
   },
   "testing/browser-fallback": {
-   "files": 9,
-   "bytes": 53834,
-   "est_tokens": 13458,
+   "files": 7,
+   "bytes": 42165,
+   "est_tokens": 10541,
    "sources": [
     "addy",
     "ecc",
@@ -771,9 +771,9 @@
    ]
   },
   "testing/web-verification": {
-   "files": 23,
-   "bytes": 109483,
-   "est_tokens": 27370,
+   "files": 16,
+   "bytes": 68312,
+   "est_tokens": 17078,
    "sources": [
     "agency",
     "gstack"

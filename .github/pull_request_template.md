@@ -11,7 +11,7 @@ Fixes #(issue number) or explains why the change is necessary.
 Please confirm that your changes strictly adhere to the non-negotiable architectural principles:
 
 - [ ] **NO MCP**: Zero MCP servers, zero `.mcp.json` files, zero MCP configs added.
-- [ ] **NO Vendoring**: No third-party source files or upstream repositories copied into this repo.
+- [ ] **NO Vendoring**: No third-party files committed; bundle changes go through `tools/audit/extraction-rules.yaml` with 0 open closure gaps and regenerated provenance/notices.
 - [ ] **Thin Layer Preserved**: No daemons, background services, or always-running swarms introduced.
 - [ ] **Progressive Activation**: Only relevant capabilities are activated for tasks; no global prompt bloat.
 - [ ] **Dependency Pinning**: Any new external capability is pinned to a full 40-character hexadecimal Git commit SHA.

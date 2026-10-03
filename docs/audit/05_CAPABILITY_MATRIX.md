@@ -45,9 +45,9 @@ Every bundled upstream component appears below, grouped by source path prefix. T
 | taste | design/design-direction | `skills/redesign-skill/` | 1 | 14.7 | ADAPT | none | MIT | `ce26fc2` |
 | taste | design/design-direction | `skills/soft-skill/` | 1 | 10.3 | ADAPT | none | MIT | `ce26fc2` |
 | agency | design/design-review | `design/` | 10 | 117.9 | ADAPT | none | MIT | `d3f71c4` |
-| gstack | design/design-review | `design-consultation/` | 4 | 68.3 | ADAPT | none | MIT (+Apache-2.0 notices) | `74512c2` |
+| gstack | design/design-review | `design-consultation/` | 3 | 30.5 | ADAPT | none | MIT (+Apache-2.0 notices) | `74512c2` |
 | gstack | design/design-review | `design-review/` | 1 | 13.4 | ADAPT | none | MIT (+Apache-2.0 notices) | `74512c2` |
-| gstack | design/design-review | `plan-design-review/` | 4 | 90.1 | ADAPT | none | MIT (+Apache-2.0 notices) | `74512c2` |
+| gstack | design/design-review | `plan-design-review/` | 3 | 40.9 | ADAPT | none | MIT (+Apache-2.0 notices) | `74512c2` |
 | opendesign | design/design-review | `skills/design-review/` | 1 | 1.2 | ADAPT | none | Apache-2.0 | `53231d4` |
 | opendesign | design/design-review | `skills/impeccable-design-polish/` | 1 | 2.9 | ADAPT | none | Apache-2.0 | `53231d4` |
 | opendesign | design/design-review | `skills/review-animations/` | 3 | 19.4 | ADAPT | none | Apache-2.0 | `53231d4` |
@@ -211,7 +211,7 @@ Every bundled upstream component appears below, grouped by source path prefix. T
 | uiuxpromax | design/design-system | `.claude/skills/ui-ux-pro-max/` | 3 | 50.2 | ADAPT | python-stdlib | MIT | `09170ee` |
 | uiuxpromax | design/design-system | `LICENSE` | 1 | 1.0 | COPY | python-stdlib | MIT | `09170ee` |
 | uiuxpromax | design/design-system | `scripts/` | 2 | 20.4 | PRESERVE | python-stdlib | MIT | `09170ee` |
-| uiuxpromax | design/design-system | `src/ui-ux-pro-max/` | 93 | 3530.3 | PRESERVE | python-stdlib | MIT | `09170ee` |
+| uiuxpromax | design/design-system | `src/ui-ux-pro-max/` | 80 | 3499.0 | PRESERVE | python-stdlib | MIT | `09170ee` |
 | opendesign | design/frontend | `skills/apple-hig/` | 1 | 1.3 | ADAPT | none | Apache-2.0 | `53231d4` |
 | opendesign | design/frontend | `skills/frontend-design/` | 2 | 15.1 | ADAPT | none | Apache-2.0 | `53231d4` |
 | opendesign | design/frontend | `skills/frontend-skill/` | 1 | 1.1 | ADAPT | none | Apache-2.0 | `53231d4` |
@@ -313,10 +313,10 @@ Every bundled upstream component appears below, grouped by source path prefix. T
 | ecc | engineering/planning | `skills/blueprint/` | 1 | 5.0 | ADAPT | none | MIT | `ef648e0` |
 | ecc | engineering/planning | `skills/intent-driven-development/` | 1 | 16.8 | ADAPT | none | MIT | `ef648e0` |
 | ecc | engineering/planning | `skills/product-lens/` | 1 | 3.3 | ADAPT | none | MIT | `ef648e0` |
-| gstack | engineering/planning | `office-hours/` | 8 | 117.8 | ADAPT | none | MIT (+Apache-2.0 notices) | `74512c2` |
-| gstack | engineering/planning | `plan-ceo-review/` | 4 | 148.0 | ADAPT | none | MIT (+Apache-2.0 notices) | `74512c2` |
-| gstack | engineering/planning | `plan-eng-review/` | 4 | 136.7 | ADAPT | none | MIT (+Apache-2.0 notices) | `74512c2` |
-| gstack | engineering/planning | `spec/` | 4 | 53.0 | ADAPT | none | MIT (+Apache-2.0 notices) | `74512c2` |
+| gstack | engineering/planning | `office-hours/` | 5 | 63.9 | ADAPT | none | MIT (+Apache-2.0 notices) | `74512c2` |
+| gstack | engineering/planning | `plan-ceo-review/` | 3 | 68.7 | ADAPT | none | MIT (+Apache-2.0 notices) | `74512c2` |
+| gstack | engineering/planning | `plan-eng-review/` | 3 | 44.3 | ADAPT | none | MIT (+Apache-2.0 notices) | `74512c2` |
+| gstack | engineering/planning | `spec/` | 3 | 32.0 | ADAPT | none | MIT (+Apache-2.0 notices) | `74512c2` |
 | ecc | engineering/principles | `skills/coding-standards/` | 1 | 12.6 | ADAPT | none | MIT | `ef648e0` |
 | ecc | engineering/principles | `skills/search-first/` | 1 | 8.0 | ADAPT | none | MIT | `ef648e0` |
 | karpathy | engineering/principles | `EXAMPLES.md` | 1 | 14.5 | COPY | none | MIT (declared) | `2c60614` |
@@ -333,9 +333,9 @@ Every bundled upstream component appears below, grouped by source path prefix. T
 | ecc | engineering/release | `skills/git-workflow/` | 1 | 14.9 | ADAPT | none | MIT | `ef648e0` |
 | ecc | engineering/release | `skills/production-audit/` | 1 | 7.5 | ADAPT | none | MIT | `ef648e0` |
 | gstack | engineering/release | `canary/` | 1 | 12.5 | ADAPT | none | MIT (+Apache-2.0 notices) | `74512c2` |
-| gstack | engineering/release | `document-release/` | 6 | 67.4 | ADAPT | none | MIT (+Apache-2.0 notices) | `74512c2` |
-| gstack | engineering/release | `retro/` | 4 | 49.5 | ADAPT | none | MIT (+Apache-2.0 notices) | `74512c2` |
-| gstack | engineering/release | `ship/` | 24 | 275.6 | ADAPT | none | MIT (+Apache-2.0 notices) | `74512c2` |
+| gstack | engineering/release | `document-release/` | 4 | 31.4 | ADAPT | none | MIT (+Apache-2.0 notices) | `74512c2` |
+| gstack | engineering/release | `retro/` | 3 | 44.2 | ADAPT | none | MIT (+Apache-2.0 notices) | `74512c2` |
+| gstack | engineering/release | `ship/` | 13 | 95.4 | ADAPT | none | MIT (+Apache-2.0 notices) | `74512c2` |
 | addy | engineering/review | `agents/` | 1 | 3.9 | ADAPT | none | MIT | `a06bc63` |
 | addy | engineering/review | `docs/` | 1 | 6.8 | COPY | none | MIT | `a06bc63` |
 | addy | engineering/review | `skills/code-review-and-quality/` | 1 | 20.5 | ADAPT | none | MIT | `a06bc63` |
@@ -344,7 +344,7 @@ Every bundled upstream component appears below, grouped by source path prefix. T
 | gstack | engineering/review | `LICENSE` | 1 | 1.0 | COPY | none | MIT (+Apache-2.0 notices) | `74512c2` |
 | gstack | engineering/review | `NOTICE.md` | 1 | 2.4 | COPY | none | MIT (+Apache-2.0 notices) | `74512c2` |
 | gstack | engineering/review | `licenses/` | 1 | 11.1 | COPY | none | MIT (+Apache-2.0 notices) | `74512c2` |
-| gstack | engineering/review | `review/` | 22 | 141.0 | ADAPT | none | MIT (+Apache-2.0 notices) | `74512c2` |
+| gstack | engineering/review | `review/` | 18 | 88.7 | ADAPT | none | MIT (+Apache-2.0 notices) | `74512c2` |
 | addy | engineering/security | `agents/` | 1 | 4.9 | ADAPT | none | MIT | `a06bc63` |
 | addy | engineering/security | `references/` | 1 | 14.0 | COPY | none | MIT | `a06bc63` |
 | addy | engineering/security | `skills/security-and-hardening/` | 2 | 29.9 | ADAPT | none | MIT | `a06bc63` |
@@ -354,7 +354,7 @@ Every bundled upstream component appears below, grouped by source path prefix. T
 | ecc | engineering/security | `skills/safety-guard/` | 1 | 2.2 | ADAPT | none | MIT | `ef648e0` |
 | ecc | engineering/security | `skills/security-review/` | 2 | 22.6 | ADAPT | none | MIT | `ef648e0` |
 | gstack | engineering/security | `careful/` | 3 | 23.8 | ADAPT | none | MIT (+Apache-2.0 notices) | `74512c2` |
-| gstack | engineering/security | `cso/` | 5 | 50.6 | ADAPT | none | MIT (+Apache-2.0 notices) | `74512c2` |
+| gstack | engineering/security | `cso/` | 4 | 35.4 | ADAPT | none | MIT (+Apache-2.0 notices) | `74512c2` |
 | gstack | engineering/security | `freeze/` | 3 | 14.0 | ADAPT | none | MIT (+Apache-2.0 notices) | `74512c2` |
 | gstack | engineering/security | `guard/` | 1 | 3.4 | ADAPT | none | MIT (+Apache-2.0 notices) | `74512c2` |
 | gstack | engineering/security | `unfreeze/` | 1 | 1.6 | ADAPT | none | MIT (+Apache-2.0 notices) | `74512c2` |
@@ -394,7 +394,7 @@ Every bundled upstream component appears below, grouped by source path prefix. T
 | ecc | engineering/stack-packs | `rules/vue/` | 5 | 10.4 | ADAPT | none | MIT | `ef648e0` |
 | ecc | engineering/stack-packs | `rules/web/` | 7 | 15.7 | ADAPT | none | MIT | `ef648e0` |
 | ecc | engineering/stack-packs | `skills/android-clean-architecture/` | 1 | 8.7 | ADAPT | none | MIT | `ef648e0` |
-| ecc | engineering/stack-packs | `skills/angular-developer/` | 36 | 128.1 | ADAPT | none | MIT | `ef648e0` |
+| ecc | engineering/stack-packs | `skills/angular-developer/` | 35 | 124.1 | ADAPT | none | MIT | `ef648e0` |
 | ecc | engineering/stack-packs | `skills/bun-runtime/` | 1 | 2.5 | ADAPT | none | MIT | `ef648e0` |
 | ecc | engineering/stack-packs | `skills/clickhouse-io/` | 1 | 10.5 | ADAPT | none | MIT | `ef648e0` |
 | ecc | engineering/stack-packs | `skills/compose-multiplatform-patterns/` | 1 | 8.0 | ADAPT | none | MIT | `ef648e0` |
@@ -527,7 +527,7 @@ Every bundled upstream component appears below, grouped by source path prefix. T
 | ecc | testing/browser-fallback | `skills/browser-qa/` | 1 | 4.0 | ADAPT | playwright-optional | MIT | `ef648e0` |
 | ecc | testing/browser-fallback | `skills/click-path-audit/` | 1 | 7.8 | ADAPT | playwright-optional | MIT | `ef648e0` |
 | ecc | testing/browser-fallback | `skills/e2e-testing/` | 1 | 8.0 | ADAPT | playwright-optional | MIT | `ef648e0` |
-| gstack | testing/browser-fallback | `qa/` | 4 | 13.6 | ADAPT | playwright-optional | MIT (+Apache-2.0 notices) | `74512c2` |
+| gstack | testing/browser-fallback | `qa/` | 2 | 2.2 | ADAPT | playwright-optional | MIT (+Apache-2.0 notices) | `74512c2` |
 | addy | testing/performance | `agents/` | 1 | 12.0 | ADAPT | os-native | MIT | `a06bc63` |
 | agency | testing/performance | `testing/` | 1 | 12.7 | ADAPT | os-native | MIT | `d3f71c4` |
 | ecc | testing/performance | `skills/benchmark-methodology/` | 1 | 9.7 | ADAPT | os-native | MIT | `ef648e0` |
@@ -549,7 +549,7 @@ Every bundled upstream component appears below, grouped by source path prefix. T
 | gstack | testing/strategy | `health/` | 1 | 15.4 | ADAPT | none | MIT (+Apache-2.0 notices) | `74512c2` |
 | gstack | testing/strategy | `test-audit/` | 1 | 7.4 | ADAPT | none | MIT (+Apache-2.0 notices) | `74512c2` |
 | agency | testing/web-verification | `testing/` | 2 | 22.2 | ADAPT | os-native | MIT | `d3f71c4` |
-| gstack | testing/web-verification | `qa-only/` | 6 | 27.6 | ADAPT | os-native | MIT (+Apache-2.0 notices) | `74512c2` |
-| gstack | testing/web-verification | `qa/` | 15 | 57.1 | ADAPT | os-native | MIT (+Apache-2.0 notices) | `74512c2` |
+| gstack | testing/web-verification | `qa-only/` | 4 | 15.9 | ADAPT | os-native | MIT (+Apache-2.0 notices) | `74512c2` |
+| gstack | testing/web-verification | `qa/` | 10 | 28.6 | ADAPT | os-native | MIT (+Apache-2.0 notices) | `74512c2` |
 
-**Total bundled: 2644 files, 50.7 MB** across 56 capabilities.
+**Total bundled: 2594 files, 50.0 MB** across 56 capabilities.

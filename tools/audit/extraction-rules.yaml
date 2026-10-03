@@ -135,7 +135,7 @@ repos:
     default: {decision: EXCLUDE, reason: OUT_OF_DOMAIN}
     rules:
       - {paths: ["LICENSE", "NOTICE.md", "licenses/**"], decision: COPY, capability: engineering/review, reason: LICENSE}
-      - {paths: ["**/SKILL.md"], decision: EXCLUDE, reason: GENERATED}
+      - {paths: ["**/SKILL.md", "*/sections/*.md"], decision: REFERENCE, reason: "GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is"}
       - {paths: ["bin/gstack-telemetry*", "bin/gstack-analytics", "supabase/**"], decision: EXCLUDE, reason: TELEMETRY}
       - {paths: ["bin/gstack-update-check", "gstack-upgrade/**", "setup", "setup-*/**"], decision: EXCLUDE, reason: INSTALLER}
       - {paths: ["browse/**", "browser-skills/**", "open-gstack-browser/**", "setup-browser-cookies/**", "pair-agent/**", "scrape/**", "skillify/**", "extension/**", "connect-chrome/**", "BROWSER.md"], decision: EXCLUDE, reason: ALWAYS_ON}
@@ -164,7 +164,7 @@ repos:
     default: {decision: EXCLUDE, reason: OUT_OF_DOMAIN}
     rules:
       - {paths: ["LICENSE"], decision: COPY, capability: engineering/planning, reason: LICENSE}
-      - {paths: [".mcp.json", "**/*mcp*/**", "skills/mcp-server-patterns/**", "skills/codehealth-mcp/**", "scripts/memory-mcp.mjs"], decision: EXCLUDE, reason: MCP}
+      - {paths: [".mcp.json", "**/*mcp*/**", "skills/mcp-server-patterns/**", "skills/codehealth-mcp/**", "scripts/memory-mcp.mjs", "skills/angular-developer/references/mcp.md"], decision: EXCLUDE, reason: MCP}
       - {paths: ["hooks/**", "scripts/hooks/**"], decision: REFERENCE, reason: "Hook behaviors; config-protection/format-typecheck/cost-tracker/pre-compact re-implemented as opt-in OS hooks (SEC-01)"}
       - {paths: ["ecc2/**", "src/**"], decision: EXCLUDE, reason: ALWAYS_ON}
       - {paths: ["docs/ja-JP/**", "docs/zh-CN/**", "docs/zh-TW/**", "docs/ko-KR/**", "docs/tr/**", "docs/es/**", "docs/pt-BR/**", "README.zh-CN.md"], decision: EXCLUDE, reason: TRANSLATION}
@@ -288,6 +288,7 @@ repos:
       - {paths: ["LICENSE"], decision: COPY, capability: design/design-system, reason: LICENSE}
       - {paths: ["stack/.mcp.json"], decision: EXCLUDE, reason: MCP}
       - {paths: ["scripts/evaluate-relevance.py", "scripts/relevance_metrics.py"], decision: PRESERVE, capability: design/design-system, reason: "Loaded by engine relevance tests (closure)"}
+      - {paths: ["src/ui-ux-pro-max/scripts/tests/test_catalog_refresh.py", "src/ui-ux-pro-max/scripts/tests/test_catalog_summary_line_endings.py", "src/ui-ux-pro-max/scripts/tests/test_skill_script_paths.py", "src/ui-ux-pro-max/scripts/tests/fixtures/catalogs/**"], decision: EXCLUDE, reason: UPSTREAM_DEV}
       - {paths: ["src/ui-ux-pro-max/**"], decision: PRESERVE, capability: design/design-system, reason: "Stdlib design-intelligence engine + CSV data + tests (164 OK)"}
       - {paths: [".claude/skills/ui-ux-pro-max/SKILL.md"], decision: ADAPT, capability: design/design-system, reason: "Engine usage instructions; script paths rewritten to the bundled engine"}
       - {paths: [".claude/skills/ui-ux-pro-max/references/**"], decision: ADAPT, capability: design/design-system, reason: "Skill references"}
@@ -377,3 +378,4 @@ accepted_gaps:
   - {repo: opendesign, target: docs/design-systems.md, reason: "Contributor doc mention; format is self-evident from DESIGN.md + tokens"}
   - {repo: opendesign, target: design-systems/_schema/AGENTS.md, reason: "Schema tooling mention"}
   - {repo: beyondseo, target: docs/development.md, reason: "Docs index mention of excluded developer guide"}
+  - {repo: ecc, target: skills/angular-developer/references/mcp.md, reason: "Angular MCP-server how-to excluded (§2.1); link removed when the stack pack is adapted"}

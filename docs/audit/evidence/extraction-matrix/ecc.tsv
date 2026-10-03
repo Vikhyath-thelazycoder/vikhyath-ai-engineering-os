@@ -3275,7 +3275,7 @@ ADAPT	Language/framework packs	engineering/stack-packs	1927	skills/angular-devel
 ADAPT	Language/framework packs	engineering/stack-packs	2445	skills/angular-developer/references/inputs.md
 ADAPT	Language/framework packs	engineering/stack-packs	2584	skills/angular-developer/references/linked-signal.md
 ADAPT	Language/framework packs	engineering/stack-packs	1457	skills/angular-developer/references/loading-strategies.md
-ADAPT	Language/framework packs	engineering/stack-packs	4079	skills/angular-developer/references/mcp.md
+EXCLUDE	MCP		4079	skills/angular-developer/references/mcp.md
 ADAPT	Language/framework packs	engineering/stack-packs	1639	skills/angular-developer/references/navigate-to-routes.md
 ADAPT	Language/framework packs	engineering/stack-packs	2604	skills/angular-developer/references/outputs.md
 ADAPT	Language/framework packs	engineering/stack-packs	3561	skills/angular-developer/references/reactive-forms.md

@@ -57,7 +57,7 @@
  },
  "ecc": {
   "attribution": "Copyright (c) 2026 Affaan Mustafa",
-  "bundled_files": 409,
+  "bundled_files": 408,
   "commit_sha": "ef648e01899ba3e8dc6371642deaaf64b4477775",
   "license": "MIT",
   "license_files": [
@@ -81,7 +81,7 @@
  },
  "gstack": {
   "attribution": "Copyright (c) 2026 Garry Tan",
-  "bundled_files": 133,
+  "bundled_files": 97,
   "commit_sha": "74512c20a7aca72e722d46bcc6b3954c1677d9ee",
   "license": "MIT",
   "license_files": [
@@ -136,7 +136,7 @@
  },
  "uiuxpromax": {
   "attribution": "Copyright (c) 2024 Next Level Builder",
-  "bundled_files": 286,
+  "bundled_files": 273,
   "commit_sha": "09170eec67eefd46a7ae85de61b40c194020f997",
   "license": "MIT",
   "license_files": [

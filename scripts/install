@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# Vikhyath AI Engineering OS — central install (D-009, D-010, D-023).
+# Installs ONE core into $VIKHYATH_HOME (default ~/.vikhyath) and builds the local capability bundle.
+# Fetching the pinned upstreams is the only network step; afterwards the OS works offline.
+set -euo pipefail
+
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+HOME_DIR="${VIKHYATH_HOME:-$HOME/.vikhyath}"
+PY="${VIKHYATH_PYTHON:-python3}"
+
+"$PY" -c 'import sys; sys.exit(0 if sys.version_info >= (3, 10) else 1)' \
+  || { echo "Vikhyath OS needs Python >= 3.10 (found: $("$PY" --version 2>&1))." >&2; exit 1; }
+command -v git >/dev/null || { echo "git is required." >&2; exit 1; }
+
+echo "→ Installing Vikhyath OS into $HOME_DIR"
+mkdir -p "$HOME_DIR"
+# A stable copy of the OS source: host plugin caches can be replaced on update, the central install must not be.
+rsync -a --delete --exclude .git --exclude .staging --exclude '*.egg-info' --exclude '__pycache__' "$ROOT_DIR/" "$HOME_DIR/src/"
+"$PY" -m venv "$HOME_DIR/core"
+"$HOME_DIR/core/bin/python" -m pip install --quiet --upgrade pip
+"$HOME_DIR/core/bin/python" -m pip install --quiet -e "$HOME_DIR/src"
+
+export VIKHYATH_HOME="$HOME_DIR"
+echo "→ Fetching pinned upstreams (network, once)"
+"$HOME_DIR/core/bin/vikhyath" bundle fetch
+echo "→ Building and verifying the local bundle"
+"$HOME_DIR/core/bin/vikhyath" bundle build --staging "$HOME_DIR/staging/upstream" --self-test
+"$HOME_DIR/core/bin/vikhyath" bundle verify
+
+echo
+echo "✅ Vikhyath OS installed. Add it to your PATH:"
+echo "   export PATH=\"$HOME_DIR/core/bin:\$PATH\""

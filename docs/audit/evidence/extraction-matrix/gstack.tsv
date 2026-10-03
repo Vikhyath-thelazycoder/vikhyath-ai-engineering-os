@@ -52,33 +52,33 @@ COPY	LICENSE	engineering/review	1066	LICENSE
 COPY	LICENSE	engineering/review	2472	NOTICE.md
 EXCLUDE	OUT_OF_DOMAIN		73323	README.md
 EXCLUDE	OUT_OF_DOMAIN		1354	SECURITY.md
-EXCLUDE	GENERATED		15871	SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		15871	SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		7236	SKILL.md.tmpl
 EXCLUDE	OUT_OF_DOMAIN		271976	TODOS.md
 EXCLUDE	OUT_OF_DOMAIN		31512	USING_GBRAIN_WITH_GSTACK.md
 EXCLUDE	OUT_OF_DOMAIN		10	VERSION
 EXCLUDE	OUT_OF_DOMAIN		1766	agents-digest/gstack-AGENTS.md
 EXCLUDE	OUT_OF_DOMAIN		351	agents/openai.yaml
-EXCLUDE	GENERATED		65455	autoplan/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		65455	autoplan/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		21851	autoplan/SKILL.md.tmpl
 EXCLUDE	OUT_OF_DOMAIN		676	autoplan/bin/phase-publication-hook
 EXCLUDE	OUT_OF_DOMAIN		43937	autoplan/bin/phase-publication-hook.ts
-EXCLUDE	OUT_OF_DOMAIN		11826	autoplan/sections/ceo-phase.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		11826	autoplan/sections/ceo-phase.md
 EXCLUDE	OUT_OF_DOMAIN		8169	autoplan/sections/ceo-phase.md.tmpl
-EXCLUDE	OUT_OF_DOMAIN		7891	autoplan/sections/design-phase.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		7891	autoplan/sections/design-phase.md
 EXCLUDE	OUT_OF_DOMAIN		4172	autoplan/sections/design-phase.md.tmpl
-EXCLUDE	OUT_OF_DOMAIN		9448	autoplan/sections/dx-phase.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		9448	autoplan/sections/dx-phase.md
 EXCLUDE	OUT_OF_DOMAIN		5758	autoplan/sections/dx-phase.md.tmpl
-EXCLUDE	OUT_OF_DOMAIN		9467	autoplan/sections/eng-phase.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		9467	autoplan/sections/eng-phase.md
 EXCLUDE	OUT_OF_DOMAIN		5785	autoplan/sections/eng-phase.md.tmpl
 EXCLUDE	OUT_OF_DOMAIN		2522	autoplan/sections/manifest.json
-EXCLUDE	OUT_OF_DOMAIN		4576	autoplan/sections/phase-close.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		4576	autoplan/sections/phase-close.md
 EXCLUDE	OUT_OF_DOMAIN		4458	autoplan/sections/phase-close.md.tmpl
-EXCLUDE	OUT_OF_DOMAIN		4764	autoplan/sections/tasks-aggregator.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		4764	autoplan/sections/tasks-aggregator.md
 EXCLUDE	OUT_OF_DOMAIN		28	autoplan/sections/tasks-aggregator.md.tmpl
-EXCLUDE	GENERATED		14622	benchmark-models/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		14622	benchmark-models/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		6647	benchmark-models/SKILL.md.tmpl
-EXCLUDE	GENERATED		29365	benchmark/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		29365	benchmark/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		12091	benchmark/SKILL.md.tmpl
 EXCLUDE	OUT_OF_DOMAIN		6381	bin/dev-setup
 EXCLUDE	OUT_OF_DOMAIN		1832	bin/dev-teardown
@@ -178,13 +178,13 @@ EXCLUDE	OUT_OF_DOMAIN		7724	bin/gstack-verify-gate
 EXCLUDE	OUT_OF_DOMAIN		26137	bin/gstack-version-bump
 EXCLUDE	OUT_OF_DOMAIN		3365	bin/gstack-wtree
 EXCLUDE	ALWAYS_ON		4610	browse/PLAN-snapshot-dropdown-interactive.md
-EXCLUDE	GENERATED		31149	browse/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		31149	browse/SKILL.md
 EXCLUDE	ALWAYS_ON		6047	browse/SKILL.md.tmpl
 EXCLUDE	ALWAYS_ON		814	browse/bin/find-browse
 EXCLUDE	ALWAYS_ON		781	browse/bin/remote-slug
 EXCLUDE	ALWAYS_ON		2274	browse/scripts/build-node-server.sh
 EXCLUDE	ALWAYS_ON		1743	browse/scripts/extension-id.ts
-EXCLUDE	ALWAYS_ON		16986	browse/sections/command-list.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		16986	browse/sections/command-list.md
 EXCLUDE	ALWAYS_ON		83	browse/sections/command-list.md.tmpl
 EXCLUDE	ALWAYS_ON		827	browse/sections/manifest.json
 EXCLUDE	ALWAYS_ON		6583	browse/src/activity.ts
@@ -478,62 +478,62 @@ EXCLUDE	ALWAYS_ON		5566	browse/test/welcome-page.test.ts
 EXCLUDE	ALWAYS_ON		7931	browse/test/windows-spawn-hide.test.ts
 EXCLUDE	ALWAYS_ON		20608	browse/test/xprotect-heal.test.ts
 EXCLUDE	ALWAYS_ON		26468	browse/test/xvfb.test.ts
-EXCLUDE	GENERATED		1418	browser-skills/hackernews-frontpage/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		1418	browser-skills/hackernews-frontpage/SKILL.md
 EXCLUDE	ALWAYS_ON		11540	browser-skills/hackernews-frontpage/_lib/browse-client.ts
 EXCLUDE	ALWAYS_ON		5162	browser-skills/hackernews-frontpage/fixtures/hn-2026-04-26.html
 EXCLUDE	ALWAYS_ON		3865	browser-skills/hackernews-frontpage/script.test.ts
 EXCLUDE	ALWAYS_ON		4679	browser-skills/hackernews-frontpage/script.ts
 EXCLUDE	OUT_OF_DOMAIN		66788	bun.lock
 EXCLUDE	OUT_OF_DOMAIN		405	bunfig.toml
-EXCLUDE	GENERATED		52594	canary/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		52594	canary/SKILL.md
 ADAPT	Ship/release/canary methodology	engineering/release	12794	canary/SKILL.md.tmpl
-EXCLUDE	GENERATED		3679	careful/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		3679	careful/SKILL.md
 ADAPT	Destructive-command guardrails (opt-in)	engineering/security	3563	careful/SKILL.md.tmpl
 ADAPT	Destructive-command guardrails (opt-in)	engineering/security	15059	careful/bin/check-careful.sh
 ADAPT	Destructive-command guardrails (opt-in)	engineering/security	5784	careful/bin/hook-extract.sh
 EXCLUDE	OUT_OF_DOMAIN		14002	claude-code/SKILL.md.tmpl
-EXCLUDE	GENERATED		58277	codex/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		58277	codex/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		15428	codex/SKILL.md.tmpl
-EXCLUDE	OUT_OF_DOMAIN		7541	codex/sections/challenge-mode.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		7541	codex/sections/challenge-mode.md
 EXCLUDE	OUT_OF_DOMAIN		7399	codex/sections/challenge-mode.md.tmpl
-EXCLUDE	OUT_OF_DOMAIN		11792	codex/sections/consult-mode.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		11792	codex/sections/consult-mode.md
 EXCLUDE	OUT_OF_DOMAIN		11631	codex/sections/consult-mode.md.tmpl
 EXCLUDE	OUT_OF_DOMAIN		1507	codex/sections/manifest.json
-EXCLUDE	OUT_OF_DOMAIN		12954	codex/sections/review-mode.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		12954	codex/sections/review-mode.md
 EXCLUDE	OUT_OF_DOMAIN		12744	codex/sections/review-mode.md.tmpl
 EXCLUDE	OUT_OF_DOMAIN		87	conductor.json
 EXCLUDE	OUT_OF_DOMAIN		19	connect-chrome
-EXCLUDE	GENERATED		40152	context-restore/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		40152	context-restore/SKILL.md
 REFERENCE	Design input for project state (P10)		11086	context-restore/SKILL.md.tmpl
-EXCLUDE	GENERATED		39358	context-save/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		39358	context-save/SKILL.md
 REFERENCE	Design input for project state (P10)		9715	context-save/SKILL.md.tmpl
 EXCLUDE	OUT_OF_DOMAIN		1764	contrib/add-host/SKILL.md.tmpl
 ADAPT	Security audit phases (CSO)	engineering/security	3046	cso/ACKNOWLEDGEMENTS.md
-EXCLUDE	GENERATED		17986	cso/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		17986	cso/SKILL.md
 ADAPT	Security audit phases (CSO)	engineering/security	17077	cso/SKILL.md.tmpl
-ADAPT	Security audit phases (CSO)	engineering/security	15515	cso/sections/audit-phases.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		15515	cso/sections/audit-phases.md
 ADAPT	Security audit phases (CSO)	engineering/security	15396	cso/sections/audit-phases.md.tmpl
 ADAPT	Security audit phases (CSO)	engineering/security	777	cso/sections/manifest.json
-EXCLUDE	GENERATED		59824	design-consultation/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		59824	design-consultation/SKILL.md
 ADAPT	Design review and consultation method	design/design-review	11597	design-consultation/SKILL.md.tmpl
 ADAPT	Design review and consultation method	design/design-review	676	design-consultation/sections/manifest.json
-ADAPT	Design review and consultation method	design/design-review	38798	design-consultation/sections/proposal-and-preview.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		38798	design-consultation/sections/proposal-and-preview.md
 ADAPT	Design review and consultation method	design/design-review	18908	design-consultation/sections/proposal-and-preview.md.tmpl
-EXCLUDE	GENERATED		54821	design-html/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		54821	design-html/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		20014	design-html/SKILL.md.tmpl
-EXCLUDE	OUT_OF_DOMAIN		3667	design-html/sections/detector-install-offer.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		3667	design-html/sections/detector-install-offer.md
 EXCLUDE	OUT_OF_DOMAIN		413	design-html/sections/detector-install-offer.md.tmpl
-EXCLUDE	OUT_OF_DOMAIN		4711	design-html/sections/doctrine.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		4711	design-html/sections/doctrine.md
 EXCLUDE	OUT_OF_DOMAIN		18	design-html/sections/doctrine.md.tmpl
 EXCLUDE	OUT_OF_DOMAIN		1448	design-html/sections/manifest.json
-EXCLUDE	OUT_OF_DOMAIN		4887	design-html/sections/pretext-patterns.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		4887	design-html/sections/pretext-patterns.md
 EXCLUDE	OUT_OF_DOMAIN		4764	design-html/sections/pretext-patterns.md.tmpl
 EXCLUDE	OUT_OF_DOMAIN		30602	design-html/vendor/pretext.js
-EXCLUDE	GENERATED		132120	design-review/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		132120	design-review/SKILL.md
 ADAPT	Design review and consultation method	design/design-review	13742	design-review/SKILL.md.tmpl
-EXCLUDE	GENERATED		53115	design-shotgun/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		53115	design-shotgun/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		15041	design-shotgun/SKILL.md.tmpl
-EXCLUDE	OUT_OF_DOMAIN		4711	design-shotgun/sections/doctrine.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		4711	design-shotgun/sections/doctrine.md
 EXCLUDE	OUT_OF_DOMAIN		18	design-shotgun/sections/doctrine.md.tmpl
 EXCLUDE	OUT_OF_DOMAIN		779	design-shotgun/sections/manifest.json
 EXCLUDE	OUT_OF_DOMAIN		5430	design/prototype.ts
@@ -570,11 +570,11 @@ EXCLUDE	OUT_OF_DOMAIN		2527	design/test/image-gen-pairing.test.ts
 EXCLUDE	OUT_OF_DOMAIN		5649	design/test/receipted-fetch.test.ts
 EXCLUDE	OUT_OF_DOMAIN		4437	design/test/serve.test.ts
 EXCLUDE	OUT_OF_DOMAIN		7492	design/test/variants-retry-after.test.ts
-EXCLUDE	GENERATED		13084	deslop-shared-libs/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		13084	deslop-shared-libs/SKILL.md
 ADAPT	Shared-code extraction review	engineering/simplicity	10697	deslop-shared-libs/SKILL.md.tmpl
-EXCLUDE	GENERATED		75539	devex-review/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		75539	devex-review/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		8933	devex-review/SKILL.md.tmpl
-EXCLUDE	GENERATED		16328	diagram/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		16328	diagram/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		8386	diagram/SKILL.md.tmpl
 EXCLUDE	OUT_OF_DOMAIN		7600	docs/ADDING_A_HOST.md
 EXCLUDE	OUT_OF_DOMAIN		11283	docs/BROWSER_INTERNALS.md
@@ -642,14 +642,14 @@ EXCLUDE	OUT_OF_DOMAIN		8788	docs/state-root.md
 EXCLUDE	OUT_OF_DOMAIN		50213	docs/test-audit-2026-09.md
 EXCLUDE	OUT_OF_DOMAIN		9173	docs/test-value-bar.md
 EXCLUDE	OUT_OF_DOMAIN		6816	docs/tutorial-document-generate.md
-EXCLUDE	GENERATED		46376	document-generate/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		46376	document-generate/SKILL.md
 ADAPT	Documentation generation	engineering/documentation	15876	document-generate/SKILL.md.tmpl
-EXCLUDE	GENERATED		40112	document-release/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		40112	document-release/SKILL.md
 ADAPT	Ship/release/canary methodology	engineering/release	8346	document-release/SKILL.md.tmpl
-ADAPT	Ship/release/canary methodology	engineering/release	3368	document-release/sections/audit-scope.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		3368	document-release/sections/audit-scope.md
 ADAPT	Ship/release/canary methodology	engineering/release	3250	document-release/sections/audit-scope.md.tmpl
 ADAPT	Ship/release/canary methodology	engineering/release	1050	document-release/sections/manifest.json
-ADAPT	Ship/release/canary methodology	engineering/release	33546	document-release/sections/release-body.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		33546	document-release/sections/release-body.md
 ADAPT	Ship/release/canary methodology	engineering/release	19495	document-release/sections/release-body.md.tmpl
 EXCLUDE	ALWAYS_ON		22166	extension/background.js
 EXCLUDE	ALWAYS_ON		2513	extension/content.css
@@ -667,11 +667,11 @@ EXCLUDE	ALWAYS_ON		38996	extension/sidepanel-terminal.js
 EXCLUDE	ALWAYS_ON		35837	extension/sidepanel.css
 EXCLUDE	ALWAYS_ON		9462	extension/sidepanel.html
 EXCLUDE	ALWAYS_ON		56564	extension/sidepanel.js
-EXCLUDE	GENERATED		4030	freeze/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		4030	freeze/SKILL.md
 ADAPT	Destructive-command guardrails (opt-in)	engineering/security	3914	freeze/SKILL.md.tmpl
 ADAPT	Destructive-command guardrails (opt-in)	engineering/security	7505	freeze/bin/check-freeze.sh
 ADAPT	Destructive-command guardrails (opt-in)	engineering/security	2875	freeze/bin/freeze-state.sh
-EXCLUDE	GENERATED		18030	gstack-upgrade/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		18030	gstack-upgrade/SKILL.md
 EXCLUDE	INSTALLER		17910	gstack-upgrade/SKILL.md.tmpl
 EXCLUDE	INSTALLER		854	gstack-upgrade/migrations/v0.15.2.0.sh
 EXCLUDE	INSTALLER		2773	gstack-upgrade/migrations/v0.16.2.0.sh
@@ -688,9 +688,9 @@ EXCLUDE	INSTALLER		2865	gstack-upgrade/migrations/v1.67.0.0.sh
 EXCLUDE	INSTALLER		1531	gstack-upgrade/migrations/v1.78.0.0.sh
 EXCLUDE	INSTALLER		685	gstack-upgrade/migrations/v1.86.0.0.sh
 EXCLUDE	OUT_OF_DOMAIN		13334	gstack/llms.txt
-EXCLUDE	GENERATED		3593	guard/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		3593	guard/SKILL.md
 ADAPT	Destructive-command guardrails (opt-in)	engineering/security	3475	guard/SKILL.md.tmpl
-EXCLUDE	GENERATED		45152	health/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		45152	health/SKILL.md
 ADAPT	Code health and test value audit	testing/strategy	15820	health/SKILL.md.tmpl
 EXCLUDE	OUT_OF_DOMAIN		1293	hosts/claude.ts
 EXCLUDE	OUT_OF_DOMAIN		289	hosts/claude/hooks/auq-error-fallback-hook
@@ -717,15 +717,15 @@ EXCLUDE	OUT_OF_DOMAIN		530	hosts/kiro.ts
 EXCLUDE	OUT_OF_DOMAIN		839	hosts/openclaw.ts
 EXCLUDE	OUT_OF_DOMAIN		736	hosts/opencode.ts
 EXCLUDE	OUT_OF_DOMAIN		140	hosts/slate.ts
-EXCLUDE	GENERATED		47615	investigate/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		47615	investigate/SKILL.md
 ADAPT	Root-cause investigation	engineering/debugging	13585	investigate/SKILL.md.tmpl
-EXCLUDE	GENERATED		32870	ios-clean/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		32870	ios-clean/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		4100	ios-clean/SKILL.md.tmpl
-EXCLUDE	GENERATED		33579	ios-design-review/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		33579	ios-design-review/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		4498	ios-design-review/SKILL.md.tmpl
-EXCLUDE	GENERATED		32446	ios-fix/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		32446	ios-fix/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		3686	ios-fix/SKILL.md.tmpl
-EXCLUDE	GENERATED		43117	ios-qa/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		43117	ios-qa/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		12516	ios-qa/SKILL.md.tmpl
 EXCLUDE	OUT_OF_DOMAIN		4049	ios-qa/daemon/src/allowlist.ts
 EXCLUDE	OUT_OF_DOMAIN		3469	ios-qa/daemon/src/audit.ts
@@ -763,20 +763,20 @@ EXCLUDE	OUT_OF_DOMAIN		4669	ios-qa/templates/DebugOverlay.swift.template
 EXCLUDE	OUT_OF_DOMAIN		3669	ios-qa/templates/Package.swift.template
 EXCLUDE	OUT_OF_DOMAIN		1535	ios-qa/templates/StateAccessor.swift.template
 EXCLUDE	OUT_OF_DOMAIN		26211	ios-qa/templates/StateServer.swift.template
-EXCLUDE	GENERATED		32928	ios-sync/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		32928	ios-sync/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		4161	ios-sync/SKILL.md.tmpl
-EXCLUDE	GENERATED		73152	land-and-deploy/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		73152	land-and-deploy/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		24213	land-and-deploy/SKILL.md.tmpl
-EXCLUDE	OUT_OF_DOMAIN		10356	land-and-deploy/sections/first-run-validation.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		10356	land-and-deploy/sections/first-run-validation.md
 EXCLUDE	OUT_OF_DOMAIN		8440	land-and-deploy/sections/first-run-validation.md.tmpl
 EXCLUDE	OUT_OF_DOMAIN		1247	land-and-deploy/sections/manifest.json
-EXCLUDE	OUT_OF_DOMAIN		15976	land-and-deploy/sections/merge-and-deploy.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		15976	land-and-deploy/sections/merge-and-deploy.md
 EXCLUDE	OUT_OF_DOMAIN		15853	land-and-deploy/sections/merge-and-deploy.md.tmpl
-EXCLUDE	OUT_OF_DOMAIN		16336	land-and-deploy/sections/readiness-gate.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		16336	land-and-deploy/sections/readiness-gate.md
 EXCLUDE	OUT_OF_DOMAIN		16119	land-and-deploy/sections/readiness-gate.md.tmpl
-EXCLUDE	GENERATED		35596	landing-report/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		35596	landing-report/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		6843	landing-report/SKILL.md.tmpl
-EXCLUDE	GENERATED		34427	learn/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		34427	learn/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		5684	learn/SKILL.md.tmpl
 EXCLUDE	OUT_OF_DOMAIN		36910	lib/aside-render.ts
 EXCLUDE	OUT_OF_DOMAIN		7154	lib/autoplan-phase-publication.ts
@@ -888,7 +888,7 @@ EXCLUDE	OUT_OF_DOMAIN		5385	lib/tracker-guard.ts
 EXCLUDE	OUT_OF_DOMAIN		5859	lib/version-source.ts
 EXCLUDE	OUT_OF_DOMAIN		9927	lib/worktree.ts
 COPY	LICENSE	engineering/review	11358	licenses/Apache-2.0.txt
-EXCLUDE	GENERATED		20025	make-pdf/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		20025	make-pdf/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		10104	make-pdf/SKILL.md.tmpl
 EXCLUDE	OUT_OF_DOMAIN		4057	make-pdf/src/asideClient.ts
 EXCLUDE	OUT_OF_DOMAIN		10759	make-pdf/src/cli.ts
@@ -940,101 +940,101 @@ EXCLUDE	OUT_OF_DOMAIN		660	model-overlays/o-series.md
 EXCLUDE	OUT_OF_DOMAIN		1548	model-overlays/opus-4-7.md
 EXCLUDE	OUT_OF_DOMAIN		1548	model-overlays/opus-4-8.md
 EXCLUDE	OUT_OF_DOMAIN		898	model-overlays/sonnet-5.md
-EXCLUDE	GENERATED		86595	office-hours/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		86595	office-hours/SKILL.md
 ADAPT	Requirements intake and spec workflows (.tmpl + sections)	engineering/planning	16566	office-hours/SKILL.md.tmpl
-ADAPT	Requirements intake and spec workflows (.tmpl + sections)	engineering/planning	38519	office-hours/sections/design-and-handoff.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		38519	office-hours/sections/design-and-handoff.md
 ADAPT	Requirements intake and spec workflows (.tmpl + sections)	engineering/planning	31020	office-hours/sections/design-and-handoff.md.tmpl
 ADAPT	Requirements intake and spec workflows (.tmpl + sections)	engineering/planning	1394	office-hours/sections/manifest.json
-ADAPT	Requirements intake and spec workflows (.tmpl + sections)	engineering/planning	13477	office-hours/sections/phase-2a-startup-diagnostic.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		13477	office-hours/sections/phase-2a-startup-diagnostic.md
 ADAPT	Requirements intake and spec workflows (.tmpl + sections)	engineering/planning	13343	office-hours/sections/phase-2a-startup-diagnostic.md.tmpl
-ADAPT	Requirements intake and spec workflows (.tmpl + sections)	engineering/planning	3224	office-hours/sections/phase-2b-builder-brainstorm.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		3224	office-hours/sections/phase-2b-builder-brainstorm.md
 ADAPT	Requirements intake and spec workflows (.tmpl + sections)	engineering/planning	3090	office-hours/sections/phase-2b-builder-brainstorm.md.tmpl
-EXCLUDE	GENERATED		18522	open-gstack-browser/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		18522	open-gstack-browser/SKILL.md
 EXCLUDE	ALWAYS_ON		9043	open-gstack-browser/SKILL.md.tmpl
 EXCLUDE	OUT_OF_DOMAIN		2535	openclaw/agents-gstack-section.md
 EXCLUDE	OUT_OF_DOMAIN		538	openclaw/gstack-full-CLAUDE.md
 EXCLUDE	OUT_OF_DOMAIN		688	openclaw/gstack-lite-CLAUDE.md
 EXCLUDE	OUT_OF_DOMAIN		1033	openclaw/gstack-plan-CLAUDE.md
-EXCLUDE	GENERATED		10576	openclaw/skills/gstack-openclaw-ceo-review/SKILL.md
-EXCLUDE	GENERATED		5469	openclaw/skills/gstack-openclaw-investigate/SKILL.md
-EXCLUDE	GENERATED		16964	openclaw/skills/gstack-openclaw-office-hours/SKILL.md
-EXCLUDE	GENERATED		9727	openclaw/skills/gstack-openclaw-retro/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		10576	openclaw/skills/gstack-openclaw-ceo-review/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		5469	openclaw/skills/gstack-openclaw-investigate/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		16964	openclaw/skills/gstack-openclaw-office-hours/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		9727	openclaw/skills/gstack-openclaw-retro/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		538	openclaw/templates/gstack-full-CLAUDE.md
 EXCLUDE	OUT_OF_DOMAIN		688	openclaw/templates/gstack-lite-CLAUDE.md
 EXCLUDE	OUT_OF_DOMAIN		1033	openclaw/templates/gstack-plan-CLAUDE.md
 EXCLUDE	OUT_OF_DOMAIN		6927	package.json
-EXCLUDE	GENERATED		43626	pair-agent/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		43626	pair-agent/SKILL.md
 EXCLUDE	ALWAYS_ON		13368	pair-agent/SKILL.md.tmpl
 EXCLUDE	OUT_OF_DOMAIN		1360	patches/playwright-core@1.62.1.patch
-EXCLUDE	GENERATED		80214	plan-ceo-review/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		80214	plan-ceo-review/SKILL.md
 ADAPT	Plan review perspectives	engineering/planning	29879	plan-ceo-review/SKILL.md.tmpl
 ADAPT	Plan review perspectives	engineering/planning	803	plan-ceo-review/sections/manifest.json
-ADAPT	Plan review perspectives	engineering/planning	81291	plan-ceo-review/sections/review-sections.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		81291	plan-ceo-review/sections/review-sections.md
 ADAPT	Plan review perspectives	engineering/planning	39630	plan-ceo-review/sections/review-sections.md.tmpl
-EXCLUDE	GENERATED		78530	plan-design-review/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		78530	plan-design-review/SKILL.md
 ADAPT	Design review and consultation method	design/design-review	20546	plan-design-review/SKILL.md.tmpl
 ADAPT	Design review and consultation method	design/design-review	574	plan-design-review/sections/manifest.json
-ADAPT	Design review and consultation method	design/design-review	50340	plan-design-review/sections/review-sections.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		50340	plan-design-review/sections/review-sections.md
 ADAPT	Design review and consultation method	design/design-review	20772	plan-design-review/sections/review-sections.md.tmpl
-EXCLUDE	GENERATED		68193	plan-devex-review/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		68193	plan-devex-review/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		20392	plan-devex-review/SKILL.md.tmpl
 EXCLUDE	OUT_OF_DOMAIN		7285	plan-devex-review/dx-hall-of-fame.md
 EXCLUDE	OUT_OF_DOMAIN		547	plan-devex-review/sections/manifest.json
-EXCLUDE	OUT_OF_DOMAIN		63039	plan-devex-review/sections/review-sections.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		63039	plan-devex-review/sections/review-sections.md
 EXCLUDE	OUT_OF_DOMAIN		22127	plan-devex-review/sections/review-sections.md.tmpl
-EXCLUDE	GENERATED		51577	plan-eng-review/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		51577	plan-eng-review/SKILL.md
 ADAPT	Plan review perspectives	engineering/planning	11753	plan-eng-review/SKILL.md.tmpl
 ADAPT	Plan review perspectives	engineering/planning	623	plan-eng-review/sections/manifest.json
-ADAPT	Plan review perspectives	engineering/planning	94553	plan-eng-review/sections/review-sections.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		94553	plan-eng-review/sections/review-sections.md
 ADAPT	Plan review perspectives	engineering/planning	33007	plan-eng-review/sections/review-sections.md.tmpl
-EXCLUDE	GENERATED		56598	plan-tune/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		56598	plan-tune/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		27850	plan-tune/SKILL.md.tmpl
-EXCLUDE	GENERATED		44980	qa-only/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		44980	qa-only/SKILL.md
 ADAPT	QA methodology + issue taxonomy (local-first ladder)	testing/web-verification	10939	qa-only/SKILL.md.tmpl
-ADAPT	QA methodology + issue taxonomy (local-first ladder)	testing/web-verification	7170	qa-only/sections/exploratory.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		7170	qa-only/sections/exploratory.md
 ADAPT	QA methodology + issue taxonomy (local-first ladder)	testing/web-verification	19	qa-only/sections/exploratory.md.tmpl
 ADAPT	QA methodology + issue taxonomy (local-first ladder)	testing/web-verification	522	qa-only/sections/manifest.json
-ADAPT	QA methodology + issue taxonomy (local-first ladder)	testing/web-verification	4881	qa-only/sections/reporting.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		4881	qa-only/sections/reporting.md
 ADAPT	QA methodology + issue taxonomy (local-first ladder)	testing/web-verification	4765	qa-only/sections/reporting.md.tmpl
-EXCLUDE	GENERATED		51939	qa/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		51939	qa/SKILL.md
 ADAPT	QA methodology + issue taxonomy (local-first ladder)	testing/web-verification	11306	qa/SKILL.md.tmpl
 ADAPT	QA methodology + issue taxonomy (local-first ladder)	testing/web-verification	3839	qa/references/issue-taxonomy.md
-ADAPT	Browser steps rewritten to lazy headless fallback (§23A)	testing/browser-fallback	10614	qa/sections/browser-setup.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		10614	qa/sections/browser-setup.md
 ADAPT	Browser steps rewritten to lazy headless fallback (§23A)	testing/browser-fallback	1364	qa/sections/browser-setup.md.tmpl
-ADAPT	Browser steps rewritten to lazy headless fallback (§23A)	testing/browser-fallback	1055	qa/sections/browser-verify.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		1055	qa/sections/browser-verify.md
 ADAPT	Browser steps rewritten to lazy headless fallback (§23A)	testing/browser-fallback	934	qa/sections/browser-verify.md.tmpl
-ADAPT	QA methodology + issue taxonomy (local-first ladder)	testing/web-verification	6411	qa/sections/exploratory.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		6411	qa/sections/exploratory.md
 ADAPT	QA methodology + issue taxonomy (local-first ladder)	testing/web-verification	19	qa/sections/exploratory.md.tmpl
 ADAPT	QA methodology + issue taxonomy (local-first ladder)	testing/web-verification	2393	qa/sections/manifest.json
-ADAPT	QA methodology + issue taxonomy (local-first ladder)	testing/web-verification	11308	qa/sections/qa-patterns.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		11308	qa/sections/qa-patterns.md
 ADAPT	QA methodology + issue taxonomy (local-first ladder)	testing/web-verification	19	qa/sections/qa-patterns.md.tmpl
-ADAPT	QA methodology + issue taxonomy (local-first ladder)	testing/web-verification	1590	qa/sections/scope.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		1590	qa/sections/scope.md
 ADAPT	QA methodology + issue taxonomy (local-first ladder)	testing/web-verification	13	qa/sections/scope.md.tmpl
-ADAPT	QA methodology + issue taxonomy (local-first ladder)	testing/web-verification	3816	qa/sections/system-functional.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		3816	qa/sections/system-functional.md
 ADAPT	QA methodology + issue taxonomy (local-first ladder)	testing/web-verification	18	qa/sections/system-functional.md.tmpl
-ADAPT	QA methodology + issue taxonomy (local-first ladder)	testing/web-verification	5995	qa/sections/test-bootstrap.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		5995	qa/sections/test-bootstrap.md
 ADAPT	QA methodology + issue taxonomy (local-first ladder)	testing/web-verification	5598	qa/sections/test-bootstrap.md.tmpl
 ADAPT	QA methodology + issue taxonomy (local-first ladder)	testing/web-verification	3162	qa/templates/functional-report-template.md
 ADAPT	QA methodology + issue taxonomy (local-first ladder)	testing/web-verification	2950	qa/templates/qa-report-template.md
-EXCLUDE	GENERATED		72925	retro/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		72925	retro/SKILL.md
 ADAPT	Retrospectives	engineering/release	39212	retro/SKILL.md.tmpl
 ADAPT	Retrospectives	engineering/release	682	retro/sections/manifest.json
-ADAPT	Retrospectives	engineering/release	5467	retro/sections/report-format.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		5467	retro/sections/report-format.md
 ADAPT	Retrospectives	engineering/release	5347	retro/sections/report-format.md.tmpl
-EXCLUDE	GENERATED		74867	review/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		74867	review/SKILL.md
 ADAPT	Pre-landing review + checklists + specialists	engineering/review	22998	review/SKILL.md.tmpl
 ADAPT	Pre-landing review + checklists + specialists	engineering/review	1655	review/TODOS-format.md
 ADAPT	Pre-landing review + checklists + specialists	engineering/review	12449	review/checklist.md
 ADAPT	Pre-landing review + checklists + specialists	engineering/review	14396	review/design-checklist.md
 ADAPT	Pre-landing review + checklists + specialists	engineering/review	9821	review/greptile-triage.md
-ADAPT	Pre-landing review + checklists + specialists	engineering/review	20949	review/sections/adversarial.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		20949	review/sections/adversarial.md
 ADAPT	Pre-landing review + checklists + specialists	engineering/review	21	review/sections/adversarial.md.tmpl
 ADAPT	Pre-landing review + checklists + specialists	engineering/review	1389	review/sections/manifest.json
-ADAPT	Pre-landing review + checklists + specialists	engineering/review	15347	review/sections/plan-completion.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		15347	review/sections/plan-completion.md
 ADAPT	Pre-landing review + checklists + specialists	engineering/review	299	review/sections/plan-completion.md.tmpl
-ADAPT	Pre-landing review + checklists + specialists	engineering/review	14894	review/sections/review-army.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		14894	review/sections/review-army.md
 ADAPT	Pre-landing review + checklists + specialists	engineering/review	16	review/sections/review-army.md.tmpl
-ADAPT	Pre-landing review + checklists + specialists	engineering/review	2342	review/sections/shared-code-reuse.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		2342	review/sections/shared-code-reuse.md
 ADAPT	Pre-landing review + checklists + specialists	engineering/review	22	review/sections/shared-code-reuse.md.tmpl
 ADAPT	Pre-landing review + checklists + specialists	engineering/review	2357	review/specialists/api-contract.md
 ADAPT	Pre-landing review + checklists + specialists	engineering/review	2306	review/specialists/data-migration.md
@@ -1044,7 +1044,7 @@ ADAPT	Pre-landing review + checklists + specialists	engineering/review	2258	revi
 ADAPT	Pre-landing review + checklists + specialists	engineering/review	3025	review/specialists/security.md
 ADAPT	Pre-landing review + checklists + specialists	engineering/review	4421	review/specialists/simplification.md
 ADAPT	Pre-landing review + checklists + specialists	engineering/review	8258	review/specialists/testing.md
-EXCLUDE	GENERATED		26315	scrape/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		26315	scrape/SKILL.md
 EXCLUDE	ALWAYS_ON		7023	scrape/SKILL.md.tmpl
 EXCLUDE	OUT_OF_DOMAIN		5482	scripts/analytics.ts
 EXCLUDE	OUT_OF_DOMAIN		2446	scripts/app/gstack-browser
@@ -1167,53 +1167,53 @@ EXCLUDE	OUT_OF_DOMAIN		10361	scripts/ubicloud/ubi-runner.sh
 EXCLUDE	OUT_OF_DOMAIN		3280	scripts/update-readme-throughput.ts
 EXCLUDE	OUT_OF_DOMAIN		229	scripts/write-version-files.sh
 EXCLUDE	INSTALLER		169581	setup
-EXCLUDE	GENERATED		13381	setup-browser-cookies/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		13381	setup-browser-cookies/SKILL.md
 EXCLUDE	INSTALLER		3919	setup-browser-cookies/SKILL.md.tmpl
-EXCLUDE	GENERATED		43521	setup-deploy/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		43521	setup-deploy/SKILL.md
 EXCLUDE	INSTALLER		8942	setup-deploy/SKILL.md.tmpl
-EXCLUDE	GENERATED		59785	setup-gbrain/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		59785	setup-gbrain/SKILL.md
 EXCLUDE	INSTALLER		28810	setup-gbrain/SKILL.md.tmpl
 EXCLUDE	INSTALLER		16620	setup-gbrain/memory.md
-EXCLUDE	INSTALLER		11797	setup-gbrain/sections/brain-init.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		11797	setup-gbrain/sections/brain-init.md
 EXCLUDE	INSTALLER		11680	setup-gbrain/sections/brain-init.md.tmpl
-EXCLUDE	INSTALLER		1484	setup-gbrain/sections/claude-md-persist.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		1484	setup-gbrain/sections/claude-md-persist.md
 EXCLUDE	INSTALLER		1360	setup-gbrain/sections/claude-md-persist.md.tmpl
-EXCLUDE	INSTALLER		3941	setup-gbrain/sections/engine-remediation.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		3941	setup-gbrain/sections/engine-remediation.md
 EXCLUDE	INSTALLER		3816	setup-gbrain/sections/engine-remediation.md.tmpl
 EXCLUDE	INSTALLER		1982	setup-gbrain/sections/manifest.json
-EXCLUDE	INSTALLER		4116	setup-gbrain/sections/transcript-gate.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		4116	setup-gbrain/sections/transcript-gate.md
 EXCLUDE	INSTALLER		3994	setup-gbrain/sections/transcript-gate.md.tmpl
-EXCLUDE	GENERATED		78952	ship/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		78952	ship/SKILL.md
 ADAPT	Ship/release/canary methodology	engineering/release	32742	ship/SKILL.md.tmpl
-ADAPT	Ship/release/canary methodology	engineering/release	24053	ship/sections/adversarial.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		24053	ship/sections/adversarial.md
 ADAPT	Ship/release/canary methodology	engineering/release	741	ship/sections/adversarial.md.tmpl
-ADAPT	Ship/release/canary methodology	engineering/release	17968	ship/sections/apple-release.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		17968	ship/sections/apple-release.md
 ADAPT	Ship/release/canary methodology	engineering/release	17848	ship/sections/apple-release.md.tmpl
-ADAPT	Ship/release/canary methodology	engineering/release	1980	ship/sections/changelog.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		1980	ship/sections/changelog.md
 ADAPT	Ship/release/canary methodology	engineering/release	28	ship/sections/changelog.md.tmpl
-ADAPT	Ship/release/canary methodology	engineering/release	7980	ship/sections/documentation.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		7980	ship/sections/documentation.md
 ADAPT	Ship/release/canary methodology	engineering/release	7290	ship/sections/documentation.md.tmpl
-ADAPT	Ship/release/canary methodology	engineering/release	4514	ship/sections/greptile.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		4514	ship/sections/greptile.md
 ADAPT	Ship/release/canary methodology	engineering/release	4399	ship/sections/greptile.md.tmpl
 ADAPT	Ship/release/canary methodology	engineering/release	3006	ship/sections/manifest.json
-ADAPT	Ship/release/canary methodology	engineering/release	21144	ship/sections/plan-completion.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		21144	ship/sections/plan-completion.md
 ADAPT	Ship/release/canary methodology	engineering/release	3257	ship/sections/plan-completion.md.tmpl
-ADAPT	Ship/release/canary methodology	engineering/release	9326	ship/sections/pr-body.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		9326	ship/sections/pr-body.md
 ADAPT	Ship/release/canary methodology	engineering/release	9212	ship/sections/pr-body.md.tmpl
-ADAPT	Ship/release/canary methodology	engineering/release	42291	ship/sections/review-army.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		42291	ship/sections/review-army.md
 ADAPT	Ship/release/canary methodology	engineering/release	7639	ship/sections/review-army.md.tmpl
-ADAPT	Ship/release/canary methodology	engineering/release	2342	ship/sections/shared-code-reuse.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		2342	ship/sections/shared-code-reuse.md
 ADAPT	Ship/release/canary methodology	engineering/release	22	ship/sections/shared-code-reuse.md.tmpl
-ADAPT	Ship/release/canary methodology	engineering/release	30912	ship/sections/test-coverage.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		30912	ship/sections/test-coverage.md
 ADAPT	Ship/release/canary methodology	engineering/release	6106	ship/sections/test-coverage.md.tmpl
-ADAPT	Ship/release/canary methodology	engineering/release	22077	ship/sections/tests.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		22077	ship/sections/tests.md
 ADAPT	Ship/release/canary methodology	engineering/release	5355	ship/sections/tests.md.tmpl
-EXCLUDE	GENERATED		45771	skillify/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		45771	skillify/SKILL.md
 EXCLUDE	ALWAYS_ON		15257	skillify/SKILL.md.tmpl
 EXCLUDE	OUT_OF_DOMAIN		42	slop-scan.config.json
-EXCLUDE	GENERATED		56678	spec/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		56678	spec/SKILL.md
 ADAPT	Requirements intake and spec workflows (.tmpl + sections)	engineering/planning	19617	spec/SKILL.md.tmpl
-ADAPT	Requirements intake and spec workflows (.tmpl + sections)	engineering/planning	21500	spec/sections/gate-and-file.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		21500	spec/sections/gate-and-file.md
 ADAPT	Requirements intake and spec workflows (.tmpl + sections)	engineering/planning	12440	spec/sections/gate-and-file.md.tmpl
 ADAPT	Requirements intake and spec workflows (.tmpl + sections)	engineering/planning	751	spec/sections/manifest.json
 EXCLUDE	TELEMETRY		420	supabase/config.sh
@@ -1225,9 +1225,9 @@ EXCLUDE	TELEMETRY		1727	supabase/migrations/002_tighten_rls.sql
 EXCLUDE	TELEMETRY		1228	supabase/migrations/003_installations_upsert_policy.sql
 EXCLUDE	TELEMETRY		1947	supabase/migrations/004_attack_telemetry.sql
 EXCLUDE	TELEMETRY		5613	supabase/verify-rls.sh
-EXCLUDE	GENERATED		56413	sync-gbrain/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		56413	sync-gbrain/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		27638	sync-gbrain/SKILL.md.tmpl
-EXCLUDE	GENERATED		40317	test-audit/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		40317	test-audit/SKILL.md
 ADAPT	Code health and test value audit	testing/strategy	7572	test-audit/SKILL.md.tmpl
 EXCLUDE	OUT_OF_DOMAIN		3508	test-setup.ts
 EXCLUDE	OUT_OF_DOMAIN		37198	test/agent-sdk-runner.test.ts
@@ -1630,11 +1630,11 @@ EXCLUDE	OUT_OF_DOMAIN		49188	test/fixtures/claude-native-journal-roots-2.1.284.j
 EXCLUDE	OUT_OF_DOMAIN		1344	test/fixtures/codex-review/README.md
 EXCLUDE	OUT_OF_DOMAIN		86	test/fixtures/codex-review/clean-review.stdout.txt
 EXCLUDE	OUT_OF_DOMAIN		217	test/fixtures/codex-review/p2-review.stdout.txt
-EXCLUDE	GENERATED		727	test/fixtures/context-bill/tree-a/alpha/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		727	test/fixtures/context-bill/tree-a/alpha/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		77	test/fixtures/context-bill/tree-a/alpha/references/CORE.md
 EXCLUDE	OUT_OF_DOMAIN		63	test/fixtures/context-bill/tree-a/alpha/references/OPTIONAL.md
 EXCLUDE	OUT_OF_DOMAIN		44	test/fixtures/context-bill/tree-a/alpha/references/POLICY.md
-EXCLUDE	GENERATED		176	test/fixtures/context-bill/tree-a/beta/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		176	test/fixtures/context-bill/tree-a/beta/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		90	test/fixtures/context-bill/tree-a/beta/agents.md
 EXCLUDE	OUT_OF_DOMAIN		1980	test/fixtures/context-budget.json
 EXCLUDE	OUT_OF_DOMAIN		129002	test/fixtures/coverage-audit-ae.json
@@ -2674,5 +2674,5 @@ EXCLUDE	OUT_OF_DOMAIN		9742	test/worktree.test.ts
 EXCLUDE	OUT_OF_DOMAIN		5931	test/writing-style-resolver.test.ts
 EXCLUDE	OUT_OF_DOMAIN		777	tsconfig.json
 EXCLUDE	OUT_OF_DOMAIN		393	tsconfig.test.json
-EXCLUDE	GENERATED		1713	unfreeze/SKILL.md
+REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		1713	unfreeze/SKILL.md
 ADAPT	Destructive-command guardrails (opt-in)	engineering/security	1595	unfreeze/SKILL.md.tmpl

@@ -11,7 +11,7 @@ Before submitting contributions, please read this guide and our [Code of Conduct
 The architecture of Vikhyath AI Engineering OS is locked to ensure stability, portability, and context efficiency:
 
 1. **Thin Orchestration Layer**: Vikhyath OS routes tasks; it is not a monolithic framework, giant prompt, or always-on daemon.
-2. **GitHub as Source of Truth**: External tools remain external dependencies. Never vendor, submodule, or copy third-party repository code into this repository.
+2. **No upstream code in this repository**: Never vendor, submodule, or commit third-party files here. Selected upstream files are fetched at their pinned commits and built into the local bundle at install time (`scripts/install`, D-023). To change what is bundled, edit `tools/audit/extraction-rules.yaml`, run `python tools/audit/extraction_matrix.py` (0 open closure gaps required) and regenerate notices with `python -m vikhyath.bundle.notices`.
 3. **Progressive Capability Activation**: Only capabilities relevant to the immediate task are activated. Never load all capabilities simultaneously.
 4. **Strict NO MCP**: No Model Context Protocol (MCP) servers, configs (`.mcp.json`), adapters, or dependencies are allowed.
 5. **Deterministic Conflict Hierarchy**: Conflicting guidance is resolved using the 8-level priority hierarchy defined in `config/priorities.yaml`.

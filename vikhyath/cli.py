@@ -9,7 +9,7 @@ from .paths import repo_root
 # Subcommands planned in docs/plan/FILE_LEVEL_PLAN.md and the phase that delivers each.
 PLANNED = {
     "bootstrap": "P9", "route": "P8", "context": "P9", "state": "P10", "plan": "P10", "decide": "P10",
-    "project": "P10", "verify": "P15", "test": "P15", "bundle": "P6", "update": "P24", "rollback": "P24",
+    "project": "P10", "verify": "P15", "test": "P15", "update": "P24", "rollback": "P24",
     "runtime": "P12", "dashboard": "P23", "adapters": "P19",
 }
 
@@ -33,6 +33,46 @@ def _benchmark(args):
     return run(plugins_root=Path(args.plugins_root).expanduser() if args.plugins_root else None)
 
 
+def _bundle(args):
+    import json
+
+    from .bundle import build as bundle_build
+    from .paths import vikhyath_home
+    home = vikhyath_home()
+    if args.bundle_cmd == "fetch":
+        from .bundle.fetch import fetch
+        fetch(Path(args.staging) if args.staging else home / "staging" / "upstream")
+        return 0
+    if args.bundle_cmd == "build":
+        try:
+            info = bundle_build.build(home, Path(args.staging) if args.staging else None,
+                                      activate_bundle=not args.no_activate, self_test=args.self_test)
+        except bundle_build.BuildError as exc:
+            print(f"bundle build failed: {exc}", file=sys.stderr)
+            return 1
+        print(json.dumps({k: info[k] for k in ("bundle_id", "status", "counts", "error_count")}, indent=1))
+        if info["status"] != "known-good":
+            for err in info["errors"][:20]:
+                print(f"  ✗ {err}", file=sys.stderr)
+            return 1
+        return 0
+    if args.bundle_cmd == "verify":
+        target = home / "bundles" / (args.bundle_id or "current")
+        if not target.exists():
+            print(f"no bundle at {target}", file=sys.stderr)
+            return 1
+        problems = bundle_build.verify(target.resolve())
+        for p in problems[:50]:
+            print(f"  ✗ {p}")
+        print(f"bundle {target.resolve().name}: {'intact' if not problems else f'{len(problems)} problems'}")
+        return 1 if problems else 0
+    if args.bundle_cmd == "list":
+        for b in bundle_build.list_bundles(home):
+            print(f"{'*' if b['current'] else ' '} {b['bundle_id']}  {b['status']:10}  {b['created']}")
+        return 0
+    return 2
+
+
 def build_parser():
     parser = argparse.ArgumentParser(prog="vikhyath", description="Vikhyath AI Engineering OS")
     parser.add_argument("-v", "--version", action="version", version=f"vikhyath-ai-engineering-os v{__version__}")
@@ -51,6 +91,19 @@ def build_parser():
     p.add_argument("--baseline", action="store_true", help="Old-model baseline (default, currently the only mode)")
     p.add_argument("--plugins-root", help="Claude Code plugins dir (default: ~/.claude/plugins)")
     p.set_defaults(func=_benchmark)
+
+    p = sub.add_parser("bundle", help="Fetch pinned upstreams, build/verify/list the local capability bundle")
+    bsub = p.add_subparsers(dest="bundle_cmd", required=True)
+    b = bsub.add_parser("fetch", help="Clone the 14 pinned upstreams (network; explicit, D-023)")
+    b.add_argument("--staging", help="Destination (default: $VIKHYATH_HOME/staging/upstream)")
+    b = bsub.add_parser("build", help="Build the bundle from staged upstreams")
+    b.add_argument("--staging", help="Staged upstream snapshots (default: repo .staging/ or $VIKHYATH_HOME/staging)")
+    b.add_argument("--no-activate", action="store_true", help="Build without switching `current`")
+    b.add_argument("--self-test", action="store_true", help="Run bundled runtime self-tests (Unlazy, UI/UX Pro Max)")
+    b = bsub.add_parser("verify", help="Re-hash a bundle against its provenance")
+    b.add_argument("bundle_id", nargs="?", help="Bundle id (default: current)")
+    bsub.add_parser("list", help="List built bundles")
+    p.set_defaults(func=_bundle)
 
     for name, phase in PLANNED.items():
         p = sub.add_parser(name, help=f"(available in {phase})")

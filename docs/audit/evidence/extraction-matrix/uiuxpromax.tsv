@@ -607,21 +607,21 @@ PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/de
 PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	71537	src/ui-ux-pro-max/scripts/design_system.py
 PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	5824	src/ui-ux-pro-max/scripts/reasoning_contract.py
 PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	9373	src/ui-ux-pro-max/scripts/search.py
-PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	1079	src/ui-ux-pro-max/scripts/tests/fixtures/catalogs/google-api.json
-PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	1772	src/ui-ux-pro-max/scripts/tests/fixtures/catalogs/google-catalog.json
-PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	480	src/ui-ux-pro-max/scripts/tests/fixtures/catalogs/google-existing.csv
-PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	328	src/ui-ux-pro-max/scripts/tests/fixtures/catalogs/google-metadata.json
-PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	97	src/ui-ux-pro-max/scripts/tests/fixtures/catalogs/google-overrides.json
-PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	495	src/ui-ux-pro-max/scripts/tests/fixtures/catalogs/icons-curated.csv
-PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	571	src/ui-ux-pro-max/scripts/tests/fixtures/catalogs/phosphor-core.json
-PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	370	src/ui-ux-pro-max/scripts/tests/fixtures/catalogs/phosphor-package.json
-PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	87	src/ui-ux-pro-max/scripts/tests/fixtures/catalogs/phosphor-react-exports.json
-PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	81	src/ui-ux-pro-max/scripts/tests/fixtures/catalogs/phosphor-react-package.json
+EXCLUDE	UPSTREAM_DEV		1079	src/ui-ux-pro-max/scripts/tests/fixtures/catalogs/google-api.json
+EXCLUDE	UPSTREAM_DEV		1772	src/ui-ux-pro-max/scripts/tests/fixtures/catalogs/google-catalog.json
+EXCLUDE	UPSTREAM_DEV		480	src/ui-ux-pro-max/scripts/tests/fixtures/catalogs/google-existing.csv
+EXCLUDE	UPSTREAM_DEV		328	src/ui-ux-pro-max/scripts/tests/fixtures/catalogs/google-metadata.json
+EXCLUDE	UPSTREAM_DEV		97	src/ui-ux-pro-max/scripts/tests/fixtures/catalogs/google-overrides.json
+EXCLUDE	UPSTREAM_DEV		495	src/ui-ux-pro-max/scripts/tests/fixtures/catalogs/icons-curated.csv
+EXCLUDE	UPSTREAM_DEV		571	src/ui-ux-pro-max/scripts/tests/fixtures/catalogs/phosphor-core.json
+EXCLUDE	UPSTREAM_DEV		370	src/ui-ux-pro-max/scripts/tests/fixtures/catalogs/phosphor-package.json
+EXCLUDE	UPSTREAM_DEV		87	src/ui-ux-pro-max/scripts/tests/fixtures/catalogs/phosphor-react-exports.json
+EXCLUDE	UPSTREAM_DEV		81	src/ui-ux-pro-max/scripts/tests/fixtures/catalogs/phosphor-react-package.json
 PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	89426	src/ui-ux-pro-max/scripts/tests/fixtures/relevance-baseline.json
 PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	36734	src/ui-ux-pro-max/scripts/tests/fixtures/relevance-cases.json
 PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	5079	src/ui-ux-pro-max/scripts/tests/fixtures/relevance-thresholds.json
-PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	19466	src/ui-ux-pro-max/scripts/tests/test_catalog_refresh.py
-PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	2947	src/ui-ux-pro-max/scripts/tests/test_catalog_summary_line_endings.py
+EXCLUDE	UPSTREAM_DEV		19466	src/ui-ux-pro-max/scripts/tests/test_catalog_refresh.py
+EXCLUDE	UPSTREAM_DEV		2947	src/ui-ux-pro-max/scripts/tests/test_catalog_summary_line_endings.py
 PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	16680	src/ui-ux-pro-max/scripts/tests/test_core.py
 PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	8954	src/ui-ux-pro-max/scripts/tests/test_core_data_quality.py
 PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	19513	src/ui-ux-pro-max/scripts/tests/test_data_contracts.py
@@ -629,7 +629,7 @@ PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/de
 PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	2261	src/ui-ux-pro-max/scripts/tests/test_design_system_stack.py
 PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	8375	src/ui-ux-pro-max/scripts/tests/test_native_desktop_stack_freshness.py
 PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	8430	src/ui-ux-pro-max/scripts/tests/test_relevance_evaluator.py
-PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	4305	src/ui-ux-pro-max/scripts/tests/test_skill_script_paths.py
+EXCLUDE	UPSTREAM_DEV		4305	src/ui-ux-pro-max/scripts/tests/test_skill_script_paths.py
 PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	7425	src/ui-ux-pro-max/scripts/tests/test_style_taxonomy.py
 PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	5874	src/ui-ux-pro-max/scripts/tests/test_text_layout_resilience.py
 PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	7701	src/ui-ux-pro-max/scripts/tests/test_web_stack_freshness.py

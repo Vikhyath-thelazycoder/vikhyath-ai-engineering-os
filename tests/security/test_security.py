@@ -25,6 +25,15 @@ class TestSecurity(unittest.TestCase):
         vendor_path = os.path.join(ROOT_DIR, "vendor")
         self.assertFalse(os.path.exists(vendor_path), "vendor directory must not exist")
 
+    def test_repo_never_contains_a_built_bundle(self):
+        # D-023: upstream files are fetched and built into $VIKHYATH_HOME at install, never committed here.
+        for name in ("bundles", "files", "blobs"):
+            self.assertFalse(os.path.exists(os.path.join(ROOT_DIR, name)), f"{name}/ must not exist in the repo")
+        third_party = os.path.join(ROOT_DIR, "third_party")
+        if os.path.isdir(third_party):
+            self.assertEqual(sorted(os.listdir(third_party)), ["licenses.json"],
+                             "third_party/ holds only the generated license index; license texts live in the bundle")
+
     def test_all_dependencies_pinned_40_hex_sha(self):
         caps_path = os.path.join(ROOT_DIR, "config", "capabilities.yaml")
         with open(caps_path, "r", encoding="utf-8") as f:
