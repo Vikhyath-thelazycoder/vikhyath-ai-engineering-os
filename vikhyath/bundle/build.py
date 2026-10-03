@@ -1,8 +1,8 @@
 """Build, verify and activate the local capability bundle (P6, D-015, D-019, D-023).
 
 Inputs: staged upstream snapshots + extraction rules + audited inventories (hashes) + pins + licenses.
-Output: $VIKHYATH_HOME/bundles/<bundle_id>/ with blobs/, files/<repo>/<path>, third_party/<repo>/,
-index.json, provenance.json, BUILD.json. Same inputs -> same bundle_id. A build is staged in a temporary
+Output: $VIKHYATH_HOME/bundles/<bundle_id>/ with files/<repo>/<path>, third_party/<repo>/,
+index.json, provenance.json, registry.yaml (P7), BUILD.json. Same inputs -> same bundle_id. A build is staged in a temporary
 directory and only renamed into place (and optionally activated) when it completes; a failed build never
 replaces the current bundle.
 """
@@ -15,10 +15,12 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from ..paths import repo_root
+from ..registry.generate import load_registry, write_registry
+from ..registry.loader import cards_hash
 from . import checks
 from .closure import MAX_TRACE_BYTES, TEXT_EXT, trace_gaps
 from .provenance import FIELDS, validate
-from .rules import BUNDLED, classify, compile_rules, evidence_dir, known_capabilities, load_domain_model, load_rules, \
+from .rules import BUNDLED, classify, compile_rules, evidence_dir, load_capabilities, load_rules, \
     load_yaml, read_inventory
 from .store import git_blob_sha1, sha256
 from .transforms import TRANSFORM_VERSION, Transformer
@@ -113,7 +115,7 @@ def _self_tests(work: Path, log):
 
 
 def build(home: Path, staging: Path | None = None, *, rules_path: Path | None = None, evidence: Path | None = None,
-          licenses_path: Path | None = None, model_path: Path | None = None, activate_bundle=True, self_test=False,
+          licenses_path: Path | None = None, activate_bundle=True, self_test=False,
           log=print):
     home = Path(home)
     staging = Path(staging) if staging else default_staging(home)
@@ -121,7 +123,7 @@ def build(home: Path, staging: Path | None = None, *, rules_path: Path | None = 
     rules_path = Path(rules_path) if rules_path else repo_root() / "tools" / "audit" / "extraction-rules.yaml"
     licenses_path = Path(licenses_path) if licenses_path else repo_root() / "third_party" / "licenses.json"
     rules_doc = load_rules(rules_path)
-    caps = known_capabilities(load_domain_model(model_path))
+    caps = load_capabilities()
     errors = compile_rules(rules_doc, caps)
     if errors:
         raise BuildError("; ".join(errors))
@@ -134,6 +136,10 @@ def build(home: Path, staging: Path | None = None, *, rules_path: Path | None = 
         existing = json.loads((final / "BUILD.json").read_text(encoding="utf-8"))
         if existing.get("status") == "known-good" and not verify(final):
             log(f"bundle {bundle_id} already built and intact")
+            reg = load_registry(final)
+            if reg is None or reg.get("inputs_hash") != cards_hash():
+                write_registry(final)
+                log("  registry regenerated from the current capability cards")
             if activate_bundle:
                 activate(home, bundle_id)
             return existing
@@ -178,7 +184,7 @@ def build(home: Path, staging: Path | None = None, *, rules_path: Path | None = 
                 "source_path": path, "destination_path": dest, "domain": domain, "subdomain": subdomain,
                 "capability": cap, "license": licenses[repo]["license"], "attribution": licenses[repo]["attribution"],
                 "integration_type": rule["decision"], "original_hash": sha, "bundled_hash": digest,
-                "dependencies": [], "runtime": caps[cap].get("runtime", "none"), "last_verified": created[:10],
+                "dependencies": [], "runtime": caps[cap]["runtime_type"], "last_verified": created[:10],
                 "update_status": "pinned"})
             index_files[dest] = {"sha256": digest, "bytes": len(out), "capability": cap, "repo": repo,
                                  "source_path": path, "decision": rule["decision"], "transformed": out != data}
@@ -211,6 +217,7 @@ def build(home: Path, staging: Path | None = None, *, rules_path: Path | None = 
     (work / "index.json").write_text(json.dumps({"bundle_id": bundle_id, "capabilities": capabilities,
                                                  "files": index_files}, indent=1, sort_keys=True), encoding="utf-8")
     (work / "provenance.json").write_text(json.dumps(records, indent=1), encoding="utf-8")
+    write_registry(work, bundle_id=bundle_id)
     info = {
         "bundle_id": bundle_id, "created": created, "status": "failed" if errors else "known-good",
         "counts": {"files": len(records), "unique_contents": len({f["sha256"] for f in index_files.values()}), "bytes": sum(f["bytes"] for f in index_files.values()),

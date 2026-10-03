@@ -1,0 +1,23 @@
+# seo/website-work — capability card (spec §13). Provenance fields (sources, commit, license, size) are generated
+# by vikhyath/registry/generate.py; domain defaults come from config/priorities.yaml.
+name: Website work
+description: Authorized live-site edits (explicit authorization gate)
+intent_tags: [publish fix to site, ftp, sftp]
+origin: bundled
+runtime_type: python-isolated
+requires_network: true
+requires_browser: none
+requires_codebase_analysis: false
+context_level: L2
+priority: 30
+security_class: privileged
+cache_strategy: run
+activation_conditions:
+  mode: explicit
+  when: [user explicitly authorizes changes to the live site for this session]
+verification_requirements: [explicit authorization recorded before any live change, change log with before/after, findings labelled FACT / OBSERVATION / INFERENCE / HYPOTHESIS / UNKNOWN]
+dependencies: []
+related_capabilities: []
+conflicts: []
+fallback_capability: null
+enabled: true

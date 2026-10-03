@@ -10,6 +10,8 @@ sys.path.insert(0, ROOT_DIR)
 
 from vikhyath.bundle import build as bundle_build  # noqa: E402
 from vikhyath.bundle.store import git_blob_sha1  # noqa: E402
+from vikhyath.registry.generate import check, load_registry  # noqa: E402
+from vikhyath.registry.loader import cards_hash  # noqa: E402
 
 SHA = "a" * 40
 FILES = {
@@ -80,6 +82,13 @@ class TestBuild(unittest.TestCase):
         self.assertTrue(all(len(r["bundled_hash"]) == 64 for r in records))
         # single-link files (D-026): runtimes such as Unlazy reject hardlinked files
         self.assertEqual(os.stat(bundle / "files/alpha/docs/dup.md").st_nlink, 1)
+        # P7: every bundle carries its generated registry
+        reg = load_registry(bundle)
+        self.assertEqual((reg["source"], reg["bundle_id"]), ("bundle", info["bundle_id"]))
+        planning = reg["capabilities"]["engineering/planning"]
+        self.assertEqual(planning["token_cost_estimate"]["bundled_files"], 4)
+        self.assertEqual(planning["commit_sha"], {"demo/alpha": SHA})
+        self.assertEqual(reg["capabilities"]["design/ux"]["source_repositories"], [])
 
     def test_rebuild_is_reproducible_and_reused(self):
         fx = Fixture(self.tmp)
@@ -87,6 +96,16 @@ class TestBuild(unittest.TestCase):
         second = fx.build()
         self.assertEqual(first["bundle_id"], second["bundle_id"])
         self.assertEqual(first["created"], second["created"])
+
+    def test_reused_bundle_refreshes_stale_registry(self):
+        fx = Fixture(self.tmp)
+        info = fx.build()
+        bundle = fx.home / "bundles" / info["bundle_id"]
+        reg_file = bundle / "registry.yaml"
+        reg_file.write_text(reg_file.read_text(encoding="utf-8").replace(cards_hash(), "stale"), encoding="utf-8")
+        self.assertTrue(any("registry.yaml is stale" in p for p in check(bundle_dir=bundle)))
+        fx.build()
+        self.assertEqual(load_registry(bundle)["inputs_hash"], cards_hash())
 
     def test_tampered_bundle_detected(self):
         fx = Fixture(self.tmp)

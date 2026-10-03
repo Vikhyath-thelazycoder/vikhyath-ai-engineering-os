@@ -23,6 +23,6 @@ See the main `skills/vikhyath-routing/SKILL.md` for full routing logic.
 
 ## Configuration
 
-See `config/capabilities.yaml` for the full capability registry.
+See `capabilities/` (one `card.yaml` per capability; `vikhyath registry list`) for the capability registry.
 See `config/routing.yaml` for routing rules.
 See `config/priorities.yaml` for conflict resolution.

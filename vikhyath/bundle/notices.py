@@ -11,7 +11,7 @@ from pathlib import Path
 
 from ..paths import repo_root
 from .provenance import licenses_file, load_pins
-from .rules import (BUNDLED, classify, compile_rules, evidence_dir, known_capabilities, load_domain_model,
+from .rules import (BUNDLED, classify, compile_rules, evidence_dir, load_capabilities,
                     load_rules, read_inventory)
 
 LICENSE_NAME = re.compile(r"^(LICEN[CS]E|COPYING|NOTICE|THIRD[_-]PARTY)", re.I)
@@ -58,7 +58,7 @@ def describe(repo: str, root: Path):
 
 def bundled_counts():
     rules_doc = load_rules()
-    compile_rules(rules_doc, known_capabilities(load_domain_model()))
+    compile_rules(rules_doc, load_capabilities())
     counts = Counter()
     for repo, rr in rules_doc["repos"].items():
         for path, _size, _sha in read_inventory(evidence_dir(), repo):

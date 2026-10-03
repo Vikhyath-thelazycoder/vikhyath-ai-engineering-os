@@ -9,7 +9,7 @@ from datetime import date
 from pathlib import Path
 
 from ..paths import repo_root
-from .rules import (BUNDLED, classify, compile_rules, evidence_dir, known_capabilities, load_domain_model,
+from .rules import (BUNDLED, classify, compile_rules, evidence_dir, load_capabilities,
                     load_rules, load_yaml, read_inventory)
 
 FIELDS = ("repository", "commit_sha", "tag", "source_path", "destination_path", "domain", "subdomain", "capability",
@@ -36,7 +36,7 @@ def load_pins(evidence: Path | None = None):
 def planned_records(verified_on: str | None = None):
     """Provenance for every file the extraction rules select for the bundle."""
     rules_doc = load_rules()
-    caps = known_capabilities(load_domain_model())
+    caps = load_capabilities()
     errors = compile_rules(rules_doc, caps)
     if errors:
         raise ValueError("; ".join(errors))
@@ -66,7 +66,7 @@ def planned_records(verified_on: str | None = None):
                 "original_hash": sha,
                 "bundled_hash": None,
                 "dependencies": [],
-                "runtime": caps[cap].get("runtime", "none"),
+                "runtime": caps[cap]["runtime_type"],
                 "last_verified": verified_on,
                 "update_status": "pinned",
             })

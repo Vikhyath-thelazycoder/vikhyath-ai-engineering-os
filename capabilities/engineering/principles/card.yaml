@@ -1,0 +1,22 @@
+# engineering/principles — capability card (spec §13). Provenance fields (sources, commit, license, size) are generated
+# by vikhyath/registry/generate.py; domain defaults come from config/priorities.yaml.
+name: Principles
+description: Think-before-coding, simplicity-first, surgical changes, goal-driven execution
+intent_tags: [principle, guideline, standards]
+origin: bundled
+runtime_type: none
+requires_network: false
+requires_browser: none
+requires_codebase_analysis: false
+context_level: L1
+priority: 20
+security_class: read-only
+cache_strategy: static
+activation_conditions:
+  when: [reference check while planning or reviewing changes]
+verification_requirements: [plan and diff reviewed against the four principles]
+dependencies: []
+related_capabilities: []
+conflicts: []
+fallback_capability: null
+enabled: true

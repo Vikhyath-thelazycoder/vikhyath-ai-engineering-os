@@ -1,0 +1,21 @@
+# seo/technical — capability card (spec §13). Provenance fields (sources, commit, license, size) are generated
+# by vikhyath/registry/generate.py; domain defaults come from config/priorities.yaml.
+name: Technical
+description: Crawlability, indexing, schema, Core Web Vitals
+intent_tags: [technical seo, indexing, sitemap, robots, schema, canonical]
+origin: bundled
+runtime_type: python-isolated
+requires_network: true
+requires_browser: fallback
+requires_codebase_analysis: false
+context_level: L2
+security_class: network
+cache_strategy: run
+activation_conditions:
+  when: [request matches intent_tags or a routing rule selects this capability]
+verification_requirements: [each issue cites the crawled URL and signal, findings labelled FACT / OBSERVATION / INFERENCE / HYPOTHESIS / UNKNOWN]
+dependencies: [seo/runtime]
+related_capabilities: [testing/performance]
+conflicts: []
+fallback_capability: null
+enabled: true

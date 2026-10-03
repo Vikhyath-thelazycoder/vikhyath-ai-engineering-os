@@ -1,0 +1,3 @@
+# Domain codebase (spec §5). Capability order is the registry order; one directory per entry.
+purpose: Understand an existing project before changing it; narrow the code surface.
+capabilities: [repository-understanding, impact-analysis, code-search]

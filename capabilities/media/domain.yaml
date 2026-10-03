@@ -1,0 +1,3 @@
+# Domain media (spec §5). Capability order is the registry order; one directory per entry.
+purpose: "Launch and showcase artifacts \u2014 never activates backend capabilities."
+capabilities: [launch-video, demo, presentation, showcase]

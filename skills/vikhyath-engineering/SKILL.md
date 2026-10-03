@@ -60,7 +60,7 @@ Before routing to ECC, verify it is installed:
 - Claude: Check for CLAUDE.md / .claude-plugin from ECC
 - Antigravity: Check for ECC skills in workspace
 
-If ECC is not installed, provide installation instructions from `integrations/ecc.yaml`.
+If the capability bundle is not installed, run `scripts/install` (it fetches the pinned upstreams and builds the bundle and registry).
 
 ## Anti-Patterns
 

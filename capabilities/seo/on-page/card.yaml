@@ -1,0 +1,21 @@
+# seo/on-page — capability card (spec §13). Provenance fields (sources, commit, license, size) are generated
+# by vikhyath/registry/generate.py; domain defaults come from config/priorities.yaml.
+name: On-page SEO
+description: On-page, internal linking, conversion SEO
+intent_tags: [on-page, title tag, meta, internal links, conversion]
+origin: bundled
+runtime_type: python-isolated
+requires_network: true
+requires_browser: none
+requires_codebase_analysis: false
+context_level: L2
+security_class: network
+cache_strategy: run
+activation_conditions:
+  when: [request matches intent_tags or a routing rule selects this capability]
+verification_requirements: [recommendations cite the page and element, findings labelled FACT / OBSERVATION / INFERENCE / HYPOTHESIS / UNKNOWN]
+dependencies: [seo/runtime]
+related_capabilities: []
+conflicts: []
+fallback_capability: null
+enabled: true

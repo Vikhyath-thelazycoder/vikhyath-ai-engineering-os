@@ -22,7 +22,7 @@ The project contains only static declarative manifests, routing configurations, 
 - **No automatic arbitrary code execution** outside the host agent's explicit execution model.
 
 ### 2. Cryptographic Dependency Pinning
-External capabilities are never referenced via mutable branches (e.g., `main`, `master`) or unverified floating tags. Every external capability registered in `config/capabilities.yaml` and `integrations/*.yaml` is pinned to a full **40-character hexadecimal Git commit SHA**. This protects against upstream tampering, unexpected breaking changes, and supply-chain supply poisoning.
+External capabilities are never referenced via mutable branches (e.g., `main`, `master`) or unverified floating tags. Every upstream bundled into the capability registry is pinned (`docs/audit/evidence/upstream-staging-snapshot.yaml`, carried into every provenance record and registry entry) to a full **40-character hexadecimal Git commit SHA**. This protects against upstream tampering, unexpected breaking changes, and supply-chain supply poisoning.
 
 ### 3. Strict NO MCP Guarantee
 Model Context Protocol (MCP) servers run external processes with system-level access. Vikhyath OS strictly prohibits MCP:

@@ -1,8 +1,7 @@
 # Vikhyath AI Engineering OS — Priority Configuration
-# Conflict resolution and priority ordering
-# Version: 1.0.1
+# Conflict resolution and domain-level defaults. Per-capability metadata lives in capabilities/**/card.yaml.
 
-# When two capabilities provide conflicting guidance, use this hierarchy
+# When two capabilities provide conflicting guidance, use this hierarchy (level 1 wins)
 conflict_hierarchy:
   - level: 1
     source: user-requirements
@@ -17,45 +16,35 @@ conflict_hierarchy:
     description: "Established project architecture decisions"
 
   - level: 4
-    source: ecc
-    description: "ECC engineering workflow methodology"
+    source: engineering-methodology
+    description: "Engineering workflow methodology (planning, implementation, testing, verification)"
 
   - level: 5
     source: security-testing
-    description: "Specialized security and testing guidance (Addy)"
+    description: "Specialized security and testing guidance"
 
   - level: 6
     source: domain-specialists
-    description: "Domain specialist agents (Agency)"
+    description: "Domain specialist perspectives"
 
   - level: 7
     source: product-review
-    description: "Product and review workflows (gstack)"
+    description: "Product and release review workflows"
 
   - level: 8
     source: simplicity
-    description: "Simplicity optimization (Ponytail)"
+    description: "Simplicity optimization (explicit request only)"
 
-# Capability priorities (higher = more authoritative)
-capability_priorities:
-  ecc: 100
-  graphify: 90
-  unlazy: 80
-  addy: 75
-  agency: 70
-  gstack: 60
-  opendesign: 50
-  ponytail: 40
-  karpathy: 30
-
-# Default activation states
-defaults:
-  ecc: "on"           # Always-available foundation
-  graphify: "off"      # Activated for complex codebases
-  unlazy: "off"        # Activated for substantial tasks
-  addy: "off"          # Activated for relevant engineering tasks
-  agency: "off"        # Activated when specialist needed
-  gstack: "off"        # Activated for review/release
-  opendesign: "off"    # Activated for design tasks
-  ponytail: "off"      # Explicit activation only
-  karpathy: "off"      # Reference only
+# Domain-level defaults. A card's `priority` (1–100, higher wins ties within a hierarchy level) and
+# `activation_conditions.mode` fall back to these when the card does not set them.
+# Activation modes: on-demand (routed by intent) · explicit (only on explicit user request) ·
+# stack-detected (selected by project stack) · internal (used by the OS or other capabilities, never routed directly) ·
+# fallback (only when deterministic capabilities cannot decide).
+domain_defaults:
+  engineering: {priority: 50, activation: on-demand}
+  codebase: {priority: 50, activation: on-demand}
+  design: {priority: 50, activation: on-demand}
+  testing: {priority: 50, activation: on-demand}
+  seo: {priority: 50, activation: on-demand}
+  media: {priority: 50, activation: on-demand}
+  observability: {priority: 50, activation: internal}

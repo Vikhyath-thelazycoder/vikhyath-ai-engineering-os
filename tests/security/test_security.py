@@ -35,20 +35,15 @@ class TestSecurity(unittest.TestCase):
                              "third_party/ holds only the generated license index; license texts live in the bundle")
 
     def test_all_dependencies_pinned_40_hex_sha(self):
-        caps_path = os.path.join(ROOT_DIR, "config", "capabilities.yaml")
-        with open(caps_path, "r", encoding="utf-8") as f:
-            data = yaml.safe_load(f)
-            
-        capabilities = data.get("capabilities", {})
+        # Upstream pins live in the audited snapshot and flow into every provenance record and registry entry (P7).
+        snap_path = os.path.join(ROOT_DIR, "docs", "audit", "evidence", "upstream-staging-snapshot.yaml")
+        with open(snap_path, "r", encoding="utf-8") as f:
+            snapshots = yaml.safe_load(f)["snapshots"]
         hex_sha_regex = re.compile(r'^[0-9a-f]{40}$')
-        
-        for name, meta in capabilities.items():
-            ref = meta.get("ref", "")
-            self.assertTrue(ref, f"Capability {name} must have pinned ref")
-            self.assertTrue(
-                hex_sha_regex.match(ref),
-                f"Capability {name} ref '{ref}' is not a valid 40-character hexadecimal SHA"
-            )
+        self.assertEqual(len(snapshots), 14)
+        for name, meta in snapshots.items():
+            self.assertTrue(hex_sha_regex.match(meta.get("head", "")),
+                            f"Upstream {name} head '{meta.get('head')}' is not a valid 40-character hexadecimal SHA")
 
     def test_no_giant_prompt_files(self):
         for prohibited in ["SYSTEM.md", "MASTER_PROMPT.md"]:

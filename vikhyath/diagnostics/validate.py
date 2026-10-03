@@ -9,7 +9,6 @@ from . import Report
 from .doctor import PORTABLE_SCHEMA, _json
 
 SHA = re.compile(r"^[0-9a-f]{40}$")
-EXPECTED_CAPABILITIES = ["ecc", "graphify", "unlazy", "addy", "agency", "gstack", "opendesign", "ponytail", "karpathy"]
 
 
 def _load_yaml(path: Path):
@@ -32,36 +31,29 @@ def _routing_ok(routing):
         return False
 
 
-def _registry_ok(caps):
-    try:
-        for cap in EXPECTED_CAPABILITIES:
-            meta = caps[cap]
-            if not all(k in meta for k in ("source", "role", "priority", "activation")) or not SHA.match(meta.get("ref", "")):
-                return False
-        return (caps["ecc"]["priority"] > caps["graphify"]["priority"] > caps["unlazy"]["priority"]
-                and caps["ponytail"].get("default") == "off")
-    except (TypeError, KeyError):
-        return False
+def _pins(root: Path):
+    data = _load_yaml(root / "docs/audit/evidence/upstream-staging-snapshot.yaml") or {}
+    return {name: meta for name, meta in (data.get("snapshots") or {}).items()}
 
 
-def _online(caps, r):
+def _online(pins, r):
     failures = 0
-    for meta in caps.values():
-        url = f"https://api.github.com/repos/{meta['source']}/commits/{meta['ref']}"
+    for meta in pins.values():
+        url = f"https://api.github.com/repos/{meta['repo']}/commits/{meta['head']}"
         try:
             req = urllib.request.Request(url, headers={"User-Agent": "Vikhyath-OS-Validator"})
             with urllib.request.urlopen(req, timeout=10) as resp:
                 ok = resp.status == 200
         except OSError as exc:
             ok = False
-            print(f"  ❌ {meta['source']} @ {meta['ref'][:8]} online check failed: {exc}")
+            print(f"  ❌ {meta['repo']} @ {meta['head'][:8]} online check failed: {exc}")
         if ok:
-            print(f"  ✅ {meta['source']} @ {meta['ref'][:8]} verified online")
+            print(f"  ✅ {meta['repo']} @ {meta['head'][:8]} verified online")
         failures += not ok
     if failures:
         r.warn("Online verification failed or rate-limited. Offline structural tests remain valid.")
     else:
-        r.ok(f"All {len(caps)} capabilities verified against remote GitHub repositories")
+        r.ok(f"All {len(pins)} upstream pins verified against remote GitHub repositories")
 
 
 def run(root: Path, online=False, unittests=True) -> int:
@@ -105,18 +97,24 @@ def run(root: Path, online=False, unittests=True) -> int:
     r.end_section()
 
     r.section("📦 Capability Registry Tests")
-    caps = (_load_yaml(root / "config/capabilities.yaml") or {}).get("capabilities", {})
-    if _registry_ok(caps):
-        r.ok(f"All {len(EXPECTED_CAPABILITIES)} capabilities registered with pinned 40-character hexadecimal SHAs")
-        r.ok("Priority ordering correct")
-        r.ok("Ponytail defaults to off")
-    else:
-        r.fail("Capability registry validation failed")
+    from ..registry import generate, loader
+    problems = generate.check(root)
+    cards = loader.load_cards(root) if not problems else {}
+    r.check(not problems, f"Registry valid: {len(cards)} capabilities, every spec §13 field generated, CARD.md current",
+            "Capability registry validation failed: " + "; ".join(problems[:3]))
+    testing = [c for c in cards if c.startswith("testing/")]
+    r.check(cards and all(cards[c].get("web_qa_class") for c in testing),
+            f"Web QA class recorded for all {len(testing)} testing capabilities (spec §23A.13)", "Web QA classes missing")
+    simplicity = cards.get("engineering/simplicity", {})
+    r.check(simplicity.get("activation_conditions", {}).get("mode") == "explicit"
+            and simplicity.get("priority") == min((c["priority"] for c in cards.values()), default=0),
+            "Simplicity review is explicit-only with the lowest priority", "Simplicity activation/priority invalid")
     r.end_section()
 
+    pins = _pins(root)
     if online:
         r.section("🌐 Online GitHub SHA Verification")
-        _online(caps, r)
+        _online(pins, r)
         r.end_section()
 
     r.section("🔒 Security Tests")
@@ -128,11 +126,12 @@ def run(root: Path, online=False, unittests=True) -> int:
     r.check(not (root / "vendor").exists(), "No vendor/ copies", "vendor/ directory exists")
     r.end_section()
 
-    r.section("🔗 Integration Tests")
-    for path in sorted((root / "integrations").glob("*.yaml")):
-        data = _load_yaml(path) or {}
-        ok = all(k in data for k in ("source", "role", "integration_type")) and bool(SHA.match(str(data.get("ref", ""))))
-        r.check(ok, f"{path.stem} integration metadata valid with pinned SHA", f"{path.stem} integration metadata invalid")
+    r.section("📌 Upstream Pins")
+    licenses = _json(root / "third_party/licenses.json") or {}
+    r.check(len(pins) > 0 and all(SHA.match(str(m.get("head", ""))) for m in pins.values()),
+            f"All {len(pins)} upstreams pinned to 40-character hexadecimal SHAs", "Upstream pin missing or not a 40-hex SHA")
+    r.check(sorted(pins) == sorted(licenses), "Every pinned upstream has a license record",
+            "third_party/licenses.json does not match the pinned upstreams")
     r.end_section()
 
     if unittests:

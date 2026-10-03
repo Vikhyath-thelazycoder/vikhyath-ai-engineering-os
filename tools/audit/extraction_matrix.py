@@ -6,7 +6,7 @@ Outputs (docs/audit/evidence/):
   extraction-summary.json        counts/bytes per repo x decision and per capability
   closure-gaps.tsv               bundled file -> referenced repo file that is NOT bundled
 
-Exit code 1 if a rule names an unknown capability/decision, a domain-model capability has no
+Exit code 1 if a rule names an unknown capability/decision, a registry capability has no
 bundled source (spec: no empty domains), or closure gaps remain that are not explicitly accepted.
 Requires PyYAML.
 """
@@ -19,8 +19,8 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 sys.path.insert(0, ROOT)
 from pathlib import Path  # noqa: E402
 
-from vikhyath.bundle.rules import (BUNDLED, classify, compile_rules, known_capabilities,  # noqa: E402
-                                   load_domain_model, load_rules)
+from vikhyath.bundle.rules import (BUNDLED, classify, compile_rules, load_capabilities,  # noqa: E402
+                                   load_rules)
 from vikhyath.bundle.rules import read_inventory as _read_inventory  # noqa: E402
 
 STAGING = os.path.join(ROOT, ".staging", "upstream")
@@ -35,7 +35,7 @@ def read_inventory(repo):
 
 def main():
     rules_doc = load_rules()
-    caps = known_capabilities(load_domain_model())
+    caps = load_capabilities()
     errors = compile_rules(rules_doc, caps)
 
     os.makedirs(os.path.join(EVIDENCE, "extraction-matrix"), exist_ok=True)
@@ -68,7 +68,7 @@ def main():
 
     for cap, meta in caps.items():
         own = summary["capabilities"].get(cap, {}).get("files", 0)
-        shared = sum(summary["capabilities"].get(u, {}).get("files", 0) for u in meta.get("uses") or [])
+        shared = sum(summary["capabilities"].get(u, {}).get("files", 0) for u in meta.get("dependencies") or [])
         if own == 0 and shared == 0 and meta.get("origin") != "os-native":
             errors.append(f"empty capability (no bundled source): {cap}")
 
@@ -94,7 +94,7 @@ def main():
             tot[d][1] += v["bytes"]
         print(f"{repo:11} " + "  ".join(f"{d}={v['files']}" for d, v in sorted(per.items())))
     print("TOTAL      " + "  ".join(f"{d}={n} ({b / 1e6:.1f} MB)" for d, (n, b) in sorted(tot.items())))
-    print(f"capabilities with bundled sources: {len(caps_out)} / model: {len(caps)}")
+    print(f"capabilities with bundled sources: {len(caps_out)} / registry: {len(caps)}")
     print(f"closure gaps: {len(set(gaps))} total, {open_gaps} open")
     for e in errors:
         print("ERROR:", e)

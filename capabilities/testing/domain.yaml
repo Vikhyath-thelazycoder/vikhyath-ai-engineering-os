@@ -1,0 +1,3 @@
+# Domain testing (spec §5). Capability order is the registry order; one directory per entry.
+purpose: "Evidence that implementation meets acceptance criteria \u2014 local and scripted first."
+capabilities: [strategy, web-verification, security, accessibility, performance, regression, release-verification, browser-fallback]

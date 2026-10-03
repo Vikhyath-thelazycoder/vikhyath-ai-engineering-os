@@ -33,4 +33,4 @@ claude plugin install vikhyath-ai-engineering-os@vikhyath-marketplace
 - **Design tasks** → OpenDesign
 - **Principles** → Karpathy Skills (reference only)
 
-See `config/capabilities.yaml` for the full capability registry and `config/priorities.yaml` for conflict resolution.
+See `capabilities/` (one `card.yaml` per capability; `vikhyath registry list`) for the full capability registry and `config/priorities.yaml` for conflict resolution.

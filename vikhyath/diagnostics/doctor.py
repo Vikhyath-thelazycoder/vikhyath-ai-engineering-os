@@ -6,7 +6,7 @@ from pathlib import Path
 from . import Report
 
 PORTABLE_SCHEMA = "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json"
-STRUCTURE_DIRS = ["skills", "agents", "workflows", "integrations", "config", "tests", "scripts", ".codex-plugin",
+STRUCTURE_DIRS = ["skills", "agents", "workflows", "capabilities", "config", "tests", "scripts", ".codex-plugin",
                   ".claude-plugin", ".agents/skills", ".agents/plugins", ".github/workflows"]
 KEY_FILES = ["README.md", "AGENTS.md", "CLAUDE.md", "LICENSE", "CHANGELOG.md", "CONTRIBUTING.md", "SECURITY.md",
              "CODE_OF_CONDUCT.md"]
@@ -117,14 +117,25 @@ def run(root: Path) -> int:
     r.end_section()
 
     r.section("📄 YAML Configuration")
-    for name in ("config/capabilities.yaml", "config/routing.yaml", "config/priorities.yaml"):
+    for name in ("config/routing.yaml", "config/priorities.yaml"):
         path = root / name
         r.check(path.is_file() and _yaml_ok(path), f"{name} valid YAML", f"{name} missing or invalid YAML")
     r.end_section()
 
-    r.section("🔗 Integration Metadata")
-    for path in sorted((root / "integrations").glob("*.yaml")):
-        r.check(_yaml_ok(path), f"{path.name} valid YAML", f"{path.name} invalid YAML")
+    r.section("🗂️  Capability Registry")
+    from ..registry import loader, schema
+    try:
+        problems = loader.structure_problems(root)
+        cards = loader.load_cards(root)
+    except (OSError, loader.RegistryError) as exc:
+        problems, cards = [str(exc)], {}
+    r.check(not problems and cards, f"capabilities/ layout consistent ({len(cards)} cards in {len(loader.load_domains(root)) if cards else 0} domains)",
+            "capabilities/ layout inconsistent: " + "; ".join(problems[:3]))
+    card_problems = schema.validate_cards(cards) if cards else ["no cards"]
+    r.check(not card_problems, "All capability cards match the registry schema (spec §13)",
+            "Capability card problems: " + "; ".join(card_problems[:3]))
+    no_doc = [cid for cid in cards if not (loader.capabilities_dir(root) / cid / "CARD.md").is_file()]
+    r.check(cards and not no_doc, "Every capability has an L1 CARD.md", f"CARD.md missing for {no_doc[:5]}")
     r.end_section()
 
     r.section("🎯 Skills")

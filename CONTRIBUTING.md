@@ -84,8 +84,8 @@ To propose integrating a new external capability:
    - **Permissive License**: MIT, Apache-2.0, or compatible open-source license.
    - **Pinned Commit SHA**: Must point to an exact 40-character hexadecimal Git commit SHA.
 3. If approved, add:
-   - An integration file: `integrations/<name>.yaml`
-   - An entry in: `config/capabilities.yaml`
+   - Extraction rules for the upstream in `tools/audit/extraction-rules.yaml` (each rule names its capability)
+   - A capability card when the work needs a new capability: `capabilities/<domain>/<subdomain>/card.yaml`, then `vikhyath registry cards`
    - Updated routing signals in: `config/routing.yaml`
    - Unit tests validating the new metadata.
 
@@ -109,10 +109,9 @@ vikhyath-ai-engineering-os/
 │   └── workflows/ci.yml
 ├── agents/                     # Specialized agent persona guidance
 ├── config/                     # Core orchestration schemas
-│   ├── capabilities.yaml       # Pinned capability registry
 │   ├── priorities.yaml         # 8-level conflict hierarchy
 │   └── routing.yaml            # Task classification and routing rules
-├── integrations/               # Metadata files for each external capability
+├── capabilities/               # Capability registry: <domain>/<subdomain>/card.yaml + CARD.md
 ├── scripts/                    # Diagnostic and validation tooling
 │   ├── benchmark
 │   ├── doctor
@@ -122,7 +121,7 @@ vikhyath-ai-engineering-os/
 │   ├── manifests/
 │   ├── routing/
 │   ├── security/
-│   └── validation/
+│   └── structural/             # registry and repository-health tests
 ├── workflows/                  # Standard engineering workflow guides
 ├── plugin.json                 # Portable root manifest (Agent Plugins 1.0.0)
 ├── VERSION                     # Release version string

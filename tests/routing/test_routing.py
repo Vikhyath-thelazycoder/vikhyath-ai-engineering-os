@@ -46,7 +46,7 @@ class TestRouting(unittest.TestCase):
         self.assertEqual(levels[0], "user-requirements")
         self.assertEqual(levels[1], "project-security")
         self.assertEqual(levels[2], "project-architecture")
-        self.assertEqual(levels[3], "ecc")
+        self.assertEqual(levels[3], "engineering-methodology")
 
 if __name__ == "__main__":
     unittest.main()

@@ -52,13 +52,10 @@ def load_rules(path: Path | None = None):
     return load_yaml(path or audit_dir() / "extraction-rules.yaml")
 
 
-def load_domain_model(path: Path | None = None):
-    return load_yaml(path or audit_dir() / "domain-model.yaml")
-
-
-def known_capabilities(model):
-    return {f"{domain}/{sub}": meta
-            for domain, d in model["domains"].items() for sub, meta in d["capabilities"].items()}
+def load_capabilities(root: Path | None = None):
+    """{capability_id: card} from the registry cards, the single source of capability ids (P7)."""
+    from ..registry.loader import load_cards
+    return load_cards(root)
 
 
 def compile_rules(rules_doc, caps):

@@ -1,0 +1,22 @@
+# codebase/repository-understanding — capability card (spec §13). Provenance fields (sources, commit, license, size) are generated
+# by vikhyath/registry/generate.py; domain defaults come from config/priorities.yaml.
+name: Repository understanding
+description: Build/refresh the code graph; structure, entry points, modules, communities
+intent_tags: [understand, codebase, architecture of, onboard, explore, existing project]
+origin: bundled
+runtime_type: python-isolated
+requires_network: false
+requires_browser: none
+requires_codebase_analysis: true
+context_level: L2
+priority: 60
+security_class: local-exec
+cache_strategy: project
+activation_conditions:
+  when: [request matches intent_tags or a routing rule selects this capability]
+verification_requirements: ['graph built for the current commit, or the fallback is stated', claims cite files]
+dependencies: []
+related_capabilities: []
+conflicts: []
+fallback_capability: null
+enabled: true

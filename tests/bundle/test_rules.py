@@ -35,7 +35,7 @@ class TestClassification(unittest.TestCase):
                 {"paths": ["skills/keep/**"], "decision": "ADAPT", "capability": "engineering/planning", "reason": "x"},
                 {"paths": ["skills/**"], "decision": "EXCLUDE", "reason": "HOST_PORT"},
             ]}}}
-        self.caps = rules.known_capabilities(rules.load_domain_model())
+        self.caps = rules.load_capabilities()
 
     def test_first_match_wins_then_default(self):
         self.assertEqual(rules.compile_rules(self.doc, self.caps), [])
@@ -55,7 +55,7 @@ class TestClassification(unittest.TestCase):
 class TestRealRules(unittest.TestCase):
     def test_repo_rules_valid_and_cover_all_inventories(self):
         doc = rules.load_rules()
-        caps = rules.known_capabilities(rules.load_domain_model())
+        caps = rules.load_capabilities()
         self.assertEqual(rules.compile_rules(doc, caps), [])
         inventories = sorted(f[:-4] for f in os.listdir(rules.evidence_dir() / "upstream-file-hashes"))
         self.assertEqual(sorted(doc["repos"]), inventories)

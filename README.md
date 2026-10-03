@@ -331,7 +331,7 @@ codex plugin marketplace add DietrichGebert/ponytail && codex plugin install pon
 pip install graphify-ai
 ```
 
-*(See the `integrations/` directory for metadata and options for each capability.)*
+*(See `capabilities/` for the capability registry: one card per capability, generated into each bundle's `registry.yaml`.)*
 
 ---
 
@@ -515,10 +515,9 @@ vikhyath-ai-engineering-os/
 │   └── workflows/ci.yml
 ├── agents/                     # Specialized agent persona definitions
 ├── config/                     # Core orchestration schemas
-│   ├── capabilities.yaml       # Pinned capability registry
 │   ├── priorities.yaml         # 8-level conflict resolution hierarchy
 │   └── routing.yaml            # Task classification and routing rules
-├── integrations/               # Metadata files for each external capability
+├── capabilities/               # Capability registry: <domain>/<subdomain>/card.yaml + CARD.md
 ├── scripts/                    # Diagnostic and validation tooling
 │   ├── benchmark
 │   ├── doctor
@@ -528,7 +527,7 @@ vikhyath-ai-engineering-os/
 │   ├── manifests/
 │   ├── routing/
 │   ├── security/
-│   └── validation/
+│   └── structural/             # registry and repository-health tests
 ├── workflows/                  # Standard engineering workflow guides
 ├── plugin.json                 # Portable root manifest (Agent Plugins 1.0.0)
 ├── VERSION                     # Release version string (1.0.1)

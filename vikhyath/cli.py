@@ -73,6 +73,51 @@ def _bundle(args):
     return 2
 
 
+def _registry(args):
+    import yaml
+
+    from .paths import bundles_dir, current_bundle
+    from .registry import generate, loader
+    bundle = (bundles_dir() / args.bundle_id).resolve() if getattr(args, "bundle_id", None) else current_bundle()
+    if args.registry_cmd == "check":
+        problems = generate.check(bundle_dir=None if args.no_bundle else bundle)
+        for p in problems[:50]:
+            print(f"  ✗ {p}")
+        where = f" + bundle {bundle.name}" if bundle and not args.no_bundle else ""
+        print(f"registry ({len(loader.load_cards())} capabilities{where}): "
+              f"{'valid' if not problems else f'{len(problems)} problems'}")
+        return 1 if problems else 0
+    if args.registry_cmd == "cards":
+        changed = generate.write_card_docs()
+        print(f"CARD.md rendered: {len(changed)} changed")
+        return 0
+    if args.registry_cmd == "build":
+        if bundle is None or not (bundle / "provenance.json").is_file():
+            print("no built bundle (run `vikhyath bundle build` first)", file=sys.stderr)
+            return 1
+        reg = generate.write_registry(bundle)
+        print(f"registry.yaml written for bundle {bundle.name}: {len(reg['capabilities'])} capabilities")
+        return 0
+    reg = (generate.load_registry(bundle) if bundle else None) or generate.plan_registry()
+    if args.registry_cmd == "list":
+        for cid, e in reg["capabilities"].items():
+            mode = e["activation_conditions"]["mode"]
+            print(f"{cid:36} {mode:14} p{e['priority']:<3} {e['token_cost_estimate']['bundled_files']:>4} files"
+                  f"{'' if e['enabled'] else '  DISABLED'}")
+        print(f"source: {reg['source']}{' ' + reg['bundle_id'] if reg.get('bundle_id') else ''}")
+        return 0
+    if args.registry_cmd == "show":
+        entry = reg["capabilities"].get(args.capability)
+        if entry is None:
+            print(f"unknown capability {args.capability}", file=sys.stderr)
+            return 1
+        if not args.paths:
+            entry = dict(entry, source_paths={r: f"{len(p)} files" for r, p in entry["source_paths"].items()})
+        print(yaml.safe_dump({args.capability: entry}, sort_keys=False, allow_unicode=True, width=120), end="")
+        return 0
+    return 2
+
+
 def build_parser():
     parser = argparse.ArgumentParser(prog="vikhyath", description="Vikhyath AI Engineering OS")
     parser.add_argument("-v", "--version", action="version", version=f"vikhyath-ai-engineering-os v{__version__}")
@@ -104,6 +149,19 @@ def build_parser():
     b.add_argument("bundle_id", nargs="?", help="Bundle id (default: current)")
     bsub.add_parser("list", help="List built bundles")
     p.set_defaults(func=_bundle)
+
+    p = sub.add_parser("registry", help="Check, generate and inspect the capability registry")
+    rsub = p.add_subparsers(dest="registry_cmd", required=True)
+    r = rsub.add_parser("check", help="Validate cards, CARD.md and the generated registry (and the current bundle's)")
+    r.add_argument("--no-bundle", action="store_true", help="Check the repository only, ignore any built bundle")
+    rsub.add_parser("cards", help="Render every CARD.md from its card.yaml")
+    r = rsub.add_parser("build", help="(Re)generate registry.yaml for a built bundle")
+    r.add_argument("bundle_id", nargs="?", help="Bundle id (default: current)")
+    rsub.add_parser("list", help="List capabilities (current bundle's registry, else the extraction plan)")
+    r = rsub.add_parser("show", help="Show one capability's registry entry")
+    r.add_argument("capability", help="Capability id, e.g. engineering/security")
+    r.add_argument("--paths", action="store_true", help="List every source path instead of counts")
+    p.set_defaults(func=_registry)
 
     for name, phase in PLANNED.items():
         p = sub.add_parser(name, help=f"(available in {phase})")

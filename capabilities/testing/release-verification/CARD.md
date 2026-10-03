@@ -1,0 +1,11 @@
+# testing/release-verification — Release verification
+
+Re-verify gates and evidence before claiming completion.
+
+- **Use when:** verify complete, ready to ship, done
+- **Activation:** on-demand · priority 70 · context L2
+- **Needs:** runtime node
+- **Loads:** 5 bundled files; entry points: delivery-gate, verification-loop
+- **Done means:** every gate re-verified on the final state
+- **Web QA class:** CORE
+- **Related:** engineering/completion · **Fallback:** —

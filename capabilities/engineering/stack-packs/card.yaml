@@ -1,0 +1,23 @@
+# engineering/stack-packs — capability card (spec §13). Provenance fields (sources, commit, license, size) are generated
+# by vikhyath/registry/generate.py; domain defaults come from config/priorities.yaml.
+name: Stack packs
+description: Language/framework rules, patterns, reviewers; selected by detected stack
+intent_tags: []
+origin: bundled
+runtime_type: none
+requires_network: false
+requires_browser: none
+requires_codebase_analysis: true
+context_level: L3
+priority: 40
+security_class: read-only
+cache_strategy: static
+activation_conditions:
+  mode: stack-detected
+  when: [project stack detection names a matching language/framework]
+verification_requirements: [applied rules match the detected stack]
+dependencies: []
+related_capabilities: []
+conflicts: []
+fallback_capability: null
+enabled: true

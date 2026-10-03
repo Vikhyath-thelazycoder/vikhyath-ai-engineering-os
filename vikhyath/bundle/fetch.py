@@ -8,7 +8,7 @@ import subprocess
 from pathlib import Path
 
 from ..paths import repo_root
-from .rules import (BUNDLED, classify, compile_rules, evidence_dir, known_capabilities, load_domain_model,
+from .rules import (BUNDLED, classify, compile_rules, evidence_dir, load_capabilities,
                     load_rules, load_yaml, read_inventory)
 
 
@@ -19,7 +19,7 @@ def _git(*args, cwd=None, stdin=None):
 def needed_paths(evidence: Path):
     """{repo: [paths]} the build reads: bundled files, gstack renderer inputs, license/notice files."""
     rules_doc = load_rules()
-    compile_rules(rules_doc, known_capabilities(load_domain_model()))
+    compile_rules(rules_doc, load_capabilities())
     licenses = json.loads((repo_root() / "third_party" / "licenses.json").read_text(encoding="utf-8"))
     needed = {}
     for repo, rr in rules_doc["repos"].items():

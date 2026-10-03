@@ -37,6 +37,10 @@ jobs:
           chmod +x scripts/validate
           ./scripts/validate
 
+      - name: Check capability registry
+        run: |
+          vikhyath registry check --no-bundle
+
       - name: Run Benchmark analysis
         run: |
           chmod +x scripts/benchmark

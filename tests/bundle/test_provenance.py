@@ -14,7 +14,7 @@ class TestPlannedProvenance(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.records = provenance.planned_records(verified_on="2026-10-03")
-        cls.caps = rules.known_capabilities(rules.load_domain_model())
+        cls.caps = rules.load_capabilities()
 
     def test_one_record_per_bundled_file(self):
         self.assertEqual(len(self.records), EXPECTED_BUNDLED_FILES)
