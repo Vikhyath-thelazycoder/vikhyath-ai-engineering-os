@@ -24,6 +24,8 @@ Conventions:
 | `tests/unit/__init__.py`, `test_cli.py`, `test_paths.py`, `test_diagnostics.py` | CREATE | Unit coverage for P4 code | — | — | `python -m unittest discover -s tests` |
 | `.github/workflows/ci.yml` | MODIFY | `pip install -e .` instead of bare PyYAML; run unittest + `vikhyath doctor` + `vikhyath validate` | pyproject | — | CI green |
 
+**As built (COMPLETED, `dcdfd52`):** as planned; doctor = 52 checks (50 legacy + 2 environment).
+
 **Acceptance:** fresh-venv install works; all old + new tests pass; doctor/validate counts match v1.0.1; `vikhyath benchmark --baseline` reproduces doc 13's measured numbers on this machine. **Evidence:** `docs/evidence/P4/` run logs.
 
 ## M2 · P5 — Provenance & third-party notices
@@ -36,9 +38,13 @@ Conventions:
 | `vikhyath/bundle/notices.py` | CREATE | Collect upstream LICENSE/NOTICE files per bundled repo (D-002); generate the summary | provenance | staging → notices dir + summary | 14 repos covered; Karpathy recorded as "MIT declared, no text" |
 | `THIRD_PARTY_NOTICES.md` | GENERATE | Human-readable attribution summary | notices.py | — | Structural test: every bundled repo listed |
 
-**Acceptance:** a provenance record for all 2,644 planned files, with `original_hash` equal to the audited blob SHA-1; validator passes; notices complete.
+**As built (COMPLETED, `0d8553e`):** as planned. File count changed to 2,594 in P6 (rules updates).
 
-## M2 · P6 — Upstream bundling (distribution depends on **Q-1**)
+**Acceptance:** a provenance record for all planned files (2,644 at P5; 2,594 after P6), with `original_hash` equal to the audited blob SHA-1; validator passes; notices complete.
+
+## M2 · P6 — Upstream bundling (distribution: build at install, D-023)
+
+**As built (COMPLETED, `2d08a91`):** `store.py` keeps hashing only (no blob store, **D-026**); `strip_directives.py`/`rewrite_paths.py`/`section_split.py` replaced by `transforms/rewrites.py` (4 targeted rewrites with drift detection) and `transforms/gstack.py` (template renderer, **D-027**); section indexing moves to P9 `context/sections.py`; added `closure.py` (shared tracer, rendered-sibling rule), `fetch.py` (sparse pinned fetch), `checks.py` (hard MCP config / soft debts); `tests/bundle/{test_build,test_transforms}.py`. Rows below are the original plan, kept for traceability.
 
 | File | Action | Purpose | Deps | Inputs → Outputs | Test |
 |---|---|---|---|---|---|
@@ -143,7 +149,7 @@ Conventions:
 | `skills/vikhyath-engineering`, `-security`, `-review`, `-production` | REFACTOR | Thin entry skills (compat, MR-01) | Budget test |
 | `agents/engineering-architect.md`, `security-reviewer.md`, `production-reviewer.md` | REFACTOR | Frontmatter (H-3); domain roles | Structural test |
 
-**Acceptance:** scenarios A, B, C (routing + plan behavior).
+**Acceptance:** scenarios A, B, C (routing + plan behavior); D-027: every unresolved gstack placeholder and adaptation debt in engineering/testing files replaced or removed (BUILD.json lists none for them).
 
 ## M4 · P14 — Design
 
@@ -154,7 +160,7 @@ Conventions:
 | `vikhyath/project/decisions.py` | MODIFY | Design decision memory (§52) | Unit test |
 | `skills/vikhyath-design/SKILL.md` | CREATE | Entry skill | Budget test |
 
-**Acceptance:** scenario D activates design only.
+**Acceptance:** scenario D activates design only; D-027 design debts (gstack design-review/consultation placeholders) cleared.
 
 ## M4 · P15 — Testing & local-first web verification
 

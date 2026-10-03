@@ -28,7 +28,7 @@ A Claude Code session with v1.0.1 plus the ECC plugin it routes to loads **≈30
 
 ## Extraction result (selective real extraction + dependency closure)
 
-- **Selected:** 2,644 files (50.7 MB): ADAPT 973, COPY 644, PRESERVE 1,027.
+- **Selected:** 2,644 files at M1 (50.7 MB); **2,594 after P6** (gstack generated files became renderer inputs; an MCP doc and upstream tooling tests excluded).
 - **Left out:** REFERENCE 686 (staging only) and EXCLUDE 21,258, each with a reason code.
 - **Closure:** 0 open gaps (37 accepted with reasons).
 - **Domains:** 7 domains, 62 capabilities.

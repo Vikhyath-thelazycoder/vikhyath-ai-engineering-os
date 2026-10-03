@@ -34,4 +34,4 @@ Computed from git blob SHA-1 over all 2,644 bundled files:
 - Mostly OpenDesign `design-systems/*/design-tokens.json` shared by several systems (groups of 2–7).
 - Also: the BeyondSEO logo in two places; ECC `taste-*` script copies (now excluded).
 
-**Rule for P6:** the bundle stores content once, addressed by its hash. Each capability mapping references the canonical blob, and provenance records every source path that maps to it.
+~~Rule for P6: the bundle stores content once, addressed by its hash.~~ **Superseded by D-026:** files are stored as plain single-link copies (Unlazy rejects hardlinked files; dedup would save ~1 MB). Integrity comes from provenance hashes.

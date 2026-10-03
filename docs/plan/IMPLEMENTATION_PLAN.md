@@ -6,7 +6,7 @@
 | Spec | Vikhyath AI Engineering OS Master Build Spec (Updated) |
 | Total phases | **28 (P0–P27)** |
 | Execution model | Phases are grouped into **8 milestones (M0–M7)** (D-007). Within a milestone, every phase is still tested, verified, committed and updated in this plan. Work stops for user review **only at the end of each milestone**. |
-| Hard gate | **No large-scale implementation before P3 is VERIFIED** (spec §64). P4+ entries below are provisional outlines; P3 rewrites them as file-level tasks (spec §63). |
+| Hard gate | Spec §64 gate **passed** at the end of M1 (D-025). File-level tasks for P4–P27 are in [FILE_LEVEL_PLAN.md](FILE_LEVEL_PLAN.md); deviations found while building are recorded there as "As built" notes and in the decisions log. |
 | Decisions | [docs/audit/21_AUDIT_DECISIONS.md](../audit/21_AUDIT_DECISIONS.md) |
 
 Status vocabulary (spec §25): NOT_STARTED · PLANNED · IN_PROGRESS · PARTIALLY_COMPLETE · BLOCKED · READY_FOR_VERIFICATION · VERIFIED · COMPLETED · INTENTIONALLY_DEFERRED
@@ -100,7 +100,7 @@ Ordering rationale vs. spec §66 anchors (D-004):
 
 Produces `05_CAPABILITY_MATRIX.md` (§61), `06_DOMAIN_MAPPING.md` (§5–12), `07_SOURCE_EXTRACTION_MATRIX.md` (COPY/ADAPT/WRAP/REFERENCE/PRESERVE/EXCLUDE per component, §38–39), `08_DUPLICATION_ANALYSIS.md` (§37), `09_DEPENDENCY_RUNTIME_MATRIX.md`. Acceptance: every capability has the §13 metadata draft; every domain/subdomain is justified by a source path (no empty domains); complete-subsystem claims (Graphify, BeyondSEO, Brag) are proven by dependency traces.
 
-## P3 — Cross-cutting audits, target architecture, file-level plan · READY_FOR_VERIFICATION (2026-10-03) · **GATE**
+## P3 — Cross-cutting audits, target architecture, file-level plan · COMPLETED (2026-10-03, gate passed D-025) · **GATE**
 
 **Result:** docs 11, 13–20 written; decisions D-009…D-022; **file-level plan for P4–P27 in [FILE_LEVEL_PLAN.md](FILE_LEVEL_PLAN.md)**. Measured OLD-MODEL baseline: ≈30.4k est. tokens always loaded (v1.0.1 ≈212 + ECC ≈30,170). Host evidence: Claude Code installed (v1.0.1 + ECC); Codex/Cursor/Antigravity dirs present but CLIs absent and v1.0.1 not installed in them; the Antigravity "Runtime Tested" claim is unsupported. UNKNOWNs resolved: BeyondSEO browser extra → 250/250 OK (557 MB browser); AgentShield → `security-scan` excluded. §64 checklist: audit ✔, upstream audit ✔, capability matrix ✔, domain mapping ✔, gap analysis ✔, target architecture ✔, implementation plan ✔ (file-level), migration order ✔ (D-022), test plan ✔ (doc 17). **Open: Q-1 (BLOCKING for P6 only), Q-2/Q-3 (IMPORTANT, defaults set).** Gate passes on user review.
 
@@ -108,6 +108,42 @@ Produces `05_CAPABILITY_MATRIX.md` (§61), `06_DOMAIN_MAPPING.md` (§5–12), `0
 Produces `11_HOST_COMPATIBILITY_AUDIT`, `13_TOKEN_CONTEXT_AUDIT` (measured OLD-MODEL baseline incl. installed upstream plugins), `14_MULTI_PROJECT_ISOLATION_AUDIT`, `15_DASHBOARD_OBSERVABILITY_AUDIT`, `16_UPDATE_ROLLBACK_AUDIT`, `17_TESTING_AUDIT`, `18_MIGRATION_RISKS`, `19_OPEN_QUESTIONS`, `20_TARGET_ARCHITECTURE_RECOMMENDATION`, `00_EXECUTIVE_SUMMARY` (final), and **rewrites P4–P27 below as file-level tasks** (FILE · ACTION · PURPOSE · DEPENDENCIES · INPUTS · OUTPUTS · TEST · ROLLBACK, spec §63) with a migration order and test plan. Acceptance: §64 checklist complete; no open BLOCKING question; user review.
 
 ---
+
+## P4 — Core runtime & CLI foundation · COMPLETED (2026-10-03, commit `dcdfd52`)
+
+| Item | Detail |
+|---|---|
+| Changes | `pyproject.toml` (package `vikhyath`, Python ≥3.10, PyYAML); `vikhyath/{__init__,__main__,paths,cli}.py`; `vikhyath/diagnostics/{doctor,validate,benchmark}.py`; `scripts/{doctor,validate,benchmark}` → compatibility wrappers; `tests/manifests` read `VERSION`; `tests/unit/*`; CI installs the package. |
+| Tests | 32/32; doctor 52/0 (50 legacy + 2 environment); validate 27/0; no-PyYAML path prints an install hint instead of crashing (E-1 fixed). |
+| Acceptance | ✔ fresh-venv install · ✔ counts match v1.0.1 · ✔ `benchmark --baseline` reproduces doc 13 (ECC 120,682 B ≈ 30,170 est. tokens; total 121,523 B ≈ 30,380). |
+| Deviations | Benchmark counts description-less agents by file stem (as hosts display them): v1.0.1 = 841 B, not 850 B; doc 13 corrected. Planned commands not yet built exit 2 with "planned for P<n>". |
+| Evidence | `docs/evidence/P4/run.md` |
+| Rollback | `git revert dcdfd52` |
+
+## P5 — Provenance & third-party notices · COMPLETED (2026-10-03, commit `0d8553e`)
+
+| Item | Detail |
+|---|---|
+| Changes | `vikhyath/bundle/{rules,provenance,notices}.py`; `tools/audit/extraction_matrix.py` imports the shared engine; generated `third_party/licenses.json` + `THIRD_PARTY_NOTICES.md`; `tests/bundle/{test_rules,test_provenance}.py`. |
+| Tests | 45/45. Matrix regenerated from scratch after the move: byte-identical. |
+| Acceptance | ✔ one provenance record per planned file, all valid, `original_hash` = audited blob SHA-1 · ✔ 14 upstreams: 12 MIT, 2 Apache-2.0, Karpathy recorded as declared-MIT without license text. |
+| Rollback | `git revert 0d8553e` |
+
+## P6 — Upstream bundling & central install · COMPLETED (2026-10-03, commit `2d08a91`)
+
+| Item | Detail |
+|---|---|
+| Changes | `vikhyath/bundle/{closure,checks,store,build,fetch}.py`, `vikhyath/bundle/transforms/{__init__,gstack,rewrites}.py`, `vikhyath bundle fetch|build|verify|list`, `scripts/install`; rules updates (gstack generated files → renderer inputs, Angular MCP doc and UI/UX tooling tests excluded); CONTRIBUTING + PR template + security test updated for D-023; `tests/bundle/{test_build,test_transforms}.py`. |
+| Result | Known-good bundle **`c98667e034f7`**: 2,594 files (50.3 MB), 64 transformed, 0 errors (closure, MCP config, provenance). Bundled Unlazy and UI/UX Pro Max self-tests pass. **A fresh networked `scripts/install` reproduced the identical bundle id** (153 MB sparse download vs ~1.1 GB full clones; 1m54s). |
+| Tests | 60/60. |
+| Deviations | **D-026:** hardlinked blob store dropped (broke Unlazy's single-link tamper check; saved only ~1 MB): files are plain copies, integrity via provenance hashes. **D-027:** gstack renderer uses strong anchors only (a weak anchor had put ship's table into review); unresolved placeholders (15 files) and adaptation debts (8 MCP mentions, 52 gstack runtime paths) are listed in `BUILD.json` and owned by P13–P17. Planned `strip_directives`/`section_split` transforms replaced by targeted rewrites now and section indexing in P9. |
+| Open | Nothing installed into the real `~/.vikhyath` yet (all builds in scratch homes). |
+| Evidence | `docs/evidence/P6/run.md` |
+| Rollback | `git revert 2d08a91`; delete `$VIKHYATH_HOME/bundles/<id>` |
+
+## P7 — Capability registry · IN_PROGRESS
+
+See FILE_LEVEL_PLAN P7.
 
 ## P4–P27 — summary (file-level tasks: [FILE_LEVEL_PLAN.md](FILE_LEVEL_PLAN.md))
 
@@ -143,11 +179,12 @@ Produces `11_HOST_COMPATIBILITY_AUDIT`, `13_TOKEN_CONTEXT_AUDIT` (measured OLD-M
 |---|---|---|
 | 2026-10-03 | P0 | Plan created; 28 phases defined (D-004); P0 completed; P1 set as next. Licensing made non-blocking (D-002). |
 | 2026-10-03 | P0 | D-005: selective real extraction (actual files copied/adapted into the bundle; no reference-only capabilities). |
-| 2026-10-03 | P6 | P6 completed: `vikhyath bundle fetch/build/verify/list`, gstack template renderer (strong anchors), targeted rewrites with drift detection, hard MCP-config check, closure on transformed output, atomic activation with `previous`, `scripts/install`. Known-good bundle `c98667e034f7`: 2,594 files, 0 errors, Unlazy + UI/UX Pro Max self-tests pass from the bundle; **fresh networked install reproduces the identical bundle id** (153 MB sparse download, 1m54s). D-026 (single-link files), D-027 (render gaps/debts → P13–P17). 60 tests. Evidence: docs/evidence/P6/run.md. P7 started. |
-| 2026-10-03 | P5 | P5 completed: shared rule engine `vikhyath/bundle/rules.py` (matrix regenerated byte-identical), §36 provenance records + validator (2,644 planned records, all valid, hashes = audited blob SHAs), `third_party/licenses.json` + generated `THIRD_PARTY_NOTICES.md` (12 MIT, 2 Apache-2.0), 45/45 tests. P6 started. |
-| 2026-10-03 | P4 | P4 completed: `vikhyath` package + CLI (pyproject, Python ≥3.10, PyYAML declared), doctor 52/0 (50 legacy + 2 env), validate 27/0, measured `benchmark --baseline` (121,523 B ≈ 30,380 est. tokens), wrappers kept (§69), 32/32 tests, CI installs the package. Evidence: docs/evidence/P4/run.md. P5 started. |
-| 2026-10-03 | M1 | Gate passed (D-025). Q-1 → build at install (D-023); Q-3 → NOT VERIFIED where host absent (D-024). M2/P4 started. |
-| 2026-10-03 | P3 | P3 ready for verification: cross-cutting audits, target architecture, D-009…D-022, file-level plan; M1 awaiting user review (Q-1 blocks P6). |
-| 2026-10-03 | P2 | P2 completed: domain model, extraction rules + per-file matrix, closure 0 open, duplication & runtime matrices. P3 started. |
-| 2026-10-03 | P1 | P1 completed: upstream audit, license inventory, security audit, pins (D-008). P2 started. |
 | 2026-10-03 | M1 | D-006: dependency closure (selected content pulls in everything it needs). D-007: 8 review milestones. M1 started. |
+| 2026-10-03 | P1 | P1 completed: upstream audit, license inventory, security audit, pins (D-008). P2 started. |
+| 2026-10-03 | P2 | P2 completed: domain model, extraction rules + per-file matrix, closure 0 open, duplication & runtime matrices. P3 started. |
+| 2026-10-03 | P3 | P3 ready for verification: cross-cutting audits, target architecture, D-009…D-022, file-level plan; M1 awaiting user review (Q-1 blocks P6). |
+| 2026-10-03 | M1 | Gate passed (D-025). Q-1 → build at install (D-023); Q-3 → NOT VERIFIED where host absent (D-024). M2/P4 started. |
+| 2026-10-03 | P4 | P4 completed: `vikhyath` package + CLI (pyproject, Python ≥3.10, PyYAML declared), doctor 52/0 (50 legacy + 2 env), validate 27/0, measured `benchmark --baseline` (121,523 B ≈ 30,380 est. tokens), wrappers kept (§69), 32/32 tests, CI installs the package. Evidence: docs/evidence/P4/run.md. P5 started. |
+| 2026-10-03 | P5 | P5 completed: shared rule engine `vikhyath/bundle/rules.py` (matrix regenerated byte-identical), §36 provenance records + validator (2,644 planned records, all valid, hashes = audited blob SHAs), `third_party/licenses.json` + generated `THIRD_PARTY_NOTICES.md` (12 MIT, 2 Apache-2.0), 45/45 tests. P6 started. |
+| 2026-10-03 | P6 | P6 completed: `vikhyath bundle fetch/build/verify/list`, gstack template renderer (strong anchors), targeted rewrites with drift detection, hard MCP-config check, closure on transformed output, atomic activation with `previous`, `scripts/install`. Known-good bundle `c98667e034f7`: 2,594 files, 0 errors, Unlazy + UI/UX Pro Max self-tests pass from the bundle; **fresh networked install reproduces the identical bundle id** (153 MB sparse download, 1m54s). D-026 (single-link files), D-027 (render gaps/debts → P13–P17). 60 tests. Evidence: docs/evidence/P6/run.md. P7 started. |
+| 2026-10-03 | P7 | Plan audit (user request): header, P3 heading, P4–P6 result sections, chronological history; FILE_LEVEL_PLAN "As built" notes for P5/P6 and D-027 duty in P13–P17; summary/doc 08 counts corrected. |
