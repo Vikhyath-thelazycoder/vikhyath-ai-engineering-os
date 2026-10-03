@@ -16,8 +16,8 @@ Status vocabulary (spec §25): NOT_STARTED · PLANNED · IN_PROGRESS · PARTIALL
 | Milestone | Phases | Status |
 |---|---|---|
 | M0 Baseline | P0 | **COMPLETED** |
-| M1 Audit & final plan | P1, P2, P3 (ends at the spec §64 hard gate) | **READY_FOR_VERIFICATION** (user review) |
-| M2 Foundation & bundle | P4, P5, P6, P7 | NOT_STARTED |
+| M1 Audit & final plan | P1, P2, P3 (ends at the spec §64 hard gate) | **COMPLETED** (gate passed, D-025) |
+| M2 Foundation & bundle | P4, P5, P6, P7 | **IN_PROGRESS** |
 | M3 The brain | P8, P9, P10, P11, P18 | NOT_STARTED |
 | M4 Main domains | P12, P13, P14, P15 | NOT_STARTED |
 | M5 Specialist domains | P16, P17 | NOT_STARTED |
@@ -31,8 +31,8 @@ Status vocabulary (spec §25): NOT_STARTED · PLANNED · IN_PROGRESS · PARTIALL
 | P0 | Current repository audit | Audit | — | **COMPLETED** |
 | P1 | Upstream deep audit (14 repos) | Audit | P0 | **COMPLETED** |
 | P2 | Capability, domain & extraction architecture | Audit | P1 | **COMPLETED** |
-| P3 | Cross-cutting audits, target architecture, definitive file-level plan — **GATE** | Audit/Plan | P2 | **READY_FOR_VERIFICATION** |
-| P4 | Core runtime & CLI foundation | Build: core | P3 | NOT_STARTED |
+| P3 | Cross-cutting audits, target architecture, definitive file-level plan — **GATE** | Audit/Plan | P2 | **COMPLETED** |
+| P4 | Core runtime & CLI foundation | Build: core | P3 | IN_PROGRESS |
 | P5 | Provenance & third-party notices | Build: supply | P4 | NOT_STARTED |
 | P6 | Upstream bundling (staging → local bundle) | Build: supply | P5 | NOT_STARTED |
 | P7 | Capability registry (single source of truth) | Build: core | P6 | NOT_STARTED |
@@ -143,6 +143,7 @@ Produces `11_HOST_COMPATIBILITY_AUDIT`, `13_TOKEN_CONTEXT_AUDIT` (measured OLD-M
 |---|---|---|
 | 2026-10-03 | P0 | Plan created; 28 phases defined (D-004); P0 completed; P1 set as next. Licensing made non-blocking (D-002). |
 | 2026-10-03 | P0 | D-005: selective real extraction (actual files copied/adapted into the bundle; no reference-only capabilities). |
+| 2026-10-03 | M1 | Gate passed (D-025). Q-1 → build at install (D-023); Q-3 → NOT VERIFIED where host absent (D-024). M2/P4 started. |
 | 2026-10-03 | P3 | P3 ready for verification: cross-cutting audits, target architecture, D-009…D-022, file-level plan; M1 awaiting user review (Q-1 blocks P6). |
 | 2026-10-03 | P2 | P2 completed: domain model, extraction rules + per-file matrix, closure 0 open, duplication & runtime matrices. P3 started. |
 | 2026-10-03 | P1 | P1 completed: upstream audit, license inventory, security audit, pins (D-008). P2 started. |
