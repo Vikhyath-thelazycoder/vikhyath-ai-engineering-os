@@ -8,7 +8,7 @@ from .paths import repo_root
 
 # Subcommands planned in docs/plan/FILE_LEVEL_PLAN.md and the phase that delivers each.
 PLANNED = {
-    "bootstrap": "P9", "context": "P9", "state": "P10", "plan": "P10", "decide": "P10",
+    "state": "P10", "plan": "P10", "decide": "P10",
     "project": "P10", "verify": "P15", "test": "P15", "update": "P24", "rollback": "P24",
     "runtime": "P12", "dashboard": "P23", "adapters": "P19",
 }
@@ -139,6 +139,85 @@ def _route(args):
     return 0
 
 
+def _session_id(args, create=False):
+    import os
+    import secrets
+    from datetime import datetime, timezone
+    sid = getattr(args, "session", None) or os.environ.get("VIKHYATH_SESSION_ID")
+    if not sid and create:
+        sid = f"s-{datetime.now(timezone.utc):%Y%m%dT%H%M%S}-{secrets.token_hex(3)}"
+    return sid
+
+
+def _bootstrap(args):
+    import json
+
+    from .context.budget import load_budgets
+    from .context.levels import bootstrap
+    from .paths import current_bundle
+    from .project.identity import detect
+    project = detect(Path(args.project) if args.project else None)
+    sid = _session_id(args, create=True)
+    result = bootstrap(project=project, session_id=sid, host=args.host, bundle_dir=current_bundle(),
+                       budgets=load_budgets())
+    print(json.dumps(result, indent=1) if args.json else result["text"], end="" if not args.json else "\n")
+    return 0
+
+
+def _context(args):
+    import json
+
+    from .context import levels
+    from .context.budget import load_budgets
+    from .context.loader import ContextError, ContextLoader
+    from .paths import current_bundle
+    from .project.identity import detect
+    from .registry.loader import load_cards
+    budgets = load_budgets()
+    caps, query = list(args.capability), args.request
+    if args.route:
+        from .routing import Router
+        route = Router().route(args.route)
+        caps = caps or [c["id"] for c in route["capabilities"]]
+        query = query or args.route
+    cards = load_cards()
+    unknown = [c for c in caps if c not in cards]
+    if unknown:
+        print(f"vikhyath context: unknown capability {unknown[0]}", file=sys.stderr)
+        return 2
+    level = 3 if args.file else args.level
+    if level == 3 and not args.file:
+        print("vikhyath context: level 3 is explicit only; pass --file <bundle path> (spec §16)", file=sys.stderr)
+        return 2
+    if not caps and not args.file:
+        print("vikhyath context: name capabilities, --route \"<request>\", or --file", file=sys.stderr)
+        return 2
+    project = detect(Path(args.project) if args.project else None)
+    loader = ContextLoader(project, _session_id(args), current_bundle(), use_cache=not args.no_cache)
+    out = []
+    try:
+        if args.file:
+            out.append(levels.deep_reference(loader, args.file, budgets, sections=args.section, query=query))
+        else:
+            out.append(levels.domain_context(loader, caps, budgets))
+            if level >= 2:
+                out.append(levels.capability_context(loader, caps, budgets, query=query))
+    except ContextError as exc:
+        print(f"vikhyath context: {exc}", file=sys.stderr)
+        return 1
+    loader.finish(active_capabilities=caps or None)
+    if args.json:
+        print(json.dumps({"levels": out, "load_log": loader.log, "session_id": loader.session_id,
+                          "project_id": project.project_id}, indent=1))
+    else:
+        print("\n".join(o["text"] for o in out), end="")
+        total = sum(o["est_tokens"] for o in out)
+        hits = sum(1 for e in loader.log if e["cache"] == "hit")
+        print(f"\n— context: ≈{total} est. tokens · {len(loader.log)} files ({hits} cached) · "
+              f"levels {', '.join(o['level'] for o in out)}")
+    return 0
+
+
 def build_parser():
     parser = argparse.ArgumentParser(prog="vikhyath", description="Vikhyath AI Engineering OS")
     parser.add_argument("-v", "--version", action="version", version=f"vikhyath-ai-engineering-os v{__version__}")
@@ -194,6 +273,27 @@ def build_parser():
     p.add_argument("--stack", nargs="*", help="Detected stack, e.g. python django (selects stack packs)")
     p.add_argument("--brief", action="store_true", help="One-line summary instead of JSON")
     p.set_defaults(func=_route)
+
+    p = sub.add_parser("bootstrap", help="Print the Level-0 bootstrap context for this project and session")
+    p.add_argument("--host", default="cli", help="Host name (claude-code, codex, cursor, antigravity, cli)")
+    p.add_argument("--session", help="Session id (default: $VIKHYATH_SESSION_ID, else a new id)")
+    p.add_argument("--project", help="Project directory (default: current directory)")
+    p.add_argument("--json", action="store_true", help="JSON output")
+    p.set_defaults(func=_bootstrap)
+
+    p = sub.add_parser("context", help="Load L1/L2 context for capabilities, or one L3 file (explicit)")
+    p.add_argument("capability", nargs="*", help="Capability ids (from `vikhyath route`)")
+    p.add_argument("--level", type=int, choices=(1, 2, 3), default=2,
+                   help="1 = cards only; 2 = cards + capability files; 3 = one --file (explicit only)")
+    p.add_argument("--route", metavar="REQUEST", help="Route REQUEST and load the selected capabilities")
+    p.add_argument("--request", help="Request text used to rank files and sections")
+    p.add_argument("--file", help="Level 3: one bundle file (path as listed by L2), explicit only")
+    p.add_argument("--section", action="append", help="With --file: only these section ids")
+    p.add_argument("--session", help="Session id (default: $VIKHYATH_SESSION_ID); enables the session cache")
+    p.add_argument("--project", help="Project directory (default: current directory)")
+    p.add_argument("--no-cache", action="store_true", help="Resend content even if already loaded this session")
+    p.add_argument("--json", action="store_true", help="JSON output with the load log")
+    p.set_defaults(func=_context)
 
     for name, phase in PLANNED.items():
         p = sub.add_parser(name, help=f"(available in {phase})")

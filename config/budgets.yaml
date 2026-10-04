@@ -1,0 +1,47 @@
+# Vikhyath AI Engineering OS — context budgets (P9, spec §16, §47, D-014)
+#
+# Token figures are ESTIMATES: bytes ÷ 4 (spec §46; no model tokenizer is used). Every value is a configurable
+# starting point from the doc 13 measurements; P25 benchmarks them against representative prompts and may change them
+# ("do not make arbitrary limits without testing", spec §47). Each limit states why it exists.
+
+version: 1
+estimate: bytes/4
+
+levels:
+  L0:
+    max_tokens: 1500
+    why: >-
+      Bootstrap runs on every task. OS identity, host, project/session ids, phase, compact state, plan pointer and the
+      62-id capability index; 1,500 leaves room for a few state lines without letting state dumps creep into every turn.
+  L1:
+    max_tokens_per_domain: 2000
+    why: >-
+      A rendered CARD.md is ≤ 250 est. tokens (registry check enforces ≤ 1,000 bytes); 2,000 per domain fits the
+      routed cards of one domain (P7 finding: whole domains exceed this, so only routed cards are loaded).
+  L2:
+    max_tokens_per_task: 8000
+    max_capabilities_full: 3
+    max_files_per_capability: 2
+    why: >-
+      Upstream skills are 2–5k est. tokens each (doc 13). 8,000 per task loads the most relevant sections of up to
+      three capabilities; further capabilities get a file/section index only and are fetched by id when needed.
+  L3:
+    max_tokens_per_fetch: 12000
+    explicit_only: true
+    why: >-
+      Deep references (playbooks, design systems, large docs) are never loaded by default (spec §16 "never default to
+      Level 3"); one explicit fetch is capped so a single reference cannot flood the context.
+
+# Spec §47 limits that other components enforce, kept here so all budgets are documented in one place.
+reference_depth:
+  value: 1
+  why: An L3 fetch may follow links one hop from the L2 file that cited them; deeper chains need another request.
+code_files_per_task:
+  value: 12
+  why: Graphify affected/query results narrow the code surface first (spec §23); full-repo dumps are forbidden. Enforced in P12.
+project_doc_sections_per_turn:
+  value: 2
+  why: State + plan index are read every turn; at most two full project-doc sections join them (spec §48–49). Enforced in P10.
+semantic_results:
+  value: 3
+  why: BM25 fallback results per request; mirrors config/routing.yaml limits.bm25_top_k (the router reads that value).

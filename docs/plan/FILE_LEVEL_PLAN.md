@@ -97,6 +97,8 @@ Conventions:
 
 ## M3 · P9 — Context engine
 
+**As built (COMPLETED):** `config/budgets.yaml`; `vikhyath/context/{sections,budget,cache,loader,levels}.py` (D-030); `vikhyath/project/identity.py` pulled forward from P10 (cache keys need the project id); CLI `bootstrap` and `context` (`--route`, `--level 1|2`, `--file/--section` for L3, `--session`, `--no-cache`, `--json`); tests `tests/context/{fixtures,test_budgets,test_cache}.py`. Evidence: `docs/evidence/P9/run.md`.
+
 | File | Action | Purpose | Test |
 |---|---|---|---|
 | `config/budgets.yaml` | CREATE | D-014 values, documented rationale | Schema test |

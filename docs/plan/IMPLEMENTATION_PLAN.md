@@ -37,7 +37,7 @@ Status vocabulary (spec §25): NOT_STARTED · PLANNED · IN_PROGRESS · PARTIALL
 | P6 | Upstream bundling (staging → local bundle) | Build: supply | P5 | **COMPLETED** |
 | P7 | Capability registry (single source of truth) | Build: core | P6 | **COMPLETED** |
 | P8 | Routing engine | Build: core | P7 | **COMPLETED** |
-| P9 | Context engine (levels, budget, cache) | Build: core | P8 | NOT_STARTED |
+| P9 | Context engine (levels, budget, cache) | Build: core | P8 | **COMPLETED** |
 | P10 | Project state, plan index, decision memory | Build: core | P4 | NOT_STARTED |
 | P11 | Multi-project isolation | Build: core | P10 | NOT_STARTED |
 | P12 | Codebase domain (Graphify) | Build: domain | P9, P11 | NOT_STARTED |
@@ -157,7 +157,7 @@ Produces `11_HOST_COMPATIBILITY_AUDIT`, `13_TOKEN_CONTEXT_AUDIT` (measured OLD-M
 
 M2 (P4–P7) delivered the foundation: the `vikhyath` core + CLI (P4), shared extraction rules + provenance + notices (P5), a reproducible local bundle with central install (P6), and the single capability registry generated into every bundle (P7). Bundle `c98667e034f7`: 2,594 files, 0 errors, reproducible from pins. **Next: M3 (P8 routing → P9 context → P10 state → P11 isolation → P18 observability)** after user review.
 
-## P8 — Routing engine · COMPLETED (2026-10-04)
+## P8 — Routing engine · COMPLETED (2026-10-04, commit `fec0373`)
 
 | Item | Detail |
 |---|---|
@@ -167,7 +167,19 @@ M2 (P4–P7) delivered the foundation: the `vikhyath` core + CLI (P4), shared ex
 | Acceptance | ✔ all scenarios pass · ✔ routing p95 **0.333 ms** (< 100 ms; 950 calls) · ✔ no LLM call; BM25 only below the confidence threshold. |
 | Deviations | Spec capability names without a registry id are mapped by an alias table in the scenario file (e.g. `testing/integration` → `testing/web-verification`). §70 I (multi-project) is tested in P11. |
 | Evidence | `docs/evidence/P8/run.md` |
-| Rollback | `git revert <P8 commit>` |
+| Rollback | `git revert fec0373` |
+
+## P9 — Context engine · COMPLETED (2026-10-04)
+
+| Item | Detail |
+|---|---|
+| Changes | `config/budgets.yaml` (D-014 values, each with a `why`); `vikhyath/context/{sections,budget,cache,loader,levels}.py`; `vikhyath/project/identity.py` (project id + `ProjectRef`, pulled forward from P10 because the cache is keyed by project); `vikhyath bootstrap`, `vikhyath context`; `tests/context/{fixtures,test_budgets,test_cache}.py`. |
+| Result | L0 bootstrap (306 est. tokens here); L1 = routed CARD.md only; L2 = most relevant entry files' sections within 8k (≤ 3 capabilities full, rest index-only); L3 = one explicit `--file` (≤ 12k). Per-bundle context index (0.40 s once, 10 ms after). Per-project, per-session cache: bundle files keyed by provenance sha256 (no stat/read), project files by size+mtime. D-030. |
+| Tests | 114/114 (18 new). |
+| Acceptance | ✔ L0 ≤ 1.5k on fixtures (and on this repo: 306) · ✔ second identical load = cache hit with **no file reread** (instrumented reads; 12 real scenarios: all hits, 0 B read) · ✔ L3 only with an explicit flag. Every measured L1 ≤ 2k/domain, L2 ≤ 8k. |
+| Deviations | `project/identity.py` built in P9 (needed for cache keys); P10 adds state on top. The cache elides content only when a session id is given (`--session`/`$VIKHYATH_SESSION_ID`); without one every load is sent. |
+| Evidence | `docs/evidence/P9/run.md` |
+| Rollback | `git revert <P9 commit>`; delete `$VIKHYATH_HOME/cache/context-index/` and `$VIKHYATH_HOME/projects/*/sessions/` (regenerable). |
 
 ## P4–P27 — summary (file-level tasks: [FILE_LEVEL_PLAN.md](FILE_LEVEL_PLAN.md))
 
@@ -215,3 +227,4 @@ M2 (P4–P7) delivered the foundation: the `vikhyath` core + CLI (P4), shared ex
 | 2026-10-03 | P7 | P7 completed: 62 capability cards + rendered L1 CARD.md, `vikhyath/registry` (schema, loader, generator), `registry.yaml` generated into every bundle (rebuilt `c98667e034f7`, valid), `vikhyath registry` CLI; retired `config/capabilities.yaml`, `integrations/*.yaml`, `domain-model.yaml`; priorities → role-named hierarchy + domain defaults (D-028). 79 tests, doctor 45/0, validate 20/0. Evidence: docs/evidence/P7/run.md. **M2 completed; awaiting user review before M3.** |
 | 2026-10-04 | M3 | User started M3 ("lets do and finish M3 now"); M2 accepted. P8 started. |
 | 2026-10-04 | P8 | P8 completed: routing config v2 + deterministic router + `vikhyath route` (D-029); 19 spec scenarios pass with expected and forbidden sets; p95 0.333 ms; 96 tests, doctor 45/0, validate 20/0. Evidence: docs/evidence/P8/run.md. P9 started. |
+| 2026-10-04 | P9 | P9 completed: budgets config, L0–L3 assembly, section loading, per-bundle context index, per-session cache, project identity, `vikhyath bootstrap`/`context` (D-030). All 12 measured scenarios within L1/L2 budgets; second load all hits with 0 bytes read. 114 tests. Evidence: docs/evidence/P9/run.md. P10 started. |
