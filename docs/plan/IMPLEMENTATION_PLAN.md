@@ -204,7 +204,7 @@ M2 (P4–P7) delivered the foundation: the `vikhyath` core + CLI (P4), shared ex
 | Evidence | `docs/evidence/P11/run.md` |
 | Rollback | `git revert 6172057`; lock files under `$VIKHYATH_HOME/projects/*/locks/` are empty and disposable. |
 
-## P18 — Observability · COMPLETED (2026-10-04)
+## P18 — Observability · COMPLETED (2026-10-04, commit `7e54375`)
 
 | Item | Detail |
 |---|---|
@@ -214,7 +214,7 @@ M2 (P4–P7) delivered the foundation: the `vikhyath` core + CLI (P4), shared ex
 | Acceptance | ✔ events emitted for the full routing lifecycle (exact sequence asserted) · ✔ no secrets in logs (11 planted kinds; demo grep = 0) · ✔ each rule's embedded tests run as unit tests · ✔ observability cards (4) already in the registry since P7. |
 | Deviations | Beacon rules are COPY'd, not adapted: they evaluate Beacon-shaped *host tool events* (`events observe`, fed by the P19+ adapters), while OS lifecycle events go to the log. The redactor runs on events; applying it to `doctor`/diagnostics output is left to P25 (diagnostics) and recorded there. |
 | Evidence | `docs/evidence/P18/run.md` |
-| Rollback | `git revert <P18 commit>`; event logs under `$VIKHYATH_HOME/projects/*/events/` are append-only data and can be deleted. |
+| Rollback | `git revert 7e54375`; event logs under `$VIKHYATH_HOME/projects/*/events/` are append-only data and can be deleted. |
 
 ## M3 review summary
 
