@@ -6,12 +6,14 @@ change history → rebuild the index → update state. It never creates a separa
 import re
 from datetime import date
 
+from ..isolation import atomic
+from ..isolation.locks import project_lock
 from ..routing.fallback_bm25 import tokenize
 from ..routing.rules import _glob_match
 from . import plan_index
 from .change import impact as change_impact
 from .lifecycle import DONE_STATES, check_transition
-from .state import read_yaml, record_verification, update_state, write_yaml
+from .state import checked, read_yaml, record_verification, update_state, write_yaml
 
 GENERIC = set(tokenize("add build create make fix update change new feature implement improve support integrate "
                        "page app application system module flow please also want need let get set"))
@@ -42,15 +44,12 @@ def locate_phase(index, request, paths=()):
     return (plan_index.phase(index, best["phase_id"]) if best else None), ranking
 
 
+def _read_plan(project, state):
+    return checked(project, plan_index.plan_file(project, state)).read_text(encoding="utf-8")
+
+
 def _write_plan(project, state, text):
-    path = plan_index.plan_file(project, state)
-    write_text_atomic(path, text)
-
-
-def write_text_atomic(path, text):
-    tmp = path.with_name(f".{path.name}.tmp")
-    tmp.write_text(text, encoding="utf-8")
-    tmp.replace(path)
+    atomic.write_text(checked(project, plan_index.plan_file(project, state), "write"), text)
 
 
 def _append_history(text, line):
@@ -76,10 +75,18 @@ def _next_task_id(phase):
     return f"T-{num}.{max(used, default=0) + 1}"
 
 
-def add_task(project, state, index, phase_id, title, *, capabilities=(), impact=None, depends=None, acceptance=None):
-    """Append a PLANNED task row to the phase's table; reopen a finished phase. Returns (task, reopened)."""
+def add_task(project, state, index, phase_id, title, **kw):
+    """Append a PLANNED task row to the phase's table; reopen a finished phase. Returns (task, reopened).
+    Runs under the project's plan lock and re-reads the index inside it, so concurrent sessions never reuse a task id
+    or lose a row (`index` is accepted for API symmetry; the locked re-read wins)."""
+    with project_lock(project, "plan"):
+        return _add_task_locked(project, state, phase_id, title, **kw)
+
+
+def _add_task_locked(project, state, phase_id, title, *, capabilities=(), impact=None, depends=None, acceptance=None):
+    index = plan_index.load_index(project, state)
     p = plan_index.phase(index, phase_id)
-    text = plan_index.plan_file(project, state).read_text(encoding="utf-8")
+    text = _read_plan(project, state)
     start, end = p["section"]["start"], p["section"]["end"]
     section = text[start:end]
     body, trailing = section.rstrip("\n"), section[len(section.rstrip("\n")):] or "\n"
@@ -107,12 +114,22 @@ def add_task(project, state, index, phase_id, title, *, capabilities=(), impact=
     text = _append_history(text, f"{tid} added to {p['phase_id']} {p['phase_name']}: {_cell(title)}"
                                  + (" (phase reopened)" if reopened else ""))
     _write_plan(project, state, text)
+    plan_index.load_index(project, state)
     return {"id": tid, "title": title, "status": "PLANNED", "phase_id": p["phase_id"]}, reopened
 
 
 def set_status(project, state, index, item_id, status, evidence=None):
     """Change a task's (T-…) or phase's (P…) status following the §25 transitions; done states need evidence."""
-    text = plan_index.plan_file(project, state).read_text(encoding="utf-8")
+    with project_lock(project, "plan"):
+        old = _set_status_locked(project, state, item_id, status, evidence)
+    if status in DONE_STATES:
+        record_verification(project, item_id, status, evidence)
+    return old
+
+
+def _set_status_locked(project, state, item_id, status, evidence):
+    index = plan_index.load_index(project, state)
+    text = _read_plan(project, state)
     if re.match(r"^P\d+[A-Za-z]?$", item_id):
         p = plan_index.phase(index, item_id)
         old = p["status"]
@@ -135,8 +152,7 @@ def set_status(project, state, index, item_id, status, evidence=None):
             raise ReconcileError(f"could not find the status cell of {item_id}")
     text = _append_history(text, f"{item_id}: {old} → {status}" + (f" (evidence: {_cell(evidence)})" if evidence else ""))
     _write_plan(project, state, text)
-    if status in DONE_STATES:
-        record_verification(project, item_id, status, evidence)
+    plan_index.load_index(project, state)
     return old
 
 
@@ -171,21 +187,28 @@ def reconcile(project, state, router, request, paths=(), new_phase=None):
 
 
 def _add_phase(project, state, index, name):
+    with project_lock(project, "plan"):
+        return _add_phase_locked(project, state, name)
+
+
+def _add_phase_locked(project, state, name):
+    index = plan_index.load_index(project, state)
     nums = [int(re.sub(r"\D", "", p["phase_id"]) or 0) for p in index["phases"]]
     pid = f"P{max(nums, default=0) + 1}"
-    text = plan_index.plan_file(project, state).read_text(encoding="utf-8")
+    text = _read_plan(project, state)
     block = (f"## {pid} · {name}\nStatus: PLANNED · Depends: — · Paths: — · Flags: — · Evidence: —\nObjective: {name}\n\n"
              "| " + " | ".join(plan_index.TASK_COLUMNS) + " |\n|" + "---|" * len(plan_index.TASK_COLUMNS) + "\n\n")
     idx = text.find(HISTORY_HEADING)
     text = (text[:idx] + block + text[idx:]) if idx >= 0 else text.rstrip("\n") + "\n\n" + block
     text = _append_history(text, f"{pid} {name} added")
     _write_plan(project, state, text)
+    plan_index.load_index(project, state)
     return pid
 
 
 def register(project):
     """Machine-local project record (identity → root) used by relink and the dashboard."""
-    path = project.data_dir / "project.yaml"
+    path = checked(project, project.data_dir / "project.yaml", "write")
     rec = read_yaml(path) or {"project_id": project.project_id, "root": str(project.root), "origin": project.origin,
                               "name": project.name, "created": date.today().isoformat(), "aliases": []}
     rec["root"] = str(project.root)

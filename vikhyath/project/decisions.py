@@ -6,7 +6,9 @@ make them relevant. `docs/PROJECT_DECISIONS.md`, when present, gets a rendered t
 import re
 from datetime import date
 
-from .state import SCHEMA_VERSION, read_yaml, write_yaml
+from ..isolation import atomic
+from ..isolation.locks import project_lock
+from .state import SCHEMA_VERSION, checked, read_yaml, write_yaml
 
 DECISIONS_FILE = "decisions.yaml"
 KINDS = ("architecture", "security", "design", "product", "data", "infrastructure", "testing", "seo", "media", "process")
@@ -28,11 +30,11 @@ def _path(project):
 
 
 def load(project):
-    return read_yaml(_path(project)) or {"schema_version": SCHEMA_VERSION, "decisions": []}
+    return read_yaml(checked(project, _path(project))) or {"schema_version": SCHEMA_VERSION, "decisions": []}
 
 
 def _save(project, data):
-    write_yaml(_path(project), data)
+    write_yaml(checked(project, _path(project), "write"), data)
     render_markdown(project, data)
 
 
@@ -41,6 +43,11 @@ def add(project, *, kind, topic, decision, reason, alternatives=(), impact="", s
         raise DecisionError(f"kind must be one of {', '.join(KINDS)}")
     if not (topic and decision and reason):
         raise DecisionError("topic, decision and reason are required")
+    with project_lock(project, "decisions"):
+        return _add_locked(project, kind, topic, decision, reason, alternatives, impact, supersedes, tags)
+
+
+def _add_locked(project, kind, topic, decision, reason, alternatives, impact, supersedes, tags):
     data = load(project)
     ids = {d["decision_id"]: d for d in data["decisions"]}
     if supersedes:
@@ -84,7 +91,7 @@ def relevant(project, capability_ids):
 
 def render_markdown(project, data=None):
     """Refresh the decisions table inside docs/PROJECT_DECISIONS.md (only between the markers, only if present)."""
-    path = project.root / "docs" / "PROJECT_DECISIONS.md"
+    path = checked(project, project.root / "docs" / "PROJECT_DECISIONS.md", "write")
     if not path.is_file():
         return False
     text = path.read_text(encoding="utf-8")
@@ -100,5 +107,5 @@ def render_markdown(project, data=None):
     _, tail = rest.split(MARK_END, 1)
     new = f"{head}{MARK_START}\n" + "\n".join(rows) + f"\n{MARK_END}{tail}"
     if new != text:
-        path.write_text(new, encoding="utf-8")
+        atomic.write_text(path, new)
     return True

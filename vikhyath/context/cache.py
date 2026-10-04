@@ -57,7 +57,5 @@ class SessionCache:
         self.data["active_capabilities"] = list(capabilities)
 
     def save(self):
-        self.path.parent.mkdir(parents=True, exist_ok=True)
-        tmp = self.path.with_suffix(f".{os.getpid()}.tmp")
-        tmp.write_text(json.dumps(self.data, indent=1, sort_keys=True), encoding="utf-8")
-        os.replace(tmp, self.path)
+        from ..isolation import atomic
+        atomic.write_text(self.path, json.dumps(self.data, indent=1, sort_keys=True))

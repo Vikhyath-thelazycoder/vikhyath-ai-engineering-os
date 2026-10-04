@@ -39,7 +39,7 @@ Status vocabulary (spec §25): NOT_STARTED · PLANNED · IN_PROGRESS · PARTIALL
 | P8 | Routing engine | Build: core | P7 | **COMPLETED** |
 | P9 | Context engine (levels, budget, cache) | Build: core | P8 | **COMPLETED** |
 | P10 | Project state, plan index, decision memory | Build: core | P4 | **COMPLETED** |
-| P11 | Multi-project isolation | Build: core | P10 | NOT_STARTED |
+| P11 | Multi-project isolation | Build: core | P10 | **COMPLETED** |
 | P12 | Codebase domain (Graphify) | Build: domain | P9, P11 | NOT_STARTED |
 | P13 | Engineering domain (+ lifecycle, completion discipline, project docs) | Build: domain | P12 | NOT_STARTED |
 | P14 | Design domain | Build: domain | P9 | NOT_STARTED |
@@ -181,7 +181,7 @@ M2 (P4–P7) delivered the foundation: the `vikhyath` core + CLI (P4), shared ex
 | Evidence | `docs/evidence/P9/run.md` |
 | Rollback | `git revert 9b4b63a`; delete `$VIKHYATH_HOME/cache/context-index/` and `$VIKHYATH_HOME/projects/*/sessions/` (regenerable). |
 
-## P10 — Project state, plan index, decisions · COMPLETED (2026-10-04)
+## P10 — Project state, plan index, decisions · COMPLETED (2026-10-04, commit `7c145c9`)
 
 | Item | Detail |
 |---|---|
@@ -191,7 +191,18 @@ M2 (P4–P7) delivered the foundation: the `vikhyath` core + CLI (P4), shared ex
 | Acceptance | ✔ state read ≪ full docs: 2.35 KB state+index (158 B in L0) vs 9.1 KB of near-empty templates; < 1/5 with filled docs (test) · ✔ “Add Google Maps navigation to bookings” → T-3.3 in P3 Booking System, no new file in the project. |
 | Deviations | `project relink` built here (listed for P10's CLI) rather than P11. Spec §56.7 "record decision if architecture changed" is surfaced as `decision_needed` in the reconcile report (the OS cannot invent the decision text). |
 | Evidence | `docs/evidence/P10/run.md` |
-| Rollback | `git revert <P10 commit>`; projects keep their `.vikhyath/` files (plain YAML) and docs. |
+| Rollback | `git revert 7c145c9`; projects keep their `.vikhyath/` files (plain YAML) and docs. |
+
+## P11 — Multi-project isolation · COMPLETED (2026-10-04)
+
+| Item | Detail |
+|---|---|
+| Changes | `vikhyath/isolation/{guard,locks,atomic}.py`; context loader/cache and every project state/plan/decision/session read and write routed through the guard, per-project locks and atomic writes (D-032); `tests/isolation/{test_multi_project,test_concurrency,test_cache_keys}.py`. |
+| Result | Structural isolation: allowed roots = own project, own data dir, OS files; resolved paths (no `..`/symlink escape); violations reported to hooks for P18. Plan edits re-read the index under the lock. |
+| Tests | 141/141 (11 new). |
+| Acceptance | ✔ doc 14 tests: three interleaved projects, audit-hooked opens → 0 cross-project reads, other projects unchanged, no foreign decisions or credentials in output · ✔ 4×25 concurrent increments = 100 · ✔ 15 concurrent task adds = unique ids · ✔ no partial file under 300 concurrent reads · ✔ cache keys per project · ✔ relink (P10). |
+| Evidence | `docs/evidence/P11/run.md` |
+| Rollback | `git revert <P11 commit>`; lock files under `$VIKHYATH_HOME/projects/*/locks/` are empty and disposable. |
 
 ## P4–P27 — summary (file-level tasks: [FILE_LEVEL_PLAN.md](FILE_LEVEL_PLAN.md))
 
@@ -241,3 +252,4 @@ M2 (P4–P7) delivered the foundation: the `vikhyath` core + CLI (P4), shared ex
 | 2026-10-04 | P8 | P8 completed: routing config v2 + deterministic router + `vikhyath route` (D-029); 19 spec scenarios pass with expected and forbidden sets; p95 0.333 ms; 96 tests, doctor 45/0, validate 20/0. Evidence: docs/evidence/P8/run.md. P9 started. |
 | 2026-10-04 | P9 | P9 completed: budgets config, L0–L3 assembly, section loading, per-bundle context index, per-session cache, project identity, `vikhyath bootstrap`/`context` (D-030). All 12 measured scenarios within L1/L2 budgets; second load all hits with 0 bytes read. 114 tests. Evidence: docs/evidence/P9/run.md. P10 started. |
 | 2026-10-04 | P10 | P10 completed: compact project state, plan index, reconciliation into the one plan, §55 impact, §25 transitions, §53 questions, decision memory, 9 doc templates, CLI (D-031). Google Maps scenario lands in the booking phase with no new file; state read ≪ docs. 130 tests. Evidence: docs/evidence/P10/run.md. P11 started. |
+| 2026-10-04 | P11 | P11 completed: path guard, per-project locks, atomic writes wired into context and project state (D-032). Doc 14 tests pass: 0 cross-project opens over six interleaved turns, no lost updates, no partial files, per-project cache keys. 141 tests. Evidence: docs/evidence/P11/run.md. P18 started. |

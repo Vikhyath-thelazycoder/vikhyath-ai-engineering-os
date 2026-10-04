@@ -17,7 +17,7 @@ import hashlib
 import re
 
 from .lifecycle import ACTIVE_STATES, COMPLETION_STATES
-from .state import SCHEMA_VERSION, now, read_yaml, write_yaml
+from .state import SCHEMA_VERSION, checked, now, read_yaml, write_yaml
 
 INDEX_FILE = "plan-index.yaml"
 PHASE_RE = re.compile(r"^##[ \t]+(P\d+[A-Za-z]?)[ \t]*[·:—–-][ \t]*(.+?)[ \t]*$", re.M)
@@ -139,7 +139,7 @@ def index_path(project):
 
 
 def build_index(project, state):
-    path = plan_file(project, state)
+    path = checked(project, plan_file(project, state))
     if not path.is_file():
         return None
     text = path.read_text(encoding="utf-8")
@@ -149,14 +149,14 @@ def build_index(project, state):
              "plan_sha256": hashlib.sha256(text.encode()).hexdigest(), "plan_size": st.st_size,
              "plan_mtime_ns": st.st_mtime_ns, "built": now(), "current_phase": current_phase(phases),
              "phases": phases}
-    write_yaml(index_path(project), index)
+    write_yaml(checked(project, index_path(project), "write"), index)
     return index
 
 
 def load_index(project, state, rebuild=False):
     """The plan index; rebuilt only when the plan changed (one stat, no plan read on the fast path)."""
-    path = plan_file(project, state)
-    index = None if rebuild else read_yaml(index_path(project))
+    path = checked(project, plan_file(project, state))
+    index = None if rebuild else read_yaml(checked(project, index_path(project)))
     if index is not None:
         if not path.is_file():
             return None
@@ -176,5 +176,5 @@ def phase(index, phase_id):
 def phase_section(project, state, index, phase_id):
     """Only the requested phase's text (spec §49 "load full sections only when required")."""
     p = phase(index, phase_id)
-    text = plan_file(project, state).read_text(encoding="utf-8")
+    text = checked(project, plan_file(project, state)).read_text(encoding="utf-8")
     return text[p["section"]["start"]:p["section"]["end"]]

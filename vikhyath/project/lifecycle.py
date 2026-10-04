@@ -3,7 +3,7 @@ import json
 import re
 from pathlib import Path
 
-from .state import now, read_yaml, write_yaml
+from .state import checked, now, read_yaml, write_yaml
 
 # Spec §25: never just DONE / NOT DONE.
 COMPLETION_STATES = ("NOT_STARTED", "PLANNED", "IN_PROGRESS", "PARTIALLY_COMPLETE", "BLOCKED",
@@ -109,7 +109,7 @@ def detect_stack(root: Path):
 
 def start_session(project, session_id: str, host: str):
     """Record a session (spec §19.1) under the project's machine-local data dir; returns the session record."""
-    path = project.data_dir / "sessions" / session_id / "session.yaml"
+    path = checked(project, project.data_dir / "sessions" / session_id / "session.yaml", "write")
     record = read_yaml(path)
     if record is None:
         record = {"session_id": session_id, "project_id": project.project_id, "host": host, "started": now(),

@@ -10,6 +10,8 @@ import json
 import os
 from pathlib import Path
 
+from ..isolation import atomic
+from ..isolation.guard import guard_for
 from .cache import SessionCache
 from .sections import Section, est_tokens, frontmatter, split_sections
 
@@ -85,10 +87,7 @@ def load_context_index(bundle_dir: Path, home: Path):
         if data.get("version") == CONTEXT_INDEX_VERSION and data.get("bundle_id") == bundle_id:
             return data
     data = build_context_index(bundle_dir)
-    path.parent.mkdir(parents=True, exist_ok=True)
-    tmp = path.with_suffix(f".{os.getpid()}.tmp")
-    tmp.write_text(json.dumps(data), encoding="utf-8")
-    os.replace(tmp, path)
+    atomic.write_text(path, json.dumps(data))
     return data
 
 
@@ -103,6 +102,8 @@ class ContextLoader:
         self.home = home or (project.home if project is not None else None)
         self.log = []
         self.cache = None
+        # P11: every read is checked against this project's allowed roots (no cross-project reads, doc 14 §4).
+        self.guard = guard_for(project, bundle_dir) if project is not None else None
         if project is not None and session_id and use_cache:
             self.cache = SessionCache(project.data_dir / "sessions" / session_id / "context-cache.json",
                                       project.project_id, session_id)
@@ -137,6 +138,8 @@ class ContextLoader:
 
     def read(self, path: Path, *, display: str, level: str):
         """Read one file (a cache miss) and log it."""
+        if self.guard is not None:
+            path = self.guard.check(path)
         text = path.read_text(encoding="utf-8", errors="replace")
         size = len(text.encode("utf-8"))
         self.log.append({"path": display, "level": level, "bytes": size, "est_tokens": est_tokens(size),

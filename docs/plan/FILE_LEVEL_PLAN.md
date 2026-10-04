@@ -121,6 +121,8 @@ Conventions:
 
 ## M3 · P11 — Multi-project isolation
 
+**As built (COMPLETED):** as planned, plus guard/lock/atomic in `project/{plan_index,decisions,reconcile,lifecycle}.py` and `context/cache.py` (not only `loader.py`/`state.py`); violation hooks for P18. D-032. Evidence: `docs/evidence/P11/run.md`.
+
 | File | Action | Purpose | Test |
 |---|---|---|---|
 | `vikhyath/isolation/guard.py`, `locks.py`, `atomic.py` | CREATE | Path guard, per-project locks, atomic writes | `tests/isolation/test_multi_project.py`, `test_concurrency.py`, `test_cache_keys.py` |
