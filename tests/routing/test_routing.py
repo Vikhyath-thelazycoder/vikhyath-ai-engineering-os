@@ -143,6 +143,17 @@ class TestRouter(unittest.TestCase):
 
 
 class TestRouteCli(unittest.TestCase):
+    def setUp(self):   # `route` emits events: keep them out of the real $VIKHYATH_HOME
+        import tempfile
+        from unittest import mock
+        self.tmp = tempfile.TemporaryDirectory()
+        self.env = mock.patch.dict(os.environ, {"VIKHYATH_HOME": self.tmp.name})
+        self.env.start()
+
+    def tearDown(self):
+        self.env.stop()
+        self.tmp.cleanup()
+
     def run_cli(self, *argv):
         out = io.StringIO()
         with contextlib.redirect_stdout(out), contextlib.redirect_stderr(io.StringIO()):

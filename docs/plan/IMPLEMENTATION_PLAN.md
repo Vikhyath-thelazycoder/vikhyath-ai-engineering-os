@@ -18,7 +18,7 @@ Status vocabulary (spec §25): NOT_STARTED · PLANNED · IN_PROGRESS · PARTIALL
 | M0 Baseline | P0 | **COMPLETED** |
 | M1 Audit & final plan | P1, P2, P3 (ends at the spec §64 hard gate) | **COMPLETED** (gate passed, D-025) |
 | M2 Foundation & bundle | P4, P5, P6, P7 | **COMPLETED** (reviewed; user started M3 on 2026-10-04) |
-| M3 The brain | P8, P9, P10, P11, P18 | IN_PROGRESS |
+| M3 The brain | P8, P9, P10, P11, P18 | **COMPLETED** (awaiting user review) |
 | M4 Main domains | P12, P13, P14, P15 | NOT_STARTED |
 | M5 Specialist domains | P16, P17 | NOT_STARTED |
 | M6 Hosts | P19, P20, P21, P22 | NOT_STARTED |
@@ -46,7 +46,7 @@ Status vocabulary (spec §25): NOT_STARTED · PLANNED · IN_PROGRESS · PARTIALL
 | P15 | Testing domain + local-first web verification | Build: domain | P13 | NOT_STARTED |
 | P16 | SEO domain + isolated BeyondSEO runtime | Build: domain | P15 | NOT_STARTED |
 | P17 | Media domain (Brag) | Build: domain | P9 | NOT_STARTED |
-| P18 | Observability (event model, history) | Build: core | P10 | NOT_STARTED |
+| P18 | Observability (event model, history) | Build: core | P10 | **COMPLETED** |
 | P19 | Claude Code adapter | Build: hosts | P8–P11, P18 | NOT_STARTED |
 | P20 | Codex adapter | Build: hosts | P19 | NOT_STARTED |
 | P21 | Cursor adapter | Build: hosts | P19 | NOT_STARTED |
@@ -193,7 +193,7 @@ M2 (P4–P7) delivered the foundation: the `vikhyath` core + CLI (P4), shared ex
 | Evidence | `docs/evidence/P10/run.md` |
 | Rollback | `git revert 7c145c9`; projects keep their `.vikhyath/` files (plain YAML) and docs. |
 
-## P11 — Multi-project isolation · COMPLETED (2026-10-04)
+## P11 — Multi-project isolation · COMPLETED (2026-10-04, commit `6172057`)
 
 | Item | Detail |
 |---|---|
@@ -202,7 +202,23 @@ M2 (P4–P7) delivered the foundation: the `vikhyath` core + CLI (P4), shared ex
 | Tests | 141/141 (11 new). |
 | Acceptance | ✔ doc 14 tests: three interleaved projects, audit-hooked opens → 0 cross-project reads, other projects unchanged, no foreign decisions or credentials in output · ✔ 4×25 concurrent increments = 100 · ✔ 15 concurrent task adds = unique ids · ✔ no partial file under 300 concurrent reads · ✔ cache keys per project · ✔ relink (P10). |
 | Evidence | `docs/evidence/P11/run.md` |
-| Rollback | `git revert <P11 commit>`; lock files under `$VIKHYATH_HOME/projects/*/locks/` are empty and disposable. |
+| Rollback | `git revert 6172057`; lock files under `$VIKHYATH_HOME/projects/*/locks/` are empty and disposable. |
+
+## P18 — Observability · COMPLETED (2026-10-04)
+
+| Item | Detail |
+|---|---|
+| Changes | `vikhyath/events/{schema,redact,log,rules_cel}.py`; lifecycle emission from bootstrap, route, context loader, plan reconcile/status, decisions, init and the isolation guard; `vikhyath events list|observe|rules`; `tests/events/{test_events,test_rules}.py`, `tests/unit/test_redact.py`; routing CLI tests use a temporary home. D-033. |
+| Result | Per-project, redacted, append-only JSONL event log with the doc 15 envelope; risk detection runs the bundled Beacon rules (77 rules, 535/535 embedded tests) over host tool events, with session correlation. |
+| Tests | 160/160 (19 new). Doctor 45/0, validate 19/0. |
+| Acceptance | ✔ events emitted for the full routing lifecycle (exact sequence asserted) · ✔ no secrets in logs (11 planted kinds; demo grep = 0) · ✔ each rule's embedded tests run as unit tests · ✔ observability cards (4) already in the registry since P7. |
+| Deviations | Beacon rules are COPY'd, not adapted: they evaluate Beacon-shaped *host tool events* (`events observe`, fed by the P19+ adapters), while OS lifecycle events go to the log. The redactor runs on events; applying it to `doctor`/diagnostics output is left to P25 (diagnostics) and recorded there. |
+| Evidence | `docs/evidence/P18/run.md` |
+| Rollback | `git revert <P18 commit>`; event logs under `$VIKHYATH_HOME/projects/*/events/` are append-only data and can be deleted. |
+
+## M3 review summary
+
+M3 (P8, P9, P10, P11, P18) delivered the brain: a deterministic router (19 spec scenarios, p95 0.33 ms), a budgeted L0–L3 context engine with a per-session cache (second load: 0 bytes read), compact project state with one living plan, reconciliation, decisions and questions (Google Maps → existing booking phase, no new file), structural multi-project isolation (0 cross-project opens; no lost updates), and a redacted event log with Beacon risk detection (535/535 rule tests). 160 tests. **Next: M4 (P12 codebase → P13 engineering → P14 design → P15 testing)** after user review.
 
 ## P4–P27 — summary (file-level tasks: [FILE_LEVEL_PLAN.md](FILE_LEVEL_PLAN.md))
 
@@ -253,3 +269,4 @@ M2 (P4–P7) delivered the foundation: the `vikhyath` core + CLI (P4), shared ex
 | 2026-10-04 | P9 | P9 completed: budgets config, L0–L3 assembly, section loading, per-bundle context index, per-session cache, project identity, `vikhyath bootstrap`/`context` (D-030). All 12 measured scenarios within L1/L2 budgets; second load all hits with 0 bytes read. 114 tests. Evidence: docs/evidence/P9/run.md. P10 started. |
 | 2026-10-04 | P10 | P10 completed: compact project state, plan index, reconciliation into the one plan, §55 impact, §25 transitions, §53 questions, decision memory, 9 doc templates, CLI (D-031). Google Maps scenario lands in the booking phase with no new file; state read ≪ docs. 130 tests. Evidence: docs/evidence/P10/run.md. P11 started. |
 | 2026-10-04 | P11 | P11 completed: path guard, per-project locks, atomic writes wired into context and project state (D-032). Doc 14 tests pass: 0 cross-project opens over six interleaved turns, no lost updates, no partial files, per-project cache keys. 141 tests. Evidence: docs/evidence/P11/run.md. P18 started. |
+| 2026-10-04 | P18 | P18 completed: event envelope, redaction, per-project JSONL log, lifecycle emission, CEL-subset Beacon rule engine with correlation (77 rules, 535/535 embedded tests), `vikhyath events` (D-033). 160 tests. Evidence: docs/evidence/P18/run.md. **M3 completed; awaiting user review before M4.** |

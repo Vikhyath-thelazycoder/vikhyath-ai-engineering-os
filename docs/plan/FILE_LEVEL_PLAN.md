@@ -132,6 +132,8 @@ Conventions:
 
 ## M3 · P18 — Observability (built before M4)
 
+**As built (COMPLETED):** `vikhyath/events/{schema,redact,log,rules_cel}.py`; emission from CLI bootstrap/route/context, `ContextLoader.finish`, `project/{reconcile,decisions}` and the isolation guard; CLI `events list|observe|rules`; tests `tests/events/{test_events,test_rules}.py` + `tests/unit/test_redact.py`. The 4 observability cards already existed (P7), so no card was created. D-033. Evidence: `docs/evidence/P18/run.md`.
+
 | File | Action | Purpose | Test |
 |---|---|---|---|
 | `vikhyath/events/schema.py`, `log.py`, `redact.py` | CREATE | Doc 15 envelope, per-project JSONL, redaction | `tests/unit/test_redact.py` (planted secrets) |
@@ -222,6 +224,8 @@ Conventions:
 | `vikhyath/update/update.py`, `rollback.py`, `gc.py` | CREATE | Doc 16 design | `tests/update/*` (broken update, forced rollback, interrupted build) |
 
 ## M7 · P25 — Diagnostics & measured benchmarks
+
+**Carried in from P18 (D-033):** pass all diagnostics output (doctor, validate, benchmark) through `vikhyath.events.redact` (spec §78 "redact sensitive values from diagnostics").
 
 | File | Action | Purpose | Test |
 |---|---|---|---|

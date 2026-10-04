@@ -160,6 +160,13 @@ class ContextLoader:
             self.cache.record(key, level=level, sha256=sha256, stat=stat, sections=sections)
 
     def finish(self, active_capabilities=None):
+        if self.project is not None and self.log:
+            from ..events.log import emit
+            emit(self.project, "CONTEXT_LOADED", session_id=self.session_id,
+                 capabilities=active_capabilities or [], bytes_loaded=sum(e["bytes"] for e in self.log),
+                 est_tokens=sum(e.get("sent_tokens", 0) for e in self.log),
+                 details={"files": len(self.log), "cache_hits": sum(e["cache"] == "hit" for e in self.log),
+                          "levels": sorted({e["level"] for e in self.log})})
         if self.cache:
             if active_capabilities is not None:
                 self.cache.set_active(active_capabilities)

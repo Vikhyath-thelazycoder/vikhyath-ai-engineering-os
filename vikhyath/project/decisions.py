@@ -43,8 +43,12 @@ def add(project, *, kind, topic, decision, reason, alternatives=(), impact="", s
         raise DecisionError(f"kind must be one of {', '.join(KINDS)}")
     if not (topic and decision and reason):
         raise DecisionError("topic, decision and reason are required")
+    from ..events.log import emit
     with project_lock(project, "decisions"):
-        return _add_locked(project, kind, topic, decision, reason, alternatives, impact, supersedes, tags)
+        entry = _add_locked(project, kind, topic, decision, reason, alternatives, impact, supersedes, tags)
+    emit(project, "STATE_UPDATED", details={"change": "decision_recorded", "decision": entry["decision_id"],
+                                            "kind": kind, "supersedes": supersedes})
+    return entry
 
 
 def _add_locked(project, kind, topic, decision, reason, alternatives, impact, supersedes, tags):

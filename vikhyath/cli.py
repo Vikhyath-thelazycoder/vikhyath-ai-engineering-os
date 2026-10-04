@@ -134,17 +134,31 @@ def _facts(project, stage=None, stack=None):
                                     or lifecycle.detect_stack(project.root)))
 
 
+def _emit_route(project, result, session_id=None):
+    """Spec §30: DOMAIN_SELECTED then CAPABILITIES_SELECTED for one routing decision."""
+    from .events import emit
+    caps = [c["id"] for c in result["capabilities"]]
+    emit(project, "DOMAIN_SELECTED", session_id=session_id, duration_ms=result["duration_ms"],
+         details={"domains": result["domains"], "change_type": result["change_type"], "method": result["method"],
+                  "confidence": result["confidence"]})
+    emit(project, "CAPABILITIES_SELECTED", session_id=session_id, capabilities=caps,
+         details={"dependencies": [d["id"] for d in result["dependencies"]], "fallbacks": result["fallbacks"],
+                  "browser": result["browser"], "suppressed": len(result["suppressed"]), "rules": result["rules"]})
+
+
 def _route(args):
     import json
 
     from .routing import Router, RoutingError
     stage = "new" if args.new else "existing" if args.existing else None
+    project = _project_ref(args)
     try:
         result = Router().route(" ".join(args.request), paths=args.paths or (), requested=args.capability or (),
-                                project=_facts(_project_ref(args), stage, args.stack))
+                                project=_facts(project, stage, args.stack))
     except RoutingError as exc:
         print(f"vikhyath route: {exc}", file=sys.stderr)
         return 2
+    _emit_route(project, result, _session_id(args))
     if args.brief:
         caps = ", ".join(c["id"] for c in result["capabilities"]) or "—"
         deps = ", ".join(d["id"] for d in result["dependencies"])
@@ -172,9 +186,14 @@ def _bootstrap(args):
     from .context.levels import bootstrap
     from .paths import current_bundle
     from .project import lifecycle, plan_index, state as pstate
+    from .events import emit
     project = _project_ref(args)
     sid = _session_id(args, create=True)
-    lifecycle.start_session(project, sid, args.host)
+    record = lifecycle.start_session(project, sid, args.host)
+    if record.get("new"):
+        emit(project, "SESSION_STARTED", session_id=sid, host=args.host, details={"root": str(project.root)})
+    emit(project, "PROJECT_DETECTED", session_id=sid, host=args.host,
+         details={"name": project.name, "origin": project.origin})
     st = pstate.load_state(project)
     index = plan_index.load_index(project, st) if st else None
     phase = next((f"{p['phase_id']} {p['phase_name']} ({p['status']})" for p in (index or {}).get("phases", [])
@@ -202,6 +221,7 @@ def _context(args):
     if args.route:
         from .routing import Router
         route = Router().route(args.route, project=_facts(_project_ref(args)))
+        _emit_route(_project_ref(args), route, _session_id(args))
         caps = caps or [c["id"] for c in route["capabilities"]]
         query = query or args.route
     cards = load_cards()
@@ -289,6 +309,9 @@ def _project_cmd(args):
         index = plan_index.load_index(project, st)
         if index:
             pstate.update_state(project, lambda s: s["plan"].__setitem__("current_phase", index.get("current_phase")))
+        from .events import emit
+        emit(project, "PROJECT_DETECTED", details={"name": project.name, "origin": project.origin, "stage": stage})
+        emit(project, "STATE_UPDATED", details={"change": "project_initialised", "stack": stack, "docs": written})
         print(f"initialised {project.name} ({project.project_id}) as {stage} project; stack: {', '.join(stack) or '—'}")
         for w in written:
             print(f"  + {w}")
@@ -424,6 +447,68 @@ def _decide_cmd(args):
         _print(match[0], args.json)
         return 0
     return 2
+
+
+def _events_cmd(args):
+    import json
+
+    from .events import emit, read
+    from .events import rules_cel
+    from .events.redact import redact
+    from .paths import current_bundle
+    project = _project_ref(args)
+    if args.events_cmd == "list":
+        rows = read(project, event=args.type, session_id=args.session, limit=args.tail)
+        if args.json:
+            print(json.dumps(rows, indent=1, ensure_ascii=False))
+        else:
+            for r in rows:
+                caps = f" [{', '.join(r['capabilities'][:3])}{'…' if len(r['capabilities']) > 3 else ''}]" if r["capabilities"] else ""
+                print(f"{r['ts']}  {r['event']:28} {r['severity']:8} {r.get('session_id') or '-':22}{caps}")
+        return 0
+    rules_dir = rules_cel.rules_dir_for(current_bundle())
+    if rules_dir is None:
+        print("no bundled detection rules (install the bundle: scripts/install)", file=sys.stderr)
+        return 1
+    rules = rules_cel.load_rules(rules_dir)
+    if args.events_cmd == "rules":
+        failed, total = [], 0
+        for rule in rules:
+            for name, verdict, ok in rules_cel.run_embedded_tests(rule) if args.test else []:
+                total += 1
+                if not ok:
+                    failed.append(f"{rule['id']}::{name} (expected {verdict})")
+        print(f"{len(rules)} rules from {rules_dir}")
+        if args.test:
+            print(f"embedded tests: {total - len(failed)}/{total} pass")
+            for f in failed:
+                print(f"  ✗ {f}")
+        return 1 if failed else 0
+    # observe: Beacon-shaped tool events from a host adapter (stdin JSON object or JSON lines)
+    raw = sys.stdin.read().strip()
+    incoming = json.loads(raw) if raw.startswith("[") else [json.loads(line) for line in raw.splitlines() if line.strip()]
+    findings = []
+    for event in incoming:
+        sid = (event.get("session") or {}).get("id") or _session_id(args) or "unknown"
+        event.setdefault("session", {})["id"] = sid
+        buf = project.data_dir / "events" / "observed" / f"{sid}.jsonl"
+        from .isolation import atomic, guard_for
+        guard_for(project).check(buf, "write")
+        history = [json.loads(line) for line in buf.read_text(encoding="utf-8").splitlines()] if buf.is_file() else []
+        reported = {r["details"].get("rule") for r in read(project, event="RISK_DETECTED", session_id=sid)}
+        for hit in rules_cel.detect(rules, history + [event]):
+            if hit["id"] in reported:
+                continue
+            severity = hit["severity"] if hit["severity"] in ("low", "medium", "high", "critical") else "medium"
+            emit(project, "RISK_DETECTED", session_id=sid, severity=severity,
+                 details={"rule": hit["id"], "title": hit["title"], "reason": hit["reason"],
+                          "action": (event.get("event") or {}).get("action")})
+            findings.append(hit)
+            reported.add(hit["id"])
+        history = (history + [redact(event)])[-200:]
+        atomic.write_text(buf, "".join(json.dumps(h, sort_keys=True) + "\n" for h in history))
+    print(json.dumps({"findings": findings}, indent=1))
+    return 0
 
 
 def _guarded(func):
@@ -603,6 +688,21 @@ def build_parser():
     project_arg(q)
     p.set_defaults(func=_guarded(_decide_cmd))
 
+    p = sub.add_parser("events", help="Project event log and risk detection (spec §30)")
+    esub = p.add_subparsers(dest="events_cmd", required=True)
+    q = esub.add_parser("list", help="Show recent events (redacted)")
+    q.add_argument("--tail", type=int, default=50)
+    q.add_argument("--type", help="Only this event type, e.g. CONTEXT_LOADED")
+    q.add_argument("--session")
+    project_arg(q)
+    q = esub.add_parser("observe", help="Evaluate host tool events (Beacon shape, JSON on stdin) against the rules")
+    q.add_argument("--session")
+    project_arg(q)
+    q = esub.add_parser("rules", help="List the bundled detection rules")
+    q.add_argument("--test", action="store_true", help="Run every rule's embedded tests")
+    project_arg(q)
+    p.set_defaults(func=_events_cmd)
+
     for name, phase in PLANNED.items():
         p = sub.add_parser(name, help=f"(available in {phase})")
         p.add_argument("args", nargs=argparse.REMAINDER, help=argparse.SUPPRESS)
@@ -618,6 +718,8 @@ def _not_yet(name, phase):
 def main(argv=None):
     parser = build_parser()
     args = parser.parse_args(argv)
+    from .events import install_hooks
+    install_hooks()   # isolation violations → ISOLATION_VIOLATION_BLOCKED events
     if not getattr(args, "func", None):
         parser.print_help()
         return 0

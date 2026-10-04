@@ -18,6 +18,9 @@ from .state import checked, read_yaml, record_verification, update_state, write_
 GENERIC = set(tokenize("add build create make fix update change new feature implement improve support integrate "
                        "page app application system module flow please also want need let get set"))
 HISTORY_HEADING = "## Change history"
+# Spec §30 lifecycle events emitted when a task/phase status changes.
+STATUS_EVENTS = {"IN_PROGRESS": "TASK_STARTED", "BLOCKED": "TASK_BLOCKED", "COMPLETED": "TASK_COMPLETED",
+                 "READY_FOR_VERIFICATION": "VERIFICATION_STARTED", "VERIFIED": "VERIFICATION_PASSED"}
 STATUS_META = re.compile(r"(Status:[ \t]*)([A-Z_]+)")
 NEXT_H2 = re.compile(r"^##[ \t]+\S", re.M)
 
@@ -79,8 +82,14 @@ def add_task(project, state, index, phase_id, title, **kw):
     """Append a PLANNED task row to the phase's table; reopen a finished phase. Returns (task, reopened).
     Runs under the project's plan lock and re-reads the index inside it, so concurrent sessions never reuse a task id
     or lose a row (`index` is accepted for API symmetry; the locked re-read wins)."""
+    from ..events.log import emit
     with project_lock(project, "plan"):
-        return _add_task_locked(project, state, phase_id, title, **kw)
+        task, reopened = _add_task_locked(project, state, phase_id, title, **kw)
+    emit(project, "STATE_UPDATED", capabilities=kw.get("capabilities") or [],
+         details={"change": "task_added", "task": task["id"], "phase": task["phase_id"], "reopened": reopened})
+    if reopened:
+        emit(project, "PHASE_CHANGED", details={"phase": task["phase_id"], "status": "IN_PROGRESS", "reason": "reopened"})
+    return task, reopened
 
 
 def _add_task_locked(project, state, phase_id, title, *, capabilities=(), impact=None, depends=None, acceptance=None):
@@ -120,10 +129,17 @@ def _add_task_locked(project, state, phase_id, title, *, capabilities=(), impact
 
 def set_status(project, state, index, item_id, status, evidence=None):
     """Change a task's (T-…) or phase's (P…) status following the §25 transitions; done states need evidence."""
+    from ..events.log import emit
     with project_lock(project, "plan"):
         old = _set_status_locked(project, state, item_id, status, evidence)
     if status in DONE_STATES:
         record_verification(project, item_id, status, evidence)
+    details = {"item": item_id, "from": old, "to": status, "evidence": evidence}
+    if re.match(r"^P\d+[A-Za-z]?$", item_id):
+        emit(project, "PHASE_CHANGED", details=details)
+    elif status in STATUS_EVENTS:
+        emit(project, STATUS_EVENTS[status], details=details)
+    emit(project, "STATE_UPDATED", details={"change": "status", **details})
     return old
 
 
