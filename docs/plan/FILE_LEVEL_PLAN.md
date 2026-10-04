@@ -109,6 +109,8 @@ Conventions:
 
 ## M3 · P10 — Project state, plan index, decisions
 
+**As built (COMPLETED):** all listed modules (identity was pulled into P9); `config/questions.yaml` (question bank, added); templates ×9; CLI `project init|status|questions|answer|relink`, `state`, `plan index|show|locate|add-task|set-status|reconcile`, `decide add|list|show`; bootstrap/route/context read the state; `tests/project/test_project.py` (one module instead of `tests/project/*`). D-031. Evidence: `docs/evidence/P10/run.md`.
+
 | File | Action | Purpose | Test |
 |---|---|---|---|
 | `vikhyath/project/identity.py`, `state.py`, `plan_index.py`, `decisions.py`, `change.py`, `lifecycle.py`, `questions.py`, `reconcile.py` | CREATE | D-011 layout; §18–19, §49–56; completion states §25 | `tests/project/*` |

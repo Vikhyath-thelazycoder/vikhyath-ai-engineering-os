@@ -1,0 +1,85 @@
+# Requirements question bank (spec §19.3, §53). Read by vikhyath/project/questions.py.
+# priority: BLOCKING (cannot plan without it) · IMPORTANT (changes architecture/scope) · OPTIONAL (nice to know).
+# new_project: asked for every new project · ask_when: asked when the request mentions any of these.
+# inferable_from: stack tags (vikhyath/project/lifecycle.py detect_stack) that already answer the question.
+# affects: what the answer changes — a question that changes nothing is not asked (spec §53).
+
+version: 1
+questions:
+  - id: product-goal
+    priority: BLOCKING
+    question: Who are the target users and what is the one outcome the first release must deliver?
+    affects: PRD scope, feature list, phase order
+    new_project: true
+
+  - id: frontend
+    priority: IMPORTANT
+    question: Which client surfaces are needed (web, mobile, both) and is there a preferred frontend framework?
+    affects: TRD stack, design system, testing strategy
+    new_project: true
+    inferable_from: [react, next, vue, nuxt, svelte, angular, dart, swift]
+
+  - id: backend
+    priority: IMPORTANT
+    question: Is there a preferred backend language/framework or hosting constraint?
+    affects: TRD stack, deployment, security baseline
+    new_project: true
+    inferable_from: [django, flask, fastapi, express, nestjs, fastify, go, rust, java, ruby, php, elixir]
+
+  - id: database
+    priority: BLOCKING
+    question: What data must be stored, and is there a required database (or is the OS free to choose)?
+    affects: data model, migrations, backup and privacy controls
+    ask_when: [saas, booking, bookings, account, accounts, user data, store, save, orders, inventory, crm, marketplace]
+    inferable_from: [postgres, prisma, sqlalchemy, mongodb]
+
+  - id: auth
+    priority: BLOCKING
+    question: Who signs in and how (email/password, OAuth/SSO, magic link), and are there roles?
+    affects: authentication design, authorization model, security tests
+    ask_when: [saas, login, sign in, signup, account, accounts, users, roles, admin, dashboard, booking, marketplace]
+
+  - id: payments
+    priority: IMPORTANT
+    question: Are payments taken in the product? Which provider, currencies and refund rules?
+    affects: payment integration, webhook verification, PCI scope
+    ask_when: [payment, payments, checkout, subscription, billing, pricing, booking, bookings, marketplace, saas]
+    inferable_from: [stripe]
+
+  - id: maps
+    priority: IMPORTANT
+    question: Which maps provider (Google Maps, Mapbox, OpenStreetMap) and is navigation, search or display needed?
+    affects: third-party API keys (server-side), cost limits, UI
+    ask_when: [map, maps, google maps, navigation, directions, location, geolocation, nearby]
+
+  - id: ai
+    priority: IMPORTANT
+    question: Which AI features are needed, which model provider is allowed, and what data may be sent to it?
+    affects: AI system design, data-handling security, cost limits, evaluation
+    ask_when: [ai, llm, gpt, assistant, chatbot, trip planning, recommendation, recommendations, agent]
+
+  - id: deployment
+    priority: IMPORTANT
+    question: Where will it run (Vercel, AWS, GCP, self-hosted) and are there compliance or region requirements?
+    affects: infrastructure, CI/CD, secrets management
+    new_project: true
+
+  - id: analytics
+    priority: OPTIONAL
+    question: Which product analytics or events matter at launch?
+    affects: event tracking, privacy notice
+    ask_when: [analytics, metrics, tracking, funnel, conversion]
+    new_project: true
+
+  - id: integrations
+    priority: OPTIONAL
+    question: Which external systems must it integrate with (email, CRM, calendar, messaging)?
+    affects: integration tasks, API keys, failure handling
+    ask_when: [integrate, integration, integrations, email, crm, calendar, slack, whatsapp, webhook]
+
+  - id: design-references
+    priority: OPTIONAL
+    question: Are there brand guidelines or reference sites for the visual direction?
+    affects: design direction, design system
+    ask_when: [design, premium, brand, landing page, look, feel, redesign]
+    new_project: true

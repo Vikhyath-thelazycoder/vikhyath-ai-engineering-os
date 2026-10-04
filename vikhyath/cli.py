@@ -8,8 +8,7 @@ from .paths import repo_root
 
 # Subcommands planned in docs/plan/FILE_LEVEL_PLAN.md and the phase that delivers each.
 PLANNED = {
-    "state": "P10", "plan": "P10", "decide": "P10",
-    "project": "P10", "verify": "P15", "test": "P15", "update": "P24", "rollback": "P24",
+    "verify": "P15", "test": "P15", "update": "P24", "rollback": "P24",
     "runtime": "P12", "dashboard": "P23", "adapters": "P19",
 }
 
@@ -118,14 +117,31 @@ def _registry(args):
     return 2
 
 
+def _project_ref(args):
+    from .project.identity import detect
+    return detect(Path(args.project) if getattr(args, "project", None) else None)
+
+
+def _facts(project, stage=None, stack=None):
+    """ProjectFacts from flags, else recorded state, else detection (spec §15 project identification + state load)."""
+    from .project import lifecycle, plan_index, state as pstate
+    from .routing import ProjectFacts
+    st = pstate.load_state(project)
+    index = plan_index.load_index(project, st) if st else None
+    return ProjectFacts(stage=stage or lifecycle.detect_stage(project.root, st), project_id=project.project_id,
+                        phase=(index or {}).get("current_phase"),
+                        stack=tuple(stack if stack is not None else (st or {}).get("stack")
+                                    or lifecycle.detect_stack(project.root)))
+
+
 def _route(args):
     import json
 
-    from .routing import ProjectFacts, Router, RoutingError
-    stage = "new" if args.new else "existing" if args.existing else "unknown"
+    from .routing import Router, RoutingError
+    stage = "new" if args.new else "existing" if args.existing else None
     try:
         result = Router().route(" ".join(args.request), paths=args.paths or (), requested=args.capability or (),
-                                project=ProjectFacts(stage=stage, stack=tuple(args.stack or ())))
+                                project=_facts(_project_ref(args), stage, args.stack))
     except RoutingError as exc:
         print(f"vikhyath route: {exc}", file=sys.stderr)
         return 2
@@ -155,11 +171,19 @@ def _bootstrap(args):
     from .context.budget import load_budgets
     from .context.levels import bootstrap
     from .paths import current_bundle
-    from .project.identity import detect
-    project = detect(Path(args.project) if args.project else None)
+    from .project import lifecycle, plan_index, state as pstate
+    project = _project_ref(args)
     sid = _session_id(args, create=True)
+    lifecycle.start_session(project, sid, args.host)
+    st = pstate.load_state(project)
+    index = plan_index.load_index(project, st) if st else None
+    phase = next((f"{p['phase_id']} {p['phase_name']} ({p['status']})" for p in (index or {}).get("phases", [])
+                  if p["phase_id"] == (index or {}).get("current_phase")), None)
+    lines = pstate.summary_lines(st, index) if st else ["no project state yet (`vikhyath project init`)"]
+    pointer = (f"{index['plan_path']}#{index['current_phase']} · index .vikhyath/plan-index.yaml" if index else None)
     result = bootstrap(project=project, session_id=sid, host=args.host, bundle_dir=current_bundle(),
-                       budgets=load_budgets())
+                       budgets=load_budgets(), stage=lifecycle.detect_stage(project.root, st), phase=phase,
+                       state_lines=lines, plan_pointer=pointer)
     print(json.dumps(result, indent=1) if args.json else result["text"], end="" if not args.json else "\n")
     return 0
 
@@ -177,7 +201,7 @@ def _context(args):
     caps, query = list(args.capability), args.request
     if args.route:
         from .routing import Router
-        route = Router().route(args.route)
+        route = Router().route(args.route, project=_facts(_project_ref(args)))
         caps = caps or [c["id"] for c in route["capabilities"]]
         query = query or args.route
     cards = load_cards()
@@ -200,6 +224,12 @@ def _context(args):
             out.append(levels.deep_reference(loader, args.file, budgets, sections=args.section, query=query))
         else:
             out.append(levels.domain_context(loader, caps, budgets))
+            from .project import decisions
+            relevant = decisions.relevant(project, caps)
+            if relevant:   # spec §50–52: recorded decisions, only the kinds these capabilities need
+                text = "## Project decisions (relevant)\n" + "".join(
+                    f"- {d['decision_id']} [{d['kind']}] {d['topic']}: {d['decision']}\n" for d in relevant)
+                out.append({"level": "L1", "text": text, "est_tokens": -(-len(text.encode()) // 4)})
             if level >= 2:
                 out.append(levels.capability_context(loader, caps, budgets, query=query))
     except ContextError as exc:
@@ -216,6 +246,200 @@ def _context(args):
         print(f"\n— context: ≈{total} est. tokens · {len(loader.log)} files ({hits} cached) · "
               f"levels {', '.join(o['level'] for o in out)}")
     return 0
+
+
+def _print(data, as_json):
+    import json
+
+    import yaml
+    if as_json:
+        print(json.dumps(data, indent=1, ensure_ascii=False, default=str))
+    else:
+        print(yaml.safe_dump(data, sort_keys=False, allow_unicode=True, width=120), end="")
+
+
+def _project_cmd(args):
+    import shutil
+
+    from .project import lifecycle, plan_index, questions, reconcile, state as pstate
+    from .project.state import read_yaml, write_yaml
+    project = _project_ref(args)
+    cmd = args.project_cmd
+    if cmd == "init":
+        if pstate.load_state(project) and not args.force:
+            print(f"project already initialised ({pstate.state_path(project)}); --force to reset state", file=sys.stderr)
+            return 1
+        stage = "new" if args.new else "existing" if args.existing else lifecycle.detect_stage(project.root)
+        stack = args.stack if args.stack is not None else lifecycle.detect_stack(project.root)
+        st = pstate.new_state(project, stage, stack)
+        written = []
+        if args.docs:
+            from datetime import date
+            docs = project.root / "docs"
+            docs.mkdir(exist_ok=True)
+            for tpl in sorted((repo_root() / "templates" / "project-docs").glob("*.md")):
+                dest = docs / tpl.name
+                if dest.exists():
+                    continue
+                dest.write_text(tpl.read_text(encoding="utf-8").replace("{{PROJECT_NAME}}", project.name)
+                                .replace("{{DATE}}", date.today().isoformat()), encoding="utf-8")
+                written.append(f"docs/{tpl.name}")
+        pstate.save_state(project, st)
+        reconcile.register(project)
+        index = plan_index.load_index(project, st)
+        if index:
+            pstate.update_state(project, lambda s: s["plan"].__setitem__("current_phase", index.get("current_phase")))
+        print(f"initialised {project.name} ({project.project_id}) as {stage} project; stack: {', '.join(stack) or '—'}")
+        for w in written:
+            print(f"  + {w}")
+        return 0
+    if cmd == "status":
+        st = pstate.require_state(project)
+        index = plan_index.load_index(project, st)
+        _print({"project": st["project"], "root": str(project.root), "stack": st.get("stack"),
+                "summary": pstate.summary_lines(st, index)}, args.json)
+        return 0
+    if cmd == "questions":
+        st = pstate.load_state(project) or {}
+        stage = (st.get("project") or {}).get("stage") or lifecycle.detect_stage(project.root)
+        qs, skipped = questions.next_questions(questions.load_bank(), " ".join(args.request), stage=stage,
+                                               answers=st.get("answers"), stack=st.get("stack") or
+                                               lifecycle.detect_stack(project.root))
+        _print({"ask": qs, "not_asked": skipped}, args.json)
+        return 0
+    if cmd == "answer":
+        bank = {q["id"] for q in questions.load_bank().get("questions") or []}
+        if args.question not in bank:
+            print(f"unknown question {args.question}", file=sys.stderr)
+            return 2
+        pstate.update_state(project, lambda s: s["answers"].__setitem__(args.question, " ".join(args.answer)))
+        print(f"recorded {args.question}")
+        return 0
+    if cmd == "relink":
+        old_dir = project.home / "projects" / args.old_id
+        if not old_dir.is_dir():
+            print(f"no machine-local data for project {args.old_id}", file=sys.stderr)
+            return 1
+        if old_dir == project.data_dir:
+            print("project id unchanged; nothing to relink")
+            return 0
+        if project.data_dir.exists() and any(project.data_dir.iterdir()):
+            print(f"{project.data_dir} already has data; refusing to merge two projects", file=sys.stderr)
+            return 1
+        if project.data_dir.exists():
+            project.data_dir.rmdir()
+        shutil.move(str(old_dir), str(project.data_dir))
+        rec = read_yaml(project.data_dir / "project.yaml") or {}
+        rec.update({"project_id": project.project_id, "root": str(project.root), "origin": project.origin})
+        rec["aliases"] = sorted(set(rec.get("aliases") or []) | {args.old_id})
+        write_yaml(project.data_dir / "project.yaml", rec)
+        if pstate.load_state(project):
+            pstate.update_state(project, lambda s: s["project"].__setitem__("project_id", project.project_id))
+        print(f"relinked {args.old_id} → {project.project_id}")
+        return 0
+    return 2
+
+
+def _state_cmd(args):
+    from .project import plan_index, state as pstate
+    project = _project_ref(args)
+    st = pstate.require_state(project)
+    index = plan_index.load_index(project, st)
+    cur = next((p for p in (index or {}).get("phases", []) if p["phase_id"] == (index or {}).get("current_phase")), None)
+    _print({"project": st["project"], "stack": st.get("stack"), "plan": st.get("plan"),
+            "current_phase": {k: cur[k] for k in ("phase_id", "phase_name", "status", "active_tasks")} if cur else None,
+            "answers": st.get("answers"), "verification": st.get("verification"),
+            "summary": pstate.summary_lines(st, index)}, args.json)
+    return 0
+
+
+def _plan_cmd(args):
+    from .project import plan_index, reconcile, state as pstate
+    project = _project_ref(args)
+    st = pstate.require_state(project)
+    index = plan_index.load_index(project, st, rebuild=args.plan_cmd == "index" and args.rebuild)
+    if index is None:
+        print(f"no plan at {plan_index.plan_file(project, st)} (`vikhyath project init --docs` creates one)",
+              file=sys.stderr)
+        return 1
+    cmd = args.plan_cmd
+    if cmd == "index":
+        if args.json:
+            _print(index, True)
+        else:
+            for p in index["phases"]:
+                mark = "*" if p["phase_id"] == index["current_phase"] else " "
+                flags = ",".join(f for f in ("security", "design", "testing") if p[f"{f}_flags"]) or "—"
+                print(f"{mark} {p['phase_id']:5} {p['status']:22} {p['phase_name']}  tasks {len(p['tasks'])}"
+                      f"  active {', '.join(p['active_tasks']) or '—'}  flags {flags}")
+        return 0
+    if cmd == "show":
+        print(plan_index.phase_section(project, st, index, args.phase), end="")
+        return 0
+    if cmd == "locate":
+        best, ranking = reconcile.locate_phase(index, " ".join(args.request), args.paths or ())
+        _print({"phase": best and {"phase_id": best["phase_id"], "phase_name": best["phase_name"]},
+                "ranking": ranking[:5]}, args.json)
+        return 0
+    if cmd == "add-task":
+        task, reopened = reconcile.add_task(project, st, index, args.phase, " ".join(args.title),
+                                            capabilities=args.capability or (), depends=args.depends,
+                                            acceptance=args.acceptance)
+        plan_index.load_index(project, st, rebuild=True)
+        print(f"{task['id']} added to {args.phase}" + (" (phase reopened)" if reopened else ""))
+        return 0
+    if cmd == "set-status":
+        old = reconcile.set_status(project, st, index, args.item, args.status.upper(), args.evidence)
+        plan_index.load_index(project, st, rebuild=True)
+        print(f"{args.item}: {old} → {args.status.upper()}")
+        return 0
+    if cmd == "reconcile":
+        from .routing import Router
+        report = reconcile.reconcile(project, st, Router(), " ".join(args.request), args.paths or (), args.new_phase)
+        report.pop("route", None) if report["status"] == "planned" else None
+        _print(report, args.json)
+        return 0 if report["status"] == "planned" else 3
+    return 2
+
+
+def _decide_cmd(args):
+    from .project import decisions
+    project = _project_ref(args)
+    if args.decide_cmd == "add":
+        entry = decisions.add(project, kind=args.kind, topic=args.topic, decision=args.decision, reason=args.reason,
+                              alternatives=args.alternative or (), impact=args.impact or "",
+                              supersedes=args.supersedes, tags=args.tag or ())
+        print(f"{entry['decision_id']} recorded ({entry['kind']}: {entry['topic']})")
+        return 0
+    if args.decide_cmd == "list":
+        rows = decisions.find(project, kind=args.kind, topic=args.topic, status=None if args.all else "ACTIVE")
+        for d in rows:
+            print(f"{d['decision_id']}  {d['status']:10} {d['kind']:14} {d['topic']}: {d['decision']}")
+        return 0
+    if args.decide_cmd == "show":
+        match = [d for d in decisions.load(project)["decisions"] if d["decision_id"] == args.id]
+        if not match:
+            print(f"no decision {args.id}", file=sys.stderr)
+            return 1
+        _print(match[0], args.json)
+        return 0
+    return 2
+
+
+def _guarded(func):
+    """Expected user-facing errors print one line and exit 1 instead of a traceback."""
+    def run(args):
+        from .project.decisions import DecisionError
+        from .project.lifecycle import TransitionError
+        from .project.plan_index import PlanError
+        from .project.reconcile import ReconcileError
+        from .project.state import StateError
+        try:
+            return func(args)
+        except (StateError, PlanError, ReconcileError, TransitionError, DecisionError) as exc:
+            print(f"vikhyath {args.command}: {exc}", file=sys.stderr)
+            return 1
+    return run
 
 
 def build_parser():
@@ -294,6 +518,90 @@ def build_parser():
     p.add_argument("--no-cache", action="store_true", help="Resend content even if already loaded this session")
     p.add_argument("--json", action="store_true", help="JSON output with the load log")
     p.set_defaults(func=_context)
+
+    def project_arg(parser):
+        parser.add_argument("--project", help="Project directory (default: current directory)")
+        parser.add_argument("--json", action="store_true", help="JSON output")
+
+    p = sub.add_parser("project", help="Initialise and inspect this project's compact state")
+    psub = p.add_subparsers(dest="project_cmd", required=True)
+    q = psub.add_parser("init", help="Create .vikhyath/state.yaml (and docs/ templates with --docs)")
+    stage = q.add_mutually_exclusive_group()
+    stage.add_argument("--new", action="store_true", help="New project: requirements first")
+    stage.add_argument("--existing", action="store_true", help="Existing project: codebase first")
+    q.add_argument("--stack", nargs="*", help="Override the detected stack tags")
+    q.add_argument("--docs", action="store_true", help="Add the spec §20 document templates under docs/ (never overwrites)")
+    q.add_argument("--force", action="store_true", help="Reset existing state")
+    project_arg(q)
+    project_arg(psub.add_parser("status", help="Project identity and compact summary"))
+    q = psub.add_parser("questions", help="Requirements questions worth asking now (spec §53)")
+    q.add_argument("request", nargs="*", help="The request being planned")
+    project_arg(q)
+    q = psub.add_parser("answer", help="Record the answer to a requirements question")
+    q.add_argument("question", help="Question id")
+    q.add_argument("answer", nargs="+", help="Answer text")
+    project_arg(q)
+    q = psub.add_parser("relink", help="Move machine-local data after the project was moved or re-cloned")
+    q.add_argument("--from", dest="old_id", required=True, help="Previous project id")
+    project_arg(q)
+    p.set_defaults(func=_guarded(_project_cmd))
+
+    p = sub.add_parser("state", help="Compact project state (cheap read)")
+    project_arg(p)
+    p.set_defaults(func=_guarded(_state_cmd))
+
+    p = sub.add_parser("plan", help="Implementation plan index, sections, reconciliation and statuses")
+    psub = p.add_subparsers(dest="plan_cmd", required=True)
+    q = psub.add_parser("index", help="List phases from the compact index")
+    q.add_argument("--rebuild", action="store_true", help="Re-read the plan even if unchanged")
+    project_arg(q)
+    q = psub.add_parser("show", help="Print one phase section of the plan")
+    q.add_argument("phase", help="Phase id, e.g. P4")
+    project_arg(q)
+    q = psub.add_parser("locate", help="Which phase a request belongs to")
+    q.add_argument("request", nargs="+")
+    q.add_argument("--paths", nargs="*")
+    project_arg(q)
+    q = psub.add_parser("add-task", help="Add a PLANNED task to a phase")
+    q.add_argument("phase")
+    q.add_argument("title", nargs="+")
+    q.add_argument("--capability", action="append")
+    q.add_argument("--depends")
+    q.add_argument("--acceptance")
+    project_arg(q)
+    q = psub.add_parser("set-status", help="Set a task (T-…) or phase (P…) status (spec §25 states)")
+    q.add_argument("item")
+    q.add_argument("status")
+    q.add_argument("--evidence", help="Required for VERIFIED/COMPLETED")
+    project_arg(q)
+    q = psub.add_parser("reconcile", help="Route a change, locate its phase, add it to the plan (spec §56)")
+    q.add_argument("request", nargs="+")
+    q.add_argument("--paths", nargs="*")
+    q.add_argument("--new-phase", help="Name of a new phase when no existing phase fits")
+    project_arg(q)
+    p.set_defaults(func=_guarded(_plan_cmd))
+
+    p = sub.add_parser("decide", help="Structured decision memory (spec §50–52)")
+    dsub = p.add_subparsers(dest="decide_cmd", required=True)
+    q = dsub.add_parser("add", help="Record a decision")
+    q.add_argument("--kind", required=True)
+    q.add_argument("--topic", required=True)
+    q.add_argument("--decision", required=True)
+    q.add_argument("--reason", required=True)
+    q.add_argument("--alternative", action="append")
+    q.add_argument("--impact")
+    q.add_argument("--supersedes")
+    q.add_argument("--tag", action="append")
+    project_arg(q)
+    q = dsub.add_parser("list", help="List decisions (ACTIVE by default)")
+    q.add_argument("--kind")
+    q.add_argument("--topic")
+    q.add_argument("--all", action="store_true")
+    project_arg(q)
+    q = dsub.add_parser("show", help="Show one decision")
+    q.add_argument("id")
+    project_arg(q)
+    p.set_defaults(func=_guarded(_decide_cmd))
 
     for name, phase in PLANNED.items():
         p = sub.add_parser(name, help=f"(available in {phase})")
