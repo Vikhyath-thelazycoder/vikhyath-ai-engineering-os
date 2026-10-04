@@ -44,4 +44,4 @@ When presented with a task, classify it and activate only the relevant capabilit
 
 ## Configuration
 
-See `capabilities/` (one `card.yaml` per capability; `vikhyath registry list`) for the capability registry and `config/routing.yaml` for routing rules.
+See `capabilities/` (one `card.yaml` per capability; `vikhyath registry list`) for the capability registry and `config/routing.yaml` for routing rules (run `vikhyath route "<request>"`).

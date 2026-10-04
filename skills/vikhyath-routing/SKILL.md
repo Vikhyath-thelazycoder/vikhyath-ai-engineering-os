@@ -1,83 +1,42 @@
 ---
 name: vikhyath-routing
-description: Task classification and capability routing for Vikhyath AI Engineering OS. Determines which external capabilities to activate based on task analysis.
+description: Route a task to the minimum Vikhyath OS capabilities with the deterministic `vikhyath route` command, then load only their context.
 ---
 
-# Vikhyath Routing Skill
+# Vikhyath Routing
 
-## Purpose
+Routing is done by the OS core, not by reading this file. Do not pick capabilities by hand and do not load every skill.
 
-Classify incoming tasks and route them to the appropriate external capabilities. This is the core orchestration logic of the Vikhyath AI Engineering OS.
+## Steps
 
-## How to Use
+1. **Route.** Run, from the project directory:
 
-When presented with a task, follow this process:
+   ```bash
+   vikhyath route "<the user's request>" --brief          # one line
+   vikhyath route "<the user's request>"                  # full JSON
+   ```
 
-### Step 1: Classify the Task
+   Add `--paths <files…>` when the request touches known files, `--new` / `--existing` when the project stage is
+   known, and `--capability <id>` only when the user explicitly names a capability.
 
-Analyze the task description and identify which category it falls into:
+2. **Load context for the routed capabilities only** (levels L1 → L2; L3 only when needed):
 
-| Category | Signals |
-|---|---|
-| Simple bugfix | typo, small fix, one-liner |
-| Engineering | implement, build, create, develop |
-| Complex codebase | unfamiliar repo, monorepo, large codebase |
-| Security | authentication, authorization, encryption, vulnerability |
-| Large feature | multi-file, substantial, "don't stop until done" |
-| Design | UI, UX, visual, layout, design system |
-| Review/release | review, release, ship, deploy, QA |
-| Simplicity | YAGNI, overengineered, too complex |
-| Refactor | refactor, restructure, clean up |
-| Architecture | system design, design patterns, structure |
+   ```bash
+   vikhyath context <capability-id>…
+   ```
 
-### Step 2: Activate Capabilities
+3. **Follow the result.**
+   - `capabilities` are listed in guidance order (`config/priorities.yaml`: user requirements → project security →
+     project architecture → methodology → specialists → review → simplicity). On conflicting advice, the earlier one wins.
+   - `dependencies` are internal capabilities the selected ones need; use them through those capabilities.
+   - `fallbacks` apply only when the primary capability cannot decide (e.g. browser fallback after deterministic checks).
+   - `browser`: `none` → no browser; `fallback-only` → deterministic checks first; `explicit-visual` → the user asked
+     to see the page.
+   - `pipeline` gives the domain order for multi-domain work (e.g. SEO audit → engineering → testing).
+   - `confidence: low` (BM25 fallback) or `none`: confirm the intent with the user before acting.
 
-Based on the classification, activate ONLY the relevant capabilities:
+## Rules
 
-```yaml
-simple-bugfix:      [ecc]
-engineering:        [ecc, ?addy]
-complex-codebase:   [ecc, graphify]
-security:           [ecc, addy]
-large-feature:      [ecc, unlazy, ?graphify]
-design:             [ecc, opendesign]
-review-release:     [ecc, gstack]
-simplicity:         [ponytail]
-refactor:           [ecc, ?graphify, ?ponytail]
-architecture:       [ecc, graphify]
-```
-
-`?` = optional, activate only if clearly relevant.
-
-### Step 3: Load Only What's Needed
-
-Do NOT pre-load all capability documentation. Load the SKILL.md or relevant instructions for activated capabilities only.
-
-### Step 4: Execute
-
-Use the activated capabilities to complete the task.
-
-### Step 5: Verify and Unload
-
-After task completion, verify the work meets requirements and unload capability context.
-
-## Conflict Resolution
-
-If two capabilities give conflicting advice, follow the priority hierarchy:
-
-1. User requirements
-2. Security/safety
-3. Project architecture
-4. ECC methodology
-5. Security/testing specialists
-6. Domain specialists
-7. Product/review workflows
-8. Simplicity optimization
-
-## Anti-Patterns
-
-- ❌ Loading all capabilities at once
-- ❌ Activating Ponytail without explicit request
-- ❌ Running the full Agency swarm
-- ❌ Keeping Graphify graph active unnecessarily
-- ❌ Using Unlazy for simple one-line fixes
+- Simplicity review (Ponytail-derived) runs only when the user asks for it.
+- New projects start with requirements; existing projects start with codebase understanding (spec §19.2).
+- Never activate SEO, media or design capabilities the route did not select.

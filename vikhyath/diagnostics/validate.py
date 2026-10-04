@@ -19,16 +19,26 @@ def _load_yaml(path: Path):
         return None
 
 
-def _routing_ok(routing):
-    try:
-        r = routing["routing"]
-        return ("ecc" in r["simple-bugfix"]["activate"] and "ecc" in r["complex-codebase"]["activate"]
-                and "graphify" in r["complex-codebase"]["activate"] and "ecc" in r["security-task"]["activate"]
-                and "addy" in r["security-task"]["activate"] and "ponytail" in r["simplicity-review"]["activate"]
-                and "ecc" in r["review-release"]["activate"] and "gstack" in r["review-release"]["activate"]
-                and "ecc" in routing["fallback"]["activate"])
-    except (TypeError, KeyError):
-        return False
+# Smoke routes: (request, stage, must include, must not include). The full scenario suite is tests/routing.
+ROUTING_SMOKE = (
+    ("Fix the payment webhook security.", "existing", {"engineering/security", "testing/security"}, {"design/", "seo/", "media/"}),
+    ("This landing page looks generic. Make it feel premium.", "existing", {"design/design-direction"}, {"seo/", "engineering/backend"}),
+    ("Audit my website.", "unknown", {"seo/auditing"}, {"engineering/", "testing/browser-fallback"}),
+    ("Make a launch video plan for our product.", "existing", {"media/launch-video"}, {"engineering/"}),
+    ("Refactor the billing module", "existing", {"engineering/implementation"}, {"engineering/simplicity"}),
+)
+
+
+def _routing_problems(root: Path):
+    from ..routing import ProjectFacts, Router, capability_ids
+    from ..routing.rules import validate_routing
+    router = Router(root)
+    problems = validate_routing(router.cfg, router.cards, router.hierarchy)
+    for request, stage, must, never in ROUTING_SMOKE:
+        ids = capability_ids(router.route(request, project=ProjectFacts(stage=stage)))
+        if not must <= set(ids) or any(i.startswith(n) for i in ids for n in never):
+            problems.append(f"{request!r} routed to {ids}")
+    return problems
 
 
 def _pins(root: Path):
@@ -87,13 +97,16 @@ def run(root: Path, online=False, unittests=True) -> int:
     r.end_section()
 
     r.section("🔀 Routing Tests")
-    if _routing_ok(_load_yaml(root / "config/routing.yaml")):
-        r.ok("Routing rules valid")
-        for line in ("fix typo → minimal (ecc)", "unfamiliar monorepo → ecc + graphify", "authentication → ecc + addy",
-                     "simplicity review → ponytail", "production release → ecc + gstack"):
-            r.ok(f"  {line}")
+    try:
+        routing_problems = _routing_problems(root)
+    except (OSError, KeyError, TypeError, ValueError) as exc:
+        routing_problems = [f"{type(exc).__name__}: {exc}"]
+    if not routing_problems:
+        r.ok("Routing config v2 valid against the capability registry")
+        for request, _, must, _ in ROUTING_SMOKE:
+            r.ok(f"  {request} → {', '.join(sorted(must))}")
     else:
-        r.fail("Routing validation failed")
+        r.fail("Routing validation failed: " + "; ".join(routing_problems[:3]))
     r.end_section()
 
     r.section("📦 Capability Registry Tests")

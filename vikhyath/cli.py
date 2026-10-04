@@ -8,7 +8,7 @@ from .paths import repo_root
 
 # Subcommands planned in docs/plan/FILE_LEVEL_PLAN.md and the phase that delivers each.
 PLANNED = {
-    "bootstrap": "P9", "route": "P8", "context": "P9", "state": "P10", "plan": "P10", "decide": "P10",
+    "bootstrap": "P9", "context": "P9", "state": "P10", "plan": "P10", "decide": "P10",
     "project": "P10", "verify": "P15", "test": "P15", "update": "P24", "rollback": "P24",
     "runtime": "P12", "dashboard": "P23", "adapters": "P19",
 }
@@ -118,6 +118,27 @@ def _registry(args):
     return 2
 
 
+def _route(args):
+    import json
+
+    from .routing import ProjectFacts, Router, RoutingError
+    stage = "new" if args.new else "existing" if args.existing else "unknown"
+    try:
+        result = Router().route(" ".join(args.request), paths=args.paths or (), requested=args.capability or (),
+                                project=ProjectFacts(stage=stage, stack=tuple(args.stack or ())))
+    except RoutingError as exc:
+        print(f"vikhyath route: {exc}", file=sys.stderr)
+        return 2
+    if args.brief:
+        caps = ", ".join(c["id"] for c in result["capabilities"]) or "—"
+        deps = ", ".join(d["id"] for d in result["dependencies"])
+        print(f"{result['change_type']} · {result['confidence']} ({result['method']}) · {caps}"
+              + (f" + deps: {deps}" if deps else ""))
+    else:
+        print(json.dumps(result, indent=1, ensure_ascii=False))
+    return 0
+
+
 def build_parser():
     parser = argparse.ArgumentParser(prog="vikhyath", description="Vikhyath AI Engineering OS")
     parser.add_argument("-v", "--version", action="version", version=f"vikhyath-ai-engineering-os v{__version__}")
@@ -162,6 +183,17 @@ def build_parser():
     r.add_argument("capability", help="Capability id, e.g. engineering/security")
     r.add_argument("--paths", action="store_true", help="List every source path instead of counts")
     p.set_defaults(func=_registry)
+
+    p = sub.add_parser("route", help="Route a request to capabilities (deterministic; JSON output)")
+    p.add_argument("request", nargs="+", help="The user request text")
+    p.add_argument("--paths", nargs="*", help="Files the request touches (path rules, spec §15)")
+    p.add_argument("--capability", action="append", help="Force-include a capability the user named explicitly")
+    stage = p.add_mutually_exclusive_group()
+    stage.add_argument("--new", action="store_true", help="Treat the project as new (requirements first)")
+    stage.add_argument("--existing", action="store_true", help="Treat the project as existing (codebase first)")
+    p.add_argument("--stack", nargs="*", help="Detected stack, e.g. python django (selects stack packs)")
+    p.add_argument("--brief", action="store_true", help="One-line summary instead of JSON")
+    p.set_defaults(func=_route)
 
     for name, phase in PLANNED.items():
         p = sub.add_parser(name, help=f"(available in {phase})")

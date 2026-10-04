@@ -1,0 +1,131 @@
+"""The deterministic router (spec §15, D-012): request → change type → domains → capabilities, as JSON-ready data.
+
+Pipeline: normalize → rule/path match → intent-tag match → suppression and project stage → selection limit →
+conflicts → dependency/impact closure → fallbacks → (only if not confident) BM25 over CARD.md.
+"""
+import time
+from dataclasses import dataclass, field
+from pathlib import Path
+
+from ..registry import loader
+from .classify import classify_change, normalize
+from .fallback_bm25 import BM25
+from .rules import load_hierarchy, load_routing, match_paths, match_rules, role_of
+from .select import ROUTABLE_MODES, Candidate, dependency_closure, domain_of, select_capabilities
+
+ROUTE_SCHEMA_VERSION = 1
+
+
+@dataclass
+class ProjectFacts:
+    """What the router knows about the project (filled from project state in P10; flags in the CLI)."""
+    stage: str = "unknown"          # new | existing | unknown (spec §19.2)
+    project_id: str | None = None
+    phase: str | None = None
+    stack: tuple = field(default_factory=tuple)
+
+
+class RoutingError(ValueError):
+    pass
+
+
+class Router:
+    def __init__(self, root: Path | None = None, cards=None, cfg=None):
+        self.root = root
+        self.cards = cards if cards is not None else loader.load_cards(root)
+        self.cfg = cfg if cfg is not None else load_routing(root)
+        self.hierarchy = load_hierarchy(root)
+        self._bm25 = None
+
+    @property
+    def bm25(self) -> BM25:
+        """Built on first use only: deterministic routes never read CARD.md."""
+        if self._bm25 is None:
+            docs = {}
+            for cid, card in self.cards.items():
+                if card["activation_conditions"]["mode"] not in ROUTABLE_MODES or not card["enabled"]:
+                    continue
+                path = loader.capabilities_dir(self.root) / cid / "CARD.md"
+                body = path.read_text(encoding="utf-8") if path.is_file() else ""
+                docs[cid] = " ".join([card["name"], card["description"], " ".join(card["intent_tags"]), body])
+            self._bm25 = BM25(docs)
+        return self._bm25
+
+    def route(self, request: str, paths=(), project: ProjectFacts | None = None, requested=()):
+        start = time.perf_counter()
+        project = project or ProjectFacts()
+        unknown = [c for c in requested if c not in self.cards]
+        if unknown:
+            raise RoutingError(f"unknown capability {unknown[0]} (see `vikhyath registry list`)")
+        text = normalize(request)
+        limits = self.cfg.get("limits") or {}
+        confident = limits.get("confident_score", 2)
+        hits = match_rules(text, self.cfg, project.stage) + match_paths(paths, self.cfg)
+        selected, suppressed, extra = select_capabilities(text, self.cards, self.cfg, self.hierarchy, hits,
+                                                          project.stage, requested, project.stack)
+
+        method = "rules" if any(c.strong for c in selected) else ("tags" if selected else "none")
+        best = max((c.score for c in selected), default=0)
+        if best < confident:
+            have = {c.cid for c in selected} | {s["id"] for s in suppressed}
+            for cid, score in self.bm25.top(text, limits.get("bm25_top_k", 3), limits.get("bm25_min_score", 1.5)):
+                if cid not in have:
+                    selected.append(Candidate(cid, 0, False, [f"bm25 fallback (score {score})"]))
+                    method = "bm25" if method == "none" else method if method.endswith("+bm25") else f"{method}+bm25"
+
+        domain_score = {}
+        for c in selected:
+            domain_score[domain_of(c.cid)] = domain_score.get(domain_of(c.cid), 0) + max(c.score, 1)
+        domains = sorted(domain_score, key=lambda d: (-domain_score[d], d))
+        change_type, decided_by = classify_change(text, self.cfg.get("change_types") or {}, domains[0] if domains else None)
+
+        # Impact check (spec §15, §19.4): existing-project change work starts from codebase understanding.
+        ids = [c.cid for c in selected]
+        if (project.stage == "existing" and change_type in extra["existing_change_types"]
+                and any(self.cards[c]["requires_codebase_analysis"] for c in ids)):
+            for cid in extra["existing_adds"]:
+                if cid not in ids:
+                    selected.append(Candidate(cid, 0, True, [f"existing project + {change_type}: impact analysis first"]))
+                    ids.append(cid)
+                    if domain_of(cid) not in domains:
+                        domains.append(domain_of(cid))
+
+        deps = dependency_closure(ids, self.cards, project.stack)
+        all_ids = set(ids) | {d["id"] for d in deps}
+        fallbacks = {c: self.cards[c]["fallback_capability"] for c in ids
+                     if self.cards[c]["fallback_capability"] and self.cards[c]["fallback_capability"] not in all_ids}
+        pipeline = next((h.pipeline for h in hits if h.pipeline), None) or domains
+        explicit_visual = any(h.explicit and "testing/browser-fallback" in h.select for h in hits)
+        browser = ("explicit-visual" if explicit_visual and "testing/browser-fallback" in ids
+                   else "fallback-only" if "testing/browser-fallback" in fallbacks.values() else "none")
+        confidence = ("high" if any(c.strong for c in selected) and best >= confident else
+                      "medium" if selected and best >= confident else
+                      "low" if selected else "none")
+        roles = self.cfg.get("roles") or []
+        return {
+            "schema_version": ROUTE_SCHEMA_VERSION,
+            "request": request,
+            "change_type": change_type,
+            "change_type_keyword": decided_by,
+            "project": {"stage": project.stage, "project_id": project.project_id, "phase": project.phase,
+                        "stack": list(project.stack)},
+            "domains": domains,
+            "capabilities": [{"id": c.cid, "score": c.score, "role": role_of(c.cid, roles),
+                              "level": self.hierarchy.get(role_of(c.cid, roles)),
+                              "context_level": self.cards[c.cid]["context_level"], "reasons": c.reasons}
+                             for c in selected],
+            "dependencies": deps,
+            "fallbacks": fallbacks,
+            "browser": browser,
+            "pipeline": pipeline,
+            "suppressed": suppressed,
+            "rules": [h.rule for h in hits],
+            "method": method,
+            "confidence": confidence,
+            "duration_ms": round((time.perf_counter() - start) * 1000, 3),
+        }
+
+
+def capability_ids(result, include_dependencies=True):
+    ids = [c["id"] for c in result["capabilities"]]
+    return ids + [d["id"] for d in result["dependencies"]] if include_dependencies else ids

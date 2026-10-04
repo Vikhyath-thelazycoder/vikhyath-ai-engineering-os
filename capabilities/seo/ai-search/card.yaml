@@ -14,7 +14,7 @@ cache_strategy: run
 activation_conditions:
   when: [request matches intent_tags or a routing rule selects this capability]
 verification_requirements: [answer-readiness checks cite the page passages, findings labelled FACT / OBSERVATION / INFERENCE / HYPOTHESIS / UNKNOWN]
-dependencies: []
+dependencies: [seo/evidence]
 related_capabilities: []
 conflicts: []
 fallback_capability: null

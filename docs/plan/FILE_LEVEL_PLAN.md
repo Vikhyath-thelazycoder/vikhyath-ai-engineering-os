@@ -82,6 +82,8 @@ Conventions:
 
 ## M3 · P8 — Routing engine
 
+**As built (COMPLETED):** `config/routing.yaml` v2 (D-029: change types, roles, limits, project policy, 20 rules, 8 path globs); `vikhyath/routing/{classify,rules,select,fallback_bm25,router}.py`; `vikhyath route "<request>" [--paths] [--capability] [--new|--existing] [--stack] [--brief]` (JSON by default); `tests/routing/scenarios.yaml` (19 spec scenarios with expected + forbidden sets and a spec-name alias table) + `test_scenarios.py`; `tests/routing/test_routing.py` replaced by behaviour tests; `vikhyath validate` routing section validates config v2 + 5 smoke routes (the v1 repo-keyed check is gone); `seo/ai-search` card depends on `seo/evidence`; entry skill `skills/vikhyath-routing/SKILL.md` calls the CLI; CLAUDE.md/AGENTS.md/Antigravity skill point at `vikhyath route`. Evidence: `docs/evidence/P8/run.md`.
+
 | File | Action | Purpose | Deps | Test |
 |---|---|---|---|---|
 | `config/routing.yaml` | REPLACE | v2 schema: change-type classifier (§54) + rules (keywords, regex, path globs, project phase, new/existing) → domain/subdomain; forbidden pairings | P7 | Schema test |

@@ -1,177 +1,222 @@
-# Vikhyath AI Engineering OS — Routing Rules
-# Determines which capabilities activate for which task types
-# Version: 1.0.1
+# Vikhyath AI Engineering OS — Routing configuration (v2, P8, spec §14–15, §54, D-012)
+#
+# The router is deterministic: request text, file paths and project facts are matched against the rules below and
+# against each capability card's intent_tags (capabilities/**/card.yaml). BM25 over CARD.md runs only when nothing
+# here is confident (spec §15 "semantic retrieval is fallback"). No LLM call happens inside the router.
+#
+# Signal strength:
+#   strong — a rule below matched (keywords / regex / paths / project conditions). Survives suppression.
+#   weak   — only a card intent_tag matched. Removed when a matched rule suppresses its domain or capability.
+# Matching is case-insensitive on word boundaries; a keyword may be a phrase ("audit my website").
 
-routing:
+version: 2
 
-  # Simple tasks — minimal capability set
-  simple-bugfix:
-    description: "Fix a small bug, typo, or minor issue"
-    signals:
-      - "fix typo"
-      - "small bug"
-      - "minor fix"
-      - "one-liner"
-      - "simple change"
-    activate:
-      - ecc
-    optional:
-      - addy  # Only if testing/security relevance exists
+# §54 change-request classes, checked in this order; the first class whose keywords match wins.
+# `default_by_domain` applies when no keyword matches (by the top-scoring domain).
+change_types:
+  order:
+    - {type: SECURITY_CHANGE, keywords: [security, secure, vulnerability, auth, authentication, authorization, csrf, xss, injection, secret, owasp, harden, hardening, permission]}
+    - {type: SEO_CHANGE, keywords: [seo, rank, ranking, search console, sitemap, robots, ai search, aeo, geo, schema markup, backlinks, ai-generated answers, ai generated answers, answer engine]}
+    - {type: MEDIA_CHANGE, keywords: [video, demo, deck, slides, presentation, launch post, showcase, screen recording]}
+    - {type: OBSERVABILITY_CHANGE, keywords: [logging, logs, metrics, tracing, telemetry, monitoring, observability]}
+    - {type: PERFORMANCE_CHANGE, keywords: [performance, slow, latency, faster, speed up, optimize, bundle size, memory leak]}
+    - {type: BUG_FIX, keywords: [fix, bug, broken, crash, crashes, error, failing, fails, regression, not working, doesn't work]}
+    - {type: TESTING_CHANGE, keywords: [test, tests, testing, coverage, tdd, e2e, check whether, verify, show me, screenshot]}
+    - {type: REFACTOR, keywords: [refactor, restructure, reorganize, clean up, cleanup, simplify, modernize, rename]}
+    - {type: DESIGN_CHANGE, keywords: [design, premium, look, looks, feel, redesign, layout, typography, font, color, spacing, visual, ui, ux, landing page, overlap, overlaps]}
+    - {type: INFRA_CHANGE, keywords: [deploy, deployment, ci, docker, kubernetes, infrastructure, pipeline, hosting, terraform]}
+    - {type: DOCUMENTATION_CHANGE, keywords: [document, docs, documentation, readme, adr, changelog]}
+    - {type: PLAN_CHANGE, keywords: [plan, roadmap, phase, reprioritize, milestone, scope]}
+    - {type: FEATURE_CHANGE, keywords: [change, update, modify, improve, adjust, tweak, extend, rework]}
+    - {type: NEW_FEATURE, keywords: [add, build, create, implement, new, introduce, support, integrate, make]}
+  default_by_domain:
+    engineering: FEATURE_CHANGE
+    codebase: FEATURE_CHANGE
+    design: DESIGN_CHANGE
+    testing: TESTING_CHANGE
+    seo: SEO_CHANGE
+    media: MEDIA_CHANGE
+    observability: OBSERVABILITY_CHANGE
+  fallback: FEATURE_CHANGE
 
-  # Engineering implementation
-  engineering-task:
-    description: "Standard engineering implementation"
-    signals:
-      - "implement"
-      - "add feature"
-      - "create"
-      - "build"
-      - "develop"
-    activate:
-      - ecc
-    optional:
-      - addy
-      - agency  # Only if specialist domain needed
+# Guidance precedence (config/priorities.yaml conflict_hierarchy). The first matching pattern assigns the role; the
+# router orders selected capabilities by (hierarchy level, -priority) and resolves declared conflicts with it.
+roles:
+  - {match: engineering/security, role: project-security}
+  - {match: engineering/architecture, role: project-architecture}
+  - {match: engineering/simplicity, role: simplicity}
+  - {match: engineering/release, role: product-review}
+  - {match: testing/release-verification, role: product-review}
+  - {match: testing/*, role: security-testing}
+  - {match: engineering/*, role: engineering-methodology}
+  - {match: "*", role: domain-specialists}
 
-  # Complex/unfamiliar codebase
-  complex-codebase:
-    description: "Working with large or unfamiliar codebases"
-    signals:
-      - "unfamiliar repo"
-      - "monorepo"
-      - "large codebase"
-      - "understand the code"
-      - "navigate the architecture"
-      - "trace dependencies"
-    activate:
-      - ecc
-      - graphify
-    optional:
-      - agency  # Architecture specialist
+limits:
+  max_capabilities: 8            # selected (non-dependency) capabilities per request; lowest scores dropped first
+  tag_min_score: 1               # weak-only capabilities need at least this score
+  confident_score: 2             # below this total score, BM25 fallback runs
+  bm25_top_k: 3                  # spec §47 "maximum semantic retrieval results"
+  bm25_min_score: 3.0
 
-  # Security-sensitive work
-  security-task:
-    description: "Security-sensitive changes"
-    signals:
-      - "authentication"
-      - "authorization"
-      - "security"
-      - "credentials"
-      - "encryption"
-      - "vulnerability"
-      - "OWASP"
-      - "hardening"
-    activate:
-      - ecc
-      - addy  # security/hardening skills
-    optional:
-      - agency  # security specialist
+# Project-stage behaviour (spec §19.2): existing projects get codebase understanding before change work; new
+# projects never route to codebase capabilities.
+project:
+  existing_change_types: [NEW_FEATURE, FEATURE_CHANGE, BUG_FIX, REFACTOR, SECURITY_CHANGE, PERFORMANCE_CHANGE]
+  existing_adds: [codebase/impact-analysis]
+  new_forbids_domains: [codebase]
 
-  # Large feature implementation
-  large-feature:
-    description: "Substantial multi-part implementation"
-    signals:
-      - "large feature"
-      - "multi-file"
-      - "substantial"
-      - "don't stop until done"
-      - "complete implementation"
-    activate:
-      - ecc
-      - unlazy
-    optional:
-      - graphify  # If codebase is complex
-      - agency    # If specialist domain needed
+rules:
+  # ── Product / new project ─────────────────────────────────────────────────────────────────────────────────────
+  - id: new-product
+    description: Build a new application or SaaS (spec §14, §19.3, scenario A)
+    any: [saas, new app, new application, from scratch, new project, mvp, greenfield, build me, build a, build an]
+    unless: [build a test, build a component, build fails, build failing, build error]
+    project: [new, unknown]
+    select: [engineering/planning, engineering/architecture, design/design-direction, engineering/security, testing/strategy]
+    weight: 3
 
-  # UI/Design work
-  design-task:
-    description: "UI/UX and design-related work"
-    signals:
-      - "UI"
-      - "UX"
-      - "design"
-      - "redesign"
-      - "visual"
-      - "layout"
-      - "frontend design"
-      - "design system"
-    activate:
-      - ecc
-      - opendesign
-    optional:
-      - agency  # frontend/design specialist
+  - id: existing-feature
+    description: Feature work on an existing project (spec §19.4, scenario B)
+    any: [add, extend, integrate, support, introduce]
+    project: [existing]
+    select: [engineering/implementation, codebase/impact-analysis, testing/strategy]
+    weight: 2
 
-  # Review/release
-  review-release:
-    description: "Code review, product review, or release preparation"
-    signals:
-      - "review"
-      - "release"
-      - "ship"
-      - "deploy"
-      - "production"
-      - "launch"
-      - "QA"
-    activate:
-      - ecc
-      - gstack
-    optional:
-      - addy    # production engineering
-      - unlazy  # completion discipline for substantial releases
+  - id: third-party-integration
+    description: External APIs, keys and payments carry backend and security work
+    any: [google maps, maps, map, stripe, paypal, razorpay, payment, payments, checkout, oauth, api key, third-party, third party, twilio, sendgrid, webhook, webhooks]
+    select: [engineering/backend, engineering/security]
+    weight: 2
 
-  # Simplicity/YAGNI review
-  simplicity-review:
-    description: "Explicit simplicity or overengineering review"
-    signals:
-      - "simplicity"
-      - "YAGNI"
-      - "overengineered"
-      - "too complex"
-      - "unnecessary abstraction"
-      - "ponytail"
-    activate:
-      - ponytail
-    notes: "Only activated on explicit request. Default is OFF."
+  # ── Security (scenario C, spec §14 "Improve checkout security") ───────────────────────────────────────────────
+  - id: security-change
+    description: Security fixes and hardening
+    any: [security, secure, vulnerability, vulnerable, harden, hardening, csrf, xss, sql injection, injection, owasp, webhook verification, signature verification, auth bypass]
+    select: [engineering/security, codebase/impact-analysis, testing/security]
+    suppress: [design, media, seo, testing/web-verification]
+    weight: 4
 
-  # Refactoring
-  refactor:
-    description: "Code refactoring"
-    signals:
-      - "refactor"
-      - "restructure"
-      - "reorganize"
-      - "clean up"
-      - "modernize"
-    activate:
-      - ecc
-    optional:
-      - graphify   # For understanding impact
-      - ponytail   # For simplification opportunities
+  # ── Design (scenario D, spec §14) ─────────────────────────────────────────────────────────────────────────────
+  - id: design-premium
+    description: Make an interface feel premium / less generic
+    any: [premium, generic, high-end, polished, ai slop, slop, bland, make it pop, redesign]
+    select: [design/design-direction, design/visual-quality, design/typography, design/frontend, design/design-review]
+    suppress: [seo, media, engineering, testing]
+    weight: 3
 
-  # Architecture work
-  architecture:
-    description: "Architecture design or review"
-    signals:
-      - "architecture"
-      - "system design"
-      - "design patterns"
-      - "structure"
-    activate:
-      - ecc
-      - graphify
-    optional:
-      - agency  # architecture specialist
+  - id: layout-check
+    description: Responsive / layout verification (spec §23A.14 "mobile header overlaps the hero")
+    any: [overlap, overlaps, overlapping, responsive, breakpoint, viewport, mobile layout, cut off, misaligned]
+    select: [design/visual-quality, design/frontend, testing/web-verification]
+    suppress: [seo, media, engineering]
+    weight: 3
 
-# Fallback behavior
-fallback:
-  description: "When no specific routing rule matches"
-  activate:
-    - ecc
-  notes: "ECC is the default engineering foundation for unclassified tasks"
+  # ── Web verification (§23A.14) ────────────────────────────────────────────────────────────────────────────────
+  - id: flow-check
+    description: Check that a user flow works, deterministic checks first
+    any: [check whether, check that, check if, verify, does it work, still work, works]
+    require_any: [flow, login, log in, sign in, signup, sign up, checkout, logout, form, page, endpoint, api]
+    select: [testing/web-verification]
+    weight: 3
 
-# Context loading rules
-context_rules:
-  max_simultaneous_capabilities: 4
-  prefer_fewer_capabilities: true
-  unload_after_task: true
-  never_load_all: true
+  - id: auth-flow
+    description: Login / session flows need security testing
+    any: [login, log in, sign in, signup, sign up, logout, session, password reset]
+    select: [testing/security]
+    weight: 2
+
+  - id: explicit-visual
+    description: The user explicitly asks to see the site (visible browser justified, §23A.14)
+    regex: ['\b(open|show me|screenshot|take a screenshot of|look at)\b.*\b(site|website|page|app)\b', '\bwhat (it|the (site|website|page|app)) looks like\b']
+    select: [testing/browser-fallback]
+    explicit: true
+    suppress: [engineering, seo, media, design]
+    weight: 4
+
+  # ── SEO (scenarios E, F, G; spec §14) ─────────────────────────────────────────────────────────────────────────
+  - id: seo-audit
+    description: Audit a website's SEO (native runtime via dependencies, no browser by default)
+    any: [seo audit, audit my website, audit my site, audit the site, audit the website, website audit, site audit, technical seo, why not ranking, rank better]
+    regex: ['\baudit\b.*\bseo\b', '\bseo\b.*\baudit\b']
+    select: [seo/auditing, seo/technical, seo/content, seo/reporting]
+    suppress: [engineering, design, media, testing]
+    weight: 4
+
+  - id: ai-search
+    description: Visibility in AI-generated answers (AEO/GEO)
+    any: [ai search, ai-generated answers, ai generated answers, ai answers, answer engine, answer engines, generative engine, llm visibility, chatgpt, perplexity, ai overview, ai overviews, aeo, geo]
+    select: [seo/ai-search, seo/entity, seo/content]
+    suppress: [engineering, media, design]
+    weight: 4
+
+  - id: seo-fix
+    description: Audit then fix SEO findings → engineering and testing follow the audit (scenario F)
+    any: [fix, implement, resolve, repair, correct]
+    require_any: [seo, sitemap, robots, canonical, indexing, meta tags, structured data]
+    select: [seo/auditing, seo/technical, engineering/implementation, testing/web-verification]
+    pipeline: [seo, engineering, testing]
+    weight: 4
+
+  # ── Media (scenario H) ────────────────────────────────────────────────────────────────────────────────────────
+  - id: media
+    description: Launch video, demo or showcase material; never backend/database work
+    any: [launch video, promo video, product video, video plan, explainer video, demo video, walkthrough video, launch post, product launch]
+    select: [media/launch-video]
+    suppress: [engineering, codebase, testing, seo]
+    weight: 4
+
+  # ── Engineering specifics ─────────────────────────────────────────────────────────────────────────────────────
+  - id: debugging
+    description: Something is broken
+    any: [bug, broken, crash, crashes, error, failing, fails, exception, stack trace, not working, doesn't work]
+    select: [engineering/debugging, testing/regression]
+    weight: 2
+
+  - id: architecture
+    description: Architecture and system design
+    any: [architecture, system design, design the system, service boundaries, adr, trd]
+    select: [engineering/architecture]
+    suppress: [design]
+    weight: 3
+
+  - id: codebase-understanding
+    description: Unfamiliar or large codebase
+    any: [unfamiliar, monorepo, large codebase, understand the code, understand this codebase, onboard, navigate the architecture, trace dependencies]
+    select: [codebase/repository-understanding, codebase/code-search]
+    weight: 3
+
+  - id: refactor
+    description: Behaviour-preserving restructuring (simplicity stays explicit-only)
+    any: [refactor, restructure, reorganize, clean up, cleanup, modernize]
+    select: [engineering/implementation, codebase/impact-analysis, testing/regression]
+    weight: 2
+
+  - id: simplicity-review
+    description: Explicit simplicity / over-engineering review (Ponytail-derived; never implied by refactor)
+    any: [overengineered, over-engineered, overengineering, yagni, simplicity review, too complex, unnecessary abstraction, ponytail, simplify]
+    select: [engineering/simplicity]
+    explicit: true
+    weight: 3
+
+  - id: release
+    description: Shipping and release readiness
+    any: [release, ship it, ship this, deploy to production, go live, launch to production, cut a release]
+    select: [engineering/release, testing/release-verification]
+    weight: 3
+
+  - id: large-feature
+    description: Substantial multi-part work needs completion discipline
+    any: [large feature, multi-file, substantial, don't stop, do not stop, until done, complete implementation, end to end, end-to-end]
+    select: [engineering/completion]
+    weight: 2
+
+# File-path signals (spec §15 "file paths"): a changed path matching a glob selects capabilities (strong).
+paths:
+  - {glob: ["**/auth/**", "**/*auth*.*", "**/security/**", "**/middleware/**"], select: [engineering/security]}
+  - {glob: ["**/*.css", "**/*.scss", "**/tailwind.config.*", "**/styles/**"], select: [design/frontend]}
+  - {glob: ["**/*.test.*", "**/*_test.*", "**/test_*.py", "**/tests/**", "**/__tests__/**"], select: [testing/strategy]}
+  - {glob: ["**/migrations/**", "**/*.sql", "**/schema.prisma"], select: [engineering/migration, engineering/backend]}
+  - {glob: ["**/api/**", "**/routes/**", "**/server/**", "**/*controller*.*"], select: [engineering/backend]}
+  - {glob: ["**/components/**", "**/*.tsx", "**/*.jsx", "**/*.vue", "**/*.svelte"], select: [engineering/frontend]}
+  - {glob: ["**/robots.txt", "**/sitemap*.xml"], select: [seo/technical]}
+  - {glob: [".github/workflows/**", "**/Dockerfile", "**/docker-compose*.yml"], select: [engineering/release]}

@@ -1,0 +1,150 @@
+# Routing scenarios from the master spec (P8 acceptance). `expect` must appear in capabilities ∪ dependencies;
+# `forbid` entries are capability ids or domain prefixes ("seo/") that must not appear at all (an expected id inside a
+# forbidden domain is allowed). Spec §70 scenario I (multiple projects) is an isolation scenario: tests/isolation (P11).
+
+# The spec names some capabilities that the registry implements under a domain-first id (D-028, doc 06).
+aliases:
+  testing/integration: testing/web-verification
+  testing/responsive: testing/web-verification
+  seo/aeo: seo/ai-search
+  seo/geo: seo/ai-search
+  security baseline: engineering/security
+  native crawler: seo/runtime
+  runtime/SEO crawler: seo/runtime
+
+scenarios:
+  # ── Spec §14 ──────────────────────────────────────────────────────────────────────────────────────────────────
+  - id: s14-checkout-security
+    request: Improve checkout security.
+    stage: existing
+    expect: [engineering/security, codebase/impact-analysis, testing/security]
+    forbid: [design/, seo/, media/, engineering/simplicity]
+    change_type: SECURITY_CHANGE
+
+  - id: s14-landing-premium
+    request: Make the landing page feel premium.
+    stage: unknown
+    expect: [design/design-direction, design/visual-quality, design/typography, design/frontend, design/design-review]
+    forbid: [seo/, media/, engineering/, codebase/]
+    change_type: DESIGN_CHANGE
+
+  - id: s14-seo-audit
+    request: Audit my website's SEO.
+    stage: unknown
+    expect: [seo/auditing, seo/technical, seo/content, seo/evidence, seo/reporting, runtime/SEO crawler]
+    forbid: [engineering/, design/, media/, testing/browser-fallback]
+    change_type: SEO_CHANGE
+
+  - id: s14-ai-search
+    request: Make my website rank better in AI search.
+    stage: unknown
+    expect: [seo/aeo, seo/geo, seo/entity, seo/content, seo/evidence]
+    forbid: [engineering/, media/, design/]
+    change_type: SEO_CHANGE
+
+  - id: s14-build-saas
+    request: Build a SaaS application.
+    stage: new
+    expect: [engineering/planning, engineering/architecture, design/design-direction, security baseline, testing/strategy]
+    forbid: [codebase/, seo/, media/]
+
+  # ── Spec §23A.14 web QA ───────────────────────────────────────────────────────────────────────────────────────
+  - id: s23a-login-flow
+    request: Check whether the login flow works.
+    stage: existing
+    expect: [testing/integration, testing/security]
+    forbid: [testing/browser-fallback, seo/, media/]
+    browser: fallback-only
+
+  - id: s23a-mobile-overlap
+    request: Check whether the mobile header overlaps the hero.
+    stage: existing
+    expect: [design/visual-quality, testing/responsive, design/frontend]
+    forbid: [testing/browser-fallback, seo/, media/]
+    browser: fallback-only
+
+  - id: s23a-explicit-visual
+    request: Open the website and show me what it looks like.
+    stage: existing
+    expect: [testing/browser-fallback]
+    forbid: [seo/, media/, engineering/]
+    browser: explicit-visual
+
+  - id: s23a-technical-seo
+    request: Audit the site's technical SEO.
+    stage: unknown
+    expect: [seo/auditing, seo/technical, seo/evidence]
+    forbid: [testing/, engineering/]
+    browser: none
+
+  # ── Spec §70 end-to-end scenarios ─────────────────────────────────────────────────────────────────────────────
+  - id: s70-a-new-saas
+    request: Build me a travel booking SaaS with AI trip planning.
+    stage: new
+    expect: [engineering/planning, engineering/architecture, security baseline, design/design-direction, testing/strategy]
+    forbid: [codebase/, seo/, media/]
+    change_type: NEW_FEATURE
+
+  - id: s70-b-existing-maps
+    request: Add Google Maps navigation to bookings.
+    stage: existing
+    expect: [engineering/implementation, codebase/impact-analysis, codebase/repository-understanding, engineering/security, testing/strategy]
+    forbid: [seo/, media/]
+    change_type: NEW_FEATURE
+
+  - id: s70-c-security-bug
+    request: Fix the payment webhook security.
+    stage: existing
+    expect: [engineering/security, codebase/impact-analysis, testing/security]
+    forbid: [design/, media/, seo/]
+    change_type: SECURITY_CHANGE
+
+  - id: s70-d-design
+    request: This landing page looks generic. Make it feel premium.
+    stage: existing
+    expect: [design/design-direction, design/visual-quality, design/typography, design/frontend, design/design-review]
+    forbid: [seo/, engineering/, media/, codebase/]
+    change_type: DESIGN_CHANGE
+
+  - id: s70-e-seo-audit
+    request: Audit my website.
+    stage: unknown
+    expect: [seo/auditing, native crawler, seo/evidence, seo/reporting]
+    forbid: [engineering/, design/, media/, testing/]
+    change_type: SEO_CHANGE
+
+  - id: s70-f-seo-fix
+    request: Audit my website and fix all technical SEO issues.
+    stage: existing
+    expect: [seo/auditing, seo/technical, seo/evidence, engineering/implementation, testing/web-verification]
+    forbid: [media/, design/]
+    pipeline: [seo, engineering, testing]
+    change_type: SEO_CHANGE
+
+  - id: s70-g-ai-search
+    request: Make the website more visible in AI-generated answers.
+    stage: unknown
+    expect: [seo/aeo, seo/geo, seo/entity, seo/content, seo/evidence]
+    forbid: [engineering/, media/, design/]
+    change_type: SEO_CHANGE
+
+  - id: s70-h-launch-video
+    request: Make a launch video plan for our product.
+    stage: existing
+    expect: [media/launch-video]
+    forbid: [engineering/, codebase/, seo/, testing/]
+    change_type: MEDIA_CHANGE
+
+  # ── Activation-mode guarantees (Ponytail explicit-only; refactor never implies simplicity review) ─────────────
+  - id: simplicity-explicit
+    request: Is this overengineered? Please simplify it.
+    stage: existing
+    expect: [engineering/simplicity]
+    forbid: [seo/, design/, media/]
+
+  - id: refactor-no-simplicity
+    request: Refactor the billing module.
+    stage: existing
+    expect: [engineering/implementation, codebase/impact-analysis, testing/regression]
+    forbid: [engineering/simplicity, seo/, design/, media/]
+    change_type: REFACTOR

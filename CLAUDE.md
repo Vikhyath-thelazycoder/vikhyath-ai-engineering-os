@@ -6,7 +6,7 @@ This is the Vikhyath AI Engineering OS plugin for Claude Code.
 
 1. **Progressive Activation**: Do NOT load all skills. Classify the user task first, then activate/route only to relevant capabilities.
 2. **NO MCP**: This plugin does not use MCP. Do not suggest or enable MCP servers.
-3. **Route to Capabilities**: Use the routing matrix in `config/routing.yaml` to determine which external capabilities apply.
+3. **Route to Capabilities**: Run `vikhyath route "<request>"` (deterministic rules in `config/routing.yaml`) to determine which capabilities apply.
 4. **Context Efficiency**: Minimize token usage by reading skill content on demand.
 
 ## Marketplace & Installation
