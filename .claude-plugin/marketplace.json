@@ -1,5 +1,9 @@
 {
   "name": "vikhyath-marketplace",
+  "owner": {
+    "name": "Vikhyath",
+    "url": "https://github.com/Vikhyath-thelazycoder"
+  },
   "description": "Vikhyath Plugin Marketplace for Claude Code",
   "plugins": [
     {
