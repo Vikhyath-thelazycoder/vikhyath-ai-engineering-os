@@ -174,16 +174,19 @@ Conventions:
 
 **Acceptance:** scenario D activates design only; D-027 design debts (gstack design-review/consultation placeholders) cleared.
 
-## M4 · P15 — Testing & local-first web verification
+## M4 · P15 — Testing & local test-first verification (rewritten by A-1, D-035)
+
+Done in A-1: `config/verification.yaml`, `vikhyath/verify/policy.py`, cards `testing/{local-verification,evidence,browser-exception}`, state verification block, `BROWSER_EXCEPTION_REQUESTED`. Removed from the plan: `config/webqa.yaml`, `verify/browser.py`, `runtimes/playwright.py`, the headless/visible ladder.
 
 | File | Action | Purpose | Test |
 |---|---|---|---|
-| `config/webqa.yaml` | CREATE | Ladder order §23A.1 | Schema test |
-| `vikhyath/verify/ladder.py`, `detect.py`, `evidence.py`, `browser.py`, `checks/{static,config,types,lint,build,unit,integration,http,state,security,a11y,dom,console,perf}.py` | CREATE | Run the cheapest sufficient checks; TESTED/NOT_TESTED/BLOCKED/BROWSER_ONLY/UNKNOWN (§23A.15); `BROWSER_FALLBACK_ACTIVATED` | `tests/webqa/*` with `tests/fixtures/webapp/` |
-| `vikhyath/runtimes/playwright.py` | CREATE | Explicit install into `runtimes/playwright-browsers`, bounded sessions, always terminated | Process test (no browser left running) |
-| `capabilities/testing/*` (8), `skills/vikhyath-testing/SKILL.md` | CREATE | Cards + entry | Registry/budget tests |
+| `vikhyath/verify/detect.py`, `select.py`, `run.py`, `evidence.py` | CREATE | Detect test commands; pick the smallest sufficient set from change impact (P12); run, diagnose, rerun failed; write machine-readable evidence (rejects "screenshot"/"looks correct") | `tests/verify/*` (webhook fixture selects unit/signature/integration/idempotency/security + typecheck/build) |
+| `vikhyath/cli.py` | MODIFY | `vikhyath verify`, `vikhyath verify exception --reason` (records only) | CLI tests; no subprocess for exceptions |
+| `skills/vikhyath-testing/SKILL.md`, `capabilities/testing/*/sections.yaml` | CREATE | Entry skill + L2 sections | Budget/registry tests |
 
-**Acceptance:** the spec's web-verification scenarios (checkout flow via deterministic checks; mobile-header overlap via bounded fallback; SEO without default browser) pass; no browser starts on the default path.
+**Acceptance:** scenarios verified through local commands with recorded counts; no browser process on any path; every result reproducible from its recorded command.
+
+**A-1 duties for later phases:** P12 `affected` also returns related tests · P13 remove residual browser steps from adapted engineering/testing text (doc 22 §3) · P14 design-token checks as local tests; Appllama rules stay merged · P16/P17 browser use stays inside SEO/media output, never evidence · P19–P22 every adapter ships the same `config/verification.yaml`, no MCP/browser enablement (`tests/hosts/test_policy.py`) · P23 show verification mode/evidence/disabled caps · P24 Appllama updates touch only its 4 bundled files · P25 doctor detects host MCP/Chrome DevTools, duplicate design rules, stale pins · P26 `docs/architecture/VERIFICATION_POLICY.md` · P27 doc 22 §9 checklist.
 
 ## M5 · P16 — SEO
 

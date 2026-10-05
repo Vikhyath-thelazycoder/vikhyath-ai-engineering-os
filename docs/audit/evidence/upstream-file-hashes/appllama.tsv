@@ -1,0 +1,20 @@
+# appllama @ dd5caaec3d5d50ad7fc0324da238119c6b7c3707
+blob_sha1	bytes	path
+cdc50b0d1d9c55abcaccc5f20279240e390ae1dc	635	.claude-plugin/plugin.json
+9ec938e9cb87fbba267aa17e2932fa71be226349	723	.cursor-plugin/plugin.json
+eda77f49fcd0fc31931c704974a8a04ef4a6bad8	14	.gitignore
+4ed2a8602d2683ae09bf337fb32d845ed5d05d00	115	.mcp.json
+1053d12088308bffa9261121b5f17de0373ac907	1103	LICENSE
+36cc976d09c80d5d02cc8b18933386135ed9cdcc	5606	README.md
+d177e65f2eba2ab70ce49e2fd6dc0f6b6aa03605	93	mcp.json
+eccc4e8708709a9dba0563e5a5fcadb1ffa88e58	20220	skills/appllama-app-design-skill/SKILL.md
+93ab9d4e1038c32a3beca7b55350f1a2634ad588	3622	skills/appllama-app-design-skill/references/image-assets.md
+af69711594771d21f52411a26b3b4d105d1cc4a4	4469	skills/appllama-app-design-skill/references/motion.md
+53d34a7913b66048c0e2663a779be2f66d84a9c3	4565	skills/appllama-app-design-skill/references/native-controls.md
+931ebe565cc4b6bf66fb08ca6904198478a48531	3293	skills/appllama-app-design-skill/references/performance.md
+b06ca813304d2890b794fd82c2729d386a170b3a	3971	skills/appllama-app-design-skill/references/simulator-loop.md
+b89260a9162dd1f5b8fbbf5c8ccdb91dedadfbb4	6486	skills/appllama-usage/SKILL.md
+89ab7942e238d6f5784cc3078f7ecc9f212343e2	379	skills/appllama-usage/agents/openai.yaml
+608daaf6c3b4ab3650e9cd3c764fa59c2d9d12ee	5342	skills/appllama-usage/references/build-from-scratch.md
+9603e2b102d81b37bbd1fa377b9dc0cb122204cc	3420	skills/appllama-usage/references/improve-a-screen.md
+5fe10d3d33e0056f7df2e1f0054a1d6ee88bcbe4	3797	skills/appllama-usage/references/research-methods.md

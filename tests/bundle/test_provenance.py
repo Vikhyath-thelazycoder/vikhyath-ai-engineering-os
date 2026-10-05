@@ -7,7 +7,7 @@ sys.path.insert(0, ROOT_DIR)
 
 from vikhyath.bundle import provenance, rules  # noqa: E402
 
-EXPECTED_BUNDLED_FILES = 2594  # P6: 36 generated gstack sections rendered from .tmpl; Angular mcp.md and 13 UI/UX tooling tests excluded
+EXPECTED_BUNDLED_FILES = 2583  # P6: 36 generated gstack sections rendered from .tmpl; Angular mcp.md and 13 UI/UX tooling tests excluded; D-034/D-035: −15 browser/visual files, +4 Appllama
 
 
 class TestPlannedProvenance(unittest.TestCase):

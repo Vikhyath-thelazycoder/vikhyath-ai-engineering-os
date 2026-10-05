@@ -50,9 +50,9 @@ Product-appropriate, non-generic, accessible interfaces with justified decisions
 | `design/typography` | Type scale, hierarchy, color systems | opendesign | 5 | 24.8 | 6,346 | L2 | none | False | none | bundled | — |
 | `design/ux` | UX laws, flows, forms, state coverage | opendesign | 2 | 33.7 | 8,631 | L2 | none | False | none | bundled | — |
 | `design/accessibility` | Accessible design baseline and checklist | addy, ecc, opendesign | 6 | 55.7 | 14,251 | L2 | none | False | none | bundled | — |
-| `design/motion` | Purposeful motion, animation discipline, reduced motion | ecc, opendesign | 15 | 173.5 | 44,424 | L2 | none | False | none | bundled | — |
-| `design/frontend` | Design-intent implementation (styling, shadcn, platform HIGs, image-to-code) | opendesign, taste, uiuxpromax | 144 | 6020.0 | 1,541,117 | L2 | none | False | none | bundled | — |
-| `design/design-review` | Design review and consultation method, specialist design roles | agency, gstack, opendesign | 25 | 236.3 | 60,481 | L2 | none | False | fallback | bundled | design/visual-quality |
+| `design/motion` | Purposeful motion, animation discipline, reduced motion (web and React Native gesture/spring motion) | appllama, ecc, opendesign | 16 | 177.9 | 45,541 | L2 | none | False | none | bundled | — |
+| `design/frontend` | Design-intent implementation (styling, shadcn, platform HIGs, native-mobile fidelity and navigation semantics, image-to-code) | appllama, opendesign, taste, uiuxpromax | 147 | 6045.3 | 1,547,589 | L2 | none | False | none | bundled | — |
+| `design/design-review` | Design review and consultation method, specialist design roles | agency, gstack, opendesign | 24 | 222.8 | 57,045 | L2 | none | False | none | bundled | design/visual-quality |
 | `design/brand` | Brand identity, voice, kits | ecc, opendesign, taste, uiuxpromax | 36 | 226.1 | 57,881 | L2 | none | False | none | bundled | — |
 
 ## testing
@@ -62,13 +62,14 @@ Evidence that implementation meets acceptance criteria — local and scripted fi
 | Capability | Purpose | Sources | Files | KB | On-disk est. tokens | Context | Runtime | Network | Browser | Origin | Uses |
 |---|---|---|---:|---:|---:|---|---|---|---|---|---|
 | `testing/strategy` | Test strategy, TDD, test value audit (QA: CORE) | addy, agency, ecc, gstack | 15 | 175.1 | 44,822 | L2 | none | False | none | bundled | — |
-| `testing/web-verification` | Local-first ladder: build, types, lint, unit/integration, HTTP/API, DOM/state, console/network capture (§23A) (QA: CORE) | agency, gstack | 16 | 66.7 | 17,078 | L2 | os-native | local-only | none | mixed | — |
+| `testing/local-verification` | Local test-first verification: discover and select the smallest sufficient test set by change impact, run unit/integration/API/state tests, types, lint, build; diagnose failures; targeted reruns (QA: CORE) | agency, ecc, gstack | 10 | 41.1 | 10,531 | L2 | os-native | local-only | none | mixed | testing/evidence |
 | `testing/security` | Authn/authz, input validation, request and dependency checks (QA: CORE) | — | 0 | 0.0 | 0 | L2 | os-native | local-only | none | mixed | engineering/security |
-| `testing/accessibility` | Automated a11y checks (evidence, not WCAG proof) (QA: CORE) | agency | 1 | 15.8 | 4,057 | L2 | os-native | False | fallback | mixed | design/accessibility |
+| `testing/accessibility` | Automated a11y checks (evidence, not WCAG proof) (QA: CORE) | agency | 1 | 15.8 | 4,057 | L2 | os-native | False | none | mixed | design/accessibility |
 | `testing/performance` | Measured latency, sizes, timings, benchmarks (QA: CORE) | addy, agency, ecc | 4 | 37.0 | 9,467 | L2 | os-native | local-only | none | mixed | — |
 | `testing/regression` | Regression and AI/eval regression harnesses (QA: CORE) | ecc | 14 | 103.7 | 26,548 | L2 | none | False | none | bundled | — |
-| `testing/release-verification` | Re-verify gates and evidence before claiming completion (QA: CORE) | agency, ecc | 5 | 41.6 | 10,657 | L2 | node | False | none | bundled | engineering/completion |
-| `testing/browser-fallback` | Bounded headless browser (then visible) only when deterministic checks cannot decide; emits BROWSER_FALLBACK_ACTIVATED (QA: FALLBACK) | addy, ecc, gstack | 7 | 41.2 | 10,541 | L2 | playwright-optional | local-only | fallback | mixed | — |
+| `testing/release-verification` | Re-verify gates and evidence before claiming completion (QA: CORE) | agency, ecc | 4 | 31.0 | 7,943 | L2 | node | False | none | bundled | engineering/completion |
+| `testing/evidence` | Machine-readable verification evidence (command, suite, counts, result, artifact hash) written to the project's verification state (QA: CORE) | — | 0 | 0.0 | 0 | L1 | os-native | False | none | os-native | — |
+| `testing/browser-exception` | Browser/visual verification is disabled by policy; an explicit user request is recorded as a logged per-project exception instead (QA: DISABLED_BY_POLICY) | — | 0 | 0.0 | 0 | L1 | os-native | False | none | os-native | — |
 
 ## seo
 
@@ -83,7 +84,7 @@ Evidence-based website search and AI-search visibility.
 | `seo/content` | Content quality, E-E-A-T, content gaps | beyondseo | 2 | 8.0 | 2,054 | L2 | none | True | none | bundled | — |
 | `seo/keyword-research` | Discovery, intent, clustering, keyword-to-page map | beyondseo | 8 | 16.9 | 4,323 | L2 | none | True | none | bundled | — |
 | `seo/competitor-research` | Competitor discovery, matrices, gap analyses | beyondseo | 7 | 14.1 | 3,606 | L2 | python-isolated | True | fallback | bundled | seo/runtime |
-| `seo/ai-search` | AEO and GEO: answer readiness, AI citations | beyondseo | 10 | 24.0 | 6,156 | L2 | none | True | none | bundled | — |
+| `seo/ai-search` | AEO and GEO: answer readiness, AI citations | beyondseo | 10 | 24.0 | 6,156 | L2 | none | True | none | bundled | seo/evidence |
 | `seo/entity` | Entity SEO and knowledge-graph presence | beyondseo | 2 | 4.6 | 1,182 | L2 | none | True | none | bundled | — |
 | `seo/local` | Local SEO, GBP, NAP, reviews | beyondseo | 7 | 8.3 | 2,119 | L2 | none | True | none | bundled | — |
 | `seo/backlinks-reputation` | Backlink audit/strategy, reputation evidence | beyondseo | 17 | 267.0 | 68,352 | L2 | python-isolated | True | none | bundled | seo/runtime |

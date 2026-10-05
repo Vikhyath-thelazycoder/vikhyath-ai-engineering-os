@@ -27,6 +27,8 @@ reason_codes:
   HOST_SPECIFIC_TOOL: "Requires a proprietary tool not available to the OS (e.g. Figma, Aside)"
   LICENSE: "License/notice file (carried verbatim with bundled content, D-002)"
   UNAUDITED_DEPENDENCY: "Requires an external package outside the audited upstream set (spec §43)"
+  BROWSER_POLICY: "Browser/Chrome DevTools/screenshot/simulator-recording verification; disabled by the local test-first policy (D-035, config/verification.yaml)"
+  PAID_SERVICE: "Requires a paid account, credits or a remote proprietary service (D-034)"
 
 repos:
 
@@ -85,7 +87,7 @@ repos:
       - {paths: ["skills/shipping-and-launch/**", "skills/ci-cd-and-automation/**", "skills/git-workflow-and-versioning/**", "skills/observability-and-instrumentation/**"], decision: ADAPT, capability: engineering/release, reason: "Release and production readiness"}
       - {paths: ["skills/deprecation-and-migration/**"], decision: ADAPT, capability: engineering/migration, reason: "Deprecation and migration"}
       - {paths: ["skills/test-driven-development/**"], decision: ADAPT, capability: testing/strategy, reason: "TDD loop"}
-      - {paths: ["skills/browser-testing-with-devtools/**"], decision: ADAPT, capability: testing/browser-fallback, reason: "Rewrite without DevTools MCP into the §23A ladder"}
+      - {paths: ["skills/browser-testing-with-devtools/**"], decision: EXCLUDE, reason: BROWSER_POLICY}
       - {paths: ["skills/context-engineering/**"], decision: REFERENCE, reason: "Design input for the OS context engine (P9)"}
       - {paths: ["skills/using-agent-skills/**"], decision: EXCLUDE, reason: SUPERSEDED}
       - {paths: ["docs/agents.md"], decision: COPY, capability: engineering/review, reason: "Agent usage doc linked from all 4 agents (closure)"}
@@ -108,8 +110,9 @@ repos:
       - {paths: ["design/*.md"], decision: ADAPT, capability: design/design-review, reason: "Design specialist roles (subcapability set in P3)"}
       - {paths: ["testing/testing-accessibility-auditor.md"], decision: ADAPT, capability: testing/accessibility, reason: "Accessibility auditor role"}
       - {paths: ["testing/testing-performance-benchmarker.md"], decision: ADAPT, capability: testing/performance, reason: "Performance role"}
-      - {paths: ["testing/testing-api-tester.md", "testing/testing-evidence-collector.md"], decision: ADAPT, capability: testing/web-verification, reason: "API testing and evidence collection"}
-      - {paths: ["testing/testing-reality-checker.md", "testing/testing-test-results-analyzer.md"], decision: ADAPT, capability: testing/release-verification, reason: "Reality check of completion claims"}
+      - {paths: ["testing/testing-evidence-collector.md", "testing/testing-reality-checker.md"], decision: EXCLUDE, reason: BROWSER_POLICY}
+      - {paths: ["testing/testing-api-tester.md"], decision: ADAPT, capability: testing/local-verification, reason: "API testing"}
+      - {paths: ["testing/testing-test-results-analyzer.md"], decision: ADAPT, capability: testing/release-verification, reason: "Test-result analysis before completion claims"}
       - {paths: ["testing/*.md"], decision: ADAPT, capability: testing/strategy, reason: "Testing roles"}
       - {paths: ["security/security-blockchain-security-auditor.md"], decision: EXCLUDE, reason: OUT_OF_DOMAIN}
       - {paths: ["security/*.md"], decision: ADAPT, capability: engineering/security, reason: "Security specialist roles"}
@@ -143,12 +146,13 @@ repos:
       - {paths: ["lib/cso/**"], decision: REFERENCE, reason: "Bun qualification runtime (docker images); CSO methodology is bundled from cso/"}
       - {paths: ["office-hours/**", "spec/**"], decision: ADAPT, capability: engineering/planning, reason: "Requirements intake and spec workflows (.tmpl + sections)"}
       - {paths: ["plan-eng-review/**", "plan-ceo-review/**"], decision: ADAPT, capability: engineering/planning, reason: "Plan review perspectives"}
-      - {paths: ["plan-design-review/**", "design-review/**", "design-consultation/**"], decision: ADAPT, capability: design/design-review, reason: "Design review and consultation method"}
+      - {paths: ["design-review/**"], decision: EXCLUDE, reason: BROWSER_POLICY}
+      - {paths: ["plan-design-review/**", "design-consultation/**"], decision: ADAPT, capability: design/design-review, reason: "Design review and consultation method (browse/screenshot steps dropped by the renderer, D-035)"}
       - {paths: ["lib/design-catalog.ts"], decision: ADAPT, capability: design/visual-quality, reason: "Anti-pattern catalogue (Apache-derived per NOTICE)"}
       - {paths: ["review/**"], decision: ADAPT, capability: engineering/review, reason: "Pre-landing review + checklists + specialists"}
       - {paths: ["investigate/**"], decision: ADAPT, capability: engineering/debugging, reason: "Root-cause investigation"}
-      - {paths: ["qa/sections/browser-setup.md*", "qa/sections/browser-verify.md*"], decision: ADAPT, capability: testing/browser-fallback, reason: "Browser steps rewritten to lazy headless fallback (§23A)"}
-      - {paths: ["qa/**", "qa-only/**"], decision: ADAPT, capability: testing/web-verification, reason: "QA methodology + issue taxonomy (local-first ladder)"}
+      - {paths: ["qa/SKILL.md.tmpl", "qa-only/SKILL.md.tmpl", "qa/sections/browser-setup.md*", "qa/sections/browser-verify.md*", "qa/sections/exploratory.md*", "qa-only/sections/exploratory.md*", "qa/sections/qa-patterns.md*", "qa/templates/qa-report-template.md"], decision: EXCLUDE, reason: BROWSER_POLICY}
+      - {paths: ["qa/**", "qa-only/**"], decision: ADAPT, capability: testing/local-verification, reason: "QA methodology, issue taxonomy, test bootstrap, reporting (no browser steps)"}
       - {paths: ["cso/**"], decision: ADAPT, capability: engineering/security, reason: "Security audit phases (CSO)"}
       - {paths: ["ship/**", "document-release/**", "canary/**"], decision: ADAPT, capability: engineering/release, reason: "Ship/release/canary methodology"}
       - {paths: ["retro/**"], decision: ADAPT, capability: engineering/release, reason: "Retrospectives"}
@@ -196,7 +200,8 @@ repos:
       - {paths: ["skills/codebase-onboarding/**", "skills/code-tour/**", "skills/repo-scan/**", "skills/workspace-surface-audit/**", "agents/code-explorer.md", "agents/spec-miner.md"], decision: ADAPT, capability: codebase/repository-understanding, reason: "Codebase understanding"}
       # testing
       - {paths: ["skills/tdd-workflow/**", "agents/tdd-guide.md"], decision: ADAPT, capability: testing/strategy, reason: "TDD"}
-      - {paths: ["skills/e2e-testing/**", "skills/browser-qa/**", "skills/click-path-audit/**", "agents/e2e-runner.md"], decision: ADAPT, capability: testing/browser-fallback, reason: "Headless E2E (lazy, fallback per §23A; MCP removed)"}
+      - {paths: ["skills/click-path-audit/**"], decision: ADAPT, capability: testing/local-verification, reason: "State-transition tracing of user touchpoints (no browser)"}
+      - {paths: ["skills/e2e-testing/**", "skills/browser-qa/**", "agents/e2e-runner.md"], decision: EXCLUDE, reason: BROWSER_POLICY}
       - {paths: ["skills/ai-regression-testing/**", "skills/eval-harness/**"], decision: ADAPT, capability: testing/regression, reason: "Regression and eval harness"}
       - {paths: ["skills/benchmark/**", "skills/benchmark-methodology/**"], decision: ADAPT, capability: testing/performance, reason: "Benchmarks"}
       # design
@@ -300,6 +305,23 @@ repos:
       - {paths: ["cli/**"], decision: EXCLUDE, reason: INSTALLER}
       - {paths: ["stack/**", "gallery/**"], decision: EXCLUDE, reason: PRODUCT_RUNTIME}
 
+  # Selective overlap audit (D-034, docs/audit/22_APPLLAMA_AND_VERIFICATION_POLICY_AUDIT.md): APPLLAMA_STATUS = MERGED.
+  # Only native-mobile rules absent from OpenDesign/Taste/UI-UX Pro Max/ECC are extracted, into existing capabilities.
+  appllama:
+    default: {decision: EXCLUDE, reason: OUT_OF_DOMAIN}
+    rules:
+      - {paths: ["LICENSE"], decision: COPY, capability: design/frontend, reason: LICENSE}
+      - {paths: [".mcp.json", "mcp.json"], decision: EXCLUDE, reason: MCP}
+      - {paths: ["skills/appllama-usage/**"], decision: EXCLUDE, reason: PAID_SERVICE}
+      - {paths: ["skills/appllama-app-design-skill/SKILL.md"], decision: ADAPT, capability: design/frontend, reason: "Native fidelity + navigation laws; MCP research, anti-slop (Taste canonical), state (ECC canonical), image assets and simulator loop removed by targeted rewrites"}
+      - {paths: ["skills/appllama-app-design-skill/references/native-controls.md"], decision: COPY, capability: design/frontend, reason: "Native control selection and wiring (unique: no bundled equivalent)"}
+      - {paths: ["skills/appllama-app-design-skill/references/motion.md"], decision: COPY, capability: design/motion, reason: "React Native gesture/spring/worklet motion (unique: bundled motion is web-only)"}
+      - {paths: ["skills/appllama-app-design-skill/references/simulator-loop.md"], decision: EXCLUDE, reason: BROWSER_POLICY}
+      - {paths: ["skills/appllama-app-design-skill/references/image-assets.md"], decision: EXCLUDE, reason: DUPLICATE}
+      - {paths: ["skills/appllama-app-design-skill/references/performance.md"], decision: EXCLUDE, reason: DUPLICATE}
+      - {paths: [".claude-plugin/**", ".cursor-plugin/**"], decision: EXCLUDE, reason: HOST_PORT}
+      - {paths: ["README.md", ".gitignore"], decision: EXCLUDE, reason: REPO_META}
+
   # ------------------------------------------------------------------ MEDIA
   brag:
     default: {decision: EXCLUDE, reason: DOC_ASSET}
@@ -379,3 +401,7 @@ accepted_gaps:
   - {repo: opendesign, target: design-systems/_schema/AGENTS.md, reason: "Schema tooling mention"}
   - {repo: beyondseo, target: docs/development.md, reason: "Docs index mention of excluded developer guide"}
   - {repo: ecc, target: skills/angular-developer/references/mcp.md, reason: "Angular MCP-server how-to excluded (§2.1); link removed when the stack pack is adapted"}
+  - {repo: appllama, target: skills/appllama-app-design-skill/references/image-assets.md, reason: "Link removed by SKILL.md ADAPT (image generation: Taste canonical; Higgsfield MCP excluded, D-034)"}
+  - {repo: appllama, target: skills/appllama-app-design-skill/references/performance.md, reason: "Link removed by SKILL.md ADAPT (RN performance: ECC rules canonical, D-034)"}
+  - {repo: appllama, target: skills/appllama-app-design-skill/references/simulator-loop.md, reason: "Link removed by SKILL.md ADAPT (simulator screenshot/recording loop excluded, D-035)"}
+  - {repo: ecc, target: skills/e2e-testing/SKILL.md, reason: "See-also link from React testing docs; browser E2E skill excluded by the local test-first policy (D-035); running a project's own E2E suite stays an ordinary test command"}

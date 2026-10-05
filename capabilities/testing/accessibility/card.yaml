@@ -6,7 +6,7 @@ intent_tags: [a11y test, accessibility audit]
 origin: mixed
 runtime_type: os-native
 requires_network: false
-requires_browser: fallback
+requires_browser: none  # D-035: a11y assertions (axe/jsdom, RNTL roles/labels, lint rules), never a browser session
 requires_codebase_analysis: false
 context_level: L2
 security_class: local-exec

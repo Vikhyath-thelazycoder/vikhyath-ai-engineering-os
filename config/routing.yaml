@@ -88,12 +88,20 @@ rules:
     select: [engineering/backend, engineering/security]
     weight: 2
 
+  # Spec (verification policy §18): a webhook change is verified by unit, signature, integration, negative-path,
+  # idempotency and security tests + typecheck/build — never by browser QA.
+  - id: webhook-verification
+    description: Payment/webhook changes select local verification and security tests
+    any: [webhook, webhooks, payment webhook, payment webhooks]
+    select: [testing/local-verification, testing/security]
+    weight: 2
+
   # ── Security (scenario C, spec §14 "Improve checkout security") ───────────────────────────────────────────────
   - id: security-change
     description: Security fixes and hardening
     any: [security, secure, vulnerability, vulnerable, harden, hardening, csrf, xss, sql injection, injection, owasp, webhook verification, signature verification, auth bypass]
     select: [engineering/security, codebase/impact-analysis, testing/security]
-    suppress: [design, media, seo, testing/web-verification]
+    suppress: [design, media, seo, testing/local-verification]
     weight: 4
 
   # ── Design (scenario D, spec §14) ─────────────────────────────────────────────────────────────────────────────
@@ -107,16 +115,24 @@ rules:
   - id: layout-check
     description: Responsive / layout verification (spec §23A.14 "mobile header overlaps the hero")
     any: [overlap, overlaps, overlapping, responsive, breakpoint, viewport, mobile layout, cut off, misaligned]
-    select: [design/visual-quality, design/frontend, testing/web-verification]
+    select: [design/visual-quality, design/frontend, testing/local-verification]
     suppress: [seo, media, engineering]
     weight: 3
 
-  # ── Web verification (§23A.14) ────────────────────────────────────────────────────────────────────────────────
+  # ── Native mobile (D-034: Appllama native rules merged into design/frontend + design/motion) ──────────────────
+  - id: mobile-native
+    description: React Native / Expo / native mobile app work (native fidelity, navigation semantics); no simulator loop
+    any: [react native, react-native, expo, expo router, ios app, android app, mobile app, native app, swiftui]
+    select: [design/frontend, engineering/frontend, testing/local-verification]
+    suppress: [seo, media]
+    weight: 3
+
+  # ── Verification: local test-first (D-035, config/verification.yaml) ─────────────────────────────────────────
   - id: flow-check
-    description: Check that a user flow works, deterministic checks first
+    description: Check that a user flow works with deterministic local tests (no browser)
     any: [check whether, check that, check if, verify, does it work, still work, works]
     require_any: [flow, login, log in, sign in, signup, sign up, checkout, logout, form, page, endpoint, api]
-    select: [testing/web-verification]
+    select: [testing/local-verification]
     weight: 3
 
   - id: auth-flow
@@ -125,11 +141,13 @@ rules:
     select: [testing/security]
     weight: 2
 
+  # An explicit request to see the site never starts an agent browser: local verification runs, and the request is
+  # surfaced as `browser: exception-requested` (recorded per project; the user operates any browser, D-035).
   - id: explicit-visual
-    description: The user explicitly asks to see the site (visible browser justified, §23A.14)
+    description: The user explicitly asks to see the site → local verification + logged browser-exception request
     regex: ['\b(open|show me|screenshot|take a screenshot of|look at)\b.*\b(site|website|page|app)\b', '\bwhat (it|the (site|website|page|app)) looks like\b']
-    select: [testing/browser-fallback]
-    explicit: true
+    select: [testing/local-verification]
+    browser_exception: true
     suppress: [engineering, seo, media, design]
     weight: 4
 
@@ -153,7 +171,7 @@ rules:
     description: Audit then fix SEO findings → engineering and testing follow the audit (scenario F)
     any: [fix, implement, resolve, repair, correct]
     require_any: [seo, sitemap, robots, canonical, indexing, meta tags, structured data]
-    select: [seo/auditing, seo/technical, engineering/implementation, testing/web-verification]
+    select: [seo/auditing, seo/technical, engineering/implementation, testing/local-verification]
     pipeline: [seo, engineering, testing]
     weight: 4
 

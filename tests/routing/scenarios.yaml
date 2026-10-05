@@ -4,8 +4,8 @@
 
 # The spec names some capabilities that the registry implements under a domain-first id (D-028, doc 06).
 aliases:
-  testing/integration: testing/web-verification
-  testing/responsive: testing/web-verification
+  testing/integration: testing/local-verification
+  testing/responsive: testing/local-verification
   seo/aeo: seo/ai-search
   seo/geo: seo/ai-search
   security baseline: engineering/security
@@ -32,7 +32,7 @@ scenarios:
     request: Audit my website's SEO.
     stage: unknown
     expect: [seo/auditing, seo/technical, seo/content, seo/evidence, seo/reporting, runtime/SEO crawler]
-    forbid: [engineering/, design/, media/, testing/browser-fallback]
+    forbid: [engineering/, design/, media/, testing/browser-exception]
     change_type: SEO_CHANGE
 
   - id: s14-ai-search
@@ -48,34 +48,56 @@ scenarios:
     expect: [engineering/planning, engineering/architecture, design/design-direction, security baseline, testing/strategy]
     forbid: [codebase/, seo/, media/]
 
-  # ── Spec §23A.14 web QA ───────────────────────────────────────────────────────────────────────────────────────
+  # ── Spec §23A.14 web QA, under the local test-first policy (D-035): browser is never selected ────────────────
   - id: s23a-login-flow
     request: Check whether the login flow works.
     stage: existing
-    expect: [testing/integration, testing/security]
-    forbid: [testing/browser-fallback, seo/, media/]
-    browser: fallback-only
+    expect: [testing/integration, testing/security, testing/evidence]
+    forbid: [testing/browser-exception, seo/, media/]
+    browser: disabled
 
   - id: s23a-mobile-overlap
     request: Check whether the mobile header overlaps the hero.
     stage: existing
     expect: [design/visual-quality, testing/responsive, design/frontend]
-    forbid: [testing/browser-fallback, seo/, media/]
-    browser: fallback-only
+    forbid: [testing/browser-exception, seo/, media/]
+    browser: disabled
 
   - id: s23a-explicit-visual
     request: Open the website and show me what it looks like.
     stage: existing
-    expect: [testing/browser-fallback]
-    forbid: [seo/, media/, engineering/]
-    browser: explicit-visual
+    expect: [testing/local-verification]
+    forbid: [testing/browser-exception, seo/, media/, engineering/]
+    browser: exception-requested
 
   - id: s23a-technical-seo
     request: Audit the site's technical SEO.
     stage: unknown
     expect: [seo/auditing, seo/technical, seo/evidence]
     forbid: [testing/, engineering/]
-    browser: none
+    browser: disabled
+
+  # ── Verification-policy routing examples (D-034, D-035) ───────────────────────────────────────────────────────
+  - id: vp-payment-webhook
+    request: Fix the payment webhook.
+    stage: existing
+    expect: [engineering/backend, engineering/security, codebase/impact-analysis, testing/local-verification, testing/security, testing/evidence]
+    forbid: [testing/browser-exception, design/, media/, seo/]
+    browser: disabled
+
+  - id: vp-react-website
+    request: Build a React website.
+    stage: new
+    expect: [engineering/frontend, design/frontend, testing/strategy]
+    forbid: [testing/browser-exception, codebase/, media/]
+    browser: disabled
+
+  - id: vp-react-native-app
+    request: Build a React Native application.
+    stage: new
+    expect: [design/frontend, engineering/frontend, testing/local-verification, testing/evidence]
+    forbid: [testing/browser-exception, seo/, media/, codebase/]
+    browser: disabled
 
   # ── Spec §70 end-to-end scenarios ─────────────────────────────────────────────────────────────────────────────
   - id: s70-a-new-saas
@@ -116,7 +138,7 @@ scenarios:
   - id: s70-f-seo-fix
     request: Audit my website and fix all technical SEO issues.
     stage: existing
-    expect: [seo/auditing, seo/technical, seo/evidence, engineering/implementation, testing/web-verification]
+    expect: [seo/auditing, seo/technical, seo/evidence, engineering/implementation, testing/local-verification]
     forbid: [media/, design/]
     pipeline: [seo, engineering, testing]
     change_type: SEO_CHANGE

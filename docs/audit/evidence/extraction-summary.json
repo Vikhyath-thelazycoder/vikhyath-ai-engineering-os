@@ -2,8 +2,8 @@
  "repos": {
   "addy": {
    "EXCLUDE": {
-    "files": 56,
-    "bytes": 426709
+    "files": 57,
+    "bytes": 441248
    },
    "REFERENCE": {
     "files": 112,
@@ -14,26 +14,40 @@
     "bytes": 75357
    },
    "ADAPT": {
-    "files": 34,
-    "bytes": 404546
+    "files": 33,
+    "bytes": 390007
    }
   },
   "agency": {
    "EXCLUDE": {
-    "files": 302,
-    "bytes": 3711351
+    "files": 304,
+    "bytes": 3731115
    },
    "COPY": {
     "files": 1,
     "bytes": 1079
    },
    "ADAPT": {
-    "files": 76,
-    "bytes": 1107141
+    "files": 74,
+    "bytes": 1087377
    },
    "REFERENCE": {
     "files": 2,
     "bytes": 11353
+   }
+  },
+  "appllama": {
+   "EXCLUDE": {
+    "files": 14,
+    "bytes": 37496
+   },
+   "COPY": {
+    "files": 3,
+    "bytes": 10137
+   },
+   "ADAPT": {
+    "files": 1,
+    "bytes": 20220
    }
   },
   "beacon": {
@@ -96,16 +110,16 @@
   },
   "ecc": {
    "EXCLUDE": {
-    "files": 3532,
-    "bytes": 54054033
+    "files": 3535,
+    "bytes": 54071386
    },
    "COPY": {
     "files": 1,
     "bytes": 1071
    },
    "ADAPT": {
-    "files": 389,
-    "bytes": 2262607
+    "files": 386,
+    "bytes": 2245254
    },
    "REFERENCE": {
     "files": 272,
@@ -140,8 +154,8 @@
   },
   "gstack": {
    "EXCLUDE": {
-    "files": 2351,
-    "bytes": 47550520
+    "files": 2360,
+    "bytes": 47591812
    },
    "REFERENCE": {
     "files": 229,
@@ -152,8 +166,8 @@
     "bytes": 14896
    },
    "ADAPT": {
-    "files": 94,
-    "bytes": 813920
+    "files": 85,
+    "bytes": 772628
    }
   },
   "karpathy": {
@@ -308,9 +322,9 @@
    ]
   },
   "design/design-review": {
-   "files": 25,
-   "bytes": 241924,
-   "est_tokens": 60481,
+   "files": 24,
+   "bytes": 228182,
+   "est_tokens": 57045,
    "sources": [
     "agency",
     "gstack",
@@ -329,20 +343,22 @@
    ]
   },
   "design/frontend": {
-   "files": 144,
-   "bytes": 6164470,
-   "est_tokens": 1541117,
+   "files": 147,
+   "bytes": 6190358,
+   "est_tokens": 1547589,
    "sources": [
+    "appllama",
     "opendesign",
     "taste",
     "uiuxpromax"
    ]
   },
   "design/motion": {
-   "files": 15,
-   "bytes": 177697,
-   "est_tokens": 44424,
+   "files": 16,
+   "bytes": 182166,
+   "est_tokens": 45541,
    "sources": [
+    "appllama",
     "ecc",
     "opendesign"
    ]
@@ -722,12 +738,12 @@
     "agency"
    ]
   },
-  "testing/browser-fallback": {
-   "files": 7,
-   "bytes": 42165,
-   "est_tokens": 10541,
+  "testing/local-verification": {
+   "files": 10,
+   "bytes": 42125,
+   "est_tokens": 10531,
    "sources": [
-    "addy",
+    "agency",
     "ecc",
     "gstack"
    ]
@@ -751,9 +767,9 @@
    ]
   },
   "testing/release-verification": {
-   "files": 5,
-   "bytes": 42629,
-   "est_tokens": 10657,
+   "files": 4,
+   "bytes": 31775,
+   "est_tokens": 7943,
    "sources": [
     "agency",
     "ecc"
@@ -767,15 +783,6 @@
     "addy",
     "agency",
     "ecc",
-    "gstack"
-   ]
-  },
-  "testing/web-verification": {
-   "files": 16,
-   "bytes": 68312,
-   "est_tokens": 17078,
-   "sources": [
-    "agency",
     "gstack"
    ]
   }

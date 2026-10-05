@@ -512,7 +512,7 @@ ADAPT	Per-language reviewer/build roles	engineering/stack-packs	9519	agents/djan
 ADAPT	Per-language reviewer/build roles	engineering/stack-packs	7985	agents/django-reviewer.md
 ADAPT	Docs	engineering/documentation	4376	agents/doc-updater.md
 EXCLUDE	OUT_OF_DOMAIN		4566	agents/docs-lookup.md
-ADAPT	Headless E2E (lazy, fallback per §23A; MCP removed)	testing/browser-fallback	5079	agents/e2e-runner.md
+EXCLUDE	BROWSER_POLICY		5079	agents/e2e-runner.md
 ADAPT	Per-language reviewer/build roles	engineering/stack-packs	3514	agents/fastapi-reviewer.md
 ADAPT	Per-language reviewer/build roles	engineering/stack-packs	15239	agents/flutter-reviewer.md
 ADAPT	Per-language reviewer/build roles	engineering/stack-packs	5618	agents/fsharp-reviewer.md
@@ -3315,7 +3315,7 @@ ADAPT	Brand voice	design/brand	1517	skills/brand-discovery/references/70_founder
 ADAPT	Brand voice	design/brand	3063	skills/brand-discovery/references/90_SYNTHESIS.md
 ADAPT	Brand voice	design/brand	3648	skills/brand-voice/SKILL.md
 ADAPT	Brand voice	design/brand	1063	skills/brand-voice/references/voice-profile-schema.md
-ADAPT	Headless E2E (lazy, fallback per §23A; MCP removed)	testing/browser-fallback	4104	skills/browser-qa/SKILL.md
+EXCLUDE	BROWSER_POLICY		4104	skills/browser-qa/SKILL.md
 ADAPT	Language/framework packs	engineering/stack-packs	2608	skills/bun-runtime/SKILL.md
 ADAPT	Release	engineering/release	3128	skills/canary-watch/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		23645	skills/carrier-relationship-management/SKILL.md
@@ -3331,7 +3331,7 @@ EXCLUDE	OUT_OF_DOMAIN		7574	skills/ck/commands/save.mjs
 EXCLUDE	OUT_OF_DOMAIN		15267	skills/ck/commands/shared.mjs
 EXCLUDE	OUT_OF_DOMAIN		8835	skills/ck/hooks/session-start.mjs
 EXCLUDE	OUT_OF_DOMAIN		6216	skills/claude-devfleet/SKILL.md
-ADAPT	Headless E2E (lazy, fallback per §23A; MCP removed)	testing/browser-fallback	7975	skills/click-path-audit/SKILL.md
+ADAPT	State-transition tracing of user touchpoints (no browser)	testing/local-verification	7975	skills/click-path-audit/SKILL.md
 ADAPT	Language/framework packs	engineering/stack-packs	10731	skills/clickhouse-io/SKILL.md
 ADAPT	Codebase understanding	codebase/repository-understanding	8030	skills/code-tour/SKILL.md
 ADAPT	Codebase understanding	codebase/repository-understanding	8235	skills/codebase-onboarding/SKILL.md
@@ -3399,7 +3399,7 @@ ADAPT	Release	engineering/release	14937	skills/docker-patterns/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		4912	skills/documentation-lookup/SKILL.md
 ADAPT	Language/framework packs	engineering/stack-packs	9316	skills/dotnet-patterns/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		5389	skills/dynamic-workflow-mode/SKILL.md
-ADAPT	Headless E2E (lazy, fallback per §23A; MCP removed)	testing/browser-fallback	8170	skills/e2e-testing/SKILL.md
+EXCLUDE	BROWSER_POLICY		8170	skills/e2e-testing/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		5713	skills/ecc-guide/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		6451	skills/ecc-recipes/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		6477	skills/ecc-tools-cost-audit/SKILL.md

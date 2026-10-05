@@ -515,10 +515,10 @@ REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to 
 ADAPT	Security audit phases (CSO)	engineering/security	15396	cso/sections/audit-phases.md.tmpl
 ADAPT	Security audit phases (CSO)	engineering/security	777	cso/sections/manifest.json
 REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		59824	design-consultation/SKILL.md
-ADAPT	Design review and consultation method	design/design-review	11597	design-consultation/SKILL.md.tmpl
-ADAPT	Design review and consultation method	design/design-review	676	design-consultation/sections/manifest.json
+ADAPT	Design review and consultation method (browse/screenshot steps dropped by the renderer, D-035)	design/design-review	11597	design-consultation/SKILL.md.tmpl
+ADAPT	Design review and consultation method (browse/screenshot steps dropped by the renderer, D-035)	design/design-review	676	design-consultation/sections/manifest.json
 REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		38798	design-consultation/sections/proposal-and-preview.md
-ADAPT	Design review and consultation method	design/design-review	18908	design-consultation/sections/proposal-and-preview.md.tmpl
+ADAPT	Design review and consultation method (browse/screenshot steps dropped by the renderer, D-035)	design/design-review	18908	design-consultation/sections/proposal-and-preview.md.tmpl
 REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		54821	design-html/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		20014	design-html/SKILL.md.tmpl
 REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		3667	design-html/sections/detector-install-offer.md
@@ -530,7 +530,7 @@ REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to 
 EXCLUDE	OUT_OF_DOMAIN		4764	design-html/sections/pretext-patterns.md.tmpl
 EXCLUDE	OUT_OF_DOMAIN		30602	design-html/vendor/pretext.js
 REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		132120	design-review/SKILL.md
-ADAPT	Design review and consultation method	design/design-review	13742	design-review/SKILL.md.tmpl
+EXCLUDE	BROWSER_POLICY		13742	design-review/SKILL.md.tmpl
 REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		53115	design-shotgun/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		15041	design-shotgun/SKILL.md.tmpl
 REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		4711	design-shotgun/sections/doctrine.md
@@ -972,10 +972,10 @@ ADAPT	Plan review perspectives	engineering/planning	803	plan-ceo-review/sections
 REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		81291	plan-ceo-review/sections/review-sections.md
 ADAPT	Plan review perspectives	engineering/planning	39630	plan-ceo-review/sections/review-sections.md.tmpl
 REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		78530	plan-design-review/SKILL.md
-ADAPT	Design review and consultation method	design/design-review	20546	plan-design-review/SKILL.md.tmpl
-ADAPT	Design review and consultation method	design/design-review	574	plan-design-review/sections/manifest.json
+ADAPT	Design review and consultation method (browse/screenshot steps dropped by the renderer, D-035)	design/design-review	20546	plan-design-review/SKILL.md.tmpl
+ADAPT	Design review and consultation method (browse/screenshot steps dropped by the renderer, D-035)	design/design-review	574	plan-design-review/sections/manifest.json
 REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		50340	plan-design-review/sections/review-sections.md
-ADAPT	Design review and consultation method	design/design-review	20772	plan-design-review/sections/review-sections.md.tmpl
+ADAPT	Design review and consultation method (browse/screenshot steps dropped by the renderer, D-035)	design/design-review	20772	plan-design-review/sections/review-sections.md.tmpl
 REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		68193	plan-devex-review/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		20392	plan-devex-review/SKILL.md.tmpl
 EXCLUDE	OUT_OF_DOMAIN		7285	plan-devex-review/dx-hall-of-fame.md
@@ -990,32 +990,32 @@ ADAPT	Plan review perspectives	engineering/planning	33007	plan-eng-review/sectio
 REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		56598	plan-tune/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		27850	plan-tune/SKILL.md.tmpl
 REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		44980	qa-only/SKILL.md
-ADAPT	QA methodology + issue taxonomy (local-first ladder)	testing/web-verification	10939	qa-only/SKILL.md.tmpl
+EXCLUDE	BROWSER_POLICY		10939	qa-only/SKILL.md.tmpl
 REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		7170	qa-only/sections/exploratory.md
-ADAPT	QA methodology + issue taxonomy (local-first ladder)	testing/web-verification	19	qa-only/sections/exploratory.md.tmpl
-ADAPT	QA methodology + issue taxonomy (local-first ladder)	testing/web-verification	522	qa-only/sections/manifest.json
+EXCLUDE	BROWSER_POLICY		19	qa-only/sections/exploratory.md.tmpl
+ADAPT	QA methodology, issue taxonomy, test bootstrap, reporting (no browser steps)	testing/local-verification	522	qa-only/sections/manifest.json
 REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		4881	qa-only/sections/reporting.md
-ADAPT	QA methodology + issue taxonomy (local-first ladder)	testing/web-verification	4765	qa-only/sections/reporting.md.tmpl
+ADAPT	QA methodology, issue taxonomy, test bootstrap, reporting (no browser steps)	testing/local-verification	4765	qa-only/sections/reporting.md.tmpl
 REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		51939	qa/SKILL.md
-ADAPT	QA methodology + issue taxonomy (local-first ladder)	testing/web-verification	11306	qa/SKILL.md.tmpl
-ADAPT	QA methodology + issue taxonomy (local-first ladder)	testing/web-verification	3839	qa/references/issue-taxonomy.md
+EXCLUDE	BROWSER_POLICY		11306	qa/SKILL.md.tmpl
+ADAPT	QA methodology, issue taxonomy, test bootstrap, reporting (no browser steps)	testing/local-verification	3839	qa/references/issue-taxonomy.md
 REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		10614	qa/sections/browser-setup.md
-ADAPT	Browser steps rewritten to lazy headless fallback (§23A)	testing/browser-fallback	1364	qa/sections/browser-setup.md.tmpl
+EXCLUDE	BROWSER_POLICY		1364	qa/sections/browser-setup.md.tmpl
 REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		1055	qa/sections/browser-verify.md
-ADAPT	Browser steps rewritten to lazy headless fallback (§23A)	testing/browser-fallback	934	qa/sections/browser-verify.md.tmpl
+EXCLUDE	BROWSER_POLICY		934	qa/sections/browser-verify.md.tmpl
 REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		6411	qa/sections/exploratory.md
-ADAPT	QA methodology + issue taxonomy (local-first ladder)	testing/web-verification	19	qa/sections/exploratory.md.tmpl
-ADAPT	QA methodology + issue taxonomy (local-first ladder)	testing/web-verification	2393	qa/sections/manifest.json
+EXCLUDE	BROWSER_POLICY		19	qa/sections/exploratory.md.tmpl
+ADAPT	QA methodology, issue taxonomy, test bootstrap, reporting (no browser steps)	testing/local-verification	2393	qa/sections/manifest.json
 REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		11308	qa/sections/qa-patterns.md
-ADAPT	QA methodology + issue taxonomy (local-first ladder)	testing/web-verification	19	qa/sections/qa-patterns.md.tmpl
+EXCLUDE	BROWSER_POLICY		19	qa/sections/qa-patterns.md.tmpl
 REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		1590	qa/sections/scope.md
-ADAPT	QA methodology + issue taxonomy (local-first ladder)	testing/web-verification	13	qa/sections/scope.md.tmpl
+ADAPT	QA methodology, issue taxonomy, test bootstrap, reporting (no browser steps)	testing/local-verification	13	qa/sections/scope.md.tmpl
 REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		3816	qa/sections/system-functional.md
-ADAPT	QA methodology + issue taxonomy (local-first ladder)	testing/web-verification	18	qa/sections/system-functional.md.tmpl
+ADAPT	QA methodology, issue taxonomy, test bootstrap, reporting (no browser steps)	testing/local-verification	18	qa/sections/system-functional.md.tmpl
 REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		5995	qa/sections/test-bootstrap.md
-ADAPT	QA methodology + issue taxonomy (local-first ladder)	testing/web-verification	5598	qa/sections/test-bootstrap.md.tmpl
-ADAPT	QA methodology + issue taxonomy (local-first ladder)	testing/web-verification	3162	qa/templates/functional-report-template.md
-ADAPT	QA methodology + issue taxonomy (local-first ladder)	testing/web-verification	2950	qa/templates/qa-report-template.md
+ADAPT	QA methodology, issue taxonomy, test bootstrap, reporting (no browser steps)	testing/local-verification	5598	qa/sections/test-bootstrap.md.tmpl
+ADAPT	QA methodology, issue taxonomy, test bootstrap, reporting (no browser steps)	testing/local-verification	3162	qa/templates/functional-report-template.md
+EXCLUDE	BROWSER_POLICY		2950	qa/templates/qa-report-template.md
 REFERENCE	GENERATED from the sibling .tmpl; read by the P6 template renderer to recover methodology placeholder expansions, never bundled as-is		72925	retro/SKILL.md
 ADAPT	Retrospectives	engineering/release	39212	retro/SKILL.md.tmpl
 ADAPT	Retrospectives	engineering/release	682	retro/sections/manifest.json

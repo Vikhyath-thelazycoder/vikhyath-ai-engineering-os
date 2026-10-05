@@ -22,6 +22,7 @@ LICENSES = {
     "addy": "MIT", "agency": "MIT", "beacon": "MIT", "beyondseo": "MIT", "brag": "MIT", "ecc": "MIT",
     "graphify": "Apache-2.0 (+MIT)", "gstack": "MIT (+Apache-2.0 notices)", "karpathy": "MIT (declared)",
     "opendesign": "Apache-2.0", "ponytail": "MIT", "taste": "MIT", "uiuxpromax": "MIT", "unlazy": "MIT",
+    "appllama": "MIT",
 }
 
 

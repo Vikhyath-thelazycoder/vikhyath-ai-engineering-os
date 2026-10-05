@@ -1,0 +1,19 @@
+decision	reason	capability	bytes	path
+EXCLUDE	HOST_PORT		635	.claude-plugin/plugin.json
+EXCLUDE	HOST_PORT		723	.cursor-plugin/plugin.json
+EXCLUDE	REPO_META		14	.gitignore
+EXCLUDE	MCP		115	.mcp.json
+COPY	LICENSE	design/frontend	1103	LICENSE
+EXCLUDE	REPO_META		5606	README.md
+EXCLUDE	MCP		93	mcp.json
+ADAPT	Native fidelity + navigation laws; MCP research, anti-slop (Taste canonical), state (ECC canonical), image assets and simulator loop removed by targeted rewrites	design/frontend	20220	skills/appllama-app-design-skill/SKILL.md
+EXCLUDE	DUPLICATE		3622	skills/appllama-app-design-skill/references/image-assets.md
+COPY	React Native gesture/spring/worklet motion (unique: bundled motion is web-only)	design/motion	4469	skills/appllama-app-design-skill/references/motion.md
+COPY	Native control selection and wiring (unique: no bundled equivalent)	design/frontend	4565	skills/appllama-app-design-skill/references/native-controls.md
+EXCLUDE	DUPLICATE		3293	skills/appllama-app-design-skill/references/performance.md
+EXCLUDE	BROWSER_POLICY		3971	skills/appllama-app-design-skill/references/simulator-loop.md
+EXCLUDE	PAID_SERVICE		6486	skills/appllama-usage/SKILL.md
+EXCLUDE	PAID_SERVICE		379	skills/appllama-usage/agents/openai.yaml
+EXCLUDE	PAID_SERVICE		5342	skills/appllama-usage/references/build-from-scratch.md
+EXCLUDE	PAID_SERVICE		3420	skills/appllama-usage/references/improve-a-screen.md
+EXCLUDE	PAID_SERVICE		3797	skills/appllama-usage/references/research-methods.md

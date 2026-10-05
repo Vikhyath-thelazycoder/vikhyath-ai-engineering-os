@@ -29,9 +29,11 @@ Routing is done by the OS core, not by reading this file. Do not pick capabiliti
    - `capabilities` are listed in guidance order (`config/priorities.yaml`: user requirements → project security →
      project architecture → methodology → specialists → review → simplicity). On conflicting advice, the earlier one wins.
    - `dependencies` are internal capabilities the selected ones need; use them through those capabilities.
-   - `fallbacks` apply only when the primary capability cannot decide (e.g. browser fallback after deterministic checks).
-   - `browser`: `none` → no browser; `fallback-only` → deterministic checks first; `explicit-visual` → the user asked
-     to see the page.
+   - `fallbacks` apply only when the primary capability cannot decide.
+   - `verification_mode` is always `local-test-first` (`config/verification.yaml`): verify with tests, types, lint,
+     build and recorded evidence. Never open Chrome, use DevTools, or take or inspect screenshots to verify.
+   - `browser`: `disabled` → no browser at all; `exception-requested` → the user explicitly asked to see the page: run
+     local verification, give them the URL to open themselves, and record the exception with its reason.
    - `pipeline` gives the domain order for multi-domain work (e.g. SEO audit → engineering → testing).
    - `confidence: low` (BM25 fallback) or `none`: confirm the intent with the user before acting.
 

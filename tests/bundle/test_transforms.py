@@ -78,6 +78,65 @@ class TestGstackRenderer(unittest.TestCase):
         self.assertEqual(len(groups), 1)
 
 
+# Minimal stand-in with every anchor the Appllama rewrites target (the real file is staged, not committed).
+APPLLAMA_SAMPLE = """---
+description: Build screens ... pairs with the Appllama MCP.
+---
+
+# Appllama App Design Skill
+
+## The Prime Directive: study before you draw
+
+1. If the **Appllama MCP** is connected, pull real screens.
+
+## Navigation laws
+
+6. **Study the grammar, not just the pixels.** Walking a winning flow on
+   Appllama, note what each step *is* — push, modal, sheet — and copy that
+   consistency.
+
+## Anti-slop laws
+
+1. No AI-default styling.
+
+## Motion laws
+
+- The bar: 60 fps through the hero flow, measured on a release build. Watch the recording once for feel, once frame
+  by frame, and again next day with fresh eyes.
+
+## State architecture
+
+- Server state in TanStack Query.
+
+## Perceived performance
+
+- Cold-start TTI and bundle discipline live in
+  [references/performance.md](references/performance.md) — apply the
+  measure → optimize → re-measure loop, never blind memoization.
+
+## Image & illustration assets
+
+- Generate assets with the Higgsfield MCP/CLI if connected.
+
+## The simulator loop (non-negotiable)
+
+2. Screenshot (`xcrun simctl io booted screenshot s.png`) and actually look.
+
+### The full-motion pass (mandatory, per flow)
+
+Screen-record the entire flow.
+
+## Definition of done, per screen
+
+- [ ] Studied 10+ real reference screens via Appllama MCP
+
+## References
+
+| [references/simulator-loop.md](references/simulator-loop.md) | Final verification |
+| [references/image-assets.md](references/image-assets.md) | Images |
+"""
+
+
 class TestRewrites(unittest.TestCase):
     def test_each_rewrite_applies(self):
         samples = {
@@ -87,6 +146,11 @@ class TestRewrites(unittest.TestCase):
                                         "For Lovable execution, read [the Lovable host guide](docs/lovable.md) for details.\n\nNext."),
             ("ecc", "rules/README.md"): "```bash\n./install.sh typescript\n./install.sh python\n```\n",
             ("uiuxpromax", ".claude/skills/ui-ux-pro-max/SKILL.md"): 'python "${CLAUDE_PLUGIN_ROOT}/.claude/skills/ui-ux-pro-max/scripts/search.py"',
+            ("appllama", "skills/appllama-app-design-skill/SKILL.md"): APPLLAMA_SAMPLE,
+            ("gstack", "review/SKILL.md"): ("From the installed /review SKILL.md's directory, choose one path:\n"
+                                            "- If the caller directory is `review`, Read `../qa/sections/exploratory.md` in full.\n"
+                                            "Resolve QA's `sections/...` and `templates/...` paths from that installed QA "
+                                            "SKILL.md directory, not the caller or product directory.\n"),
         }
         self.assertEqual(set(samples), set(rewrites.REWRITES))
         for (repo, path), text in samples.items():
@@ -96,6 +160,15 @@ class TestRewrites(unittest.TestCase):
             self.assertNotIn("docs/lovable.md", out)
             self.assertNotIn("./install.sh", out)
             self.assertNotIn("CLAUDE_PLUGIN_ROOT", out)
+            for gone in ("Appllama MCP", "simctl", "Higgsfield", "references/performance.md", "sections/exploratory.md",
+                         "references/simulator-loop.md", "references/image-assets.md"):
+                self.assertNotIn(gone, out)
+
+    def test_appllama_keeps_native_rules_and_local_verification(self):
+        out = rewrites.apply("appllama", "skills/appllama-app-design-skill/SKILL.md", APPLLAMA_SAMPLE)
+        self.assertIn("## Navigation laws", out)
+        self.assertIn("## Verification (Vikhyath local test-first, D-035)", out)
+        self.assertIn("design/visual-quality", out)  # anti-slop canonical in Taste/OpenDesign
 
     def test_drift_raises(self):
         with self.assertRaises(rewrites.RewriteDrift):

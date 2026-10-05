@@ -8,9 +8,11 @@ from datetime import datetime, timezone
 
 import yaml
 
+from ..events.log import emit
 from ..isolation import atomic
 from ..isolation.guard import guard_for
 from ..isolation.locks import project_lock
+from ..verify import policy
 
 _LOADER = getattr(yaml, "CSafeLoader", yaml.SafeLoader)    # libyaml when available: state reads stay cheap
 
@@ -70,9 +72,17 @@ def new_state(project, stage: str, stack=(), plan_path: str = DEFAULT_PLAN):
         "stack": list(stack),
         "plan": {"path": plan_path, "current_phase": None},
         "answers": {},
-        "verification": {"last": None},
+        "verification": verification_block(),
         "updated": now(),
     }
+
+
+def verification_block(existing=None):
+    """state.yaml `verification`: the global policy (D-035) + this project's last result. Policy fields are always
+    re-derived from config/verification.yaml, so no project can carry a different mode."""
+    block = policy.state_block(policy.load_policy())
+    block["last"] = (existing or {}).get("last")
+    return block
 
 
 def save_state(project, state):
@@ -97,7 +107,24 @@ def record_verification(project, task: str | None, result: str, evidence: str | 
         data = read_yaml(path) or {"schema_version": SCHEMA_VERSION, "results": []}
         data["results"].append(entry)
         write_yaml(path, data)
-    update_state(project, lambda s: s["verification"].__setitem__("last", entry))
+    update_state(project, lambda s: s.__setitem__("verification", {**verification_block(s.get("verification")),
+                                                                    "last": entry}))
+    return entry
+
+
+def record_browser_exception(project, reason: str, requested_by: str = "user"):
+    """Log an explicit, per-project browser-exception request (testing/browser-exception, D-035). It enables nothing:
+    the user operates any browser and screenshots never enter model context. Stored only in this project."""
+    if not reason or not reason.strip():
+        raise StateError("a browser exception needs the reason local verification was insufficient")
+    entry = {"reason": reason.strip(), "requested_by": requested_by, "at": now(), "screenshots_in_context": False}
+    path = checked(project, project.state_dir / VERIFICATION_FILE, "write")
+    with project_lock(project, "verification"):
+        data = read_yaml(path) or {"schema_version": SCHEMA_VERSION, "results": []}
+        data.setdefault("browser_exceptions", []).append(entry)
+        write_yaml(path, data)
+    emit(project, "BROWSER_EXCEPTION_REQUESTED", severity="medium", capabilities=["testing/browser-exception"],
+         details={"reason": entry["reason"], "requested_by": requested_by, "screenshots_in_context": False})
     return entry
 
 
@@ -118,7 +145,9 @@ def summary_lines(state, index=None, pending=()):
         for q in pending:
             by[q["priority"]] = by.get(q["priority"], 0) + 1
         lines.append("pending questions: " + ", ".join(f"{n} {p}" for p, n in by.items()))
-    last = (state.get("verification") or {}).get("last")
+    ver = state.get("verification") or {}
+    lines.append(f"verification: {ver.get('mode') or policy.MODE} (no browser/Chrome DevTools/screenshots)")
+    last = ver.get("last")
     if last:
         lines.append(" ".join(f"last verification: {last['result']} {last.get('task') or ''} at {last['at']}".split()))
     return lines

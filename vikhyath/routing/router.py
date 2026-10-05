@@ -8,12 +8,13 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 from ..registry import loader
+from ..verify import policy
 from .classify import classify_change, normalize
 from .fallback_bm25 import BM25
 from .rules import load_hierarchy, load_routing, match_paths, match_rules, role_of
 from .select import ROUTABLE_MODES, Candidate, dependency_closure, domain_of, select_capabilities
 
-ROUTE_SCHEMA_VERSION = 1
+ROUTE_SCHEMA_VERSION = 2  # 2: browser = disabled | exception-requested; verification_mode (D-035)
 
 
 @dataclass
@@ -35,6 +36,7 @@ class Router:
         self.cards = cards if cards is not None else loader.load_cards(root)
         self.cfg = cfg if cfg is not None else load_routing(root)
         self.hierarchy = load_hierarchy(root)
+        self.verification_mode = policy.load_policy(root)["mode"]
         self._bm25 = None
 
     @property
@@ -71,7 +73,8 @@ class Router:
             for cid, score in self.bm25.top(text, limits.get("bm25_top_k", 3), limits.get("bm25_min_score", 1.5)):
                 if cid not in have:
                     selected.append(Candidate(cid, 0, False, [f"bm25 fallback (score {score})"]))
-                    method = "bm25" if method == "none" else method if method.endswith("+bm25") else f"{method}+bm25"
+                    method = ("bm25" if method in ("none", "bm25") else
+                              method if method.endswith("+bm25") else f"{method}+bm25")
 
         domain_score = {}
         for c in selected:
@@ -95,9 +98,8 @@ class Router:
         fallbacks = {c: self.cards[c]["fallback_capability"] for c in ids
                      if self.cards[c]["fallback_capability"] and self.cards[c]["fallback_capability"] not in all_ids}
         pipeline = next((h.pipeline for h in hits if h.pipeline), None) or domains
-        explicit_visual = any(h.explicit and "testing/browser-fallback" in h.select for h in hits)
-        browser = ("explicit-visual" if explicit_visual and "testing/browser-fallback" in ids
-                   else "fallback-only" if "testing/browser-fallback" in fallbacks.values() else "none")
+        # D-035: browser verification is disabled by policy; an explicit request is only surfaced, never activated.
+        browser = "exception-requested" if any(h.browser_exception for h in hits) else "disabled"
         confidence = ("high" if any(c.strong for c in selected) and best >= confident else
                       "medium" if selected and best >= confident else
                       "low" if selected else "none")
@@ -117,6 +119,7 @@ class Router:
             "dependencies": deps,
             "fallbacks": fallbacks,
             "browser": browser,
+            "verification_mode": self.verification_mode,
             "pipeline": pipeline,
             "suppressed": suppressed,
             "rules": [h.rule for h in hits],

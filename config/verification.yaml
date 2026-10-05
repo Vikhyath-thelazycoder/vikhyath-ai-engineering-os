@@ -1,0 +1,51 @@
+# Vikhyath OS verification policy — the ONE source of truth (D-035). Global; read by the router, project state,
+# diagnostics and every host adapter (P19–P22 receive this same policy; no adapter may override it).
+# Per-project browser exceptions live only in <project>/.vikhyath/verification.yaml (isolated per project, P11).
+
+version: 1
+mode: local-test-first
+
+# Disabled verification mechanisms. `vikhyath validate` fails if any of them is switched on here, if an enabled
+# capability declares them, or if a routing rule can select a DISABLED_BY_POLICY capability.
+disabled:
+  browser_visual_verification: true
+  chrome_devtools: true
+  screenshot_verification: true
+  screenshot_comparison: true
+  visual_browser_qa: true
+  simulator_recording_loop: true
+
+# Default pipeline (spec: IMPLEMENT → TEST → STATIC → SECURITY → INTEGRATION → ACCEPTANCE → EVIDENCE → STATE UPDATE).
+pipeline: [implement, test, static, security, integration, acceptance, evidence, state-update]
+
+# Check kinds in run order. Selection is by change impact (codebase/impact-analysis), smallest sufficient set first;
+# the full suite runs only for release verification.
+checks: [unit, integration, regression, api, state-dom, security, accessibility, performance, typecheck, lint, build]
+
+# What counts as evidence: a command with its exit code and counts. Never "looks correct" or a screenshot.
+evidence:
+  required_fields: [command, exit_code, result, at]
+  optional_fields: [suite, passed, failed, skipped, duration_ms, report, artifact_sha256]
+  results: [PASSED, FAILED, NOT_TESTED, BLOCKED]
+  forbidden: [screenshot, visual inspection, "looks correct"]
+
+# Running a project's OWN existing E2E suite headlessly (e.g. `npx playwright test`) is an ordinary test command whose
+# counts are evidence. The OS never drives a browser itself, never adds screenshot/visual-diff assertions and never
+# puts screenshots into model context.
+
+# The only browser path: an explicit, logged, per-project exception (testing/browser-exception, DISABLED_BY_POLICY).
+browser_exception:
+  requires_all:
+    - local deterministic checks cannot verify the behaviour
+    - no equivalent test exists
+    - the user explicitly asked for browser-level validation
+  rules:
+    - the user operates the browser; the agent does not navigate, click or capture
+    - screenshots are never sent into model context
+    - the reason local verification was insufficient is recorded (BROWSER_EXCEPTION_REQUESTED event)
+  scope: project  # recorded in that project's .vikhyath/verification.yaml only
+
+# Browser use that is not verification stays inside its own domain and never becomes engineering evidence.
+scoped_browser_use:
+  seo: BeyondSEO capture/rendering inside the isolated SEO runtime (P16)
+  media: Brag/launch-video rendering (P17); product showcase output is not verification evidence

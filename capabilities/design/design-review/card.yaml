@@ -6,7 +6,7 @@ intent_tags: [design review, critique, audit design]
 origin: bundled
 runtime_type: none
 requires_network: false
-requires_browser: fallback
+requires_browser: none  # D-035: gstack's screenshot-driven design-review excluded; review works from code, tokens and states
 requires_codebase_analysis: false
 context_level: L2
 security_class: read-only

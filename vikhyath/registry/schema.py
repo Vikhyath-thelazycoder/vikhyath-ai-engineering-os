@@ -16,7 +16,7 @@ SPEC_FIELDS = (
 # Filled by vikhyath/registry/generate.py from the card path and bundle provenance; never written in a card.
 GENERATED_FIELDS = ("capability_id", "domain", "subdomain", "source_repositories", "source_paths", "version",
                     "commit_sha", "license", "integration_type", "token_cost_estimate")
-EXTRA_FIELDS = ("origin", "web_qa_class", "web_qa_modes")
+EXTRA_FIELDS = ("origin", "web_qa_class", "web_qa_modes", "runtime_status")
 AUTHORED_FIELDS = tuple(f for f in SPEC_FIELDS if f not in GENERATED_FIELDS) + EXTRA_FIELDS
 
 ORIGINS = {"bundled", "os-native", "mixed"}
@@ -27,7 +27,12 @@ CONTEXT_LEVELS = {"L1", "L2", "L3"}
 SECURITY_CLASSES = {"read-only", "local-exec", "network", "privileged"}
 CACHE_STRATEGIES = {"static", "project", "run", "none"}
 ACTIVATION_MODES = {"on-demand", "explicit", "stack-detected", "internal", "fallback"}
-WEB_QA_CLASSES = {"CORE", "OPTIONAL", "FALLBACK"}
+# D-035 local test-first: browser/visual verification has no FALLBACK class any more; it is DISABLED_BY_POLICY.
+WEB_QA_CLASSES = {"CORE", "OPTIONAL", "DISABLED_BY_POLICY"}
+RUNTIME_STATUSES = {"ACTIVE", "DISABLED_BY_POLICY"}
+# Only these domains may declare a browser need, and only for their own output (SEO capture, media rendering) —
+# never as verification (D-035). Every other domain is requires_browser: none.
+BROWSER_SCOPED_DOMAINS = {"seo", "media"}
 HOST_STATUSES = {"NOT_VERIFIED", "FILES_PRESENT", "RUNTIME_VERIFIED", "UNSUPPORTED"}
 ID = re.compile(r"^[a-z][a-z0-9-]*/[a-z][a-z0-9-]*$")
 SHA1 = re.compile(r"^[0-9a-f]{40}$")
@@ -104,6 +109,15 @@ def validate_card(cid, card, ids):
     modes = card.get("web_qa_modes")
     if modes is not None and (not isinstance(modes, dict) or any(v not in WEB_QA_CLASSES for v in modes.values())):
         p.append(f"{cid}: web_qa_modes values must be in {sorted(WEB_QA_CLASSES)}")
+
+    # D-035: browser use is scoped to SEO/media output; a disabled-by-policy capability can never be enabled.
+    status = card.get("runtime_status", "ACTIVE")
+    if status not in RUNTIME_STATUSES:
+        p.append(f"{cid}: runtime_status must be in {sorted(RUNTIME_STATUSES)}")
+    if status == "DISABLED_BY_POLICY" and card["enabled"]:
+        p.append(f"{cid}: runtime_status DISABLED_BY_POLICY requires enabled: false")
+    if card["requires_browser"] != "none" and domain not in BROWSER_SCOPED_DOMAINS:
+        p.append(f"{cid}: requires_browser must be none outside {sorted(BROWSER_SCOPED_DOMAINS)} (local test-first, D-035)")
 
     # Declared needs must agree with the security class.
     if card["requires_network"] is True and card["security_class"] in ("read-only", "local-exec"):

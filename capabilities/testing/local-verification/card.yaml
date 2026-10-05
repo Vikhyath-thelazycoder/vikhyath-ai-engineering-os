@@ -1,0 +1,23 @@
+# testing/local-verification — capability card (spec §13). Provenance fields (sources, commit, license, size) are generated
+# by vikhyath/registry/generate.py; domain defaults come from config/priorities.yaml.
+# The default verification engine (D-035, config/verification.yaml): local, deterministic, test-first. Replaces web-verification.
+name: Local verification
+description: "Local test-first verification: discover and select the smallest sufficient test set by change impact, run unit/integration/API/state tests, types, lint, build; diagnose failures; targeted reruns"
+intent_tags: [verify, check whether, works, flow, login, checkout, qa, run tests, typecheck, lint, build check]
+origin: mixed
+runtime_type: os-native
+requires_network: local-only
+requires_browser: none
+requires_codebase_analysis: true
+context_level: L2
+security_class: local-exec
+cache_strategy: run
+activation_conditions:
+  when: [request matches intent_tags or a routing rule selects this capability]
+verification_requirements: ['selected checks (tests, types, lint, build) executed with machine-readable results recorded by testing/evidence', 'no browser, Chrome DevTools or screenshot step (D-035)']
+dependencies: [testing/evidence]
+related_capabilities: [testing/strategy, codebase/impact-analysis]
+conflicts: []
+fallback_capability: null
+web_qa_class: CORE
+enabled: true

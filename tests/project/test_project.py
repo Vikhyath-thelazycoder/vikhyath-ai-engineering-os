@@ -17,6 +17,7 @@ ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 sys.path.insert(0, ROOT_DIR)
 
 from vikhyath.cli import main  # noqa: E402
+from vikhyath.events import log as event_log  # noqa: E402
 from vikhyath.project import decisions, lifecycle, plan_index, questions, reconcile, state  # noqa: E402
 from vikhyath.project.identity import detect  # noqa: E402
 from vikhyath.routing import Router  # noqa: E402
@@ -310,6 +311,38 @@ class TestCli(ProjectEnv):
         self.assertFalse((self.home / "projects" / old_id).exists())
         self.assertEqual(state.require_state(new)["project"]["project_id"], new.project_id)
         self.assertIn(old_id, state.read_yaml(new.data_dir / "project.yaml")["aliases"])
+
+
+class TestVerificationPolicyState(ProjectEnv):
+    """D-035: state records the global local-test-first policy; browser exceptions stay in their own project."""
+
+    def test_state_records_policy_and_evidence(self):
+        ver = state.require_state(self.project)["verification"]
+        self.assertEqual((ver["mode"], ver["browser_visual_verification"], ver["chrome_devtools"],
+                          ver["screenshot_verification"]), ("local-test-first", "disabled", "disabled", "disabled"))
+        state.record_verification(self.project, "T-3.1", "PASSED", "python -m unittest: 12 passed")
+        ver = state.require_state(self.project)["verification"]
+        self.assertEqual((ver["mode"], ver["last"]["evidence"]), ("local-test-first", "python -m unittest: 12 passed"))
+        self.assertIn("verification: local-test-first (no browser/Chrome DevTools/screenshots)",
+                      state.summary_lines(state.require_state(self.project)))
+
+    def test_browser_exception_is_logged_per_project(self):
+        other_root = self.root.parent / "shop"
+        (other_root / ".git").mkdir(parents=True)
+        (other_root / ".git" / "HEAD").write_text("ref: refs/heads/main\n")
+        self.assertEqual(run_cli("project", "init", "--project", str(other_root))[0], 0)
+        other = detect(other_root, home=self.home)
+        with self.assertRaises(state.StateError):
+            state.record_browser_exception(self.project, "  ")
+        state.record_browser_exception(self.project, "canvas chart rendering has no DOM to assert on")
+        mine = state.read_yaml(self.project.state_dir / state.VERIFICATION_FILE)
+        self.assertEqual(len(mine["browser_exceptions"]), 1)
+        self.assertFalse(mine["browser_exceptions"][0]["screenshots_in_context"])
+        theirs = state.read_yaml(other.state_dir / state.VERIFICATION_FILE) or {}
+        self.assertNotIn("browser_exceptions", theirs)
+        events = [e["event"] for e in event_log.read(self.project)]
+        self.assertIn("BROWSER_EXCEPTION_REQUESTED", events)
+        self.assertNotIn("BROWSER_EXCEPTION_REQUESTED", [e["event"] for e in event_log.read(other)])
 
 
 if __name__ == "__main__":

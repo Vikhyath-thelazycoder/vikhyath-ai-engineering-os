@@ -1,0 +1,107 @@
+{
+ "repo": "appllama",
+ "head": "dd5caaec3d5d50ad7fc0324da238119c6b7c3707",
+ "totals": {
+  "files": 18,
+  "bytes": 67853,
+  "submodules": []
+ },
+ "top_dirs": {
+  "skills": 11,
+  "(root)": 5,
+  ".claude-plugin": 1,
+  ".cursor-plugin": 1
+ },
+ "extensions": {
+  ".md": 11,
+  ".json": 4,
+  "(none)": 2,
+  ".yaml": 1
+ },
+ "host_dirs": [
+  ".claude-plugin",
+  ".cursor-plugin"
+ ],
+ "manifests": [
+  ".claude-plugin/plugin.json",
+  ".cursor-plugin/plugin.json",
+  ".mcp.json"
+ ],
+ "mcp_files": [
+  ".mcp.json",
+  "mcp.json"
+ ],
+ "installers": [],
+ "license_files": [
+  "LICENSE"
+ ],
+ "skills": [
+  {
+   "path": "skills/appllama-app-design-skill/SKILL.md",
+   "name": "appllama-app-design-skill",
+   "description": "Build native-feeling, benchmark-quality mobile app screens (Expo / React Native). Use when designing or implementing any mobile UI \u2014 screens, flows, onboarding, paywalls, tab bars, sheets, settings, empty states \u2014 or when polishing motion, ",
+   "bytes": 20220
+  },
+  {
+   "path": "skills/appllama-usage/SKILL.md",
+   "name": "appllama-usage",
+   "description": "Use the Appllama MCP (mcp.appllama.io) well \u2014 research real top-grossing mobile apps, their screens, flows, and UI elements, then build from what you learn. Load when the Appllama MCP is connected and the task involves building a mobile app",
+   "bytes": 6486
+  }
+ ],
+ "agents": [],
+ "commands": {
+  "count": 0,
+  "files": []
+ },
+ "hooks": {
+  "count": 0,
+  "files": []
+ },
+ "indicators": {
+  "mcp": {
+   "count": 3,
+   "files": [
+    ".cursor-plugin/plugin.json",
+    ".mcp.json",
+    "mcp.json"
+   ]
+  },
+  "network": {
+   "count": 0,
+   "files": []
+  },
+  "telemetry": {
+   "count": 0,
+   "files": []
+  },
+  "background": {
+   "count": 0,
+   "files": []
+  },
+  "browser": {
+   "count": 0,
+   "files": []
+  },
+  "shell_exec": {
+   "count": 0,
+   "files": []
+  },
+  "env_secrets": {
+   "count": 0,
+   "files": []
+  },
+  "home_writes": {
+   "count": 0,
+   "files": []
+  },
+  "self_update": {
+   "count": 0,
+   "files": []
+  },
+  "llm_api": {
+   "count": 0,
+   "files": []
+  }
+ }
+}

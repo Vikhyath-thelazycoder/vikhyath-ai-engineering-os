@@ -46,7 +46,6 @@ Every bundled upstream component appears below, grouped by source path prefix. T
 | taste | design/design-direction | `skills/soft-skill/` | 1 | 10.3 | ADAPT | none | MIT | `ce26fc2` |
 | agency | design/design-review | `design/` | 10 | 117.9 | ADAPT | none | MIT | `d3f71c4` |
 | gstack | design/design-review | `design-consultation/` | 3 | 30.5 | ADAPT | none | MIT (+Apache-2.0 notices) | `74512c2` |
-| gstack | design/design-review | `design-review/` | 1 | 13.4 | ADAPT | none | MIT (+Apache-2.0 notices) | `74512c2` |
 | gstack | design/design-review | `plan-design-review/` | 3 | 40.9 | ADAPT | none | MIT (+Apache-2.0 notices) | `74512c2` |
 | opendesign | design/design-review | `skills/design-review/` | 1 | 1.2 | ADAPT | none | Apache-2.0 | `53231d4` |
 | opendesign | design/design-review | `skills/impeccable-design-polish/` | 1 | 2.9 | ADAPT | none | Apache-2.0 | `53231d4` |
@@ -212,6 +211,9 @@ Every bundled upstream component appears below, grouped by source path prefix. T
 | uiuxpromax | design/design-system | `LICENSE` | 1 | 1.0 | COPY | python-stdlib | MIT | `09170ee` |
 | uiuxpromax | design/design-system | `scripts/` | 2 | 20.4 | PRESERVE | python-stdlib | MIT | `09170ee` |
 | uiuxpromax | design/design-system | `src/ui-ux-pro-max/` | 80 | 3499.0 | PRESERVE | python-stdlib | MIT | `09170ee` |
+| appllama | design/frontend | `LICENSE` | 1 | 1.1 | COPY | none | MIT | `dd5caae` |
+| appllama | design/frontend | `skills/appllama-app-design-skill/` | 1 | 19.7 | ADAPT | none | MIT | `dd5caae` |
+| appllama | design/frontend | `skills/appllama-app-design-skill/` | 1 | 4.5 | COPY | none | MIT | `dd5caae` |
 | opendesign | design/frontend | `skills/apple-hig/` | 1 | 1.3 | ADAPT | none | Apache-2.0 | `53231d4` |
 | opendesign | design/frontend | `skills/frontend-design/` | 2 | 15.1 | ADAPT | none | Apache-2.0 | `53231d4` |
 | opendesign | design/frontend | `skills/frontend-skill/` | 1 | 1.1 | ADAPT | none | Apache-2.0 | `53231d4` |
@@ -223,6 +225,7 @@ Every bundled upstream component appears below, grouped by source path prefix. T
 | taste | design/frontend | `skills/imagegen-frontend-web/` | 1 | 36.0 | ADAPT | none | MIT | `ce26fc2` |
 | uiuxpromax | design/frontend | `.claude/skills/design/` | 36 | 261.3 | ADAPT | none | MIT | `09170ee` |
 | uiuxpromax | design/frontend | `.claude/skills/ui-styling/` | 98 | 5626.5 | ADAPT | none | MIT | `09170ee` |
+| appllama | design/motion | `skills/appllama-app-design-skill/` | 1 | 4.4 | COPY | none | MIT | `dd5caae` |
 | ecc | design/motion | `skills/motion-advanced/` | 1 | 18.4 | ADAPT | none | MIT | `ef648e0` |
 | ecc | design/motion | `skills/motion-foundations/` | 1 | 9.6 | ADAPT | none | MIT | `ef648e0` |
 | ecc | design/motion | `skills/motion-patterns/` | 1 | 13.1 | ADAPT | none | MIT | `ef648e0` |
@@ -522,12 +525,10 @@ Every bundled upstream component appears below, grouped by source path prefix. T
 | beyondseo | seo/website-work | `SECURITY.md` | 1 | 1.7 | COPY | python-isolated | MIT | `c160b9d` |
 | beyondseo | seo/website-work | `docs/` | 2 | 22.8 | COPY | python-isolated | MIT | `c160b9d` |
 | agency | testing/accessibility | `testing/` | 1 | 15.8 | ADAPT | os-native | MIT | `d3f71c4` |
-| addy | testing/browser-fallback | `skills/browser-testing-with-devtools/` | 1 | 14.2 | ADAPT | playwright-optional | MIT | `a06bc63` |
-| ecc | testing/browser-fallback | `agents/` | 1 | 5.0 | ADAPT | playwright-optional | MIT | `ef648e0` |
-| ecc | testing/browser-fallback | `skills/browser-qa/` | 1 | 4.0 | ADAPT | playwright-optional | MIT | `ef648e0` |
-| ecc | testing/browser-fallback | `skills/click-path-audit/` | 1 | 7.8 | ADAPT | playwright-optional | MIT | `ef648e0` |
-| ecc | testing/browser-fallback | `skills/e2e-testing/` | 1 | 8.0 | ADAPT | playwright-optional | MIT | `ef648e0` |
-| gstack | testing/browser-fallback | `qa/` | 2 | 2.2 | ADAPT | playwright-optional | MIT (+Apache-2.0 notices) | `74512c2` |
+| agency | testing/local-verification | `testing/` | 1 | 13.5 | ADAPT | os-native | MIT | `d3f71c4` |
+| ecc | testing/local-verification | `skills/click-path-audit/` | 1 | 7.8 | ADAPT | os-native | MIT | `ef648e0` |
+| gstack | testing/local-verification | `qa-only/` | 2 | 5.2 | ADAPT | os-native | MIT (+Apache-2.0 notices) | `74512c2` |
+| gstack | testing/local-verification | `qa/` | 6 | 14.7 | ADAPT | os-native | MIT (+Apache-2.0 notices) | `74512c2` |
 | addy | testing/performance | `agents/` | 1 | 12.0 | ADAPT | os-native | MIT | `a06bc63` |
 | agency | testing/performance | `testing/` | 1 | 12.7 | ADAPT | os-native | MIT | `d3f71c4` |
 | ecc | testing/performance | `skills/benchmark-methodology/` | 1 | 9.7 | ADAPT | os-native | MIT | `ef648e0` |
@@ -536,7 +537,7 @@ Every bundled upstream component appears below, grouped by source path prefix. T
 | ecc | testing/regression | `scripts/` | 11 | 60.7 | PRESERVE | none | MIT | `ef648e0` |
 | ecc | testing/regression | `skills/ai-regression-testing/` | 1 | 11.4 | ADAPT | none | MIT | `ef648e0` |
 | ecc | testing/regression | `skills/eval-harness/` | 1 | 8.5 | ADAPT | none | MIT | `ef648e0` |
-| agency | testing/release-verification | `testing/` | 2 | 26.2 | ADAPT | node | MIT | `d3f71c4` |
+| agency | testing/release-verification | `testing/` | 1 | 15.6 | ADAPT | node | MIT | `d3f71c4` |
 | ecc | testing/release-verification | `skills/delivery-gate/` | 2 | 12.7 | ADAPT | node | MIT | `ef648e0` |
 | ecc | testing/release-verification | `skills/verification-loop/` | 1 | 2.7 | ADAPT | node | MIT | `ef648e0` |
 | addy | testing/strategy | `agents/` | 1 | 3.2 | ADAPT | none | MIT | `a06bc63` |
@@ -548,8 +549,5 @@ Every bundled upstream component appears below, grouped by source path prefix. T
 | ecc | testing/strategy | `skills/tdd-workflow/` | 1 | 21.1 | ADAPT | none | MIT | `ef648e0` |
 | gstack | testing/strategy | `health/` | 1 | 15.4 | ADAPT | none | MIT (+Apache-2.0 notices) | `74512c2` |
 | gstack | testing/strategy | `test-audit/` | 1 | 7.4 | ADAPT | none | MIT (+Apache-2.0 notices) | `74512c2` |
-| agency | testing/web-verification | `testing/` | 2 | 22.2 | ADAPT | os-native | MIT | `d3f71c4` |
-| gstack | testing/web-verification | `qa-only/` | 4 | 15.9 | ADAPT | os-native | MIT (+Apache-2.0 notices) | `74512c2` |
-| gstack | testing/web-verification | `qa/` | 10 | 28.6 | ADAPT | os-native | MIT (+Apache-2.0 notices) | `74512c2` |
 
-**Total bundled: 2594 files, 50.0 MB** across 56 capabilities.
+**Total bundled: 2583 files, 49.9 MB** across 55 capabilities.

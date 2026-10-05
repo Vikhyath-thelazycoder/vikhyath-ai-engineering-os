@@ -23,7 +23,9 @@ def _load_yaml(path: Path):
 ROUTING_SMOKE = (
     ("Fix the payment webhook security.", "existing", {"engineering/security", "testing/security"}, {"design/", "seo/", "media/"}),
     ("This landing page looks generic. Make it feel premium.", "existing", {"design/design-direction"}, {"seo/", "engineering/backend"}),
-    ("Audit my website.", "unknown", {"seo/auditing"}, {"engineering/", "testing/browser-fallback"}),
+    ("Audit my website.", "unknown", {"seo/auditing"}, {"engineering/", "testing/browser-exception"}),
+    ("Open the website and show me what it looks like.", "existing", {"testing/local-verification"},
+     {"testing/browser-exception"}),
     ("Make a launch video plan for our product.", "existing", {"media/launch-video"}, {"engineering/"}),
     ("Refactor the billing module", "existing", {"engineering/implementation"}, {"engineering/simplicity"}),
 )
@@ -39,6 +41,19 @@ def _routing_problems(root: Path):
         if not must <= set(ids) or any(i.startswith(n) for i in ids for n in never):
             problems.append(f"{request!r} routed to {ids}")
     return problems
+
+
+# Files that must never be planned into a bundle (D-034 Appllama exclusions, D-035 browser verification).
+FORBIDDEN_BUNDLE_PATHS = ("appllama:skills/appllama-usage/", "appllama:.mcp.json", "appllama:mcp.json",
+                          "appllama:skills/appllama-app-design-skill/references/simulator-loop.md",
+                          "addy:skills/browser-testing-with-devtools/", "ecc:skills/browser-qa/", "ecc:agents/e2e-runner.md",
+                          "gstack:qa/sections/browser-", "gstack:design-review/")
+
+
+def _forbidden_bundled(root: Path):
+    from ..registry import generate
+    planned = {f"{e['repo']}:{e['source_path']}" for e in generate.entries_from_plan()}
+    return sorted(p for p in planned if p.startswith(FORBIDDEN_BUNDLE_PATHS))
 
 
 def _pins(root: Path):
@@ -122,6 +137,20 @@ def run(root: Path, online=False, unittests=True) -> int:
     r.check(simplicity.get("activation_conditions", {}).get("mode") == "explicit"
             and simplicity.get("priority") == min((c["priority"] for c in cards.values()), default=0),
             "Simplicity review is explicit-only with the lowest priority", "Simplicity activation/priority invalid")
+    r.end_section()
+
+    r.section("🧪 Verification Policy (local test-first, D-035)")
+    from ..verify import policy
+    try:
+        cfg = policy.load_policy(root)
+        policy_problems = policy.policy_problems(cfg, cards)
+    except (OSError, TypeError, ValueError) as exc:
+        cfg, policy_problems = {}, [f"{type(exc).__name__}: {exc}"]
+    r.check(not policy_problems, f"Verification mode {cfg.get('mode')}; browser visual verification, Chrome DevTools "
+            "and screenshot verification disabled; no enabled capability needs a browser outside SEO/media",
+            "Verification policy violated: " + "; ".join(policy_problems[:3]))
+    r.check(not _forbidden_bundled(root), "No MCP config, appllama-usage, simulator loop or browser-QA file in the bundle plan",
+            "Forbidden files in the bundle plan: " + ", ".join(_forbidden_bundled(root)[:3]))
     r.end_section()
 
     pins = _pins(root)

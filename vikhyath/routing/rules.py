@@ -11,7 +11,7 @@ from .classify import CHANGE_TYPES, find_phrases
 
 PROJECT_STAGES = ("new", "existing", "unknown")
 RULE_KEYS = {"id", "description", "any", "regex", "require_any", "unless", "project", "select", "suppress",
-             "pipeline", "explicit", "weight"}
+             "pipeline", "explicit", "weight", "browser_exception"}
 
 
 @dataclass
@@ -23,6 +23,7 @@ class RuleHit:
     suppress: list = field(default_factory=list)
     pipeline: list = field(default_factory=list)
     explicit: bool = False
+    browser_exception: bool = False  # the user explicitly asked for browser-level validation (D-035)
 
 
 def load_routing(root: Path | None = None):
@@ -97,6 +98,8 @@ def validate_routing(cfg, cards, hierarchy):
                 p.append(f"rule {rid}: {cid} is {mode}-only; the rule must be `explicit: true`")
             if mode == "internal":
                 p.append(f"rule {rid}: {cid} is internal and is reached through dependencies, never routed")
+            if not card["enabled"] or card.get("runtime_status") == "DISABLED_BY_POLICY":
+                p.append(f"rule {rid}: {cid} is disabled by policy and can never be routed (D-035)")
         for target in rule.get("suppress") or []:
             if target not in cards and target not in domains:
                 p.append(f"rule {rid}: suppresses unknown domain/capability {target}")
@@ -137,7 +140,8 @@ def match_rules(text: str, cfg, stage: str):
             continue
         hits.append(RuleHit(rule=rule["id"], select=list(rule["select"]), weight=rule.get("weight", 1),
                             matched=matched, suppress=list(rule.get("suppress") or []),
-                            pipeline=list(rule.get("pipeline") or []), explicit=bool(rule.get("explicit"))))
+                            pipeline=list(rule.get("pipeline") or []), explicit=bool(rule.get("explicit")),
+                            browser_exception=bool(rule.get("browser_exception"))))
     return hits
 
 

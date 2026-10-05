@@ -13,7 +13,8 @@ sys.path.insert(0, ROOT_DIR)
 from vikhyath.cli import main  # noqa: E402
 from vikhyath.registry import generate, loader, schema  # noqa: E402
 
-EXPECTED_CAPABILITIES = 62
+EXPECTED_CAPABILITIES = 63  # D-035: + testing/evidence
+EXPECTED_BUNDLED_FILES = 2583  # D-034/D-035: −15 browser/visual files, +4 Appllama (LICENSE, SKILL, 2 references)
 # Files P7 retired in favour of capabilities/**/card.yaml (C-1); only history documents may still name them.
 RETIRED = re.compile(r"config/capabilities\.yaml|domain-model\.yaml|(?<![\w./-])integrations/(?:\*\.yaml|<name>|ecc|`| +#)|├── capabilities\.yaml")
 HISTORY = ("CHANGELOG.md", "docs/audit/", "docs/plan/", "docs/evidence/")
@@ -53,11 +54,28 @@ class TestRegistrySource(unittest.TestCase):
 
     def test_web_qa_classes_recorded(self):
         testing = {cid: c for cid, c in self.cards.items() if cid.startswith("testing/")}
-        self.assertEqual(len(testing), 8)
+        self.assertEqual(len(testing), 9)
         self.assertTrue(all(c["web_qa_class"] in schema.WEB_QA_CLASSES for c in testing.values()))
-        modes = testing["testing/browser-fallback"]["web_qa_modes"]
-        self.assertEqual((modes["headless"], modes["visible"]), ("OPTIONAL", "FALLBACK"))  # spec §23A.13
-        self.assertEqual(testing["testing/web-verification"]["web_qa_class"], "CORE")
+        self.assertEqual(testing["testing/local-verification"]["web_qa_class"], "CORE")
+
+    def test_browser_verification_disabled_by_policy(self):
+        # D-035: the only browser card is disabled, has no sources, and every mode is DISABLED_BY_POLICY.
+        exc = self.cards["testing/browser-exception"]
+        self.assertFalse(exc["enabled"])
+        self.assertEqual(exc["runtime_status"], "DISABLED_BY_POLICY")
+        self.assertEqual(set(exc["web_qa_modes"].values()), {"DISABLED_BY_POLICY"})
+        self.assertNotIn("FALLBACK", schema.WEB_QA_CLASSES)
+        outside = [cid for cid, c in self.cards.items()
+                   if c["requires_browser"] != "none" and cid.split("/")[0] not in schema.BROWSER_SCOPED_DOMAINS]
+        self.assertEqual(outside, [])
+
+    def test_browser_need_outside_scoped_domains_rejected(self):
+        cards = loader.load_cards()
+        cards["testing/regression"]["requires_browser"] = "fallback"
+        cards["testing/browser-exception"]["enabled"] = True
+        p = schema.validate_cards(cards)
+        self.assertTrue(any("testing/regression: requires_browser must be none" in x for x in p), p)
+        self.assertTrue(any("DISABLED_BY_POLICY requires enabled: false" in x for x in p), p)
 
     def test_card_docs_within_l1_budget(self):
         for cid in self.cards:
@@ -93,7 +111,12 @@ class TestGeneratedRegistry(unittest.TestCase):
 
     def test_provenance_fields_are_derived(self):
         caps = self.reg["capabilities"]
-        self.assertEqual(sum(e["token_cost_estimate"]["bundled_files"] for e in caps.values()), 2594)
+        self.assertEqual(sum(e["token_cost_estimate"]["bundled_files"] for e in caps.values()), EXPECTED_BUNDLED_FILES)
+        self.assertEqual(caps["testing/browser-exception"]["token_cost_estimate"]["bundled_files"], 0)
+        self.assertEqual(caps["testing/browser-exception"]["runtime_status"], "DISABLED_BY_POLICY")
+        self.assertEqual(caps["design/frontend"]["runtime_status"], "ACTIVE")
+        self.assertIn("Appllama/appllama-skills", caps["design/frontend"]["source_repositories"])
+        self.assertIn("Appllama/appllama-skills", caps["design/motion"]["source_repositories"])
         sec = caps["engineering/security"]
         self.assertEqual(sorted(sec["source_paths"]), sec["source_repositories"])
         self.assertEqual(set(sec["commit_sha"]), set(sec["source_repositories"]))
@@ -165,7 +188,7 @@ class TestCli(unittest.TestCase):
     def test_check_show_list(self):
         code, out = self.run_cli("registry", "check", "--no-bundle")
         self.assertEqual(code, 0, out)
-        self.assertIn("62 capabilities", out)
+        self.assertIn("63 capabilities", out)
         code, out = self.run_cli("registry", "show", "engineering/security")
         self.assertEqual(code, 0)
         self.assertIn("priority: 90", out)

@@ -371,12 +371,12 @@ EXCLUDE	OUT_OF_DOMAIN		22365	support/support-infrastructure-maintainer.md
 EXCLUDE	OUT_OF_DOMAIN		26545	support/support-legal-compliance-checker.md
 EXCLUDE	OUT_OF_DOMAIN		24683	support/support-support-responder.md
 ADAPT	Accessibility auditor role	testing/accessibility	16228	testing/testing-accessibility-auditor.md
-ADAPT	API testing and evidence collection	testing/web-verification	13840	testing/testing-api-tester.md
-ADAPT	API testing and evidence collection	testing/web-verification	8910	testing/testing-evidence-collector.md
+ADAPT	API testing	testing/local-verification	13840	testing/testing-api-tester.md
+EXCLUDE	BROWSER_POLICY		8910	testing/testing-evidence-collector.md
 ADAPT	Performance role	testing/performance	13021	testing/testing-performance-benchmarker.md
-ADAPT	Reality check of completion claims	testing/release-verification	10854	testing/testing-reality-checker.md
+EXCLUDE	BROWSER_POLICY		10854	testing/testing-reality-checker.md
 ADAPT	Testing roles	testing/strategy	12706	testing/testing-test-automation-engineer.md
-ADAPT	Reality check of completion claims	testing/release-verification	16017	testing/testing-test-results-analyzer.md
+ADAPT	Test-result analysis before completion claims	testing/release-verification	16017	testing/testing-test-results-analyzer.md
 ADAPT	Testing roles	testing/strategy	17542	testing/testing-tool-evaluator.md
 ADAPT	Testing roles	testing/strategy	22050	testing/testing-workflow-optimizer.md
 REFERENCE	Host install contracts (P3 host audit evidence)		8839	tools.json

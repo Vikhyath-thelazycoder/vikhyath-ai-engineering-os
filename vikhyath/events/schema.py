@@ -9,8 +9,8 @@ EVENT_TYPES = (
     "TASK_STARTED", "TASK_BLOCKED", "TASK_COMPLETED", "VERIFICATION_STARTED", "VERIFICATION_PASSED",
     "VERIFICATION_FAILED", "STATE_UPDATED", "PHASE_CHANGED", "DASHBOARD_STARTED", "DASHBOARD_SLEEPING",
     "UPSTREAM_UPDATED", "UPSTREAM_ROLLBACK",
-    # doc 15 additions
-    "BROWSER_FALLBACK_ACTIVATED", "ISOLATION_VIOLATION_BLOCKED", "RISK_DETECTED",
+    # doc 15 additions; D-035 replaced BROWSER_FALLBACK_ACTIVATED (no automatic browser fallback exists any more)
+    "BROWSER_EXCEPTION_REQUESTED", "ISOLATION_VIOLATION_BLOCKED", "RISK_DETECTED",
 )
 SEVERITIES = ("info", "low", "medium", "high", "critical")
 FIELDS = ("schema_version", "id", "ts", "event", "severity", "project_id", "session_id", "host", "capabilities",

@@ -103,7 +103,7 @@ def render_card_md(cid, card, entries, deps_with_files=(), exclude=()):
         _sentence(card["description"]), "",
         f"- **Use when:** {use_when}",
         f"- **Activation:** {act['mode']} · priority {card['priority']} · context {card['context_level']}"
-        + ("" if card["enabled"] else " · DISABLED"),
+        + ("" if card["enabled"] else f" · {card.get('runtime_status') or 'DISABLED'}"),
         f"- **Needs:** {'; '.join(needs)}",
         f"- **Loads:** {loads}",
         f"- **Done means:** {' · '.join(card['verification_requirements'])}",
@@ -171,6 +171,7 @@ def generate(cards, entries, *, domains, source, bundle_id=None, inputs_hash=Non
         merged = {**card, **derived}
         entry = {f: merged[f] for f in schema.SPEC_FIELDS}
         entry.update({f: card[f] for f in schema.EXTRA_FIELDS if f in card})
+        entry.setdefault("runtime_status", "ACTIVE")  # D-035: every entry states whether policy disables it
         capabilities[cid] = entry
     return {"registry_version": 1, "os_version": __version__, "source": source, "bundle_id": bundle_id,
             "inputs_hash": inputs_hash,
