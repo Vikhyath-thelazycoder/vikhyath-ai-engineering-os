@@ -517,7 +517,8 @@ def _runtime_cmd(args):
     home, bundle = vikhyath_home(), current_bundle()
     from .runtimes import unlazy
     if args.runtime_cmd == "status":
-        _print({"runtimes": [graphify.health(home, bundle), unlazy.health(home)]}, args.json)
+        from .runtimes import uiux
+        _print({"runtimes": [graphify.health(home, bundle), unlazy.health(home), uiux.health(bundle)]}, args.json)
         return 0
     if args.runtime_cmd == "unlazy-hook":
         try:
@@ -598,6 +599,36 @@ def _gates_cmd(args):
     except unlazy.UnlazyError as exc:
         print(f"vikhyath gates: {exc}", file=sys.stderr)
         return 2
+    print(p.stdout, end="")
+    print(p.stderr, end="", file=sys.stderr)
+    return p.returncode
+
+
+def _design_cmd(args):
+    from .design import tokens
+    from .paths import current_bundle
+    from .runtimes import uiux
+    project = _project_ref(args)
+    if args.design_cmd == "check":
+        result = tokens.check(project.root.resolve())
+        if args.json:
+            _print(result, True)
+        else:
+            for c in result["checks"]:
+                print(f"{c['status']:4}  {c['check']:15} {c['count']:>3} (limit {c['limit']})  {', '.join(map(str, c['values']))}")
+            print(f"design check: {result['status']}" + ("" if result["design_md"] else " · no DESIGN.md"))
+        return 1 if result["status"] == "FAIL" else 0
+    try:
+        if args.design_cmd == "search":
+            p = uiux.search(current_bundle(), " ".join(args.query), domain=args.domain, stack=args.stack,
+                            max_results=args.max_results, as_json=args.json, cwd=project.root)
+        else:
+            p = uiux.design_system(current_bundle(), project, " ".join(args.query), project_name=args.project_name,
+                                   persist=args.persist, page=args.page, force=args.force,
+                                   dials={"variance": args.variance, "motion": args.motion, "density": args.density})
+    except uiux.UIUXError as exc:
+        print(f"vikhyath design: {exc}", file=sys.stderr)
+        return 1
     print(p.stdout, end="")
     print(p.stderr, end="", file=sys.stderr)
     return p.returncode
@@ -815,6 +846,28 @@ def build_parser():
     p.add_argument("--timeout", type=int, help="Per-check timeout in seconds")
     p.add_argument("--project", help="Project directory (default: current directory)")
     p.set_defaults(func=_gates_cmd)
+
+    p = sub.add_parser("design", help="Design engine (UI/UX Pro Max) search/system and local design-token checks")
+    dsub2 = p.add_subparsers(dest="design_cmd", required=True)
+    q = dsub2.add_parser("search", help="Search styles, colors, typography, UX rules, stack guidance")
+    q.add_argument("query", nargs="+")
+    q.add_argument("--domain", choices=("style", "color", "chart", "landing", "product", "ux", "typography", "icons",
+                                        "gsap", "react", "web", "google-fonts"))
+    q.add_argument("--stack")
+    q.add_argument("-n", "--max-results", type=int, default=3)
+    project_arg(q)
+    q = dsub2.add_parser("system", help="Generate a design system; --persist writes design-system/ in this project only")
+    q.add_argument("query", nargs="+")
+    q.add_argument("--project-name")
+    q.add_argument("--persist", action="store_true")
+    q.add_argument("--page")
+    q.add_argument("--force", action="store_true", help="Overwrite an existing MASTER.md")
+    for dial in ("variance", "motion", "density"):
+        q.add_argument(f"--{dial}", type=int, choices=range(1, 11), metavar="1-10")
+    project_arg(q)
+    q = dsub2.add_parser("check", help="Design-token checks: accents, greys, radii, fonts (config/design.yaml)")
+    project_arg(q)
+    p.set_defaults(func=_design_cmd)
 
     p = sub.add_parser("codebase", help="Code graph (Graphify): affected files + related tests, scoped queries")
     csub = p.add_subparsers(dest="codebase_cmd", required=True)

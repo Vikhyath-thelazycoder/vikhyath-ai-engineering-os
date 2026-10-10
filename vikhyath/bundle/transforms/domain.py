@@ -28,7 +28,7 @@ BROWSER_STEP = re.compile(r"chrome-devtools|take_screenshot|\bbrowse/bin/|playwr
                           re.I)
 POLICY_NOTE = (" *[Vikhyath OS: browser/screenshot verification is disabled (config/verification.yaml); verify with "
                "local tests, types, lint and build, and record command + exit code + counts as evidence.]*")
-VERIFY_DOMAINS = ("engineering", "testing", "codebase")
+VERIFY_DOMAINS = ("engineering", "testing", "codebase", "design")
 HEADER = ("> **Vikhyath OS adaptation (D-038):** paths under `$VIKHYATH_BUNDLE/files/…` are bundle files (load one "
           "with `vikhyath context --file files/…`). gstack's own runtime (bin/ tools, browse, state root, "
           "telemetry, upgrade, skill hooks) is not part of the OS: steps that needed it are marked *removed*; record progress with "

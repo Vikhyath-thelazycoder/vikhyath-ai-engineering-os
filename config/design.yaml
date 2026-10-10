@@ -1,0 +1,14 @@
+# Vikhyath AI Engineering OS — design-token limits (P14, spec §27, D-035/D-039)
+#
+# `vikhyath design check` counts literal design values in the project's style sources and compares them with these
+# limits: PASS ≤ limit, WARN ≤ 2 × limit, FAIL above. Starting points from the design capabilities (Taste anti-slop,
+# Appllama "one accent, one grey family"); a project can justify more in DESIGN.md and record a design decision.
+
+version: 1
+limits:
+  accent_hues: 2            # distinct accent hue buckets (saturated colors)
+  grey_families: 1          # hue families among low-saturation greys (cool vs warm)
+  radius_values: 4          # distinct non-zero corner radii
+  font_families: 3          # display + body + mono
+  grey_max_saturation: 0.2  # HLS saturation below this is grey (Tailwind slate ≈ 0.16)
+  hue_bucket_degrees: 30    # hues within one bucket count as one accent / grey family
