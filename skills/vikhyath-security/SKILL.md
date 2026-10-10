@@ -15,3 +15,5 @@ description: Security-sensitive changes (auth, secrets, payments/webhooks, input
    evidence. Record new security rules as decisions: `vikhyath decide add --kind security …`.
 
 Never paste real secrets into prompts, logs or evidence. No browser or screenshot verification.
+
+Verification policy: local test-first (`config/verification.yaml`) — no browser, Chrome DevTools, screenshots or MCP.

@@ -1,5 +1,7 @@
 """Progressive context levels (spec §16): L0 bootstrap · L1 routed capability cards · L2 capability files (sections) ·
 L3 deep reference (explicit only). Every assembly respects config/budgets.yaml and goes through the ContextLoader."""
+import os
+
 from .. import __version__
 from ..registry import loader as registry
 from ..routing.fallback_bm25 import BM25
@@ -30,6 +32,8 @@ def bootstrap(*, project, session_id, host, bundle_dir, budgets, root=None, stag
         (f"project: {project.name} ({project.project_id}) · stage {stage}" + (f" · branch {branch}" if branch else ""))
         if project else "project: none",
         f"session: {session_id or 'none'}",
+        *([f"cli: {os.environ['VIKHYATH_CLI']} (use this when `vikhyath` is not on PATH)"]
+          if os.environ.get("VIKHYATH_CLI") else []),
         f"phase: {phase or '—'}",
         f"plan: {plan_pointer or '—'}",
     ]

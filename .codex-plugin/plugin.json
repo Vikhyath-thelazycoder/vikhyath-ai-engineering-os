@@ -1,7 +1,7 @@
 {
   "name": "vikhyath-ai-engineering-os",
   "version": "1.0.1",
-  "description": "Vikhyath AI Engineering OS — A thin orchestration plugin that selectively activates specialized engineering capabilities from proven external repositories.",
+  "description": "Vikhyath AI Engineering OS: one deterministic router, budgeted context, project state and local test-first verification over a curated bundle of engineering, codebase, design, testing, SEO and media capabilities. No MCP.",
   "author": {
     "name": "Vikhyath",
     "url": "https://github.com/Vikhyath-thelazycoder"
@@ -12,18 +12,16 @@
   "keywords": [
     "ai",
     "engineering",
-    "orchestration",
-    "plugin",
-    "codex",
-    "skills",
     "routing",
-    "capabilities"
+    "skills",
+    "verification",
+    "codex"
   ],
   "skills": "./skills/",
   "interface": {
     "displayName": "Vikhyath AI Engineering OS",
-    "shortDescription": "Orchestration plugin that routes tasks to specialized engineering capabilities.",
-    "longDescription": "Vikhyath AI Engineering OS is a plugin-based orchestration layer that selectively activates specialized engineering capabilities from proven external repositories including ECC, Graphify, Addy Agent Skills, Agency Agents, gstack, Unlazy, Ponytail, Karpathy Skills, and OpenDesign. It provides progressive activation, context-efficient routing, and multi-host support.",
+    "shortDescription": "Deterministic routing, budgeted context and local test-first verification for engineering work.",
+    "longDescription": "Vikhyath AI Engineering OS: one deterministic router, budgeted context, project state and local test-first verification over a curated bundle of engineering, codebase, design, testing, SEO and media capabilities. No MCP.",
     "developerName": "Vikhyath",
     "category": "Coding",
     "capabilities": [

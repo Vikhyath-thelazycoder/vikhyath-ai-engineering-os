@@ -39,3 +39,5 @@ first; never read or paste the whole repository.
   `graphify hook`, `install`, `watch`, `serve` or `extract`: the OS blocks them (no git hooks, no background
   process, no MCP, no LLM extraction).
 - New projects have no codebase step; start from requirements instead.
+
+Verification policy: local test-first (`config/verification.yaml`) — no browser, Chrome DevTools, screenshots or MCP.

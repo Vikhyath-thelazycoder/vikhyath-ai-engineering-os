@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Vikhyath OS launcher for host plugins (P19, D-042): hooks and skills call this when `vikhyath` is not on PATH.
+# Order: the central install ($VIKHYATH_HOME/core), else `vikhyath` on PATH, else this plugin's own source.
+set -euo pipefail
+HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+HOME_DIR="${VIKHYATH_HOME:-$HOME/.vikhyath}"
+export VIKHYATH_CLI="${BASH_SOURCE[0]}"
+if [ -x "$HOME_DIR/core/bin/vikhyath" ]; then
+  exec "$HOME_DIR/core/bin/vikhyath" "$@"
+elif command -v vikhyath >/dev/null 2>&1 && [ "$(command -v vikhyath)" != "${BASH_SOURCE[0]}" ]; then
+  exec vikhyath "$@"
+fi
+PY="${VIKHYATH_PYTHON:-python3}"
+if "$PY" -c 'import yaml' 2>/dev/null; then
+  PYTHONPATH="$HERE${PYTHONPATH:+:$PYTHONPATH}" exec "$PY" -m vikhyath "$@"
+fi
+echo "Vikhyath OS is not installed: run \"$HERE/scripts/install\" (central install into $HOME_DIR)." >&2
+exit 0   # never fail a host session start

@@ -13,3 +13,5 @@ description: Launch videos, demos and showcase material from a project or websit
 4. **Music cues (optional):** `vikhyath runtime install brag` once, then `vikhyath media music-cues <audio>`.
 
 Media output is a deliverable, never verification evidence; showing a rendered video is not a test of the product.
+
+Verification policy: local test-first (`config/verification.yaml`) — no browser, Chrome DevTools, screenshots or MCP.

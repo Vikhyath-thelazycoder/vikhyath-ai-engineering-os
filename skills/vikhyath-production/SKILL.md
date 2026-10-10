@@ -15,3 +15,5 @@ description: Release readiness — plan completion, verification evidence, chang
 4. **Ship notes:** changelog from the commit list; migration and rollback steps written before deploying.
 
 No deploy step is taken without the user's explicit go-ahead. No browser or screenshot verification.
+
+Verification policy: local test-first (`config/verification.yaml`) — no browser, Chrome DevTools, screenshots or MCP.

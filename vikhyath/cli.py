@@ -9,7 +9,7 @@ from .paths import repo_root
 # Subcommands planned in docs/plan/FILE_LEVEL_PLAN.md and the phase that delivers each.
 PLANNED = {
     "update": "P24", "rollback": "P24",
-    "dashboard": "P23", "adapters": "P19",
+    "dashboard": "P23",
 }
 
 
@@ -190,6 +190,8 @@ def _bootstrap(args):
     project = _project_ref(args)
     sid = _session_id(args, create=True)
     record = lifecycle.start_session(project, sid, args.host)
+    from .adapters import record_runtime
+    record_runtime(args.host, project.project_id)   # host really ran the OS (P19–P22 RUNTIME_VERIFIED evidence)
     if record.get("new"):
         emit(project, "SESSION_STARTED", session_id=sid, host=args.host, details={"root": str(project.root)})
     emit(project, "PROJECT_DETECTED", session_id=sid, host=args.host,
@@ -761,6 +763,33 @@ def _media_cmd(args):
     return p.returncode
 
 
+def _adapters_cmd(args):
+    from .adapters import all_adapters, get
+    adapters = [get(args.host)] if getattr(args, "host", None) else all_adapters()
+    if args.adapters_cmd == "status":
+        _print({"hosts": [a.status() for a in adapters]}, args.json)
+        return 0
+    if args.adapters_cmd == "render":
+        if args.check:
+            stale = {a.host: a.stale() for a in adapters if a.stale()}
+            for host, files in stale.items():
+                print(f"  ✗ {host}: {', '.join(files)} out of date (run `vikhyath adapters render`)")
+            print("adapter files: " + ("current" if not stale else f"{sum(map(len, stale.values()))} stale"))
+            return 1 if stale else 0
+        for a in adapters:
+            for rel in a.write_repo_files():
+                print(f"{a.host}: wrote {rel}")
+        return 0
+    try:
+        done = adapters[0].install() if args.adapters_cmd == "install" else adapters[0].uninstall()
+    except (NotImplementedError, FileExistsError) as exc:
+        print(f"vikhyath adapters {args.adapters_cmd}: {exc}", file=sys.stderr)
+        return 1
+    for d in done:
+        print(f"{args.adapters_cmd}ed {d}")
+    return 0
+
+
 def _guarded(func):
     """Expected user-facing errors print one line and exit 1 instead of a traceback."""
     def run(args):
@@ -1021,6 +1050,20 @@ def build_parser():
     q.add_argument("--out", help="Output directory (default brag-output/audio in the project)")
     project_arg(q)
     p.set_defaults(func=_media_cmd)
+
+    p = sub.add_parser("adapters", help="Host packaging and status: Claude Code, Codex, Cursor, Antigravity")
+    asub = p.add_subparsers(dest="adapters_cmd", required=True)
+    q = asub.add_parser("status", help="FILES_PRESENT / INSTALLED / RUNTIME_VERIFIED per host (spec §34)")
+    q.add_argument("--host", choices=("claude-code", "codex", "cursor", "antigravity"))
+    q.add_argument("--json", action="store_true")
+    q = asub.add_parser("render", help="(Re)generate the host files in this repository from the entry skills")
+    q.add_argument("--host", choices=("claude-code", "codex", "cursor", "antigravity"))
+    q.add_argument("--check", action="store_true", help="Only report out-of-date files (CI/validate)")
+    for name in ("install", "uninstall"):
+        q = asub.add_parser(name, help=f"{name.capitalize()} user-level skills (cursor: ~/.cursor/skills, "
+                                       "antigravity: ~/.gemini/config/skills)")
+        q.add_argument("--host", required=True, choices=("cursor", "antigravity"))
+    p.set_defaults(func=_adapters_cmd)
 
     p = sub.add_parser("design", help="Design engine (UI/UX Pro Max) search/system and local design-token checks")
     dsub2 = p.add_subparsers(dest="design_cmd", required=True)

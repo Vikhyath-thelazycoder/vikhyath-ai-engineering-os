@@ -16,3 +16,5 @@ description: Pre-merge code review of the current change — scope drift, correc
    "looks fine": a passing `vikhyath verify` run is the minimum.
 
 Simplicity review (Ponytail-derived) only when the user asks for it.
+
+Verification policy: local test-first (`config/verification.yaml`) — no browser, Chrome DevTools, screenshots or MCP.

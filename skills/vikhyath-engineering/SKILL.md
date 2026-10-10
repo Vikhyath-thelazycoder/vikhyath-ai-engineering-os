@@ -21,3 +21,5 @@ The OS decides which engineering guidance applies; this skill only tells you how
 Rules: guidance order is the route's `capabilities` order (user requirements → project security → architecture
 → methodology → specialists → review → simplicity). Verify locally (tests, types, lint, build); never by browser
 or screenshot. Simplicity review only when the user asks for it.
+
+Verification policy: local test-first (`config/verification.yaml`) — no browser, Chrome DevTools, screenshots or MCP.

@@ -217,7 +217,7 @@ Before installing, understand the distinction between these four stages:
 codex plugin marketplace add Vikhyath-thelazycoder/vikhyath-ai-engineering-os
 
 # Step 2: Install the plugin
-codex plugin install vikhyath-ai-engineering-os@vikhyath-marketplace
+codex plugin add vikhyath-ai-engineering-os@vikhyath-marketplace   # Codex ≥0.122 (older: `codex plugin install`)
 ```
 
 - **Verify Installation**:

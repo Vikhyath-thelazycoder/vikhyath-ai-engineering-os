@@ -17,3 +17,5 @@ description: UI/UX and visual design work — direction, design systems, typogra
    look-and-feel judgements as NOT_TESTED for the user to confirm.
 
 Design requests do not activate engineering or SEO capabilities unless the route selects them.
+
+Verification policy: local test-first (`config/verification.yaml`) — no browser, Chrome DevTools, screenshots or MCP.

@@ -17,3 +17,5 @@ description: SEO audits, AI-search readiness, keyword/competitor/backlink resear
    credentials in prompts, state or logs.
 
 SEO captures are SEO evidence only, never engineering verification. `watch` is blocked.
+
+Verification policy: local test-first (`config/verification.yaml`) — no browser, Chrome DevTools, screenshots or MCP.

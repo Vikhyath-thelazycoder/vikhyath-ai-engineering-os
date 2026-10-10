@@ -23,8 +23,8 @@ Status vocabulary (spec §25): NOT_STARTED · PLANNED · IN_PROGRESS · PARTIALL
 | M3 The brain | P8, P9, P10, P11, P18 | **COMPLETED** (accepted; user started M4 on 2026-10-10) |
 | A-1 Amendment | P0–P3, P5–P8, P10, P11, P18 (built phases amended); P12–P27 plans updated | **COMPLETED** (2026-10-05; accepted with M3) |
 | M4 Main domains | P12, P13, P14, P15 | **COMPLETED** (2026-10-10; accepted, user started M5) |
-| M5 Specialist domains | P16, P17 | **COMPLETED** (2026-10-10; awaiting user review) |
-| M6 Hosts | P19, P20, P21, P22 | NOT_STARTED |
+| M5 Specialist domains | P16, P17 | **COMPLETED** (2026-10-10; accepted, user started M6) |
+| M6 Hosts | P19, P20, P21, P22 | **COMPLETED** (2026-10-11; host runtime verification pending install, see P19–P22) |
 | M7 Dashboard & ship | P23, P24, P25, P26, P27 | NOT_STARTED |
 
 ## Phase index
@@ -50,10 +50,10 @@ Status vocabulary (spec §25): NOT_STARTED · PLANNED · IN_PROGRESS · PARTIALL
 | P16 | SEO domain + isolated BeyondSEO runtime | Build: domain | P15 | **COMPLETED** |
 | P17 | Media domain (Brag) | Build: domain | P9 | **COMPLETED** |
 | P18 | Observability (event model, history) | Build: core | P10 | **COMPLETED** |
-| P19 | Claude Code adapter | Build: hosts | P8–P11, P18 | NOT_STARTED |
-| P20 | Codex adapter | Build: hosts | P19 | NOT_STARTED |
-| P21 | Cursor adapter | Build: hosts | P19 | NOT_STARTED |
-| P22 | Antigravity adapter | Build: hosts | P19 | NOT_STARTED |
+| P19 | Claude Code adapter | Build: hosts | P8–P11, P18 | **COMPLETED** (files) |
+| P20 | Codex adapter | Build: hosts | P19 | **COMPLETED** (files) |
+| P21 | Cursor adapter | Build: hosts | P19 | **COMPLETED** (files) |
+| P22 | Antigravity adapter | Build: hosts | P19 | **COMPLETED** (files) |
 | P23 | Dashboard | Build: UX | P18 | NOT_STARTED |
 | P24 | Update & rollback | Build: supply | P6, P7 | NOT_STARTED |
 | P25 | Diagnostics & measured benchmarks | Verify | P4–P24 | NOT_STARTED |
@@ -250,7 +250,7 @@ Verification method for **every** phase below: local deterministic checks only �
 | P16 SEO | Unchanged architecture; browser use stays inside the SEO runtime | P15 | seo/* | FILE_LEVEL_PLAN P16 note | SEO capture evidence never becomes engineering verification | as planned | Scenarios E/F/I; SEO browser only in `runtimes/seo-*` ✔ | revert | **COMPLETED** (2026-10-10) |
 | P17 Media | Showcase output separate from verification | P9 | media/* | FILE_LEVEL_PLAN P17 note | Media screenshots/videos are never verification evidence | as planned | Scenario H ✔ | revert | **COMPLETED** (2026-10-10) |
 | P18 Observability | Record exceptional browser requests; no browser telemetry workflow | P10 | observability/events | `vikhyath/events/schema.py`, `project/state.py` | `BROWSER_EXCEPTION_REQUESTED` replaces `BROWSER_FALLBACK_ACTIVATED` | project test asserts the event | Event logged per project only ✔ | revert | **AMENDED · COMPLETED** |
-| P19–P22 Hosts | Same verification policy on all four hosts | P8–P11, P18 | — | FILE_LEVEL_PLAN P19–P22 | Adapters render the policy reference; may not enable Chrome DevTools, screenshots, visual QA or MCP; test asserts it | `tests/hosts/test_policy.py` | Every adapter output references `config/verification.yaml`; none contains MCP/browser enablement | revert | NOT_STARTED (plan updated) |
+| P19–P22 Hosts | Same verification policy on all four hosts | P8–P11, P18 | — | FILE_LEVEL_PLAN P19–P22 | Adapters render the policy reference; may not enable Chrome DevTools, screenshots, visual QA or MCP; test asserts it | `tests/hosts/test_policy.py` | Every adapter output references `config/verification.yaml`; none contains MCP/browser enablement ✔ | revert | **COMPLETED** (2026-10-11) |
 | P23 Dashboard | Show verification status, evidence, disabled capabilities | P18 | observability/* | FILE_LEVEL_PLAN P23 | Read-only views of state/evidence; no visual-QA view; off unless a session is active or explicitly opened | `tests/dashboard/*` | Fixture data → correct status; no browser verification UI | revert | NOT_STARTED (plan updated) |
 | P24 Update/rollback | Pin + diff + re-audit Appllama extracted files only | P6, P7 | — | FILE_LEVEL_PLAN P24 | Update of an upstream re-runs the overlap check for its extracted files; no MCP config handled | `tests/update/*` | Appllama update touches only its 4 bundled files | revert | NOT_STARTED (plan updated) |
 | P25 Diagnostics | Detect policy violations | P4–P24 | — | `vikhyath/diagnostics/validate.py` (done), FILE_LEVEL_PLAN P25 | Done now: policy section + forbidden bundle paths. P25 adds doctor: host-installed MCP / Chrome DevTools detection, duplicate design rules, stale pins | fixture-based tests | The four example errors of the spec are emitted on planted violations | revert | NOT_STARTED (partly pulled forward) |
@@ -337,6 +337,23 @@ M4 (P12–P15) delivered the main domains: codebase intelligence (Graphify graph
 
 M5 (P16, P17) delivered the specialist domains: an isolated BeyondSEO runtime (core by default, browser extra opt-in and scoped), evidence-labelled SEO claims from real capture quality, a per-task authorization gate for live-site edits, and the Brag media workflow (brag-slim default, full only with local Hyperframes). 218 tests; bundle `495f026f381e` unchanged. **Next: M6 (P19–P22 host adapters)** after user review.
 
+## P19–P22 — Host adapters · COMPLETED (2026-10-11)
+
+| Item | Detail |
+|---|---|
+| Changes | `vikhyath/adapters/{base,hosts}.py`; `bin/vikhyath` launcher; `hooks/hooks.json` (SessionStart bootstrap only); generated `.claude-plugin/plugin.json`, `.codex-plugin/plugin.json`, `.agents/plugins/marketplace.json`, `.agents/skills/vikhyath-os/SKILL.md`; `vikhyath adapters status\|render [--check]\|install\|uninstall`; bootstrap records host runs and shows the CLI path in L0; every entry skill names `config/verification.yaml`; README Codex command `codex plugin add` (H-4). D-042. |
+| Result | One entry-skill set (11 skills) packaged for four hosts; no logic in adapters; honest status per host. |
+| Tests | 228/228 (10 new in `tests/hosts/test_hosts.py`; 3 opt-in skipped). Doctor 49/0, validate 22/0. |
+| Acceptance | ✔ adapters import no routing/state/context code · ✔ every adapter output references the verification policy; none contains MCP, Chrome DevTools, screenshot or Playwright enablement · ✔ Claude hooks = SessionStart bootstrap only · ✔ manifests match `VERSION` · ✔ Cursor/Antigravity install → INSTALLED, bootstrap record → RUNTIME_VERIFIED, uninstall removes only managed skills, foreign skills never overwritten · ✔ launcher bootstrap works with no central install (plugin source fallback) and records the run. |
+| Host status on this machine | Claude Code: **FILES_PRESENT** — the v1.0.1 plugin is no longer in `installed_plugins.json` (ECC, UI/UX Pro Max and Open Design are installed directly); RUNTIME_VERIFIED needs the plugin installed from this branch and one session start. Codex, Cursor, Antigravity: **FILES_PRESENT**, host CLIs/apps absent → NOT VERIFIED (D-024). |
+| Deviations | No Codex/Cursor hooks (formats not verified on this machine); skills instruct `vikhyath bootstrap --host <name>` instead. Version stays 1.0.1 until the release phase (P26/P27). |
+| Evidence | `docs/evidence/P19-P22/run.md` |
+| Rollback | `git revert` of the M6 commit; `vikhyath adapters uninstall --host cursor|antigravity`. |
+
+## M6 review summary
+
+M6 (P19–P22) packaged the OS for Claude Code, Codex, Cursor and Antigravity from one entry-skill set: generated manifests, a SessionStart-only Claude hook, a launcher that works with or without the central install, user-level installs for Cursor/Antigravity, and §34 status levels where RUNTIME_VERIFIED is recorded only from a real host bootstrap. 228 tests. **Open:** install the plugin from this branch in Claude Code to reach RUNTIME_VERIFIED there. **Next: M7 (P23 dashboard → P24 update/rollback → P25 diagnostics/benchmarks → P26 docs → P27 integration)** after user review.
+
 ## P4–P27 — summary (file-level tasks: [FILE_LEVEL_PLAN.md](FILE_LEVEL_PLAN.md))
 
 | Phase | Objective (outline) | Key acceptance criteria (outline) |
@@ -396,3 +413,5 @@ M5 (P16, P17) delivered the specialist domains: an isolated BeyondSEO runtime (c
 | 2026-10-10 | M5 | User started M5 ("start with the next milestone, which is 5"); M4 accepted. |
 | 2026-10-10 | P16 | P16 completed: shared venv helper, BeyondSEO runtime + `vikhyath seo run|evidence|authorize`, evidence labels over capture quality, live-site authorization gate (D-041). Upstream suite core-only 340 passed / 9 browser-only failures. Evidence: docs/evidence/P16/run.md. |
 | 2026-10-10 | P17 | P17 completed: Brag media runtime (`vikhyath media plan|music-cues`), brag-slim default, scenario H media-only. 218 tests. Evidence: docs/evidence/P17/run.md. **M5 completed; awaiting user review before M6.** |
+| 2026-10-11 | M6 | User started M6 ("m6 we go bro"); M5 accepted (live SEO crawl blocked by this machine's DNS; success path checked offline). |
+| 2026-10-11 | P19–P22 | Host adapters completed: one entry-skill set, generated manifests, SessionStart-only Claude hook, launcher, Cursor/Antigravity user-level install, §34 status with recorded host runs (D-042). 228 tests. Evidence: docs/evidence/P19-P22/run.md. **M6 completed; awaiting user review before M7.** |

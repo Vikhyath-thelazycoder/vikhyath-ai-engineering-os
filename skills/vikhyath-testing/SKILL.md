@@ -20,3 +20,5 @@ Never verify by opening a browser, using Chrome DevTools or taking or reading sc
 headless E2E script runs only with `--include-e2e`. If only a human can judge something (look and feel), report
 it as NOT_TESTED, or record a browser exception with `vikhyath verify exception --reason "…"` (the user operates
 the browser; nothing is captured).
+
+Verification policy: local test-first (`config/verification.yaml`) — no browser, Chrome DevTools, screenshots or MCP.
