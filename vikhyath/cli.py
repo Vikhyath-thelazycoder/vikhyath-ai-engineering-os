@@ -730,6 +730,8 @@ def _seo_cmd(args):
         if (cmd, action) in seo.LIVE_WRITE:
             site = rest[rest.index("--site") + 1] if "--site" in rest[:-1] else None
             authorization.require(project, args.authorization, action=action, site=site)
+        print(f"[vikhyath] running beyondseo {cmd}… (network; results print when it finishes, Ctrl+C to stop)",
+              file=sys.stderr, flush=True)
         p, out = seo.run(project, vikhyath_home(), current_bundle(), rest)
     except (seo.SEOError, authorization.AuthorizationError) as exc:
         print(f"vikhyath seo: {exc}", file=sys.stderr)
@@ -1081,7 +1083,11 @@ def main(argv=None):
     if not getattr(args, "func", None):
         parser.print_help()
         return 0
-    return args.func(args)
+    try:
+        return args.func(args)
+    except KeyboardInterrupt:
+        print(f"\nvikhyath {args.command}: stopped (Ctrl+C)", file=sys.stderr)
+        return 130
 
 
 if __name__ == "__main__":
