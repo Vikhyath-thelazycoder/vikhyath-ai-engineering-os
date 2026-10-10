@@ -220,7 +220,21 @@ Done in A-1: `config/verification.yaml`, `vikhyath/verify/policy.py`, cards `tes
 
 | File | Action | Purpose | Test |
 |---|---|---|---|
-| `vikhyath/dashboard/server.py`, `api.py`, `lifecycle.py`, `static/index.html` | CREATE | Doc 15 design | `tests/dashboard/*` (start, idle exit, fixture data) |
+| `vikhyath/dashboard/server.py` | CREATE | `vikhyath dashboard [--port] [--project]`: stdlib `http.server` on 127.0.0.1 only, random free port, prints the URL; serves static files + JSON API; no daemon | `tests/dashboard/test_server.py` (binds loopback only, serves index + API) |
+| `vikhyath/dashboard/lifecycle.py` | CREATE | Starts on demand; exits after 10 min without a page poll or on Ctrl+C; emits DASHBOARD_STARTED / DASHBOARD_SLEEPING | idle-exit test with a short timeout |
+| `vikhyath/dashboard/api.py` | CREATE | Read-only JSON built from existing state only (no new state): `/api/agents` (registry cards → agents with room, name, sources), `/api/state` (project, branch, bundle, phase/current task + lifecycle step, verification policy), `/api/activity?since=` (event log, redacted), `/api/verification` (last evidence file), `/api/hosts` (adapters status), `/api/runtimes` | fixture project + events → expected JSON; isolation guard (only the selected project) |
+| `vikhyath/dashboard/agents.py` | CREATE | Agent state machine from events: CAPABILITIES_SELECTED → working; CONTEXT_LOADED → working; VERIFICATION_STARTED/PASSED/FAILED → QA working/idle/blocked; TASK_BLOCKED / RISK_DETECTED → blocked (with reason); dependency selected but not started → waiting; no event for N min → idle; `testing/browser-exception` always disabled; `engineering/simplicity` off unless routed | table-driven tests: event sequence → per-agent state + bubble text |
+| `config/dashboard.yaml` | CREATE | Rooms (domain → room name, area), agent display names and seats, idle/sleep timeouts — data, not code | schema test; every enabled capability has a seat |
+| `vikhyath/dashboard/static/index.html` (+ `office.js`, `office.css`) | CREATE | **Agent Office** UI approved by the user 2026-10-11 — reference `docs/design/agent-office-mockup.html` | DOM smoke test on fixture JSON (no browser automation in CI: render function unit-tested with a fake canvas) |
+| `vikhyath/cli.py` | MODIFY | `vikhyath dashboard` replaces the PLANNED stub | CLI test |
+
+**Approved design (D-043, user, 2026-10-11) — build exactly this, from `docs/design/agent-office-mockup.html`:**
+- A pixel office (canvas, pixelated scaling) with rooms per domain: Front desk (Router), Engineering floor, Design studio, QA lab, SEO & Media, Mentors & watch.
+- One agent per capability (or capability group) at a desk, with a name tag; the agent card shows capability id, "knowledge from" (source repos from the registry), room, current activity, last event. Seats: Router · Architect, Backend, Frontend, Security, Planner, Reviewer, Release, Debugger, Mapper (Graphify), Gatekeeper (Unlazy) · Director, UX, Mobile, Systems, Motion, A11y · QA, Sec tests, Perf, Browser QA (disabled desk) · SEO, Research, AI Search, Video, Demo, Deck · Karpathy (principles), Specialists (Agency), Watchtower (Beacon), Simplicity (Ponytail, asleep = off until asked).
+- States: working (green screen, typing), waiting (yellow), blocked (red, bubble says why), idle (grey), off (Zz), disabled by policy (dark desk). Speech bubbles carry the latest event text for that agent.
+- Bottom status bar: clock + every agent with its state (click selects). Below: agent card + Activity log (newest first, from the event log).
+- Live data only: no demo replay in the product (the mockup's replay becomes a `--demo` flag fed by fixture events). Poll `/api/activity` every 2 s while the page is visible.
+- Constraints: loopback only, read-only, no daemon, works offline (fonts bundled or system fallback), no browser automation, light/dark themes.
 
 ## M7 · P24 — Update & rollback
 

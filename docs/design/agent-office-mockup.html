@@ -1,0 +1,285 @@
+<title>Vikhyath Agent Office</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a pixel office (one canvas, HTML name tags and bubbles over it) above a status bar, agent card and activity log. */
+:root{
+  --bg:#eef0f4; --panel:#ffffff; --line:#d8dde6; --fg:#1b2230; --muted:#5b6575;
+  --accent:#c2410c; --accent-soft:#fde8dc;
+  --ok:#1f7a4d; --ok-soft:#dff1e7; --warn:#a15c00; --warn-soft:#fbefd6; --crit:#b3261e; --crit-soft:#fbe3e1;
+  --off:#6b7280; --off-soft:#e9ecf1; --tag:#ea7d1f; --tag-fg:#ffffff; --bubble:#ffffff; --bubble-fg:#1b2230;
+  --f-pixel:"Silkscreen", "Courier New", monospace;
+  --f-body:"IBM Plex Sans", "Helvetica Neue", system-ui, sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12151c; --panel:#1a1f29; --line:#2c3341; --fg:#e7ebf2; --muted:#9ba5b5;
+  --accent:#fb923c; --accent-soft:#3a2416;
+  --ok:#5fcf93; --ok-soft:#14301f; --warn:#e8b55c; --warn-soft:#382a12; --crit:#f08a80; --crit-soft:#3b1b19;
+  --off:#9aa1ad; --off-soft:#252c38; --tag:#ea7d1f; --tag-fg:#ffffff; --bubble:#f6f7f9; --bubble-fg:#1b2230; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12151c; --panel:#1a1f29; --line:#2c3341; --fg:#e7ebf2; --muted:#9ba5b5;
+  --accent:#fb923c; --accent-soft:#3a2416;
+  --ok:#5fcf93; --ok-soft:#14301f; --warn:#e8b55c; --warn-soft:#382a12; --crit:#f08a80; --crit-soft:#3b1b19;
+  --off:#9aa1ad; --off-soft:#252c38; --tag:#ea7d1f; --tag-fg:#ffffff; --bubble:#f6f7f9; --bubble-fg:#1b2230; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:15px/1.5 var(--f-body);margin:0}
+.wrap{max-width:1240px;margin:0 auto;padding-inline:16px;padding-block:18px 40px;display:grid;gap:14px}
+header{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:12px 20px}
+h1{font:700 26px/1.1 var(--f-pixel);margin:0;letter-spacing:.02em;text-wrap:balance}
+.sub{margin:4px 0 0;color:var(--muted);font-size:14px;max-width:62ch}
+.controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+button{font:500 13px var(--f-body);background:var(--panel);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:6px 12px;cursor:pointer}
+button:hover{border-color:var(--accent)} button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.pill{font:500 12px var(--f-mono);padding:4px 9px;border-radius:999px;background:var(--off-soft);color:var(--muted);white-space:nowrap}
+.pill.mock{background:var(--warn-soft);color:var(--warn)}
+.office{position:relative;width:100%;border-radius:10px;overflow:hidden;border:3px solid #3b2f2a;background:#3b2f2a}
+.office canvas{display:block;width:100%;height:auto;image-rendering:pixelated;image-rendering:crisp-edges}
+.ov{position:absolute;inset:0;pointer-events:none}
+.tag{position:absolute;transform:translate(-50%,-100%);font:700 clamp(7px,1.05vw,12px)/1 var(--f-pixel);background:var(--tag);color:var(--tag-fg);
+  padding:3px 5px 2px;border-radius:3px;white-space:nowrap;pointer-events:auto;cursor:pointer;border:0;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.tag.sel{outline:2px solid #fff;outline-offset:1px}
+.tag .d{display:inline-block;width:6px;height:6px;border-radius:50%;margin-left:4px;vertical-align:middle;background:#9ca3af}
+.tag[data-s="working"] .d{background:#4ade80}.tag[data-s="blocked"] .d{background:#f87171}.tag[data-s="waiting"] .d{background:#fbbf24}
+.tag[data-s="off"]{background:#6b7280}.tag[data-s="disabled"]{background:#3f3f46;color:#d4d4d8}
+.bubble{position:absolute;transform:translate(-50%,-100%);background:var(--bubble);color:var(--bubble-fg);font:500 clamp(8px,1vw,12px)/1.25 var(--f-body);
+  padding:4px 7px;border-radius:7px;max-width:22ch;box-shadow:0 2px 0 rgba(0,0,0,.25);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bubble::after{content:"";position:absolute;left:50%;bottom:-4px;transform:translateX(-50%);border:4px solid transparent;border-bottom:0;border-top-color:var(--bubble)}
+.bubble.crit{background:#fee2e2;color:#7f1d1d}.bubble.crit::after{border-top-color:#fee2e2}
+.room{position:absolute;transform:translate(-50%,0);font:700 clamp(6px,.85vw,10px)/1 var(--f-pixel);color:rgba(40,30,25,.55);letter-spacing:.08em;white-space:nowrap}
+.statusbar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font:12px var(--f-mono)}
+.statusbar time{color:var(--muted);margin-right:6px}
+.chip{display:inline-flex;align-items:center;gap:5px;padding:3px 7px;border-radius:5px;background:var(--off-soft);color:var(--fg);cursor:pointer;border:0;font:12px var(--f-mono)}
+.chip i{width:7px;height:7px;border-radius:50%;background:var(--off)}
+.chip[data-s="working"] i{background:var(--ok)}.chip[data-s="blocked"] i{background:var(--crit)}.chip[data-s="waiting"] i{background:var(--warn)}
+.chip[data-s="disabled"]{text-decoration:line-through;color:var(--muted)}
+.chip em{font-style:normal;color:var(--muted)}
+.cols{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:14px}
+@media (max-width:860px){.cols{grid-template-columns:1fr}}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px;display:grid;gap:10px;align-content:start;min-width:0}
+h2{font:700 15px/1.2 var(--f-pixel);margin:0;letter-spacing:.03em}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:14px;margin:0}
+.kv dt{color:var(--muted)} .kv dd{margin:0;font:13px var(--f-mono);min-width:0;overflow-wrap:anywhere}
+.state{display:inline-block;padding:2px 8px;border-radius:999px;font:500 12px var(--f-mono)}
+.state.working{background:var(--ok-soft);color:var(--ok)}.state.idle,.state.off{background:var(--off-soft);color:var(--muted)}
+.state.blocked{background:var(--crit-soft);color:var(--crit)}.state.waiting{background:var(--warn-soft);color:var(--warn)}
+.state.disabled{background:var(--off-soft);color:var(--muted);text-decoration:line-through}
+.log{display:grid;gap:0;max-height:260px;overflow:auto;font-size:13px}
+.log div{display:grid;grid-template-columns:62px minmax(0,1fr);gap:10px;padding:6px 0;border-bottom:1px solid var(--line)}
+.log time{font-family:var(--f-mono);color:var(--muted)}
+.log b{font-family:var(--f-mono);font-weight:500}
+.legend{display:flex;flex-wrap:wrap;gap:12px;font-size:13px;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:9px;height:9px;border-radius:50%;display:inline-block}
+.hint{font-size:13px;color:var(--muted);margin:0}
+</style>
+
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Agent Office</h1>
+      <p class="sub">Every Vikhyath capability is an agent at a desk in its domain's room. Agents light up when a request routes to them, show what they are doing, and say when they are blocked.</p>
+    </div>
+    <div class="controls">
+      <span class="pill mock">mockup · demo replay of sample events</span>
+      <button type="button" id="play" aria-pressed="true">Pause</button>
+      <button type="button" id="next">Next event</button>
+    </div>
+  </header>
+
+  <div class="office" id="office">
+    <canvas id="cv" width="480" height="300" aria-label="Pixel office with agents at desks"></canvas>
+    <div class="ov" id="ov"></div>
+  </div>
+
+  <div class="statusbar" id="bar" aria-label="All agents"></div>
+
+  <div class="legend">
+    <span><i style="background:var(--ok)"></i>working</span>
+    <span><i style="background:var(--warn)"></i>waiting on another agent</span>
+    <span><i style="background:var(--crit)"></i>blocked (says why)</span>
+    <span><i style="background:var(--off)"></i>idle</span>
+    <span>Zz · off until you ask (Simplicity)</span>
+    <span>dark desk · disabled by policy (browser QA)</span>
+  </div>
+
+  <div class="cols">
+    <section class="panel" id="card" aria-live="polite"></section>
+    <section class="panel">
+      <h2>Activity</h2>
+      <div class="log" id="log"></div>
+      <p class="hint">In the real dashboard this comes from the project's event log (`vikhyath events`): routes, context loads, verification runs, risk alerts.</p>
+    </section>
+  </div>
+</div>
+
+<script>
+// ── Agents: one per capability (or group), seated in its domain's room ──────────────────────────────────────────
+const SKIN=["#f1c27d","#e0ac69","#c68642","#8d5524","#ffdbac"];
+const A=[
+ {id:"router",name:"Router",cap:"vikhyath route",src:"Vikhyath OS core",x:226,y:14,shirt:"#1f2937",hair:"#111827",room:"Front desk"},
+ {id:"architect",name:"Architect",cap:"engineering/architecture",src:"ECC · Agency",x:22,y:56,shirt:"#2563eb",hair:"#3f2a1d"},
+ {id:"backend",name:"Backend",cap:"engineering/backend",src:"ECC · Agency",x:74,y:56,shirt:"#0d9488",hair:"#111827"},
+ {id:"frontend",name:"Frontend",cap:"engineering/frontend",src:"ECC · Addy",x:126,y:56,shirt:"#db2777",hair:"#7c2d12"},
+ {id:"security",name:"Security",cap:"engineering/security",src:"ECC · Addy · Agency",x:178,y:56,shirt:"#b91c1c",hair:"#1f2937"},
+ {id:"planner",name:"Planner",cap:"engineering/planning",src:"gstack · Agency",x:236,y:56,shirt:"#7c3aed",hair:"#4b2e1a"},
+ {id:"reviewer",name:"Reviewer",cap:"engineering/review",src:"gstack · ECC",x:22,y:106,shirt:"#475569",hair:"#a16207"},
+ {id:"release",name:"Release",cap:"engineering/release",src:"gstack",x:74,y:106,shirt:"#ca8a04",hair:"#111827"},
+ {id:"debugger",name:"Debugger",cap:"engineering/debugging",src:"gstack · ECC",x:126,y:106,shirt:"#16a34a",hair:"#78350f"},
+ {id:"mapper",name:"Mapper",cap:"codebase/impact-analysis",src:"Graphify",x:178,y:106,shirt:"#0369a1",hair:"#e5e7eb"},
+ {id:"gate",name:"Gatekeeper",cap:"engineering/completion",src:"Unlazy",x:236,y:106,shirt:"#9a3412",hair:"#111827"},
+ {id:"director",name:"Director",cap:"design/design-direction",src:"Taste · Open Design",x:322,y:56,shirt:"#e11d48",hair:"#111827"},
+ {id:"ux",name:"UX",cap:"design/ux",src:"UI/UX Pro Max",x:374,y:56,shirt:"#9333ea",hair:"#854d0e"},
+ {id:"mobile",name:"Mobile",cap:"design/frontend",src:"Appllama · Open Design",x:426,y:56,shirt:"#0891b2",hair:"#1f2937"},
+ {id:"systems",name:"Systems",cap:"design/design-system",src:"Open Design",x:322,y:106,shirt:"#4d7c0f",hair:"#b45309"},
+ {id:"motion",name:"Motion",cap:"design/motion",src:"Appllama · Taste",x:374,y:106,shirt:"#c026d3",hair:"#111827"},
+ {id:"a11y",name:"A11y",cap:"design/accessibility",src:"ECC · UI/UX Pro Max",x:426,y:106,shirt:"#2563eb",hair:"#e5e7eb"},
+ {id:"qa",name:"QA",cap:"testing/local-verification",src:"ECC · gstack",x:22,y:178,shirt:"#15803d",hair:"#111827"},
+ {id:"sectest",name:"Sec tests",cap:"testing/security",src:"ECC · Addy",x:76,y:178,shirt:"#be123c",hair:"#4b2e1a"},
+ {id:"perf",name:"Perf",cap:"testing/performance",src:"Addy",x:22,y:236,shirt:"#a16207",hair:"#111827"},
+ {id:"browser",name:"Browser QA",cap:"testing/browser-exception",src:"disabled by policy",x:96,y:236,shirt:"#52525b",hair:"#3f3f46",fixed:"disabled"},
+ {id:"seo",name:"SEO",cap:"seo/auditing",src:"BeyondSEO",x:176,y:178,shirt:"#0f766e",hair:"#1f2937"},
+ {id:"research",name:"Research",cap:"seo/keyword-research",src:"BeyondSEO",x:228,y:178,shirt:"#2563eb",hair:"#92400e"},
+ {id:"aisearch",name:"AI Search",cap:"seo/ai-search",src:"BeyondSEO",x:280,y:178,shirt:"#7c3aed",hair:"#111827"},
+ {id:"video",name:"Video",cap:"media/launch-video",src:"Brag",x:176,y:236,shirt:"#ea580c",hair:"#111827"},
+ {id:"demo",name:"Demo",cap:"media/demo",src:"Brag",x:228,y:236,shirt:"#0284c7",hair:"#b45309"},
+ {id:"deck",name:"Deck",cap:"media/presentation",src:"Brag",x:280,y:236,shirt:"#65a30d",hair:"#e5e7eb"},
+ {id:"mentor",name:"Karpathy",cap:"engineering/principles",src:"Karpathy Skills",x:350,y:178,shirt:"#334155",hair:"#111827"},
+ {id:"agency",name:"Specialists",cap:"engineering/* personas",src:"Agency Agents",x:418,y:178,shirt:"#0e7490",hair:"#7c2d12"},
+ {id:"beacon",name:"Watchtower",cap:"observability/risk-detection",src:"Beacon",x:350,y:236,shirt:"#1e3a8a",hair:"#111827"},
+ {id:"simple",name:"Simplicity",cap:"engineering/simplicity",src:"Ponytail (only on request)",x:418,y:236,shirt:"#a3a3a3",hair:"#57534e",fixed:"off"},
+];
+A.forEach((a,i)=>{a.skin=SKIN[i%SKIN.length];a.state=a.fixed||"idle";a.say="";a.task="";a.last="—"});
+const byId=Object.fromEntries(A.map(a=>[a.id,a]));
+const ROOMS=[
+ {name:"ENGINEERING FLOOR",x:8,y:40,w:292,h:110,floor:"#d8c3a0",tile:"#cfb895"},
+ {name:"DESIGN STUDIO",x:308,y:40,w:164,h:110,floor:"#e3d6ef",tile:"#d8c9e8"},
+ {name:"QA LAB",x:8,y:160,w:150,h:132,floor:"#cfe6d6",tile:"#c2ddca"},
+ {name:"SEO & MEDIA",x:166,y:160,w:166,h:132,floor:"#cfe0ee",tile:"#c1d6e8"},
+ {name:"MENTORS & WATCH",x:340,y:160,w:132,h:132,floor:"#dcdcdc",tile:"#d0d0d0"},
+];
+
+// ── Demo replay: sample events (the real console reads the project's event log) ─────────────────────────────
+const EV=[
+ {t:"09:41:02",log:"Request routed: “Fix the payment webhook security.” → engineering/security, testing/security (+ impact analysis)",
+  s:{router:["working","routing → Security, Sec tests"]}},
+ {t:"09:41:03",log:"Impact analysis: 9 files, 12 related tests (code-surface limit 12)",
+  s:{mapper:["working","affected: 9 files, 12 tests"],security:["waiting","waiting for the impact map"]}},
+ {t:"09:41:09",log:"Lifecycle SECURITY_CHANGE: UNDERSTAND → PLAN → IMPLEMENT",
+  s:{security:["working","signature + replay checks"],backend:["working","patching app/webhook.py"],planner:["working","T-1.1 added to P3"]}},
+ {t:"09:42:30",log:"Negative tests written first: forged signature, replayed event",
+  s:{sectest:["working","writing negative tests"],backend:["waiting","waiting for failing tests"]}},
+ {t:"09:43:12",log:"vikhyath verify: 5/5 impacted tests passed · build ok · evidence recorded",
+  s:{qa:["working","verify: 5/5 passed"],gate:["working","gates: 3/3 met"],sectest:["idle",""],backend:["idle",""]}},
+ {t:"09:43:20",log:"Review: scope check CLEAN · no findings above medium",
+  s:{reviewer:["working","scope: CLEAN"],qa:["idle",""],gate:["idle",""],security:["idle",""],mapper:["idle",""]}},
+ {t:"09:44:05",log:"Request routed: “This landing page looks generic. Make it feel premium.” → design only",
+  s:{router:["working","routing → Design studio"],reviewer:["idle",""],planner:["idle",""]}},
+ {t:"09:44:07",log:"Design direction + UI/UX search; design-token check PASS (1 accent, 1 grey family)",
+  s:{director:["working","one accent, calmer type"],ux:["working","searching styles…"],systems:["working","design check: PASS"]}},
+ {t:"09:45:40",log:"SEO crawl blocked: this machine cannot resolve DNS → claims marked UNKNOWN",
+  s:{seo:["blocked","DNS down: could not inspect"],director:["idle",""],ux:["idle",""],systems:["idle",""],router:["idle",""]}},
+ {t:"09:46:10",log:"Launch video: brag-slim plan ready (ffmpeg found) · media output is not verification evidence",
+  s:{video:["working","brag-slim plan ready"],mentor:["working","simplest thing that works"]}},
+ {t:"09:46:30",log:"Risk alert: curl-pipe-to-shell seen in a tool call (Beacon rule) · logged, not blocked",
+  s:{beacon:["blocked","risk: curl | sh"],video:["idle",""],mentor:["idle",""]}},
+ {t:"09:47:00",log:"Session idle · agents back at their desks",
+  s:{beacon:["idle",""],seo:["idle",""]}},
+];
+
+// ── Pixel art ──────────────────────────────────────────────────────────────────────────────────────────────────
+const cv=document.getElementById("cv"),g=cv.getContext("2d");
+const R=(x,y,w,h,c)=>{g.fillStyle=c;g.fillRect(x|0,y|0,w|0,h|0)};
+function floor(r){R(r.x,r.y,r.w,r.h,r.floor);for(let y=r.y;y<r.y+r.h;y+=8)for(let x=r.x+((y/8)%2?4:0);x<r.x+r.w;x+=8)R(x,y,4,4,r.tile)}
+function plant(x,y){R(x+1,y+6,6,5,"#9a3412");R(x+2,y+5,4,1,"#7c2d12");R(x+1,y,6,5,"#16a34a");R(x,y+2,8,2,"#15803d");R(x+3,y-1,2,2,"#22c55e")}
+function windowAt(x,y){R(x,y,22,6,"#7dd3fc");R(x,y,22,1,"#e0f2fe");R(x+10,y,2,6,"#e0f2fe")}
+function shelf(x,y){R(x,y,22,14,"#7c4a2d");const c=["#dc2626","#2563eb","#16a34a","#ca8a04","#9333ea","#0891b2"];for(let i=0;i<6;i++){R(x+2+i*3,y+2,2,4,c[i]);R(x+2+i*3,y+8,2,4,c[(i+3)%6])}}
+function board(x,y){R(x,y,26,14,"#f8fafc");R(x,y,26,1,"#94a3b8");R(x+3,y+4,8,1,"#22c55e");R(x+3,y+7,14,1,"#3b82f6");R(x+3,y+10,10,1,"#f97316")}
+function person(a,f){
+  const x=a.x,y=a.y,dis=a.state==="disabled";
+  if(dis){R(x+1,y+10,22,7,"#3f3f46");R(x+15,y+5,6,5,"#27272a");R(x+16,y+6,4,3,"#18181b");return}
+  const bob=a.state==="working"&&f%2?1:0;
+  R(x+7,y+1-bob,8,8,a.skin);R(x+7,y+0-bob,8,3,a.hair);R(x+6,y+1-bob,1,4,a.hair);R(x+15,y+1-bob,1,4,a.hair);
+  if(a.state==="off"){R(x+9,y+5,2,1,"#1f2937");R(x+12,y+5,2,1,"#1f2937")}else{R(x+9,y+4,1,2,"#1f2937");R(x+12,y+4,1,2,"#1f2937")}
+  R(x+6,y+9,10,6,a.shirt);
+  const arm=a.state==="working"?(f%2?0:1):0;R(x+4,y+10+arm,2,4,a.shirt);R(x+16,y+11-arm,2,4,a.shirt);
+  R(x+1,y+13,22,6,"#8b5a2b");R(x+1,y+13,22,1,"#a87444");R(x+2,y+19,2,3,"#5b3a1d");R(x+20,y+19,2,3,"#5b3a1d");
+  const glow=a.state==="working"?(f%2?"#4ade80":"#86efac"):a.state==="blocked"?"#f87171":a.state==="waiting"?"#fde68a":"#64748b";
+  R(x+16,y+7,7,6,"#1f2937");R(x+17,y+8,5,4,glow);R(x+18,y+13,3,1,"#1f2937");
+  R(x+5,y+14,6,2,"#e5e7eb");
+}
+function draw(f){
+  R(0,0,480,300,"#3b2f2a");
+  R(8,4,464,32,"#efe6d6");for(let x=16;x<470;x+=8)R(x,4,4,32,"#e8dcc8");
+  [24,70,320,366,412].forEach(x=>windowAt(x,6));
+  ROOMS.forEach(floor);
+  R(8,36,464,4,"#3b2f2a");R(8,150,464,10,"#3b2f2a");R(300,40,8,110,"#3b2f2a");R(158,160,8,132,"#3b2f2a");R(332,160,8,132,"#3b2f2a");
+  R(140,150,30,10,"#d8c3a0");R(380,150,30,10,"#dcdcdc");R(300,80,8,26,"#e3d6ef");R(158,200,8,24,"#cfe6d6");R(332,200,8,24,"#cfe0ee");
+  plant(12,124);plant(284,124);plant(310,124);plant(458,124);plant(12,270);plant(140,270);plant(170,270);plant(318,270);plant(458,270);
+  shelf(120,176);board(286,124);board(434,130);
+  R(392,206,30,14,"#b45309");R(392,206,30,2,"#d97706");[394,404,414].forEach(x=>{R(x,202,6,3,"#475569");R(x,221,6,3,"#475569")});
+  R(194,6,16,10,"#94a3b8");R(196,8,12,6,"#e2e8f0");
+  A.forEach(a=>person(a,f));
+  A.filter(a=>a.state==="off").forEach(a=>{R(a.x+18,a.y-6,3,1,"#e5e7eb");R(a.x+19,a.y-5,1,1,"#e5e7eb");R(a.x+18,a.y-4,3,1,"#e5e7eb")});
+}
+
+// ── Overlays, status bar, card, log ────────────────────────────────────────────────────────────────────────
+const ov=document.getElementById("ov"),bar=document.getElementById("bar"),card=document.getElementById("card"),logEl=document.getElementById("log");
+const pct=(v,m)=>(v/m*100)+"%";
+let selected="security";
+ROOMS.forEach(r=>{const d=document.createElement("div");d.className="room";d.textContent=r.name;d.style.left=pct(r.x+r.w/2,480);d.style.top=pct(r.y+2,300);ov.appendChild(d)});
+A.forEach(a=>{
+  const t=document.createElement("button");t.type="button";t.className="tag";t.id="tag-"+a.id;t.innerHTML=a.name+'<span class="d"></span>';
+  t.style.left=pct(a.x+12,480);t.style.top=pct(a.y-2,300);t.addEventListener("click",()=>select(a.id));ov.appendChild(t);
+  const b=document.createElement("div");b.className="bubble";b.id="bub-"+a.id;b.hidden=true;b.style.left=pct(a.x+12,480);b.style.top=pct(a.y-11,300);ov.appendChild(b);
+  const c=document.createElement("button");c.type="button";c.className="chip";c.id="chip-"+a.id;c.innerHTML="<i></i>"+a.name+" <em></em>";
+  c.addEventListener("click",()=>select(a.id));bar.appendChild(c);
+});
+const clock=document.createElement("time");bar.prepend(clock);
+const LABEL={working:"working",idle:"idle",waiting:"waiting",blocked:"blocked",off:"off · on request",disabled:"disabled by policy"};
+function render(){
+  A.forEach(a=>{
+    const t=document.getElementById("tag-"+a.id);t.dataset.s=a.state;t.classList.toggle("sel",a.id===selected);
+    const b=document.getElementById("bub-"+a.id);b.hidden=!a.say;b.textContent=a.say;b.classList.toggle("crit",a.state==="blocked");
+    const c=document.getElementById("chip-"+a.id);c.dataset.s=a.state;c.querySelector("em").textContent=LABEL[a.state];
+  });
+  const a=byId[selected];
+  card.innerHTML=`<h2>${a.name}</h2><dl class="kv">
+    <dt>Status</dt><dd><span class="state ${a.state}">${LABEL[a.state]}</span></dd>
+    <dt>Capability</dt><dd>${a.cap}</dd>
+    <dt>Knowledge from</dt><dd>${a.src}</dd>
+    <dt>Room</dt><dd>${a.room||roomOf(a)}</dd>
+    <dt>Now</dt><dd>${a.say||"at desk, nothing routed"}</dd>
+    <dt>Last event</dt><dd>${a.last}</dd></dl>
+    <p class="hint">${a.state==="disabled"?"Browser verification is switched off for every project (config/verification.yaml). A user can only record an exception; the agent never drives a browser.":
+      a.state==="off"?"Simplicity review runs only when you ask for it.":"Agents only work when the router selects their capability; everything else stays idle and costs no context."}</p>`;
+}
+function roomOf(a){const r=ROOMS.find(r=>a.x>=r.x&&a.x<r.x+r.w&&a.y>=r.y&&a.y<r.y+r.h);return r?r.name.toLowerCase().replace(/(^|\s)\S/g,s=>s.toUpperCase()):"Front desk"}
+function select(id){selected=id;render()}
+let step=0;
+function apply(i){
+  const e=EV[i];clock.textContent=e.t;
+  Object.entries(e.s).forEach(([id,[st,say]])=>{const a=byId[id];a.state=st;a.say=say;if(say)a.last=`${e.t} · ${say}`});
+  const row=document.createElement("div");row.innerHTML=`<time>${e.t}</time><span>${e.log}</span>`;logEl.prepend(row);
+  while(logEl.children.length>12)logEl.lastChild.remove();
+  const active=Object.keys(e.s).find(id=>e.s[id][0]!=="idle");if(active)selected=active;
+  render();
+}
+function reset(){A.forEach(a=>{a.state=a.fixed||"idle";a.say=""})}
+function next(){if(step===0&&logEl.children.length)reset();apply(step);step=(step+1)%EV.length}
+// initial state: replay up to the security work so the first frame shows agents busy
+for(let i=0;i<5;i++)next();
+let playing=!matchMedia("(prefers-reduced-motion: reduce)").matches,frame=0,lastTick=0,lastStep=0;
+const playBtn=document.getElementById("play");
+function syncPlay(){playBtn.textContent=playing?"Pause":"Play";playBtn.setAttribute("aria-pressed",playing)}
+syncPlay();
+playBtn.addEventListener("click",()=>{playing=!playing;syncPlay()});
+document.getElementById("next").addEventListener("click",()=>{next()});
+function loop(ts){
+  if(ts-lastTick>260){frame++;lastTick=ts;draw(playing?frame:0)}
+  if(playing&&ts-lastStep>2600){lastStep=ts;next()}
+  requestAnimationFrame(loop);
+}
+draw(0);render();requestAnimationFrame(loop);
+</script>
