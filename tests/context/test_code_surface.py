@@ -112,7 +112,7 @@ class TestRouterImpactStep(unittest.TestCase):
     def test_existing_change_gets_impact_step(self):
         r = self.router.route("add refund support to the payment webhook", paths=["app/webhook.py"],
                               project=ProjectFacts(stage="existing"))
-        self.assertEqual(r["schema_version"], 3)
+        self.assertGreaterEqual(r["schema_version"], 3)
         self.assertEqual(r["impact"]["command"], "vikhyath codebase affected --paths app/webhook.py")
         self.assertEqual(r["impact"]["code_files_limit"], 12)
 

@@ -22,7 +22,7 @@ Status vocabulary (spec §25): NOT_STARTED · PLANNED · IN_PROGRESS · PARTIALL
 | M2 Foundation & bundle | P4, P5, P6, P7 | **COMPLETED** (reviewed; user started M3 on 2026-10-04) |
 | M3 The brain | P8, P9, P10, P11, P18 | **COMPLETED** (accepted; user started M4 on 2026-10-10) |
 | A-1 Amendment | P0–P3, P5–P8, P10, P11, P18 (built phases amended); P12–P27 plans updated | **COMPLETED** (2026-10-05; accepted with M3) |
-| M4 Main domains | P12, P13, P14, P15 | **IN_PROGRESS** (P12 completed) |
+| M4 Main domains | P12, P13, P14, P15 | **IN_PROGRESS** (P12, P13 completed) |
 | M5 Specialist domains | P16, P17 | NOT_STARTED |
 | M6 Hosts | P19, P20, P21, P22 | NOT_STARTED |
 | M7 Dashboard & ship | P23, P24, P25, P26, P27 | NOT_STARTED |
@@ -44,7 +44,7 @@ Status vocabulary (spec §25): NOT_STARTED · PLANNED · IN_PROGRESS · PARTIALL
 | P10 | Project state, plan index, decision memory | Build: core | P4 | **COMPLETED** |
 | P11 | Multi-project isolation | Build: core | P10 | **COMPLETED** |
 | P12 | Codebase domain (Graphify) | Build: domain | P9, P11 | **COMPLETED** |
-| P13 | Engineering domain (+ lifecycle, completion discipline, project docs) | Build: domain | P12 | NOT_STARTED |
+| P13 | Engineering domain (+ lifecycle, completion discipline, project docs) | Build: domain | P12 | **COMPLETED** |
 | P14 | Design domain (incl. merged Appllama native-mobile rules, D-034) | Build: domain | P9 | NOT_STARTED |
 | P15 | Testing domain + local test-first verification (D-035) | Build: domain | P13 | NOT_STARTED |
 | P16 | SEO domain + isolated BeyondSEO runtime | Build: domain | P15 | NOT_STARTED |
@@ -244,7 +244,7 @@ Verification method for **every** phase below: local deterministic checks only �
 | P10 State | Record verification mode, disabled mechanisms, last result, evidence, exceptions | P4 | testing/evidence | `vikhyath/project/state.py` | `verification_block()` from policy; `record_browser_exception()`; L0 policy line | `tests/project/test_project.py` (+2) | `state.yaml` shows `mode: local-test-first`, 3 mechanisms `disabled` ✔ | revert; extra keys ignored by old readers | **AMENDED · COMPLETED** |
 | P11 Isolation | Exceptions/evidence/test state never cross projects | P10 | — | `tests/project/test_project.py` | Exceptions written through the guard into the project's own `verification.yaml` | two-project test | Other project has no exception and no event ✔ | revert | **AMENDED · COMPLETED** |
 | P12 Graphify | Graphify picks *what to test* (affected files → relevant tests); not a verifier | P9, P11 | codebase/impact-analysis, testing/local-verification | FILE_LEVEL_PLAN P12 | + `affected` → test-file mapping output for P15 selection | fixture repo: change → test set | Affected-file query also returns the relevant tests ✔ | revert | **COMPLETED** (2026-10-10) |
-| P13 Engineering | Engineering material without browser execution paths | P12 | engineering/*, testing/strategy | FILE_LEVEL_PLAN P13 | D-027 debts + residual browser mentions in adapted gstack/ECC/Addy text removed or reframed (doc 22 §3) | grep test over engineering/testing bundle files | No executable browser step in engineering/testing files | revert | NOT_STARTED (plan updated) |
+| P13 Engineering | Engineering material without browser execution paths | P12 | engineering/*, testing/strategy | FILE_LEVEL_PLAN P13 | D-027 debts + residual browser mentions in adapted gstack/ECC/Addy text removed or reframed (doc 22 §3) | grep test over engineering/testing bundle files | No executable browser step in engineering/testing files ✔ | revert | **COMPLETED** (2026-10-10) |
 | P14 Design | One canonical design architecture incl. merged Appllama rules | P9 | design/* | FILE_LEVEL_PLAN P14 | Overlap matrix done (doc 22 §2); design-token checks (accent/grey/radius counts) as local tests; no screenshot design review | scenario D + mobile scenario | No duplicate design rules; mobile route loads the native rules | revert | NOT_STARTED (plan updated) |
 | P15 Testing | **Local test-first verification engine** | P13 | testing/* | FILE_LEVEL_PLAN P15 (rewritten) | Test discovery, impact-based selection, run, diagnose, targeted rerun, static/build/security/a11y/perf checks, evidence writer, `vikhyath verify [--exception]`; **no Playwright runtime, no browser module** | `tests/verify/*` with fixture projects | Payment-webhook change selects unit/signature/integration/idempotency/security + typecheck/build; no browser process ever started; evidence machine-readable | revert | NOT_STARTED (plan rewritten) |
 | P16 SEO | Unchanged architecture; browser use stays inside the SEO runtime | P15 | seo/* | FILE_LEVEL_PLAN P16 note | SEO capture evidence never becomes engineering verification | as planned | Scenarios E/F/I; SEO browser only in `runtimes/seo-*` | revert | NOT_STARTED (note added) |
@@ -268,6 +268,18 @@ Verification method for **every** phase below: local deterministic checks only �
 | Deviations | No `sections.yaml` files: the P9 context engine already splits bundle files into sections, so the 3 codebase cards needed no change beyond the re-rendered CARD.md. `affected` is a command the route points to (`impact` field), not run inside `vikhyath route` (D-037e). Upstream pytest: 5,853 passed / 66 failed / 263 skipped; the captured failures are optional language extras the OS does not install (Terraform, VB.NET, Erlang); full per-file breakdown deferred to P25. The closure trace missed `serve.py` (absolute import inside a function); P25 extends the trace. Old runtime directories are not garbage-collected yet (P24). |
 | Evidence | `docs/evidence/P12/run.md` |
 | Rollback | `git revert` of the P12 commit; delete `$VIKHYATH_HOME/runtimes/graphify-*` and `$VIKHYATH_HOME/projects/*/graph/` (regenerable); previous bundle `cb0635dbf824` via `bundles/previous`. |
+
+## P13 — Engineering · COMPLETED (2026-10-10)
+
+| Item | Detail |
+|---|---|
+| Changes | `config/lifecycle.yaml` + `vikhyath/project/lifecycle.py` (load/validate/steps_for); router `lifecycle` (schema v4); `vikhyath/bundle/transforms/domain.py` (TRANSFORM_VERSION 3) + 2 targeted rewrites; `laravel-plugin-discovery` excluded; `vikhyath/runtimes/unlazy.py`, `vikhyath gates`, `vikhyath runtime unlazy-hook`; entry skills engineering/security/review/production and the 3 agents rewritten (frontmatter); `workflows/` removed; doctor/README/CONTRIBUTING updated. D-038. |
+| Result | Every engineering route carries its lifecycle with OS commands and exit criteria. Bundle `2d1356913230` (2,583 files, 0 errors): **D-027 debts cleared** — `unresolved_placeholders {}`, `debts {}` (was 13 files / 54 files); 253 gstack runtime code lines removed with markers, 94 prose lines marked, frontmatter hooks dropped from 5 skills. Unlazy gates run from the bundle; Stop hook only in `~/.claude/settings.json`, pointing at `bundles/current`. |
+| Tests | 194/194 (10 new in `tests/engineering/test_engineering.py`; 3 opt-in skipped). Doctor 45/0, validate 22/0 (no unittest step), registry valid; bundle self-tests (Unlazy, UI/UX Pro Max) exit 0. |
+| Acceptance | ✔ scenarios A, B, C route with lifecycle (A: requirements questions first; B: reconcile into the plan; C: bug fix test-first) · ✔ D-027 debts in engineering/testing files: none · ✔ no executable browser step left un-annotated in engineering/testing/codebase files. |
+| Deviations | No per-capability `sections.yaml` (P9 sections cover it, as in P12). gstack's own runtime tools are removed, not ported; the affected steps point to OS commands. Graphify runtime lock now hashes only code + pins (doc rewrites no longer force a reinstall). |
+| Evidence | `docs/evidence/P13/run.md` |
+| Rollback | `git revert` of the P13 commit; previous bundle via `bundles/previous`; `vikhyath runtime unlazy-hook --disable` removes the hook. |
 
 ## P4–P27 — summary (file-level tasks: [FILE_LEVEL_PLAN.md](FILE_LEVEL_PLAN.md))
 
@@ -322,3 +334,4 @@ Verification method for **every** phase below: local deterministic checks only �
 | 2026-10-05 | A-1 | Amendment A-1 (user specification update; "You can continue"): audit first (doc 22), then implemented. Appllama `dd5caae` pinned as 15th upstream, APPLLAMA_STATUS = MERGED (3 files + LICENSE into design/frontend + design/motion; appllama-usage, MCP, simulator loop, duplicates excluded) — D-034. Local test-first verification: `config/verification.yaml`, `vikhyath/verify/policy.py`, `testing/browser-exception` DISABLED_BY_POLICY, `testing/local-verification`, `testing/evidence`, 15 browser/visual upstream files excluded, router `browser: disabled\|exception-requested`, state verification block + per-project exception log, `BROWSER_EXCEPTION_REQUESTED`, validate policy checks — D-035, D-036 (D-020 superseded). Every phase re-evaluated ("Amendment A-1 — phase reconciliation"). 165 tests, validate 23/0, doctor 45/0; known-good bundle `cb0635dbf824` (2,583 files, 0 errors). Evidence: docs/evidence/D034-D036/run.md. |
 | 2026-10-10 | M4 | User started M4 ("yes start m4"); M3 and A-1 accepted. Branch `feat/v2-os-transformation` fast-forwarded to `main` (A-1). P12 started. |
 | 2026-10-10 | P12 | P12 completed: Graphify runtime wrapper + `vikhyath runtime`/`codebase`, affected files + related tests within the 12-file code surface, §74 structural fallback, router `impact` step (schema v3), doctor runtime check, codebase entry skill; `graphify/serve.py` preserved (D-037). 184 tests, doctor 47/0, validate 23/0; known-good bundle `68fcabbc8e1b`. Evidence: docs/evidence/P12/run.md. P13 next. |
+| 2026-10-10 | P13 | P13 completed: lifecycle config + route lifecycle, domain adaptation transform clears all D-027 debts, Unlazy gates + central Stop hook, thin entry skills/agents, workflows/ retired (D-038). 194 tests; bundle `2d1356913230`. Evidence: docs/evidence/P13/run.md. P14 next. |

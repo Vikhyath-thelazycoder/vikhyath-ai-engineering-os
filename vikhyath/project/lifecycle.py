@@ -117,3 +117,62 @@ def start_session(project, session_id: str, host: str):
         write_yaml(path, record)
         record = dict(record, new=True)
     return record
+
+
+# ── Engineering lifecycle (P13, config/lifecycle.yaml) ──────────────────────────────────────────────────────────
+STEP_ORDER = ("UNDERSTAND", "PLAN", "IMPLEMENT", "TEST", "VERIFY", "RECONCILE")
+
+
+def load_lifecycle(root: Path | None = None):
+    import yaml
+
+    from ..paths import repo_root
+    with open((root or repo_root()) / "config" / "lifecycle.yaml", encoding="utf-8") as f:
+        return yaml.safe_load(f) or {}
+
+
+def validate_lifecycle(cfg, change_types=()) -> list:
+    """Every step defined with purpose/commands/exit; every change-type entry uses known steps and ends in RECONCILE."""
+    p = []
+    if cfg.get("version") != 1:
+        p.append("lifecycle.yaml version must be 1")
+    steps = cfg.get("steps") or {}
+    if tuple(steps) != STEP_ORDER:
+        p.append(f"steps must be {' → '.join(STEP_ORDER)}")
+    for name, step in steps.items():
+        for key in ("purpose", "commands", "exit"):
+            if not (step or {}).get(key):
+                p.append(f"step {name}: missing {key}")
+    types = cfg.get("change_types") or {}
+    if "default" not in types:
+        p.append("change_types.default missing")
+    for t, entry in types.items():
+        if t != "default" and change_types and t not in change_types:
+            p.append(f"change_types.{t}: unknown change type")
+        seq = (entry or {}).get("steps") or []
+        bad = [s for s in seq if s not in steps]
+        if bad:
+            p.append(f"change_types.{t}: unknown steps {bad}")
+        if not seq or seq[-1] != "RECONCILE":
+            p.append(f"change_types.{t}: must end with RECONCILE")
+        for s in ((entry or {}).get("rules") or {}):
+            if s not in seq:
+                p.append(f"change_types.{t}: rule for {s}, which is not one of its steps")
+    return p
+
+
+def steps_for(cfg, change_type: str, stage: str = "unknown"):
+    """The ordered lifecycle for one request: step, purpose, the OS commands for this project stage, exit, rule."""
+    types = cfg.get("change_types") or {}
+    entry = types.get(change_type) or types.get("default") or {}
+    rules = entry.get("rules") or {}
+    out = []
+    for name in entry.get("steps") or []:
+        step = cfg["steps"][name]
+        cmds = step["commands"]
+        chosen = cmds.get(stage) or cmds.get("any") or cmds.get("existing" if stage != "new" else "new") or []
+        item = {"step": name, "commands": list(chosen), "exit": step["exit"]}
+        if name in rules:
+            item["rule"] = rules[name]
+        out.append(item)
+    return out

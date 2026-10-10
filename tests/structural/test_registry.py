@@ -14,7 +14,7 @@ from vikhyath.cli import main  # noqa: E402
 from vikhyath.registry import generate, loader, schema  # noqa: E402
 
 EXPECTED_CAPABILITIES = 63  # D-035: + testing/evidence
-EXPECTED_BUNDLED_FILES = 2584  # D-034/D-035: −15 browser/visual files, +4 Appllama (LICENSE, SKILL, 2 references); D-037: +graphify serve.py
+EXPECTED_BUNDLED_FILES = 2583  # D-034/D-035: −15 browser/visual files, +4 Appllama (LICENSE, SKILL, 2 references); D-037: +graphify serve.py; D-038: −laravel-plugin-discovery (MCP)
 # Files P7 retired in favour of capabilities/**/card.yaml (C-1); only history documents may still name them.
 RETIRED = re.compile(r"config/capabilities\.yaml|domain-model\.yaml|(?<![\w./-])integrations/(?:\*\.yaml|<name>|ecc|`| +#)|├── capabilities\.yaml")
 HISTORY = ("CHANGELOG.md", "docs/audit/", "docs/plan/", "docs/evidence/")

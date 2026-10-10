@@ -12,6 +12,10 @@ MCP_FILE = re.compile(r"(^|/)(\.?mcp[^/]*|[^/]*\.mcp)\.json$", re.I)  # .mcp.jso
 MCP_MENTION = re.compile(r"mcp__|mcpServers|chrome-devtools-mcp|@modelcontextprotocol|\.mcp\.json")
 GSTACK_RUNTIME = re.compile(r"\.claude/skills/gstack|gstack-skill-start|gstack-telemetry|gstack-update-check")
 D021_ALLOWED = {("graphify", "tests/fixtures/sample.mcp.json")}
+# D-038: files that treat MCP configuration as data to audit or detect (never configure or run MCP).
+MCP_AS_DATA = {"files/ecc/skills/workspace-surface-audit/SKILL.md",
+               "files/beacon/rules/context-exfiltration/secret-read-then-mcp-tool-handoff.rule.yaml",
+               "files/beacon/rules/sensitive-edit/agent-control-surface-modified.rule.yaml"}
 
 
 def hard_violations(repo, source_path, dest, data: bytes):
@@ -28,9 +32,11 @@ def hard_violations(repo, source_path, dest, data: bytes):
 def soft_debts(dest, decision, data: bytes):
     if decision != "ADAPT":
         return []
-    text = data.decode("utf-8", errors="ignore")
+    # Lines the domain transform already marked as removed (D-038) are resolved, not debt.
+    text = "\n".join(line for line in data.decode("utf-8", errors="ignore").splitlines()
+                     if "[vikhyath] removed" not in line and "not part of Vikhyath OS" not in line)
     debts = []
-    if MCP_MENTION.search(text):
+    if MCP_MENTION.search(text) and dest not in MCP_AS_DATA:
         debts.append(("mcp_mentions", dest))
     if GSTACK_RUNTIME.search(text):
         debts.append(("gstack_runtime_paths", dest))

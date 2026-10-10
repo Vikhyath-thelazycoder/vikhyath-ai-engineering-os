@@ -1,20 +1,21 @@
 """ADAPT transforms applied while building the bundle.
 
-Only deterministic, verifiable transforms run here: gstack template rendering and targeted rewrites
-that remove instructions pointing at excluded mechanisms. Domain-level adaptation (capability cards,
-section maps) happens in the domain phases (P13-P17); until then other ADAPT files pass through unchanged.
+Only deterministic, verifiable transforms run here: gstack template rendering, targeted rewrites that remove
+instructions pointing at excluded mechanisms, and domain adaptation (P13, D-038: gstack placeholders and runtime
+steps, verification-policy notes).
 """
 from pathlib import Path
 
-from . import gstack, rewrites
+from . import domain, gstack, rewrites
 
-TRANSFORM_VERSION = "2"  # 2: strong-anchor gstack rendering
+TRANSFORM_VERSION = "3"  # 2: strong-anchor gstack rendering. 3: domain adaptation (D-038)
 
 
 class Transformer:
-    def __init__(self, staging: Path, inventories: dict):
+    def __init__(self, staging: Path, inventories: dict, bundled: dict | None = None):
         self.staging = Path(staging)
         self.inventories = inventories
+        self.bundled = bundled or {}
         self._gstack = None
 
     def _gstack_renderer(self):
@@ -22,7 +23,7 @@ class Transformer:
             self._gstack = gstack.Renderer(self.staging / "gstack", self.inventories.get("gstack", []))
         return self._gstack
 
-    def apply(self, repo, path, data: bytes, decision):
+    def apply(self, repo, path, data: bytes, decision, capability=""):
         """Return (destination path relative to the repo, output bytes, notes)."""
         if decision != "ADAPT":
             return path, data, []
@@ -34,4 +35,11 @@ class Transformer:
         if rewrites.applies(repo, path):
             data = rewrites.apply(repo, path, data.decode("utf-8")).encode("utf-8")
             notes.append("targeted rewrite")
+        text, domain_notes = domain.adapt(repo, path, data.decode("utf-8", errors="surrogateescape"), capability,
+                                          self.bundled.get(repo, set()))
+        if domain_notes:
+            data = text.encode("utf-8", errors="surrogateescape")
+            resolved = {n.split()[1] for n in domain_notes if n.startswith("placeholder ")}
+            notes = [n for n in notes if not (n.startswith("unresolved placeholder ") and n.split()[-1] in resolved)]
+            notes += domain_notes
         return path, data, notes

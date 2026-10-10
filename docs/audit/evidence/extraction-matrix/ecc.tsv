@@ -3480,7 +3480,7 @@ ADAPT	Language/framework packs	engineering/stack-packs	18951	skills/kotlin-patte
 ADAPT	Language/framework packs	engineering/stack-packs	20800	skills/kotlin-testing/SKILL.md
 ADAPT	Language/framework packs	engineering/stack-packs	20099	skills/kubernetes-patterns/SKILL.md
 ADAPT	Language/framework packs	engineering/stack-packs	10664	skills/laravel-patterns/SKILL.md
-ADAPT	Language/framework packs	engineering/stack-packs	6393	skills/laravel-plugin-discovery/SKILL.md
+EXCLUDE	MCP		6393	skills/laravel-plugin-discovery/SKILL.md
 ADAPT	Language/framework packs	engineering/stack-packs	26556	skills/laravel-security/SKILL.md
 ADAPT	Language/framework packs	engineering/stack-packs	17863	skills/laravel-tdd/SKILL.md
 ADAPT	Language/framework packs	engineering/stack-packs	4376	skills/laravel-verification/SKILL.md

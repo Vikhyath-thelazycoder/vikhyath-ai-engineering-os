@@ -34,6 +34,7 @@ RESERVED_FLAGS = ("--graph", "--out", "--output", "--memory-dir")
 _SECRET_ENV = re.compile(r"(API_KEY|_TOKEN|SECRET|PASSWORD|CREDENTIAL)", re.I)
 PROBE = Path(__file__).with_name("graphify_probe.py")
 META = "vikhyath-graph.json"
+CODE_SUFFIXES = (".py", "pyproject.toml", "uv.lock")
 UPDATE_TIMEOUT = 600
 QUERY_TIMEOUT = 120
 
@@ -52,8 +53,8 @@ def source_dir(bundle_dir: Path | None) -> Path | None:
 
 
 def lock_of(src: Path) -> str:
-    """Runtime lock = every bundled Graphify file (sha256 from the bundle index, no reads) + the dependency pins, so a
-    new pin or a changed extraction rule gets a new runtime directory."""
+    """Runtime lock = the bundled Graphify code (sha256 from the bundle index, no reads) + the dependency pins, so a new
+    pin or a changed code rule gets a new runtime directory; documentation rewrites do not."""
     h = hashlib.sha256()
     for name in ("pyproject.toml", "uv.lock"):
         f = src / name
@@ -63,11 +64,11 @@ def lock_of(src: Path) -> str:
     if index.is_file():
         files = json.loads(index.read_text(encoding="utf-8")).get("files", {})
         prefix = "files/graphify/"
-        for dest in sorted(d for d in files if d.startswith(prefix)):
+        for dest in sorted(d for d in files if d.startswith(prefix) and d.endswith(CODE_SUFFIXES)):
             h.update(f"{dest}\0{files[dest]['sha256']}\n".encode())
     else:   # unbundled source (tests): file list and sizes
         for p in sorted(src.rglob("*")):
-            if p.is_file():
+            if p.is_file() and p.name.endswith(CODE_SUFFIXES):
                 h.update(f"{p.relative_to(src)}\0{p.stat().st_size}\n".encode())
     return h.hexdigest()[:12]
 

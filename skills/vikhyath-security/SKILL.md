@@ -1,57 +1,17 @@
 ---
 name: vikhyath-security
-description: Security-focused capability activation. Routes to ECC security practices, Addy hardening skills, and Agency security specialists.
+description: Security-sensitive changes (auth, secrets, payments/webhooks, input handling, OWASP) — route to engineering/security and testing/security and prove fixes with negative tests run locally.
 ---
 
-# Vikhyath Security Skill
+# Vikhyath Security
 
-## Purpose
+1. **Route:** `vikhyath route "<request>" --paths <files…>`; security work selects `engineering/security` (project
+   security outranks every methodology) and `testing/security`. Load them with `vikhyath context <id>…`.
+2. **Understand the surface:** `vikhyath codebase affected --paths <files…>`; check recorded security decisions
+   with `vikhyath decide list --kind security`.
+3. **Fix with negative tests** (lifecycle rule for SECURITY_CHANGE): forged/expired signatures rejected,
+   unauthorised access denied, injection inputs neutralised, secrets never logged. Each test must fail without the fix.
+4. **Verify locally:** `vikhyath verify` (tests + dependency audit + secret scan where available); record the
+   evidence. Record new security rules as decisions: `vikhyath decide add --kind security …`.
 
-Activate security-relevant capabilities when the task involves security-sensitive code.
-
-## When Activated
-
-- Authentication/authorization changes
-- Credential management
-- Encryption implementation
-- Vulnerability remediation
-- Security audits
-- OWASP compliance
-- Input validation
-- API security
-
-## Capabilities Routed
-
-### ECC (Security Practices)
-- Security scanning workflows
-- Security-aware code review
-- Verification loops for security changes
-
-### Addy Agent Skills (Security Hardening)
-- OWASP Top 10 checks
-- Security hardening practices
-- Vulnerability detection
-- Secure coding patterns
-
-### Agency Agents (Security Specialist)
-- Security specialist agent for domain-specific review
-- Only activated when expert review adds clear value
-
-## Security Review Checklist
-
-When this skill is activated, ensure the routing addresses:
-
-1. [ ] Input validation
-2. [ ] Authentication/authorization correctness
-3. [ ] Credential exposure (no secrets in code)
-4. [ ] SQL injection / XSS / CSRF protection
-5. [ ] Dependency vulnerability check
-6. [ ] API security (rate limiting, auth)
-7. [ ] Error handling (no stack trace exposure)
-8. [ ] Logging (no sensitive data in logs)
-
-## Anti-Patterns
-
-- ❌ Running full security audit for non-security changes
-- ❌ Skipping security review for auth-related code
-- ❌ Loading all Agency specialists for a simple security fix
+Never paste real secrets into prompts, logs or evidence. No browser or screenshot verification.

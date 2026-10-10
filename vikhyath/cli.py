@@ -515,9 +515,18 @@ def _runtime_cmd(args):
     from .paths import current_bundle, vikhyath_home
     from .runtimes import graphify
     home, bundle = vikhyath_home(), current_bundle()
+    from .runtimes import unlazy
     if args.runtime_cmd == "status":
-        _print({"runtimes": [graphify.health(home, bundle)]}, args.json)
+        _print({"runtimes": [graphify.health(home, bundle), unlazy.health(home)]}, args.json)
         return 0
+    if args.runtime_cmd == "unlazy-hook":
+        try:
+            p = unlazy.stop_hook(home, enable=args.enable)
+        except unlazy.UnlazyError as exc:
+            print(f"vikhyath runtime unlazy-hook: {exc}", file=sys.stderr)
+            return 1
+        print((p.stdout or p.stderr).strip())
+        return p.returncode
     src = graphify.source_dir(bundle)
     if src is None:
         print("vikhyath runtime: no active bundle with files/graphify (run `vikhyath bundle build`)", file=sys.stderr)
@@ -576,6 +585,21 @@ def _codebase_cmd(args):
     print(p.stdout, end="")
     if p.returncode:
         print(p.stderr, end="", file=sys.stderr)
+    return p.returncode
+
+
+def _gates_cmd(args):
+    from .paths import vikhyath_home
+    from .runtimes import unlazy
+    project = _project_ref(args)
+    extra = [*(["--jobs", str(args.jobs)] if args.jobs else []), *(["--timeout", str(args.timeout)] if args.timeout else [])]
+    try:
+        p = unlazy.gates(vikhyath_home(), args.mode, args.files, project.root, extra)
+    except unlazy.UnlazyError as exc:
+        print(f"vikhyath gates: {exc}", file=sys.stderr)
+        return 2
+    print(p.stdout, end="")
+    print(p.stderr, end="", file=sys.stderr)
     return p.returncode
 
 
@@ -775,10 +799,22 @@ def build_parser():
     rsub = p.add_subparsers(dest="runtime_cmd", required=True)
     q = rsub.add_parser("status", help="Health of each runtime (ready / not-installed / broken / no-bundle)")
     q.add_argument("--json", action="store_true", help="JSON output")
+    q = rsub.add_parser("unlazy-hook", help="Register/remove Unlazy's Stop hook in ~/.claude/settings.json (never per project)")
+    onoff = q.add_mutually_exclusive_group(required=True)
+    onoff.add_argument("--enable", action="store_true")
+    onoff.add_argument("--disable", action="store_true")
     q = rsub.add_parser("install", help="Install a runtime from the active bundle (network: pip dependencies)")
     q.add_argument("name", choices=("graphify",))
     q.add_argument("--json", action="store_true", help="JSON output")
     p.set_defaults(func=_runtime_cmd)
+
+    p = sub.add_parser("gates", help="Acceptance-gate ledgers (Unlazy): status, check, approve, reverify, lint")
+    p.add_argument("mode", choices=("status", "check", "approve", "reverify", "lint"))
+    p.add_argument("files", nargs="+", help="Ledger files, e.g. GATES.md")
+    p.add_argument("--jobs", type=int, help="Parallel independent checks (1..64)")
+    p.add_argument("--timeout", type=int, help="Per-check timeout in seconds")
+    p.add_argument("--project", help="Project directory (default: current directory)")
+    p.set_defaults(func=_gates_cmd)
 
     p = sub.add_parser("codebase", help="Code graph (Graphify): affected files + related tests, scoped queries")
     csub = p.add_subparsers(dest="codebase_cmd", required=True)

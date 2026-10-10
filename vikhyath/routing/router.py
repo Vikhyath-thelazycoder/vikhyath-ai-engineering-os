@@ -9,6 +9,7 @@ from pathlib import Path
 
 from ..codebase.impact import code_limit
 from ..context.budget import load_budgets
+from ..project.lifecycle import load_lifecycle, steps_for
 from ..registry import loader
 from ..verify import policy
 from .classify import classify_change, normalize
@@ -16,7 +17,7 @@ from .fallback_bm25 import BM25
 from .rules import load_hierarchy, load_routing, match_paths, match_rules, role_of
 from .select import ROUTABLE_MODES, Candidate, dependency_closure, domain_of, select_capabilities
 
-ROUTE_SCHEMA_VERSION = 3  # 2: browser = disabled | exception-requested; verification_mode (D-035). 3: impact (P12)
+ROUTE_SCHEMA_VERSION = 4  # 2: browser disabled|exception-requested, verification_mode (D-035). 3: impact (P12). 4: lifecycle (P13)
 
 
 @dataclass
@@ -26,6 +27,9 @@ class ProjectFacts:
     project_id: str | None = None
     phase: str | None = None
     stack: tuple = field(default_factory=tuple)
+
+
+LIFECYCLE_DOMAINS = {"engineering", "codebase", "testing"}
 
 
 class RoutingError(ValueError):
@@ -40,6 +44,7 @@ class Router:
         self.hierarchy = load_hierarchy(root)
         self.verification_mode = policy.load_policy(root)["mode"]
         self.code_limit = code_limit(load_budgets(root))
+        self.lifecycle = load_lifecycle(root)
         self._bm25 = None
 
     @property
@@ -105,6 +110,9 @@ class Router:
         if "codebase/impact-analysis" in all_ids and project.stage != "new":
             impact = {"command": "vikhyath codebase affected" + (" --paths " + " ".join(paths) if paths else ""),
                       "code_files_limit": self.code_limit, "returns": ["files", "tests", "unknown"]}
+        # P13: engineering work follows one lifecycle (config/lifecycle.yaml), ordered per change type.
+        lifecycle = (steps_for(self.lifecycle, change_type, project.stage)
+                     if set(domains) & LIFECYCLE_DOMAINS else None)
         pipeline = next((h.pipeline for h in hits if h.pipeline), None) or domains
         # D-035: browser verification is disabled by policy; an explicit request is only surfaced, never activated.
         browser = "exception-requested" if any(h.browser_exception for h in hits) else "disabled"
@@ -127,6 +135,7 @@ class Router:
             "dependencies": deps,
             "fallbacks": fallbacks,
             "impact": impact,
+            "lifecycle": lifecycle,
             "browser": browser,
             "verification_mode": self.verification_mode,
             "pipeline": pipeline,

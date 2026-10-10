@@ -152,6 +152,15 @@ class TestRewrites(unittest.TestCase):
                                             "Resolve QA's `sections/...` and `templates/...` paths from that installed QA "
                                             "SKILL.md directory, not the caller or product directory.\n"),
         }
+        staged = os.path.join(ROOT_DIR, ".staging", "upstream")
+        for key in (("addy", "agents/web-performance-auditor.md"),
+                    ("graphify", "graphify/skills/claude/references/exports.md")):   # P13 rewrites: real upstream text
+            path = os.path.join(staged, key[0], key[1])
+            if os.path.isfile(path):
+                with open(path, encoding="utf-8") as f:
+                    samples[key] = f.read()
+        if not os.path.isdir(staged):
+            self.skipTest("staged upstreams needed for the P13 rewrite samples")
         self.assertEqual(set(samples), set(rewrites.REWRITES))
         for (repo, path), text in samples.items():
             out = rewrites.apply(repo, path, text)

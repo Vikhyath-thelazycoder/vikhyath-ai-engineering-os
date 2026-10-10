@@ -122,7 +122,6 @@ vikhyath-ai-engineering-os/
 │   ├── routing/
 │   ├── security/
 │   └── structural/             # registry and repository-health tests
-├── workflows/                  # Standard engineering workflow guides
 ├── plugin.json                 # Portable root manifest (Agent Plugins 1.0.0)
 ├── VERSION                     # Release version string
 └── README.md                   # Project documentation

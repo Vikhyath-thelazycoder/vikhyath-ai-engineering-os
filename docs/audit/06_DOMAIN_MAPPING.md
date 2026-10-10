@@ -26,7 +26,7 @@ Plan, build, review and ship software with completion discipline.
 | `engineering/migration` | Deprecations, schema/data migrations | addy, ecc | 2 | 24.1 | 6,169 | L2 | none | False | none | bundled | — |
 | `engineering/documentation` | Project docs (PRD/TRD/ARCHITECTURE/…), ADRs, living docs | agency, ecc, gstack | 8 | 100.7 | 25,776 | L2 | none | False | none | mixed | — |
 | `engineering/ai-systems` | LLM/RAG/agent system design, cost-aware pipelines, prompt and AI security | agency, ecc | 12 | 138.3 | 35,403 | L2 | none | False | none | bundled | — |
-| `engineering/stack-packs` | Language/framework rules, patterns, reviewers; selected by detected stack | ecc | 251 | 1430.9 | 366,316 | L3 | none | False | none | bundled | — |
+| `engineering/stack-packs` | Language/framework rules, patterns, reviewers; selected by detected stack | ecc | 250 | 1424.7 | 364,717 | L3 | none | False | none | bundled | — |
 
 ## codebase
 

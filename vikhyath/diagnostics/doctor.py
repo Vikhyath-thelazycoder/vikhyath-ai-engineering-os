@@ -6,7 +6,7 @@ from pathlib import Path
 from . import Report
 
 PORTABLE_SCHEMA = "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json"
-STRUCTURE_DIRS = ["skills", "agents", "workflows", "capabilities", "config", "tests", "scripts", ".codex-plugin",
+STRUCTURE_DIRS = ["skills", "agents", "capabilities", "config", "tests", "scripts", ".codex-plugin",
                   ".claude-plugin", ".agents/skills", ".agents/plugins", ".github/workflows"]
 KEY_FILES = ["README.md", "AGENTS.md", "CLAUDE.md", "LICENSE", "CHANGELOG.md", "CONTRIBUTING.md", "SECURITY.md",
              "CODE_OF_CONDUCT.md"]

@@ -425,7 +425,6 @@ Every bundled upstream component appears below, grouped by source path prefix. T
 | ecc | engineering/stack-packs | `skills/kotlin-testing/` | 1 | 20.3 | ADAPT | none | MIT | `ef648e0` |
 | ecc | engineering/stack-packs | `skills/kubernetes-patterns/` | 1 | 19.6 | ADAPT | none | MIT | `ef648e0` |
 | ecc | engineering/stack-packs | `skills/laravel-patterns/` | 1 | 10.4 | ADAPT | none | MIT | `ef648e0` |
-| ecc | engineering/stack-packs | `skills/laravel-plugin-discovery/` | 1 | 6.2 | ADAPT | none | MIT | `ef648e0` |
 | ecc | engineering/stack-packs | `skills/laravel-security/` | 1 | 25.9 | ADAPT | none | MIT | `ef648e0` |
 | ecc | engineering/stack-packs | `skills/laravel-tdd/` | 1 | 17.4 | ADAPT | none | MIT | `ef648e0` |
 | ecc | engineering/stack-packs | `skills/laravel-verification/` | 1 | 4.3 | ADAPT | none | MIT | `ef648e0` |
@@ -550,4 +549,4 @@ Every bundled upstream component appears below, grouped by source path prefix. T
 | gstack | testing/strategy | `health/` | 1 | 15.4 | ADAPT | none | MIT (+Apache-2.0 notices) | `74512c2` |
 | gstack | testing/strategy | `test-audit/` | 1 | 7.4 | ADAPT | none | MIT (+Apache-2.0 notices) | `74512c2` |
 
-**Total bundled: 2584 files, 50.0 MB** across 55 capabilities.
+**Total bundled: 2583 files, 50.0 MB** across 55 capabilities.

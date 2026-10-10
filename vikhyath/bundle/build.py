@@ -149,7 +149,9 @@ def build(home: Path, staging: Path | None = None, *, rules_path: Path | None = 
         shutil.rmtree(work)
     work.mkdir(parents=True)
     inventories = {repo: read_inventory(evidence, repo) for repo in rules_doc["repos"]}
-    transformer = Transformer(staging, inventories)
+    bundled = {repo: {p[: -len(".tmpl")] if p.endswith(".tmpl") else p for p, _size, _sha in inventories[repo]
+                      if classify(rules_doc["repos"][repo], p)["decision"] in BUNDLED} for repo in rules_doc["repos"]}
+    transformer = Transformer(staging, inventories, bundled)
     records, index_files, capabilities = [], {}, {}
     hard, debts, notes, gaps = [], {}, {}, []
     created = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
@@ -168,7 +170,7 @@ def build(home: Path, staging: Path | None = None, *, rules_path: Path | None = 
             if git_blob_sha1(data) != sha:
                 raise BuildError(f"{repo}:{path} does not match the audited blob hash (staging drift or tampering)")
             try:
-                dest_rel, out, file_notes = transformer.apply(repo, path, data, rule["decision"])
+                dest_rel, out, file_notes = transformer.apply(repo, path, data, rule["decision"], rule.get("capability", ""))
             except RewriteDrift as exc:
                 raise BuildError(str(exc)) from exc
             # Plain single-link files (D-026): Unlazy refuses multi-link ledgers as tampering, so no hardlink dedup.

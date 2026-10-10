@@ -1,70 +1,23 @@
 ---
 name: vikhyath-engineering
-description: Engineering task orchestration via ECC foundation. Routes engineering work to ECC workflows, planning, implementation, testing, and verification capabilities.
+description: Engineering work (features, fixes, refactors, migrations) through the Vikhyath OS lifecycle — route, understand, plan, implement, test, verify, reconcile — with only the routed engineering capabilities loaded.
 ---
 
-# Vikhyath Engineering Skill
+# Vikhyath Engineering
 
-## Purpose
+The OS decides which engineering guidance applies; this skill only tells you how to follow it.
 
-Route engineering tasks to the ECC engineering foundation and supplement with relevant capabilities.
+1. **Route:** `vikhyath route "<request>" --paths <files…>`. Load only what it selects:
+   `vikhyath context <capability-id>…`.
+2. **Follow `lifecycle`** from the route result (`config/lifecycle.yaml`), step by step, running each step's
+   commands and meeting its `exit` before moving on:
+   UNDERSTAND (`vikhyath codebase affected`, `vikhyath plan locate`) → PLAN (`vikhyath plan reconcile`) →
+   IMPLEMENT → TEST → VERIFY (`vikhyath verify`) → RECONCILE (`vikhyath plan set-status … --evidence …`).
+   Bug fixes start with a failing regression test; refactors keep tests green before and after.
+3. **Substantial work** (several files or deliverables): write `GATES.md` first and use
+   `vikhyath gates lint|check GATES.md` (Unlazy completion discipline).
+4. **Done** means VERIFIED with recorded evidence — never "should work".
 
-## When Activated
-
-This skill activates for any engineering task including:
-- Implementation
-- Planning
-- Testing
-- Code review
-- Verification
-- Bug fixing
-
-## Routing
-
-### Standard Engineering Task
-
-1. Use ECC engineering workflows for planning, implementation, and verification
-2. Follow ECC's TDD, security scanning, and code review practices
-3. Do NOT duplicate ECC's methodology — route to it
-
-### With Codebase Complexity
-
-If the codebase is unfamiliar or complex, supplement with:
-- **Graphify** for codebase intelligence and dependency analysis
-
-### With Security Requirements
-
-If the task involves security-sensitive code, supplement with:
-- **Addy Agent Skills** for security hardening and OWASP practices
-- Relevant **Agency** security specialist if needed
-
-### With Completion Requirements
-
-If the task is substantial or explicitly requires exhaustive completion, supplement with:
-- **Unlazy** for acceptance gates and depth trees
-
-## ECC Integration
-
-ECC provides the following that this skill routes to:
-- Engineering workflows (planning → implementation → testing → review → verification)
-- TDD workflow skills
-- Security scanning skills
-- Code review skills
-- Verification loops
-- Production readiness checks
-
-### Installation Verification
-
-Before routing to ECC, verify it is installed:
-- Codex: Check if `affaan-m/ECC` plugin is installed
-- Claude: Check for CLAUDE.md / .claude-plugin from ECC
-- Antigravity: Check for ECC skills in workspace
-
-If the capability bundle is not installed, run `scripts/install` (it fetches the pinned upstreams and builds the bundle and registry).
-
-## Anti-Patterns
-
-- ❌ Reimplementing ECC's planning methodology
-- ❌ Duplicating ECC's security checklists
-- ❌ Creating parallel testing workflows
-- ❌ Loading all ECC skills when only one is needed
+Rules: guidance order is the route's `capabilities` order (user requirements → project security → architecture
+→ methodology → specialists → review → simplicity). Verify locally (tests, types, lint, build); never by browser
+or screenshot. Simplicity review only when the user asks for it.

@@ -54,6 +54,22 @@ APPLLAMA_DONE = """## Definition of done, per screen
 
 # (repo, path) -> [(pattern, replacement)]
 REWRITES = {
+    # P13 (D-027/D-035/D-038): no MCP and no browser automation as a data source; parse artifacts the user provides.
+    ("addy", "agents/web-performance-auditor.md"): [
+        (re.compile(r", `npx -p chrome-devtools-mcp chrome-devtools lighthouse_audit --output-format=json` "
+                    r"\(Chrome DevTools MCP CLI, no install required\)"), ""),
+        (re.compile(r"Defer interpretation to Chrome DevTools MCP \(`performance_analyze_insight`\); without MCP, "
+                    r"summarize"), "Summarize"),
+        (re.compile(r"^- \*\*Live capture via Chrome DevTools MCP server\*\*:.*\n- \*\*Chrome DevTools MCP CLI\*\*.*\n",
+                    re.M), ""),
+        (re.compile(r"^\| Live trace, LCP attribution.*\n\| Manual terminal capture.*\n", re.M),
+         "| Live trace / attribution | A trace or report the user captured and provides | Not captured by the OS "
+         "(browser automation is disabled, config/verification.yaml) |\n"),
+    ],
+    ("graphify", "graphify/skills/claude/references/exports.md"): [
+        (re.compile(r", `--mcp`\)"), ")"),
+        (re.compile(r"^### Step 7d - MCP server.*?(?=^### )", re.M | re.S), ""),
+    ],
     ("unlazy", "SKILL.md"): [
         (re.compile(r"node <skill-dir>/scripts/install-hooks\.mjs"),
          "vikhyath runtime unlazy-hook --enable   # Vikhyath OS registers the Stop hook centrally, never in the project"),

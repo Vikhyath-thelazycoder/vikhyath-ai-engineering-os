@@ -110,16 +110,16 @@
   },
   "ecc": {
    "EXCLUDE": {
-    "files": 3535,
-    "bytes": 54071386
+    "files": 3536,
+    "bytes": 54077779
    },
    "COPY": {
     "files": 1,
     "bytes": 1071
    },
    "ADAPT": {
-    "files": 386,
-    "bytes": 2245254
+    "files": 385,
+    "bytes": 2238861
    },
    "REFERENCE": {
     "files": 272,
@@ -551,9 +551,9 @@
    ]
   },
   "engineering/stack-packs": {
-   "files": 251,
-   "bytes": 1465264,
-   "est_tokens": 366316,
+   "files": 250,
+   "bytes": 1458871,
+   "est_tokens": 364717,
    "sources": [
     "ecc"
    ]

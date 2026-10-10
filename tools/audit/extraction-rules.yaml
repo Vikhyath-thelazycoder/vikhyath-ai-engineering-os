@@ -168,7 +168,7 @@ repos:
     default: {decision: EXCLUDE, reason: OUT_OF_DOMAIN}
     rules:
       - {paths: ["LICENSE"], decision: COPY, capability: engineering/planning, reason: LICENSE}
-      - {paths: [".mcp.json", "**/*mcp*/**", "skills/mcp-server-patterns/**", "skills/codehealth-mcp/**", "scripts/memory-mcp.mjs", "skills/angular-developer/references/mcp.md"], decision: EXCLUDE, reason: MCP}
+      - {paths: [".mcp.json", "**/*mcp*/**", "skills/mcp-server-patterns/**", "skills/codehealth-mcp/**", "scripts/memory-mcp.mjs", "skills/angular-developer/references/mcp.md", "skills/laravel-plugin-discovery/**"], decision: EXCLUDE, reason: MCP}
       - {paths: ["hooks/**", "scripts/hooks/**"], decision: REFERENCE, reason: "Hook behaviors; config-protection/format-typecheck/cost-tracker/pre-compact re-implemented as opt-in OS hooks (SEC-01)"}
       - {paths: ["ecc2/**", "src/**"], decision: EXCLUDE, reason: ALWAYS_ON}
       - {paths: ["docs/ja-JP/**", "docs/zh-CN/**", "docs/zh-TW/**", "docs/ko-KR/**", "docs/tr/**", "docs/es/**", "docs/pt-BR/**", "README.zh-CN.md"], decision: EXCLUDE, reason: TRANSLATION}

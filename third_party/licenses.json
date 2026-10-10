@@ -68,7 +68,7 @@
  },
  "ecc": {
   "attribution": "Copyright (c) 2026 Affaan Mustafa",
-  "bundled_files": 405,
+  "bundled_files": 404,
   "commit_sha": "ef648e01899ba3e8dc6371642deaaf64b4477775",
   "license": "MIT",
   "license_files": [
