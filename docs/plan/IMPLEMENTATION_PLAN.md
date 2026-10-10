@@ -22,8 +22,8 @@ Status vocabulary (spec §25): NOT_STARTED · PLANNED · IN_PROGRESS · PARTIALL
 | M2 Foundation & bundle | P4, P5, P6, P7 | **COMPLETED** (reviewed; user started M3 on 2026-10-04) |
 | M3 The brain | P8, P9, P10, P11, P18 | **COMPLETED** (accepted; user started M4 on 2026-10-10) |
 | A-1 Amendment | P0–P3, P5–P8, P10, P11, P18 (built phases amended); P12–P27 plans updated | **COMPLETED** (2026-10-05; accepted with M3) |
-| M4 Main domains | P12, P13, P14, P15 | **COMPLETED** (2026-10-10; awaiting user review) |
-| M5 Specialist domains | P16, P17 | NOT_STARTED |
+| M4 Main domains | P12, P13, P14, P15 | **COMPLETED** (2026-10-10; accepted, user started M5) |
+| M5 Specialist domains | P16, P17 | **COMPLETED** (2026-10-10; awaiting user review) |
 | M6 Hosts | P19, P20, P21, P22 | NOT_STARTED |
 | M7 Dashboard & ship | P23, P24, P25, P26, P27 | NOT_STARTED |
 
@@ -47,8 +47,8 @@ Status vocabulary (spec §25): NOT_STARTED · PLANNED · IN_PROGRESS · PARTIALL
 | P13 | Engineering domain (+ lifecycle, completion discipline, project docs) | Build: domain | P12 | **COMPLETED** |
 | P14 | Design domain (incl. merged Appllama native-mobile rules, D-034) | Build: domain | P9 | **COMPLETED** |
 | P15 | Testing domain + local test-first verification (D-035) | Build: domain | P13 | **COMPLETED** |
-| P16 | SEO domain + isolated BeyondSEO runtime | Build: domain | P15 | NOT_STARTED |
-| P17 | Media domain (Brag) | Build: domain | P9 | NOT_STARTED |
+| P16 | SEO domain + isolated BeyondSEO runtime | Build: domain | P15 | **COMPLETED** |
+| P17 | Media domain (Brag) | Build: domain | P9 | **COMPLETED** |
 | P18 | Observability (event model, history) | Build: core | P10 | **COMPLETED** |
 | P19 | Claude Code adapter | Build: hosts | P8–P11, P18 | NOT_STARTED |
 | P20 | Codex adapter | Build: hosts | P19 | NOT_STARTED |
@@ -247,8 +247,8 @@ Verification method for **every** phase below: local deterministic checks only �
 | P13 Engineering | Engineering material without browser execution paths | P12 | engineering/*, testing/strategy | FILE_LEVEL_PLAN P13 | D-027 debts + residual browser mentions in adapted gstack/ECC/Addy text removed or reframed (doc 22 §3) | grep test over engineering/testing bundle files | No executable browser step in engineering/testing files ✔ | revert | **COMPLETED** (2026-10-10) |
 | P14 Design | One canonical design architecture incl. merged Appllama rules | P9 | design/* | FILE_LEVEL_PLAN P14 | Overlap matrix done (doc 22 §2); design-token checks (accent/grey/radius counts) as local tests; no screenshot design review | scenario D + mobile scenario | No duplicate design rules; mobile route loads the native rules ✔ | revert | **COMPLETED** (2026-10-10) |
 | P15 Testing | **Local test-first verification engine** | P13 | testing/* | FILE_LEVEL_PLAN P15 (rewritten) | Test discovery, impact-based selection, run, diagnose, targeted rerun, static/build/security/a11y/perf checks, evidence writer, `vikhyath verify [--exception]`; **no Playwright runtime, no browser module** | `tests/verify/*` with fixture projects | Payment-webhook change selects unit/signature/integration/idempotency/security + typecheck/build; no browser process ever started; evidence machine-readable ✔ | revert | **COMPLETED** (2026-10-10) |
-| P16 SEO | Unchanged architecture; browser use stays inside the SEO runtime | P15 | seo/* | FILE_LEVEL_PLAN P16 note | SEO capture evidence never becomes engineering verification | as planned | Scenarios E/F/I; SEO browser only in `runtimes/seo-*` | revert | NOT_STARTED (note added) |
-| P17 Media | Showcase output separate from verification | P9 | media/* | FILE_LEVEL_PLAN P17 note | Media screenshots/videos are never verification evidence | as planned | Scenario H | revert | NOT_STARTED (note added) |
+| P16 SEO | Unchanged architecture; browser use stays inside the SEO runtime | P15 | seo/* | FILE_LEVEL_PLAN P16 note | SEO capture evidence never becomes engineering verification | as planned | Scenarios E/F/I; SEO browser only in `runtimes/seo-*` ✔ | revert | **COMPLETED** (2026-10-10) |
+| P17 Media | Showcase output separate from verification | P9 | media/* | FILE_LEVEL_PLAN P17 note | Media screenshots/videos are never verification evidence | as planned | Scenario H ✔ | revert | **COMPLETED** (2026-10-10) |
 | P18 Observability | Record exceptional browser requests; no browser telemetry workflow | P10 | observability/events | `vikhyath/events/schema.py`, `project/state.py` | `BROWSER_EXCEPTION_REQUESTED` replaces `BROWSER_FALLBACK_ACTIVATED` | project test asserts the event | Event logged per project only ✔ | revert | **AMENDED · COMPLETED** |
 | P19–P22 Hosts | Same verification policy on all four hosts | P8–P11, P18 | — | FILE_LEVEL_PLAN P19–P22 | Adapters render the policy reference; may not enable Chrome DevTools, screenshots, visual QA or MCP; test asserts it | `tests/hosts/test_policy.py` | Every adapter output references `config/verification.yaml`; none contains MCP/browser enablement | revert | NOT_STARTED (plan updated) |
 | P23 Dashboard | Show verification status, evidence, disabled capabilities | P18 | observability/* | FILE_LEVEL_PLAN P23 | Read-only views of state/evidence; no visual-QA view; off unless a session is active or explicitly opened | `tests/dashboard/*` | Fixture data → correct status; no browser verification UI | revert | NOT_STARTED (plan updated) |
@@ -309,6 +309,34 @@ Verification method for **every** phase below: local deterministic checks only �
 
 M4 (P12–P15) delivered the main domains: codebase intelligence (Graphify graph + structural fallback, affected files and their tests within 12 files), one engineering lifecycle in every route with gstack/MCP/browser adaptation debts cleared from the bundle (D-027 closed for engineering/testing/design), Unlazy gates with a central-only Stop hook, the design engine with deterministic design-token checks, and the local test-first verification engine with machine-readable evidence. 209 tests; known-good bundle `495f026f381e`. **Next: M5 (P16 SEO → P17 Media)** after user review.
 
+## P16 — SEO · COMPLETED (2026-10-10)
+
+| Item | Detail |
+|---|---|
+| Changes | `vikhyath/runtimes/{venv,seo,seo_probe}.py` (Graphify moved onto the shared venv helper); `vikhyath/seo/{evidence,authorization}.py`; CLI `vikhyath runtime install seo [--browser] [--reports]`, `vikhyath seo run\|evidence\|authorize`; `skills/vikhyath-seo/SKILL.md`. D-041. |
+| Result | BeyondSEO 2.9.1 runs isolated (installed from the bundle in 3.0 s, core only); crawl output lands in the project's data dir; every claim can be labelled from the capture; live-site edits are gated per task. |
+| Tests | 218/218 overall (6 new in `tests/seo/test_seo.py`). Upstream BeyondSEO suite in the SEO venv, core only: **340 passed, 9 failed, 17 skipped** — all 9 need the browser extra (rendered/auto-mode tests, `No module named 'playwright'`), as in the P3 baseline. |
+| Acceptance | ✔ failed capture → "could not be inspected" (real crawl of a loopback site, refused by BeyondSEO's private-address guard → UNKNOWN) · ✔ `edit apply` blocked without authorization; scoped to site/task, expires, use logged · ✔ `watch` blocked · ✔ scenarios E/F route to SEO only (I: multi-project, P11) · ✔ browser only inside `runtimes/seo-*` and only on explicit `--browser`. |
+| Deviations | No per-capability `sections.yaml` (P9). Browser-extra suite (250/250 in P3) not re-run here: it needs the 557 MB Chromium download, which stays opt-in. |
+| Evidence | `docs/evidence/P16/run.md` |
+| Rollback | `git revert` of the M5 commit; delete `$VIKHYATH_HOME/runtimes/seo-*` and `projects/*/seo/`. |
+
+## P17 — Media · COMPLETED (2026-10-10)
+
+| Item | Detail |
+|---|---|
+| Changes | `vikhyath/runtimes/brag.py`; CLI `vikhyath media plan [--full]`, `vikhyath media music-cues <audio>`, `vikhyath runtime install brag`; `skills/vikhyath-media/SKILL.md`. D-041. |
+| Result | Dry run on a fixture project: mode `brag-slim` (Q-4 default), skill `files/brag/skills/brag-slim/SKILL.md` (7.8 KB) with its load command, tools found (ffmpeg, ffprobe, node, npx, python3), output `brag-output/`. `--full` without local Hyperframes stays on brag-slim and says why. |
+| Tests | 3 new in `tests/media/test_media.py`. |
+| Acceptance | ✔ scenario H ("Make a launch video plan for our product.") → `media/launch-video` only, no lifecycle, no impact step, no backend capability · ✔ media output marked as never verification evidence. |
+| Deviations | The music-cue analyser venv (librosa) is installed only on request and was not installed in this run. |
+| Evidence | `docs/evidence/P17/run.md` |
+| Rollback | `git revert` of the M5 commit. |
+
+## M5 review summary
+
+M5 (P16, P17) delivered the specialist domains: an isolated BeyondSEO runtime (core by default, browser extra opt-in and scoped), evidence-labelled SEO claims from real capture quality, a per-task authorization gate for live-site edits, and the Brag media workflow (brag-slim default, full only with local Hyperframes). 218 tests; bundle `495f026f381e` unchanged. **Next: M6 (P19–P22 host adapters)** after user review.
+
 ## P4–P27 — summary (file-level tasks: [FILE_LEVEL_PLAN.md](FILE_LEVEL_PLAN.md))
 
 | Phase | Objective (outline) | Key acceptance criteria (outline) |
@@ -365,3 +393,6 @@ M4 (P12–P15) delivered the main domains: codebase intelligence (Graphify graph
 | 2026-10-10 | P13 | P13 completed: lifecycle config + route lifecycle, domain adaptation transform clears all D-027 debts, Unlazy gates + central Stop hook, thin entry skills/agents, workflows/ retired (D-038). 194 tests; bundle `2d1356913230`. Evidence: docs/evidence/P13/run.md. P14 next. |
 | 2026-10-10 | P14 | P14 completed: UI/UX Pro Max runtime + `vikhyath design search|system|check`, design-token limits, design entry skill, design files covered by the policy transform (D-039). 199 tests; bundle `495f026f381e`. Evidence: docs/evidence/P14/run.md. P15 next. |
 | 2026-10-10 | P15 | P15 completed: `vikhyath verify`/`test` — project command detection, impact-based selection, run + rerun + diagnosis, evidence JSON + state + events, exception records only (D-040). 209 tests. Evidence: docs/evidence/P15/run.md. **M4 completed; awaiting user review before M5.** |
+| 2026-10-10 | M5 | User started M5 ("start with the next milestone, which is 5"); M4 accepted. |
+| 2026-10-10 | P16 | P16 completed: shared venv helper, BeyondSEO runtime + `vikhyath seo run|evidence|authorize`, evidence labels over capture quality, live-site authorization gate (D-041). Upstream suite core-only 340 passed / 9 browser-only failures. Evidence: docs/evidence/P16/run.md. |
+| 2026-10-10 | P17 | P17 completed: Brag media runtime (`vikhyath media plan|music-cues`), brag-slim default, scenario H media-only. 218 tests. Evidence: docs/evidence/P17/run.md. **M5 completed; awaiting user review before M6.** |

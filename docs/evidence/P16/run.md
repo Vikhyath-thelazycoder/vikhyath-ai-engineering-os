@@ -1,0 +1,8 @@
+# P16 evidence — SEO domain (2026-10-10)
+
+- `vikhyath runtime install seo` (bundle `495f026f381e`): BeyondSEO 2.9.1, lock `1a4afb47e06c`, core only, **3.0 s**; `runtime status`: ready. `bundle verify` afterwards: intact.
+- `vikhyath seo run crawl http://127.0.0.1:8765/ --max-pages 5` (fixture site on loopback): run completed, output in `$VIKHYATH_HOME/projects/<id>/seo/<time>/` (summary, pages.jsonl, findings, readiness, report …); the project tree unchanged. BeyondSEO refused the loopback address (`private_or_nonpublic_address`, its SSRF guard).
+- `vikhyath seo evidence <run>` → `presence claims: [UNKNOWN] could not be inspected: No successful usable page capture.` (same for absence claims) — BeyondSEO `capture_quality` run inside the SEO venv.
+- `vikhyath seo run watch …` → blocked (exit 2). `vikhyath seo run edit apply --site x` → "authorize it first" (exit 2).
+- Upstream suite (copy of the staged pin, SEO venv + pytest, core only): **340 passed, 9 failed, 17 skipped, 26 subtests passed** (11.6 s). Failures: 6 `test_browser_features`, 2 `test_trial_regressions` (auto mode renders), 1 `test_discovery_research::test_doctor_preserves_execution_error` — all hit `No module named 'playwright'` (browser extra, opt-in).
+- `python -m unittest discover -s tests`: **218 OK, 3 skipped**; doctor 49/0; validate 22/0.

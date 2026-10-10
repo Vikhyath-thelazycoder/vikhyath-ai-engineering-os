@@ -5,19 +5,16 @@ extras), started per command, with `GRAPHIFY_OUT` pointing at the project's mach
 written into the project. Only update/query/path/explain/affected are allowed; hook/install/watch/serve, the MCP
 server and LLM extraction are never reachable through the OS, and provider API keys are not passed to the process.
 """
-import hashlib
 import json
 import os
 import re
-import shutil
 import subprocess
-import sys
-import tempfile
 import time
 from pathlib import Path
 
 from ..isolation import atomic
 from ..isolation.locks import project_lock
+from . import venv as pyvenv
 
 ALLOWED = ("update", "query", "path", "explain", "affected")
 BLOCKED_REASON = {
@@ -34,7 +31,6 @@ RESERVED_FLAGS = ("--graph", "--out", "--output", "--memory-dir")
 _SECRET_ENV = re.compile(r"(API_KEY|_TOKEN|SECRET|PASSWORD|CREDENTIAL)", re.I)
 PROBE = Path(__file__).with_name("graphify_probe.py")
 META = "vikhyath-graph.json"
-CODE_SUFFIXES = (".py", "pyproject.toml", "uv.lock")
 UPDATE_TIMEOUT = 600
 QUERY_TIMEOUT = 120
 
@@ -53,32 +49,14 @@ def source_dir(bundle_dir: Path | None) -> Path | None:
 
 
 def lock_of(src: Path) -> str:
-    """Runtime lock = the bundled Graphify code (sha256 from the bundle index, no reads) + the dependency pins, so a new
-    pin or a changed code rule gets a new runtime directory; documentation rewrites do not."""
-    h = hashlib.sha256()
-    for name in ("pyproject.toml", "uv.lock"):
-        f = src / name
-        if f.is_file():
-            h.update(name.encode() + b"\0" + f.read_bytes())
-    index = src.parent.parent / "index.json"
-    if index.is_file():
-        files = json.loads(index.read_text(encoding="utf-8")).get("files", {})
-        prefix = "files/graphify/"
-        for dest in sorted(d for d in files if d.startswith(prefix) and d.endswith(CODE_SUFFIXES)):
-            h.update(f"{dest}\0{files[dest]['sha256']}\n".encode())
-    else:   # unbundled source (tests): file list and sizes
-        for p in sorted(src.rglob("*")):
-            if p.is_file() and p.name.endswith(CODE_SUFFIXES):
-                h.update(f"{p.relative_to(src)}\0{p.stat().st_size}\n".encode())
-    return h.hexdigest()[:12]
+    return pyvenv.lock_of(src, "graphify")
 
 
 def runtime_dir(home: Path, lock: str) -> Path:
     return Path(home) / "runtimes" / f"graphify-{lock}"
 
 
-def _bin(venv: Path, name: str) -> Path:
-    return venv / ("Scripts" if os.name == "nt" else "bin") / (name + (".exe" if os.name == "nt" else ""))
+_bin = pyvenv.bin_path
 
 
 def graph_dir(project) -> Path:
@@ -102,37 +80,13 @@ def check_command(sub: str, args=()):
 
 
 def install(home: Path, src: Path, python: str | None = None, log=print) -> dict:
-    """Create the venv and install Graphify (core deps only). A venv cannot be moved (its scripts embed the path), so it
-    is built in place and `runtime.json` is written last: a directory without it is incomplete and is rebuilt."""
+    """Create the venv and install Graphify (core deps only); no `graphify-mcp` script (D-021/D-037)."""
     lock = lock_of(src)
-    final = runtime_dir(home, lock)
-    if (final / "runtime.json").is_file():
-        return json.loads((final / "runtime.json").read_text(encoding="utf-8"))
-    shutil.rmtree(final, ignore_errors=True)
-    final.mkdir(parents=True)
-    start = time.perf_counter()
     try:
-        subprocess.run([python or sys.executable, "-m", "venv", str(final / "venv")], check=True, capture_output=True)
-        with tempfile.TemporaryDirectory() as tmp:   # pip writes build/ and egg-info into the source: keep the bundle clean
-            build_src = Path(tmp) / "graphify"
-            shutil.copytree(src, build_src)
-            log(f"installing graphify runtime {lock} (pip, core dependencies only)…")
-            p = subprocess.run([str(_bin(final / "venv", "python")), "-m", "pip", "install", "-q",
-                                "--disable-pip-version-check", str(build_src)], capture_output=True, text=True)
-            if p.returncode:
-                raise GraphifyError(f"pip install failed: {(p.stderr or p.stdout).strip()[-800:]}")
-        version = subprocess.run([str(_bin(final / "venv", "python")), "-m", "graphify", "--version"],
-                                 capture_output=True, text=True).stdout.strip()
-        info = {"runtime": "graphify", "lock": lock, "version": version, "python": sys.version.split()[0],
-                "installed": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-                "install_seconds": round(time.perf_counter() - start, 1), "source": str(src)}
-        # D-021/D-037: no MCP entry point in the runtime (the mcp extra is not installed either).
-        _bin(final / "venv", "graphify-mcp").unlink(missing_ok=True)
-        atomic.write_text(final / "runtime.json", json.dumps(info, indent=1) + "\n")
-        return info
-    except BaseException:
-        shutil.rmtree(final, ignore_errors=True)
-        raise
+        return pyvenv.install(runtime_dir(home, lock), src, name="graphify", lock=lock, python=python,
+                            version_cmd=["-m", "graphify", "--version"], remove_scripts=["graphify-mcp"], log=log)
+    except pyvenv.VenvError as exc:
+        raise GraphifyError(str(exc)) from exc
 
 
 def health(home: Path, bundle_dir: Path | None) -> dict:

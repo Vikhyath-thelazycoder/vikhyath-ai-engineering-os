@@ -518,7 +518,9 @@ def _runtime_cmd(args):
     from .runtimes import unlazy
     if args.runtime_cmd == "status":
         from .runtimes import uiux
-        _print({"runtimes": [graphify.health(home, bundle), unlazy.health(home), uiux.health(bundle)]}, args.json)
+        from .runtimes import brag, seo
+        _print({"runtimes": [graphify.health(home, bundle), unlazy.health(home), uiux.health(bundle),
+                             seo.health(home, bundle), brag.health(home, bundle)]}, args.json)
         return 0
     if args.runtime_cmd == "unlazy-hook":
         try:
@@ -528,6 +530,23 @@ def _runtime_cmd(args):
             return 1
         print((p.stdout or p.stderr).strip())
         return p.returncode
+    if args.name == "brag":
+        from .runtimes import brag
+        try:
+            _print(brag.install_music(home, bundle), args.json)
+        except (brag.BragError, OSError) as exc:
+            print(f"vikhyath runtime install: {exc}", file=sys.stderr)
+            return 1
+        return 0
+    if args.name == "seo":
+        from .runtimes import seo
+        extras = [e for e in ("browser", "reports") if getattr(args, e, False)]
+        try:
+            _print(seo.install(home, bundle, extras), args.json)
+        except (seo.SEOError, OSError) as exc:
+            print(f"vikhyath runtime install: {exc}", file=sys.stderr)
+            return 1
+        return 0
     src = graphify.source_dir(bundle)
     if src is None:
         print("vikhyath runtime: no active bundle with files/graphify (run `vikhyath bundle build`)", file=sys.stderr)
@@ -677,6 +696,67 @@ def _verify_cmd(args):
                 print(f"           {d}")
         print(f"verification: {record['result']} · evidence {rel}")
     return 0 if record["result"] == "PASSED" else 1
+
+
+def _seo_cmd(args):
+    from .paths import current_bundle, vikhyath_home
+    from .runtimes import seo
+    from .seo import authorization
+    project = _project_ref(args)
+    if args.seo_cmd == "authorize":
+        try:
+            entry = authorization.grant(project, site=args.site, task=args.task, reason=args.reason, hours=args.hours)
+        except authorization.AuthorizationError as exc:
+            print(f"vikhyath seo authorize: {exc}", file=sys.stderr)
+            return 2
+        _print(entry, args.json)
+        return 0
+    if args.seo_cmd == "evidence":
+        try:
+            rows = seo.capture_report(vikhyath_home(), current_bundle(), Path(args.run_dir))
+        except seo.SEOError as exc:
+            print(f"vikhyath seo evidence: {exc}", file=sys.stderr)
+            return 1
+        if args.json:
+            _print(rows, True)
+        else:
+            for r in rows:
+                print(f"{r['url']}\n  presence claims: [{r['presence']['label']}] {r['presence']['why']}"
+                      f"\n  absence claims:  [{r['absence']['label']}] {r['absence']['why']}")
+        return 0
+    rest = [a for a in args.args if a != "--"]
+    try:
+        cmd, action = seo.check_command(rest)
+        if (cmd, action) in seo.LIVE_WRITE:
+            site = rest[rest.index("--site") + 1] if "--site" in rest[:-1] else None
+            authorization.require(project, args.authorization, action=action, site=site)
+        p, out = seo.run(project, vikhyath_home(), current_bundle(), rest)
+    except (seo.SEOError, authorization.AuthorizationError) as exc:
+        print(f"vikhyath seo: {exc}", file=sys.stderr)
+        return 2
+    print(p.stdout, end="")
+    print(p.stderr, end="", file=sys.stderr)
+    if out:
+        print(f"[vikhyath] output: {out}")
+    return p.returncode
+
+
+def _media_cmd(args):
+    from .paths import current_bundle, vikhyath_home
+    from .runtimes import brag
+    project = _project_ref(args)
+    try:
+        if args.media_cmd == "plan":
+            _print(brag.plan(project, current_bundle(), full=args.full), args.json)
+            return 0
+        p = brag.music_cues(vikhyath_home(), current_bundle(), Path(args.audio),
+                            Path(args.out) if args.out else project.root / "brag-output" / "audio")
+    except brag.BragError as exc:
+        print(f"vikhyath media: {exc}", file=sys.stderr)
+        return 1
+    print(p.stdout, end="")
+    print(p.stderr, end="", file=sys.stderr)
+    return p.returncode
 
 
 def _guarded(func):
@@ -880,7 +960,9 @@ def build_parser():
     onoff.add_argument("--enable", action="store_true")
     onoff.add_argument("--disable", action="store_true")
     q = rsub.add_parser("install", help="Install a runtime from the active bundle (network: pip dependencies)")
-    q.add_argument("name", choices=("graphify",))
+    q.add_argument("name", choices=("graphify", "seo", "brag"))
+    q.add_argument("--browser", action="store_true", help="seo: add the browser extra (Playwright + Chromium, large)")
+    q.add_argument("--reports", action="store_true", help="seo: add the PDF reports extra")
     q.add_argument("--json", action="store_true", help="JSON output")
     p.set_defaults(func=_runtime_cmd)
 
@@ -909,6 +991,34 @@ def build_parser():
         p.add_argument("--session")
         project_arg(p)
         p.set_defaults(func=_verify_cmd)
+
+    p = sub.add_parser("seo", help="BeyondSEO runtime: audits, research, evidence; live-site edits need authorization")
+    ssub = p.add_subparsers(dest="seo_cmd", required=True)
+    q = ssub.add_parser("run", help="Run a BeyondSEO command, e.g. `vikhyath seo run crawl https://example.com`")
+    q.add_argument("--authorization", help="Authorization id for `edit apply|rollback` (live website writes)")
+    project_arg(q)
+    q.add_argument("args", nargs=argparse.REMAINDER, help="BeyondSEO command and its arguments")
+    q = ssub.add_parser("evidence", help="Label what a crawl run can support: FACT/OBSERVATION/UNKNOWN per page")
+    q.add_argument("run_dir")
+    project_arg(q)
+    q = ssub.add_parser("authorize", help="Authorize live-website edits for one task (expires)")
+    q.add_argument("--site", required=True)
+    q.add_argument("--task", required=True)
+    q.add_argument("--reason", required=True)
+    q.add_argument("--hours", type=int, default=2)
+    project_arg(q)
+    p.set_defaults(func=_seo_cmd)
+
+    p = sub.add_parser("media", help="Launch videos (Brag): mode/tool plan, music-cue analysis")
+    msub = p.add_subparsers(dest="media_cmd", required=True)
+    q = msub.add_parser("plan", help="Which Brag workflow runs here (brag-slim default) and which tools are available")
+    q.add_argument("--full", action="store_true", help="Ask for full /brag (only if Hyperframes is installed locally)")
+    project_arg(q)
+    q = msub.add_parser("music-cues", help="Beat/cue analysis of a soundtrack (needs `vikhyath runtime install brag`)")
+    q.add_argument("audio")
+    q.add_argument("--out", help="Output directory (default brag-output/audio in the project)")
+    project_arg(q)
+    p.set_defaults(func=_media_cmd)
 
     p = sub.add_parser("design", help="Design engine (UI/UX Pro Max) search/system and local design-token checks")
     dsub2 = p.add_subparsers(dest="design_cmd", required=True)
