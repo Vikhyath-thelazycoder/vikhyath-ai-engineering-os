@@ -8,7 +8,7 @@ from .paths import repo_root
 
 # Subcommands planned in docs/plan/FILE_LEVEL_PLAN.md and the phase that delivers each.
 PLANNED = {
-    "verify": "P15", "test": "P15", "update": "P24", "rollback": "P24",
+    "update": "P24", "rollback": "P24",
     "dashboard": "P23", "adapters": "P19",
 }
 
@@ -634,6 +634,51 @@ def _design_cmd(args):
     return p.returncode
 
 
+def _verify_cmd(args):
+    from .paths import current_bundle
+    from .project import state as pstate
+    from .verify import engine, evidence
+    project = _project_ref(args)
+    if getattr(args, "action", None) == "exception":   # records only; runs nothing (D-035)
+        if not args.reason:
+            print("vikhyath verify exception: --reason is required (why local verification is insufficient)",
+                  file=sys.stderr)
+            return 2
+        try:
+            entry = pstate.record_browser_exception(project, args.reason)
+        except pstate.StateError as exc:
+            print(f"vikhyath verify exception: {exc}", file=sys.stderr)
+            return 1
+        _print({"browser_exception": entry, "note": "recorded only; the user operates any browser, no screenshots "
+                "enter model context"}, args.json)
+        return 0
+    kinds = ["test"] if args.command == "test" else (args.kind or None)
+    if args.plan:
+        impact, selected = engine.plan_for(project, args.paths, full=args.all, kinds=kinds,
+                                           include_e2e=args.include_e2e, bundle_dir=current_bundle())
+        _print(engine.describe(selected, impact), args.json)
+        return 0
+    try:
+        record, rel, results = engine.verify(project, args.paths, full=args.all, kinds=kinds,
+                                             include_e2e=args.include_e2e, task=args.task,
+                                             bundle_dir=current_bundle(), timeout=args.timeout,
+                                             session_id=_session_id(args))
+    except evidence.EvidenceError as exc:
+        print(f"vikhyath verify: {exc}", file=sys.stderr)
+        return 1
+    if args.json:
+        _print({**record, "evidence": rel}, True)
+    else:
+        for r in results:
+            n = " ".join(f"{k}={r[k]}" for k in ("passed", "failed", "skipped") if k in r)
+            print(f"{r['result']:8} {r['kind']:9} {r['name']:12} exit {r['exit_code']:<3} {n}"
+                  + (" (flaky)" if r.get("flaky") else ""))
+            for d in r.get("diagnosis", [])[:6]:
+                print(f"           {d}")
+        print(f"verification: {record['result']} · evidence {rel}")
+    return 0 if record["result"] == "PASSED" else 1
+
+
 def _guarded(func):
     """Expected user-facing errors print one line and exit 1 instead of a traceback."""
     def run(args):
@@ -846,6 +891,24 @@ def build_parser():
     p.add_argument("--timeout", type=int, help="Per-check timeout in seconds")
     p.add_argument("--project", help="Project directory (default: current directory)")
     p.set_defaults(func=_gates_cmd)
+
+    for name, helptext in (("verify", "Local test-first verification: impacted tests + static checks, with evidence"),
+                           ("test", "Run only the impacted tests (same as verify --kind test)")):
+        p = sub.add_parser(name, help=helptext)
+        if name == "verify":
+            p.add_argument("action", nargs="?", choices=("exception",),
+                           help="exception: record a browser-exception request (runs nothing)")
+            p.add_argument("--reason", help="With exception: why local verification is insufficient")
+            p.add_argument("--kind", action="append", choices=("test", "security", "typecheck", "lint", "build", "e2e"))
+        p.add_argument("--paths", nargs="*", help="Changed files (default: git working-tree changes)")
+        p.add_argument("--plan", action="store_true", help="Show the selected checks without running them")
+        p.add_argument("--all", action="store_true", help="Full suites instead of impacted tests")
+        p.add_argument("--include-e2e", action="store_true", help="Also run the project's own headless E2E script")
+        p.add_argument("--task", help="Plan task this verifies (recorded with the evidence)")
+        p.add_argument("--timeout", type=int, default=900, help="Per-check timeout in seconds")
+        p.add_argument("--session")
+        project_arg(p)
+        p.set_defaults(func=_verify_cmd)
 
     p = sub.add_parser("design", help="Design engine (UI/UX Pro Max) search/system and local design-token checks")
     dsub2 = p.add_subparsers(dest="design_cmd", required=True)

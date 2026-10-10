@@ -22,7 +22,7 @@ Status vocabulary (spec §25): NOT_STARTED · PLANNED · IN_PROGRESS · PARTIALL
 | M2 Foundation & bundle | P4, P5, P6, P7 | **COMPLETED** (reviewed; user started M3 on 2026-10-04) |
 | M3 The brain | P8, P9, P10, P11, P18 | **COMPLETED** (accepted; user started M4 on 2026-10-10) |
 | A-1 Amendment | P0–P3, P5–P8, P10, P11, P18 (built phases amended); P12–P27 plans updated | **COMPLETED** (2026-10-05; accepted with M3) |
-| M4 Main domains | P12, P13, P14, P15 | **IN_PROGRESS** (P12, P13, P14 completed) |
+| M4 Main domains | P12, P13, P14, P15 | **COMPLETED** (2026-10-10; awaiting user review) |
 | M5 Specialist domains | P16, P17 | NOT_STARTED |
 | M6 Hosts | P19, P20, P21, P22 | NOT_STARTED |
 | M7 Dashboard & ship | P23, P24, P25, P26, P27 | NOT_STARTED |
@@ -46,7 +46,7 @@ Status vocabulary (spec §25): NOT_STARTED · PLANNED · IN_PROGRESS · PARTIALL
 | P12 | Codebase domain (Graphify) | Build: domain | P9, P11 | **COMPLETED** |
 | P13 | Engineering domain (+ lifecycle, completion discipline, project docs) | Build: domain | P12 | **COMPLETED** |
 | P14 | Design domain (incl. merged Appllama native-mobile rules, D-034) | Build: domain | P9 | **COMPLETED** |
-| P15 | Testing domain + local test-first verification (D-035) | Build: domain | P13 | NOT_STARTED |
+| P15 | Testing domain + local test-first verification (D-035) | Build: domain | P13 | **COMPLETED** |
 | P16 | SEO domain + isolated BeyondSEO runtime | Build: domain | P15 | NOT_STARTED |
 | P17 | Media domain (Brag) | Build: domain | P9 | NOT_STARTED |
 | P18 | Observability (event model, history) | Build: core | P10 | **COMPLETED** |
@@ -246,7 +246,7 @@ Verification method for **every** phase below: local deterministic checks only �
 | P12 Graphify | Graphify picks *what to test* (affected files → relevant tests); not a verifier | P9, P11 | codebase/impact-analysis, testing/local-verification | FILE_LEVEL_PLAN P12 | + `affected` → test-file mapping output for P15 selection | fixture repo: change → test set | Affected-file query also returns the relevant tests ✔ | revert | **COMPLETED** (2026-10-10) |
 | P13 Engineering | Engineering material without browser execution paths | P12 | engineering/*, testing/strategy | FILE_LEVEL_PLAN P13 | D-027 debts + residual browser mentions in adapted gstack/ECC/Addy text removed or reframed (doc 22 §3) | grep test over engineering/testing bundle files | No executable browser step in engineering/testing files ✔ | revert | **COMPLETED** (2026-10-10) |
 | P14 Design | One canonical design architecture incl. merged Appllama rules | P9 | design/* | FILE_LEVEL_PLAN P14 | Overlap matrix done (doc 22 §2); design-token checks (accent/grey/radius counts) as local tests; no screenshot design review | scenario D + mobile scenario | No duplicate design rules; mobile route loads the native rules ✔ | revert | **COMPLETED** (2026-10-10) |
-| P15 Testing | **Local test-first verification engine** | P13 | testing/* | FILE_LEVEL_PLAN P15 (rewritten) | Test discovery, impact-based selection, run, diagnose, targeted rerun, static/build/security/a11y/perf checks, evidence writer, `vikhyath verify [--exception]`; **no Playwright runtime, no browser module** | `tests/verify/*` with fixture projects | Payment-webhook change selects unit/signature/integration/idempotency/security + typecheck/build; no browser process ever started; evidence machine-readable | revert | NOT_STARTED (plan rewritten) |
+| P15 Testing | **Local test-first verification engine** | P13 | testing/* | FILE_LEVEL_PLAN P15 (rewritten) | Test discovery, impact-based selection, run, diagnose, targeted rerun, static/build/security/a11y/perf checks, evidence writer, `vikhyath verify [--exception]`; **no Playwright runtime, no browser module** | `tests/verify/*` with fixture projects | Payment-webhook change selects unit/signature/integration/idempotency/security + typecheck/build; no browser process ever started; evidence machine-readable ✔ | revert | **COMPLETED** (2026-10-10) |
 | P16 SEO | Unchanged architecture; browser use stays inside the SEO runtime | P15 | seo/* | FILE_LEVEL_PLAN P16 note | SEO capture evidence never becomes engineering verification | as planned | Scenarios E/F/I; SEO browser only in `runtimes/seo-*` | revert | NOT_STARTED (note added) |
 | P17 Media | Showcase output separate from verification | P9 | media/* | FILE_LEVEL_PLAN P17 note | Media screenshots/videos are never verification evidence | as planned | Scenario H | revert | NOT_STARTED (note added) |
 | P18 Observability | Record exceptional browser requests; no browser telemetry workflow | P10 | observability/events | `vikhyath/events/schema.py`, `project/state.py` | `BROWSER_EXCEPTION_REQUESTED` replaces `BROWSER_FALLBACK_ACTIVATED` | project test asserts the event | Event logged per project only ✔ | revert | **AMENDED · COMPLETED** |
@@ -292,6 +292,22 @@ Verification method for **every** phase below: local deterministic checks only �
 | Deviations | The 10 design cards already existed (P7) and needed no change; no `sections.yaml` (P9). `--persist` writes `design-system/<slug>/MASTER.md` (UI/UX Pro Max layout) rather than `DESIGN.md`. |
 | Evidence | `docs/evidence/P14/run.md` |
 | Rollback | `git revert` of the P14 commit; previous bundle via `bundles/previous`. |
+
+## P15 — Testing & local test-first verification · COMPLETED (2026-10-10)
+
+| Item | Detail |
+|---|---|
+| Changes | `vikhyath/verify/{detect,select,run,evidence,engine}.py`; CLI `vikhyath verify [--plan] [--paths] [--all] [--kind] [--include-e2e] [--task]`, `vikhyath verify exception --reason`, `vikhyath test`; `skills/vikhyath-testing/SKILL.md`. D-040. |
+| Result | A change's impacted tests (P12) are run with the project's own runner, plus typecheck/lint/build; failures are diagnosed and rerun once; results are evidence JSON in the project and the project's last verification. No browser on any path. |
+| Tests | 209/209 (10 new in `tests/verify/test_verify.py`; 3 opt-in skipped). Doctor 46/0, validate 22/0. |
+| Acceptance | ✔ payment-webhook change selects webhook (api), signature (security), idempotency, integration flow and security tests — not the unrelated reports test — plus the build check · ✔ every subprocess recorded: no chrome/playwright/puppeteer/screenshot/browser · ✔ evidence has command + exit code + result + at, counts (5 passed) and validates; visual claims rejected · ✔ failing change → FAILED with counts, diagnosis and rerun · ✔ exception records only, no subprocess · ✔ on this repository: `vikhyath verify --paths vikhyath/verify/select.py` selected 13 tests + build, PASSED in 2.9 s (an earlier run caught a real failing assertion). |
+| Deviations | Static/security checks run only when the project configures the tool (no installs); dependency audits needing the network (npm audit, pip-audit) are not run by default. Evidence lives in the project's `.vikhyath/evidence/` (project-owned state, D-011). |
+| Evidence | `docs/evidence/P15/run.md` |
+| Rollback | `git revert` of the P15 commit; evidence files are plain JSON and can be deleted. |
+
+## M4 review summary
+
+M4 (P12–P15) delivered the main domains: codebase intelligence (Graphify graph + structural fallback, affected files and their tests within 12 files), one engineering lifecycle in every route with gstack/MCP/browser adaptation debts cleared from the bundle (D-027 closed for engineering/testing/design), Unlazy gates with a central-only Stop hook, the design engine with deterministic design-token checks, and the local test-first verification engine with machine-readable evidence. 209 tests; known-good bundle `495f026f381e`. **Next: M5 (P16 SEO → P17 Media)** after user review.
 
 ## P4–P27 — summary (file-level tasks: [FILE_LEVEL_PLAN.md](FILE_LEVEL_PLAN.md))
 
@@ -348,3 +364,4 @@ Verification method for **every** phase below: local deterministic checks only �
 | 2026-10-10 | P12 | P12 completed: Graphify runtime wrapper + `vikhyath runtime`/`codebase`, affected files + related tests within the 12-file code surface, §74 structural fallback, router `impact` step (schema v3), doctor runtime check, codebase entry skill; `graphify/serve.py` preserved (D-037). 184 tests, doctor 47/0, validate 23/0; known-good bundle `68fcabbc8e1b`. Evidence: docs/evidence/P12/run.md. P13 next. |
 | 2026-10-10 | P13 | P13 completed: lifecycle config + route lifecycle, domain adaptation transform clears all D-027 debts, Unlazy gates + central Stop hook, thin entry skills/agents, workflows/ retired (D-038). 194 tests; bundle `2d1356913230`. Evidence: docs/evidence/P13/run.md. P14 next. |
 | 2026-10-10 | P14 | P14 completed: UI/UX Pro Max runtime + `vikhyath design search|system|check`, design-token limits, design entry skill, design files covered by the policy transform (D-039). 199 tests; bundle `495f026f381e`. Evidence: docs/evidence/P14/run.md. P15 next. |
+| 2026-10-10 | P15 | P15 completed: `vikhyath verify`/`test` — project command detection, impact-based selection, run + rerun + diagnosis, evidence JSON + state + events, exception records only (D-040). 209 tests. Evidence: docs/evidence/P15/run.md. **M4 completed; awaiting user review before M5.** |
