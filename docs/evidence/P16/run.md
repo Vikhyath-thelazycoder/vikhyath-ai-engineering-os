@@ -6,3 +6,10 @@
 - `vikhyath seo run watch …` → blocked (exit 2). `vikhyath seo run edit apply --site x` → "authorize it first" (exit 2).
 - Upstream suite (copy of the staged pin, SEO venv + pytest, core only): **340 passed, 9 failed, 17 skipped, 26 subtests passed** (11.6 s). Failures: 6 `test_browser_features`, 2 `test_trial_regressions` (auto mode renders), 1 `test_discovery_research::test_doctor_preserves_execution_error` — all hit `No module named 'playwright'` (browser extra, opt-in).
 - `python -m unittest discover -s tests`: **218 OK, 3 skipped**; doctor 49/0; validate 22/0.
+
+## Success path without network (2026-10-11)
+This machine's DNS was unavailable (`curl https://example.com` → resolving timed out; `ping 8.8.8.8` OK), so a live crawl could not complete (recorded as UNKNOWN, project untouched). The labelling of successful captures was checked offline instead: three saved page records → `vikhyath seo evidence <run>` (BeyondSEO `capture_quality` inside the SEO venv):
+- complete page (200, 240 words) → presence **FACT** "seen in a complete capture", absence **FACT**
+- JavaScript shell (200, 12 words, 4 scripts) → presence **OBSERVATION**, absence **UNKNOWN** "could not be inspected completely: Possible JavaScript shell…"
+- failed page (timeout) → **UNKNOWN** "could not be inspected: No successful usable page capture."
+A live public crawl remains to be re-run once DNS works (`vikhyath seo run crawl https://example.com/`).
