@@ -16,7 +16,7 @@ Every bundled upstream component appears below, grouped by source path prefix. T
 | graphify | codebase/repository-understanding | `LICENSE` | 1 | 11.1 | COPY | python-isolated | Apache-2.0 (+MIT) | `0b60d47` |
 | graphify | codebase/repository-understanding | `LICENSE-MIT` | 1 | 1.0 | COPY | python-isolated | Apache-2.0 (+MIT) | `0b60d47` |
 | graphify | codebase/repository-understanding | `NOTICE` | 1 | 0.3 | COPY | python-isolated | Apache-2.0 (+MIT) | `0b60d47` |
-| graphify | codebase/repository-understanding | `graphify/` | 92 | 3283.6 | PRESERVE | python-isolated | Apache-2.0 (+MIT) | `0b60d47` |
+| graphify | codebase/repository-understanding | `graphify/` | 93 | 3408.9 | PRESERVE | python-isolated | Apache-2.0 (+MIT) | `0b60d47` |
 | graphify | codebase/repository-understanding | `graphify/` | 8 | 43.5 | ADAPT | python-isolated | Apache-2.0 (+MIT) | `0b60d47` |
 | graphify | codebase/repository-understanding | `pyproject.toml` | 1 | 8.0 | PRESERVE | python-isolated | Apache-2.0 (+MIT) | `0b60d47` |
 | graphify | codebase/repository-understanding | `tests/` | 443 | 4224.8 | PRESERVE | python-isolated | Apache-2.0 (+MIT) | `0b60d47` |
@@ -550,4 +550,4 @@ Every bundled upstream component appears below, grouped by source path prefix. T
 | gstack | testing/strategy | `health/` | 1 | 15.4 | ADAPT | none | MIT (+Apache-2.0 notices) | `74512c2` |
 | gstack | testing/strategy | `test-audit/` | 1 | 7.4 | ADAPT | none | MIT (+Apache-2.0 notices) | `74512c2` |
 
-**Total bundled: 2583 files, 49.9 MB** across 55 capabilities.
+**Total bundled: 2584 files, 50.0 MB** across 55 capabilities.

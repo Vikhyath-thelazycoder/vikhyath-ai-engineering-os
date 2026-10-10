@@ -30,6 +30,8 @@ Routing is done by the OS core, not by reading this file. Do not pick capabiliti
      project architecture → methodology → specialists → review → simplicity). On conflicting advice, the earlier one wins.
    - `dependencies` are internal capabilities the selected ones need; use them through those capabilities.
    - `fallbacks` apply only when the primary capability cannot decide.
+   - `impact` (existing projects): run its `command` first and work from the files and tests it returns
+     (`vikhyath-codebase` skill); never read the whole repository.
    - `verification_mode` is always `local-test-first` (`config/verification.yaml`): verify with tests, types, lint,
      build and recorded evidence. Never open Chrome, use DevTools, or take or inspect screenshots to verify.
    - `browser`: `disabled` → no browser at all; `exception-requested` → the user explicitly asked to see the page: run

@@ -164,7 +164,7 @@ PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS 
 PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	13947	graphify/scip_ingest.py
 PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	17457	graphify/security.py
 PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	14892	graphify/semantic_cleanup.py
-EXCLUDE	MCP		128336	graphify/serve.py
+PRESERVE	EXCEPTION to MCP exclusion (D-037): query/path/explain import its graph search helpers; mcp/starlette are imported only inside serve()/serve_http(), the mcp extra is never installed and the OS wrapper blocks `serve`	codebase/repository-understanding	128336	graphify/serve.py
 EXCLUDE	HOST_PORT		41456	graphify/skill-agents.md
 EXCLUDE	HOST_PORT		56149	graphify/skill-aider.md
 EXCLUDE	HOST_PORT		41456	graphify/skill-amp.md

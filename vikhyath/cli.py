@@ -9,7 +9,7 @@ from .paths import repo_root
 # Subcommands planned in docs/plan/FILE_LEVEL_PLAN.md and the phase that delivers each.
 PLANNED = {
     "verify": "P15", "test": "P15", "update": "P24", "rollback": "P24",
-    "runtime": "P12", "dashboard": "P23", "adapters": "P19",
+    "dashboard": "P23", "adapters": "P19",
 }
 
 
@@ -511,6 +511,74 @@ def _events_cmd(args):
     return 0
 
 
+def _runtime_cmd(args):
+    from .paths import current_bundle, vikhyath_home
+    from .runtimes import graphify
+    home, bundle = vikhyath_home(), current_bundle()
+    if args.runtime_cmd == "status":
+        _print({"runtimes": [graphify.health(home, bundle)]}, args.json)
+        return 0
+    src = graphify.source_dir(bundle)
+    if src is None:
+        print("vikhyath runtime: no active bundle with files/graphify (run `vikhyath bundle build`)", file=sys.stderr)
+        return 1
+    try:
+        info = graphify.install(home, src)
+    except (graphify.GraphifyError, OSError) as exc:
+        print(f"vikhyath runtime install: {exc}", file=sys.stderr)
+        return 1
+    _print(info, args.json)
+    return 0
+
+
+def _codebase_cmd(args):
+    from .codebase import affected
+    from .paths import current_bundle
+    from .runtimes.graphify import Graphify, GraphifyBlocked, GraphifyError
+    project = _project_ref(args)
+    if args.codebase_cmd == "affected":
+        result = affected(project, args.paths, bundle_dir=current_bundle(), depth=args.depth,
+                          use_graph=not args.structural, force_update=args.update)
+        if args.json:
+            _print(result, True)
+            return 0
+        if result["notice"]:
+            print(f"! {result['notice']}")
+        print(f"changed ({result['source']}): {', '.join(result['changed']) or '—'}")
+        print(f"files ({result['method']}, ≤{result['limit']}):")
+        for f in result["files"]:
+            print(f"  {f['file']}  [{f['reason']}]")
+        print("tests:")
+        for t in result["tests"]:
+            print(f"  {t['file']}  [{t['reason']}]")
+        if any(result["omitted"].values()):
+            print(f"omitted by the code-surface limit: {result['omitted']['files']} files, {result['omitted']['tests']} tests")
+        for u in result["unknown"]:
+            print(f"  ? {u['path']}: {u['reason']}")
+        return 0
+    try:
+        g = Graphify(project, project.home, current_bundle())
+        if args.codebase_cmd == "update":
+            from .codebase import structural
+            files, _ = structural.scan(project.root.resolve())
+            _print(g.ensure_graph(structural.fingerprint(project.root.resolve(), files), force=args.force), args.json)
+            return 0
+        if not g.graph_json.is_file():
+            print("vikhyath codebase: no graph yet; run `vikhyath codebase update`", file=sys.stderr)
+            return 1
+        p = g.passthrough(args.codebase_cmd, args.terms + (["--budget", str(args.budget)] if args.budget else []))
+    except GraphifyBlocked as exc:
+        print(f"vikhyath codebase: {exc}", file=sys.stderr)
+        return 2
+    except GraphifyError as exc:
+        print(f"vikhyath codebase: {exc}", file=sys.stderr)
+        return 1
+    print(p.stdout, end="")
+    if p.returncode:
+        print(p.stderr, end="", file=sys.stderr)
+    return p.returncode
+
+
 def _guarded(func):
     """Expected user-facing errors print one line and exit 1 instead of a traceback."""
     def run(args):
@@ -702,6 +770,34 @@ def build_parser():
     q.add_argument("--test", action="store_true", help="Run every rule's embedded tests")
     project_arg(q)
     p.set_defaults(func=_events_cmd)
+
+    p = sub.add_parser("runtime", help="Isolated upstream runtimes: status and explicit install (D-016)")
+    rsub = p.add_subparsers(dest="runtime_cmd", required=True)
+    q = rsub.add_parser("status", help="Health of each runtime (ready / not-installed / broken / no-bundle)")
+    q.add_argument("--json", action="store_true", help="JSON output")
+    q = rsub.add_parser("install", help="Install a runtime from the active bundle (network: pip dependencies)")
+    q.add_argument("name", choices=("graphify",))
+    q.add_argument("--json", action="store_true", help="JSON output")
+    p.set_defaults(func=_runtime_cmd)
+
+    p = sub.add_parser("codebase", help="Code graph (Graphify): affected files + related tests, scoped queries")
+    csub = p.add_subparsers(dest="codebase_cmd", required=True)
+    q = csub.add_parser("affected", help="Files and tests impacted by a change (default: git working-tree changes)")
+    q.add_argument("--paths", nargs="*", help="Changed files or directories (default: `git status`)")
+    q.add_argument("--depth", type=int, default=2, help="Reverse traversal depth (default 2)")
+    q.add_argument("--structural", action="store_true", help="Skip the graph; limited structural analysis only")
+    q.add_argument("--update", action="store_true", help="Force a graph rebuild first")
+    project_arg(q)
+    q = csub.add_parser("update", help="Build or refresh the project graph (only when code changed)")
+    q.add_argument("--force", action="store_true", help="Rebuild even if unchanged")
+    project_arg(q)
+    for name, helptext in (("query", "Scoped subgraph for a question"), ("path", "Shortest path between two nodes"),
+                           ("explain", "Explain one node and its neighbours")):
+        q = csub.add_parser(name, help=helptext)
+        q.add_argument("terms", nargs="+")
+        q.add_argument("--budget", type=int, help="Token cap for the output (Graphify default 2000)")
+        project_arg(q)
+    p.set_defaults(func=_codebase_cmd)
 
     for name, phase in PLANNED.items():
         p = sub.add_parser(name, help=f"(available in {phase})")

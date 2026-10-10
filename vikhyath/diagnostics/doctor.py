@@ -143,6 +143,16 @@ def run(root: Path) -> int:
         r.check((skill_dir / "SKILL.md").is_file(), f"{skill_dir.name}/SKILL.md exists", f"{skill_dir.name}/SKILL.md missing")
     r.end_section()
 
+    r.section("🧠 Runtimes")
+    from ..paths import current_bundle, vikhyath_home
+    from ..runtimes import graphify
+    h = graphify.health(vikhyath_home(), current_bundle())
+    if h["status"] == "ready":
+        r.ok(f"graphify {h.get('version') or ''} ready ({h['lock']})")
+    else:   # MR-09: codebase work falls back to limited structural analysis (§74); not a failure
+        r.warn(f"graphify {h['status']}: {h['reason']} — codebase analysis uses the structural fallback")
+    r.end_section()
+
     r.section("📦 No Upstream Copies")
     r.check(not (root / "vendor").exists(), "No vendor/ directory", "vendor/ directory exists — upstream copies prohibited")
     r.ok("No upstream repository copies detected")

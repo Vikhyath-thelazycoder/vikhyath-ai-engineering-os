@@ -34,7 +34,7 @@ Understand an existing project before changing it; narrow the code surface.
 
 | Capability | Purpose | Sources | Files | KB | On-disk est. tokens | Context | Runtime | Network | Browser | Origin | Uses |
 |---|---|---|---:|---:|---:|---|---|---|---|---|---|
-| `codebase/repository-understanding` | Build/refresh the code graph; structure, entry points, modules, communities | agency, ecc, graphify | 556 | 8663.6 | 2,217,885 | L2 | python-isolated | False | none | bundled | — |
+| `codebase/repository-understanding` | Build/refresh the code graph; structure, entry points, modules, communities | agency, ecc, graphify | 557 | 8788.9 | 2,249,969 | L2 | python-isolated | False | none | bundled | — |
 | `codebase/impact-analysis` | Affected-file and dependency impact of a change (graph reverse traversal) | — | 0 | 0.0 | 0 | L2 | python-isolated | False | none | mixed | codebase/repository-understanding |
 | `codebase/code-search` | Scoped subgraph query/path/explain instead of raw file dumps | — | 0 | 0.0 | 0 | L1 | python-isolated | False | none | mixed | codebase/repository-understanding |
 

@@ -55,7 +55,7 @@
 | GENERATED | 63 | 2.5 MB | gstack generated `SKILL.md` (bundled from `.tmpl` instead) |
 | REPO_META | 117 | 2.1 MB | CI, issue templates |
 | PAID_API | 119 | 1.0 MB | OpenDesign `fal-*`/`venice-*`/`sora`, ECC `taste-application`/`taste-distillation` (fal.ai) |
-| MCP | 27 | 0.2 MB | ECC `.mcp.json`, Ponytail `ponytail-mcp/`, Graphify `serve.py`, UI/UX Pro Max `stack/.mcp.json` |
+| MCP | 26 | 0.2 MB | ECC `.mcp.json`, Ponytail `ponytail-mcp/`, UI/UX Pro Max `stack/.mcp.json` (Graphify `serve.py` moved to PRESERVE in P12, D-037) |
 | TELEMETRY | 12 | 0.1 MB | gstack `gstack-telemetry-*`, `gstack-analytics`, `supabase/` |
 | HOST_SPECIFIC_TOOL | 8 | <0.1 MB | OpenDesign `figma-*` |
 | UNAUDITED_DEPENDENCY | 1 | <0.1 MB | ECC `security-scan` (needs external `ecc-agentshield` npm package) |
@@ -70,6 +70,7 @@ The trace scans every bundled text file for markdown links, `<skill-dir>/` paths
 | Repo | Added for closure | Needed by |
 |---|---|---|
 | graphify | `graphify/mcp_ingest.py` | Unconditional import in `extract.py`. **Documented exception to the MCP exclusion**: it parses MCP config files as graph *data*; it is not a server, client, config or runtime. |
+| graphify | `graphify/serve.py` (P12, D-037) | Function-level `from graphify.serve import …` in `cli.py` for `query`/`path`/`explain` (graph search and scoring). Missed by the trace, which follows relative imports only; found by running the bundled runtime. MCP/Starlette imports in the file are function-local; the `mcp` extra is never installed and `serve` is blocked. |
 | ecc | `scripts/eval-harness.js`, `scripts/lib/eval-harness/*` (8), `docs/architecture/eval-harness-frameworks.md` | `skills/eval-harness` |
 | ecc | `scripts/setup-package-manager.js`, `scripts/lib/{package-manager,utils,agent-data-home,path-safety}.js` | `skills/tdd-workflow` (full transitive `require` closure: 15 files computed) |
 | ecc | `scripts/codemaps/generate.ts` | `agents/doc-updater` |

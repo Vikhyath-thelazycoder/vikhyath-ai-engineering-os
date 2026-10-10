@@ -150,6 +150,8 @@ Conventions:
 | `capabilities/codebase/*` | CREATE | 3 cards + sections | Registry test |
 | `skills/vikhyath-codebase/SKILL.md` | CREATE | Entry skill | Budget test |
 
+**As built (P12, D-037):** + `vikhyath/runtimes/graphify_probe.py` (runs in the venv; Graphify's own seed resolution + reverse traversal → JSON) and `vikhyath/codebase/{impact,structural}.py` (test mapping, code-surface limit, §74 fallback); CLI `vikhyath runtime`, `vikhyath codebase`. The router returns an `impact` step instead of running Graphify. No `sections.yaml` (P9 sections cover it). `graphify/serve.py` moved to PRESERVE. Tests: `tests/runtimes/test_graphify.py`, `tests/context/test_code_surface.py`.
+
 ## M4 · P13 — Engineering
 
 | File | Action | Purpose | Test |
