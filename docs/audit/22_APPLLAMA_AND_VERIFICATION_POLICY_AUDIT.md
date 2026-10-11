@@ -148,8 +148,8 @@ Rollback: `git revert <commit>`; delete `$VIKHYATH_HOME/bundles/cb0635dbf824` (t
 
 APPLLAMA: audited ✔ · overlap documented ✔ · unique capabilities identified ✔ · only required material extracted (3 files + LICENSE) ✔ · no appllama-usage ✔ · no Appllama MCP ✔ · no credits ✔ · no remote runtime ✔ · no simulator/screenshot loop ✔ · provenance ✔ · exact SHA ✔.
 
-VERIFICATION: local test-first default ✔ · Chrome DevTools disabled ✔ · screenshot verification disabled ✔ · visual browser QA disabled ✔ · gstack browser QA excluded ✔ · ECC browser workflows excluded ✔ · Agency browser workflows excluded ✔ · upstreams classified ✔ · evidence machine-readable: policy fields ✔, writer/CLI in P15 ◐ · project state records verification ✔ · diagnostics detect violations ✔ (host MCP detection: P25 ◐).
+VERIFICATION: local test-first default ✔ · Chrome DevTools disabled ✔ · screenshot verification disabled ✔ · visual browser QA disabled ✔ · gstack browser QA excluded ✔ · ECC browser workflows excluded ✔ · Agency browser workflows excluded ✔ · upstreams classified ✔ · evidence machine-readable: policy fields ✔, writer/CLI ✔ (P15) · project state records verification ✔ · diagnostics detect violations ✔ (host MCP detection ✔, P25).
 
 ARCHITECTURE: no MCP ✔ · central plugin ✔ · no project-local OS ✔ · isolation ✔ · capability-based ✔ · progressive loading ✔ · no duplicate design stacks ✔ · no duplicate verification systems ✔ · Graphify = codebase intelligence ✔ · Beacon = observability ✔ · dashboard separate (P23) ✔.
 
-PLANNING: plan updated ✔ · affected phases updated ✔ · acceptance/verification/migration/rollback updated ✔ · provenance ✔ · docs: this doc ✔, full docs set in P26 ◐.
+PLANNING: plan updated ✔ · affected phases updated ✔ · acceptance/verification/migration/rollback updated ✔ · provenance ✔ · docs: this doc ✔, full docs set ✔ (P26).

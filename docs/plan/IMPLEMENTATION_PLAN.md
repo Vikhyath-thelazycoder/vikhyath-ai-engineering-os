@@ -25,7 +25,7 @@ Status vocabulary (spec §25): NOT_STARTED · PLANNED · IN_PROGRESS · PARTIALL
 | M4 Main domains | P12, P13, P14, P15 | **COMPLETED** (2026-10-10; accepted, user started M5) |
 | M5 Specialist domains | P16, P17 | **COMPLETED** (2026-10-10; accepted, user started M6) |
 | M6 Hosts | P19, P20, P21, P22 | **COMPLETED** (2026-10-11; accepted) |
-| M7 Dashboard & ship | P23, P24, P25, P26, P27 | **IN_PROGRESS** (P23–P26 completed) |
+| M7 Dashboard & ship | P23, P24, P25, P26, P27 | **COMPLETED** (2026-10-11; awaiting user review and release go-ahead) |
 
 ## Phase index
 
@@ -58,7 +58,7 @@ Status vocabulary (spec §25): NOT_STARTED · PLANNED · IN_PROGRESS · PARTIALL
 | P24 | Update & rollback | Build: supply | P6, P7 | **COMPLETED** |
 | P25 | Diagnostics & measured benchmarks | Verify | P4–P24 | **COMPLETED** |
 | P26 | Documentation & migration guide | Docs | P25 | **COMPLETED** |
-| P27 | Full integration, offline & host validation, final report | Verify | all | NOT_STARTED |
+| P27 | Full integration, offline & host validation, final report | Verify | all | **COMPLETED** |
 
 Ordering rationale vs. spec §66 anchors (D-004):
 - **P4 core foundation is new.** v1.0.1 has no runtime (finding E-1), and every engine needs a package, CLI and test harness to live in.
@@ -255,7 +255,7 @@ Verification method for **every** phase below: local deterministic checks only �
 | P24 Update/rollback | Pin + diff + re-audit Appllama extracted files only | P6, P7 | — | FILE_LEVEL_PLAN P24 | Update of an upstream re-runs the overlap check for its extracted files; no MCP config handled | `tests/update/*` | Appllama update touches only its 4 bundled files (inventory diff reports exactly the bundled paths changed) ✔ | revert | **COMPLETED** (2026-10-11) |
 | P25 Diagnostics | Detect policy violations | P4–P24 | — | `vikhyath/diagnostics/validate.py` (done), FILE_LEVEL_PLAN P25 | Done now: policy section + forbidden bundle paths. P25 adds doctor: host-installed MCP / Chrome DevTools detection, duplicate design rules, stale pins | fixture-based tests | The four example errors of the spec are emitted on planted violations ✔ (host Chrome DevTools/Playwright MCP, duplicate design files, pin age, policy violations in validate) | revert | **COMPLETED** (2026-10-11) |
 | P26 Docs | Document local test-first default, Appllama status, no MCP | P25 | — | FILE_LEVEL_PLAN P26 | + `docs/architecture/VERIFICATION_POLICY.md`; TESTING/DESIGN architecture reflect D-034/D-035 | doc review | Docs state the policy verbatim ✔ | revert | **COMPLETED** (2026-10-11) |
-| P27 Integration | Final reconciliation incl. the A-1 checklist | all | all | FILE_LEVEL_PLAN P27 | + checks: no MCP, no Appllama MCP, no paid dependency, no browser default, no screenshot verification, no repo-dump, no duplicate design/capability sources, no project-local OS | e2e + offline | doc 22 §9 checklist all ✔ | — | NOT_STARTED (plan updated) |
+| P27 Integration | Final reconciliation incl. the A-1 checklist | all | all | FILE_LEVEL_PLAN P27 | + checks: no MCP, no Appllama MCP, no paid dependency, no browser default, no screenshot verification, no repo-dump, no duplicate design/capability sources, no project-local OS | e2e + offline | doc 22 §9 checklist all ✔ ✔ | — | **COMPLETED** (2026-10-11) |
 
 ## P12 — Codebase (Graphify) · COMPLETED (2026-10-10)
 
@@ -400,6 +400,22 @@ M6 (P19–P22) packaged the OS for Claude Code, Codex, Cursor and Antigravity fr
 | Deviations | The GitHub repository keeps its name (`Vikhyath-thelazycoder/vikhyath-ai-engineering-os`) until the owner renames it; audit and plan history keep the original names. |
 | Rollback | `git revert` of the rename and docs commits; the `vikhyath` alias and legacy paths keep old setups working. |
 
+## P27 — Integration, offline, hosts, final report · COMPLETED (2026-10-11)
+
+| Item | Detail |
+|---|---|
+| Changes | `tests/integration/test_end_to_end.py` (whole flow with outbound network blocked); `route --project`; doc 22 §9 checklist closed; `docs/FINAL_REPORT.md`. |
+| Result | 246 tests pass (+3 opt-in real-runtime Graphify tests pass against bundle `07cd36edb5d9`); doctor 50/0, validate 23/0, bundle intact, registry valid, adapter files current. Hosts: all FILES_PRESENT (Claude Code has v1.0.1 installed, others absent) — recorded as a limitation, not claimed. |
+| Acceptance | ✔ end-to-end offline flow · ✔ doc 22 §9 all ✔ · ✔ final report with measured results and every limitation. |
+| Evidence | `docs/evidence/P27/run.md`, `docs/FINAL_REPORT.md` |
+
+## M7 review summary
+
+M7 delivered the Agent Office dashboard, explicit update/rollback/gc, measured OLD vs NEW benchmarks (83 % fewer
+est. tokens; 31.8k → 0.9k per turn; routing 22/22), host and supply-chain diagnostics, the Agylite rename with
+compatibility aliases, the full documentation set and the final integration report. **The v2 transformation is
+complete on the branch; release (merge to main, tag v2.0.0, reinstall in hosts) awaits the user's go-ahead.**
+
 ## P4–P27 — summary (file-level tasks: [FILE_LEVEL_PLAN.md](FILE_LEVEL_PLAN.md))
 
 | Phase | Objective (outline) | Key acceptance criteria (outline) |
@@ -431,7 +447,7 @@ M6 (P19–P22) packaged the OS for Claude Code, Codex, Cursor and Antigravity fr
 ## Resume here (next session)
 
 1. Branch `feat/v2-os-transformation` (M0–M6 committed, not pushed; `main` has A-1 only).
-2. Next: **M7 → P27** final integration (P23–P26 done; renamed Agylite, v2.0.0 on the branch). Then P25 diagnostics + measured OLD vs NEW benchmarks (tokens, speed, routing accuracy; the user's Claude has ECC, UI/UX Pro Max and Open Design installed directly — use them as the OLD baseline) → P26 docs/README rewrite → P27 integration + final report.
+2. **All phases complete (M0–M7).** Next: the release steps in `docs/FINAL_REPORT.md` (merge to main, tag v2.0.0, reinstall in hosts) — only with the user's go-ahead. Earlier order was P25 diagnostics + measured OLD vs NEW benchmarks (tokens, speed, routing accuracy; the user's Claude has ECC, UI/UX Pro Max and Open Design installed directly — use them as the OLD baseline) → P26 docs/README rewrite → P27 integration + final report.
 3. Test setup used so far: scratch venv with `pip install -e .`, scratch `VIKHYATH_HOME` with bundle `495f026f381e`; `python -m unittest discover -s tests` (228 OK, 3 opt-in skipped). Rebuild a bundle with `vikhyath bundle build --self-test` (needs `.staging/upstream`).
 4. **Rename to Agylite in P26 (D-044)**: CLI `agylite` (+ `vikhyath` alias), package, `~/.agylite`, plugin/marketplace, skills, adapters, docs — before the v2.0.0 release.
 5. Open items carried forward: Claude Code RUNTIME_VERIFIED (install the plugin from this branch, start one session); live SEO crawl once this machine's DNS works (`vikhyath seo run crawl https://example.com/`); Graphify upstream suite per-file failure breakdown (P25); closure trace should follow absolute intra-package imports (P25, D-037).
@@ -475,3 +491,4 @@ M6 (P19–P22) packaged the OS for Claude Code, Codex, Cursor and Antigravity fr
 | 2026-10-11 | P24 | P24 completed: `vikhyath update|rollback|gc` with dangling-reference check, atomic switch, per-bundle evidence (D-045). 242 tests. Evidence: docs/evidence/P24/run.md. P25 next. |
 | 2026-10-11 | P25 | P25 completed: OLD vs NEW benchmark (83% fewer est. tokens over 22 spec tasks; 31.8k → 0.9k per turn; routing 22/22), host/supply-chain doctor checks with redaction, absolute-import closure (D-046). 245 tests; bundle `a6c52114bc4d`. Evidence: docs/evidence/P25/run.md. P26 next. |
 | 2026-10-11 | P26 | P26 completed: Agylite rename with compatibility aliases (D-044), 17 architecture docs, migration guide, README/CLAUDE/AGENTS/CONTRIBUTING/CHANGELOG rewritten, VERSION 2.0.0. 245 tests. P27 next. |
+| 2026-10-11 | P27 | P27 completed: end-to-end offline integration test, checklist closed, final report (246 tests). **M7 completed; v2 transformation complete on the branch; awaiting user review and release go-ahead.** |

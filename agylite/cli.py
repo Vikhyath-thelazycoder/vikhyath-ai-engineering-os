@@ -906,6 +906,7 @@ def build_parser():
     stage.add_argument("--existing", action="store_true", help="Treat the project as existing (codebase first)")
     p.add_argument("--stack", nargs="*", help="Detected stack, e.g. python django (selects stack packs)")
     p.add_argument("--brief", action="store_true", help="One-line summary instead of JSON")
+    p.add_argument("--project", help="Project directory (default: current directory)")
     p.set_defaults(func=_route)
 
     p = sub.add_parser("bootstrap", help="Print the Level-0 bootstrap context for this project and session")
