@@ -25,8 +25,12 @@ def _validate(args):
 
 
 def _benchmark(args):
-    from .diagnostics.benchmark import run
-    return run(plugins_root=Path(args.plugins_root).expanduser() if args.plugins_root else None)
+    from .diagnostics.benchmark import compare, render, run
+    root = Path(args.plugins_root).expanduser() if args.plugins_root else None
+    if not args.compare:
+        return run(plugins_root=root)
+    print(render(compare(root, Path(args.out) if args.out else None)), end="")
+    return 0
 
 
 def _bundle(args):
@@ -861,7 +865,9 @@ def build_parser():
             p.add_argument("--no-unittest", action="store_true", help="Skip running the unit test suite")
 
     p = sub.add_parser("benchmark", help="Measure the always-loaded context of installed host plugins")
-    p.add_argument("--baseline", action="store_true", help="Old-model baseline (default, currently the only mode)")
+    p.add_argument("--baseline", action="store_true", help="Old-model baseline only (default)")
+    p.add_argument("--compare", action="store_true", help="OLD vs NEW per spec scenario: tokens, routing accuracy, speed")
+    p.add_argument("--out", help="With --compare: also write the Markdown report here")
     p.add_argument("--plugins-root", help="Claude Code plugins dir (default: ~/.claude/plugins)")
     p.set_defaults(func=_benchmark)
 

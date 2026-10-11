@@ -695,7 +695,7 @@ PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	18238	tests/t
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	7967	tests/test_settings_merge.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	18172	tests/test_skill_auto_refresh.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	2432	tests/test_skill_version_warning.py
-PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	51466	tests/test_skillgen.py
+EXCLUDE	Tests the excluded skill generator tools/skillgen (found by the absolute-import closure trace, P25)		51466	tests/test_skillgen.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	9013	tests/test_skillgen_input_path_injection.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	4943	tests/test_solidity_extractor.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	3061	tests/test_source_key_memoization.py

@@ -79,7 +79,7 @@
  },
  "graphify": {
   "attribution": "Copyright (c) 2026 Safi Shamsi",
-  "bundled_files": 549,
+  "bundled_files": 548,
   "commit_sha": "0b60d47e6cd9338c51143f39f35b6c45c8453385",
   "license": "Apache-2.0",
   "license_files": [

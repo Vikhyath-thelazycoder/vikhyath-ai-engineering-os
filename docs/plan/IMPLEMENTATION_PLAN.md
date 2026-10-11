@@ -25,7 +25,7 @@ Status vocabulary (spec §25): NOT_STARTED · PLANNED · IN_PROGRESS · PARTIALL
 | M4 Main domains | P12, P13, P14, P15 | **COMPLETED** (2026-10-10; accepted, user started M5) |
 | M5 Specialist domains | P16, P17 | **COMPLETED** (2026-10-10; accepted, user started M6) |
 | M6 Hosts | P19, P20, P21, P22 | **COMPLETED** (2026-10-11; accepted) |
-| M7 Dashboard & ship | P23, P24, P25, P26, P27 | **IN_PROGRESS** (P23, P24 completed) |
+| M7 Dashboard & ship | P23, P24, P25, P26, P27 | **IN_PROGRESS** (P23, P24, P25 completed) |
 
 ## Phase index
 
@@ -56,7 +56,7 @@ Status vocabulary (spec §25): NOT_STARTED · PLANNED · IN_PROGRESS · PARTIALL
 | P22 | Antigravity adapter | Build: hosts | P19 | **COMPLETED** (files) |
 | P23 | Dashboard | Build: UX | P18 | **COMPLETED** |
 | P24 | Update & rollback | Build: supply | P6, P7 | **COMPLETED** |
-| P25 | Diagnostics & measured benchmarks | Verify | P4–P24 | NOT_STARTED |
+| P25 | Diagnostics & measured benchmarks | Verify | P4–P24 | **COMPLETED** |
 | P26 | Documentation & migration guide | Docs | P25 | NOT_STARTED |
 | P27 | Full integration, offline & host validation, final report | Verify | all | NOT_STARTED |
 
@@ -253,7 +253,7 @@ Verification method for **every** phase below: local deterministic checks only �
 | P19–P22 Hosts | Same verification policy on all four hosts | P8–P11, P18 | — | FILE_LEVEL_PLAN P19–P22 | Adapters render the policy reference; may not enable Chrome DevTools, screenshots, visual QA or MCP; test asserts it | `tests/hosts/test_policy.py` | Every adapter output references `config/verification.yaml`; none contains MCP/browser enablement ✔ | revert | **COMPLETED** (2026-10-11) |
 | P23 Dashboard | Show verification status, evidence, disabled capabilities | P18 | observability/* | FILE_LEVEL_PLAN P23 | Read-only views of state/evidence; no visual-QA view; off unless a session is active or explicitly opened | `tests/dashboard/*` | Fixture data → correct status; no browser verification UI | revert | NOT_STARTED (plan updated) |
 | P24 Update/rollback | Pin + diff + re-audit Appllama extracted files only | P6, P7 | — | FILE_LEVEL_PLAN P24 | Update of an upstream re-runs the overlap check for its extracted files; no MCP config handled | `tests/update/*` | Appllama update touches only its 4 bundled files (inventory diff reports exactly the bundled paths changed) ✔ | revert | **COMPLETED** (2026-10-11) |
-| P25 Diagnostics | Detect policy violations | P4–P24 | — | `vikhyath/diagnostics/validate.py` (done), FILE_LEVEL_PLAN P25 | Done now: policy section + forbidden bundle paths. P25 adds doctor: host-installed MCP / Chrome DevTools detection, duplicate design rules, stale pins | fixture-based tests | The four example errors of the spec are emitted on planted violations | revert | NOT_STARTED (partly pulled forward) |
+| P25 Diagnostics | Detect policy violations | P4–P24 | — | `vikhyath/diagnostics/validate.py` (done), FILE_LEVEL_PLAN P25 | Done now: policy section + forbidden bundle paths. P25 adds doctor: host-installed MCP / Chrome DevTools detection, duplicate design rules, stale pins | fixture-based tests | The four example errors of the spec are emitted on planted violations ✔ (host Chrome DevTools/Playwright MCP, duplicate design files, pin age, policy violations in validate) | revert | **COMPLETED** (2026-10-11) |
 | P26 Docs | Document local test-first default, Appllama status, no MCP | P25 | — | FILE_LEVEL_PLAN P26 | + `docs/architecture/VERIFICATION_POLICY.md`; TESTING/DESIGN architecture reflect D-034/D-035 | doc review | Docs state the policy verbatim | revert | NOT_STARTED (plan updated) |
 | P27 Integration | Final reconciliation incl. the A-1 checklist | all | all | FILE_LEVEL_PLAN P27 | + checks: no MCP, no Appllama MCP, no paid dependency, no browser default, no screenshot verification, no repo-dump, no duplicate design/capability sources, no project-local OS | e2e + offline | doc 22 §9 checklist all ✔ | — | NOT_STARTED (plan updated) |
 
@@ -378,6 +378,18 @@ M6 (P19–P22) packaged the OS for Claude Code, Codex, Cursor and Antigravity fr
 | Evidence | `docs/evidence/P24/run.md` |
 | Rollback | `git revert` of the P24 commit. |
 
+## P25 — Diagnostics & measured benchmarks · COMPLETED (2026-10-11)
+
+| Item | Detail |
+|---|---|
+| Changes | `vikhyath/diagnostics/benchmark.py` (`compare`, `render`, `--compare --out`); `vikhyath/diagnostics/doctor.py` (Host Environment + Supply Chain sections, redacted output); `vikhyath/bundle/closure.py` (absolute imports); rule excluding `graphify/tests/test_skillgen.py`; `docs/benchmarks/RESULTS.md`; `tests/unit/test_p25.py`. D-046. |
+| Result (measured on this machine) | Every turn: OLD **31,792** est. tokens (ECC 2.2.3, Open Design 1.0.0, UI/UX Pro Max 2.13.0 descriptions) vs NEW **915** (own 13 skills/agents + 1,196 B L0). 22 spec tasks: OLD ≈ **1,019,809** vs NEW ≈ **176,408** est. tokens (**83 % less**). Routing **22/22**, p50 0.23 ms / p95 0.34 ms; L0 2 ms; L1+L2 p50 12 ms. Doctor on this machine: 50 passed, 0 failed, 10 warnings (3 separate plugins; Chrome DevTools/Playwright/Open Design/shadcn MCP servers enabled by them; 1 duplicate UI/UX design file). |
+| Tests | 245/245 (3 new; 3 opt-in skipped). Bundle `a6c52114bc4d` known-good, 2,582 files, self-tests pass. |
+| Acceptance | ✔ benchmarks measured, estimates labelled · ✔ planted host MCP (chrome-devtools) and `~/.claude.json` servers reported; secret-looking values never printed · ✔ the closure trace now catches function-local absolute imports (found and fixed one real gap). |
+| Deviations | OLD per-task cost counts only the skill files a task triggers, not MCP tool schemas or hook output, so OLD is a lower bound. OLD routing accuracy is not measured (the host model chooses; no deterministic baseline). |
+| Evidence | `docs/evidence/P25/run.md`, `docs/benchmarks/RESULTS.md` |
+| Rollback | `git revert` of the P25 commit. |
+
 ## P4–P27 — summary (file-level tasks: [FILE_LEVEL_PLAN.md](FILE_LEVEL_PLAN.md))
 
 | Phase | Objective (outline) | Key acceptance criteria (outline) |
@@ -409,7 +421,7 @@ M6 (P19–P22) packaged the OS for Claude Code, Codex, Cursor and Antigravity fr
 ## Resume here (next session)
 
 1. Branch `feat/v2-os-transformation` (M0–M6 committed, not pushed; `main` has A-1 only).
-2. Next: **M7 → P25** (P23 dashboard, P24 update/rollback done). Then P25 diagnostics + measured OLD vs NEW benchmarks (tokens, speed, routing accuracy; the user's Claude has ECC, UI/UX Pro Max and Open Design installed directly — use them as the OLD baseline) → P26 docs/README rewrite → P27 integration + final report.
+2. Next: **M7 → P26** (P23–P25 done; benchmarks in docs/benchmarks/RESULTS.md). Then P25 diagnostics + measured OLD vs NEW benchmarks (tokens, speed, routing accuracy; the user's Claude has ECC, UI/UX Pro Max and Open Design installed directly — use them as the OLD baseline) → P26 docs/README rewrite → P27 integration + final report.
 3. Test setup used so far: scratch venv with `pip install -e .`, scratch `VIKHYATH_HOME` with bundle `495f026f381e`; `python -m unittest discover -s tests` (228 OK, 3 opt-in skipped). Rebuild a bundle with `vikhyath bundle build --self-test` (needs `.staging/upstream`).
 4. **Rename to Agylite in P26 (D-044)**: CLI `agylite` (+ `vikhyath` alias), package, `~/.agylite`, plugin/marketplace, skills, adapters, docs — before the v2.0.0 release.
 5. Open items carried forward: Claude Code RUNTIME_VERIFIED (install the plugin from this branch, start one session); live SEO crawl once this machine's DNS works (`vikhyath seo run crawl https://example.com/`); Graphify upstream suite per-file failure breakdown (P25); closure trace should follow absolute intra-package imports (P25, D-037).
@@ -451,3 +463,4 @@ M6 (P19–P22) packaged the OS for Claude Code, Codex, Cursor and Antigravity fr
 | 2026-10-11 | Name | User chose the product name **Agylite** (D-044); rename scheduled in P26. |
 | 2026-10-11 | P23 | P23 completed: Agent Office dashboard (live states from events, loopback-only, read-only, idle exit, demo replay). 236 tests. Evidence: docs/evidence/P23/run.md. P24 next. |
 | 2026-10-11 | P24 | P24 completed: `vikhyath update|rollback|gc` with dangling-reference check, atomic switch, per-bundle evidence (D-045). 242 tests. Evidence: docs/evidence/P24/run.md. P25 next. |
+| 2026-10-11 | P25 | P25 completed: OLD vs NEW benchmark (83% fewer est. tokens over 22 spec tasks; 31.8k → 0.9k per turn; routing 22/22), host/supply-chain doctor checks with redaction, absolute-import closure (D-046). 245 tests; bundle `a6c52114bc4d`. Evidence: docs/evidence/P25/run.md. P26 next. |

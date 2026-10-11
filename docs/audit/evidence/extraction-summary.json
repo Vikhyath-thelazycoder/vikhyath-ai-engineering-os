@@ -132,16 +132,16 @@
   },
   "graphify": {
    "EXCLUDE": {
-    "files": 370,
-    "bytes": 12301755
+    "files": 371,
+    "bytes": 12353221
    },
    "COPY": {
     "files": 3,
     "bytes": 12761
    },
    "PRESERVE": {
-    "files": 538,
-    "bytes": 8860502
+    "files": 537,
+    "bytes": 8809036
    },
    "REFERENCE": {
     "files": 37,
@@ -281,9 +281,9 @@
  },
  "capabilities": {
   "codebase/repository-understanding": {
-   "files": 557,
-   "bytes": 8999878,
-   "est_tokens": 2249969,
+   "files": 556,
+   "bytes": 8948412,
+   "est_tokens": 2237103,
    "sources": [
     "agency",
     "ecc",

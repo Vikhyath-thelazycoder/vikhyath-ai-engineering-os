@@ -19,6 +19,9 @@ REF_PATTERNS = [
     re.compile(r"(?<![\w/.-])((?:references|templates|scripts|sections|specialists|playbooks|docs|data)/[\w./-]+\.\w{1,5})"),
 ]
 PY_REL_IMPORT = re.compile(r"^\s*from\s+(\.+)([\w.]*)\s+import\s+([\w, ()]+)", re.M)
+# Absolute imports, including function-local ones (P25, D-037: `from graphify.serve import …` inside a function was missed).
+PY_ABS_FROM = re.compile(r"^\s*from\s+([A-Za-z_]\w*(?:\.\w+)*)\s+import\s+([\w, ()]+)", re.M)
+PY_ABS_IMPORT = re.compile(r"^\s*import\s+([A-Za-z_]\w*(?:\.\w+)+)", re.M)
 
 
 def references(text, path):
@@ -33,10 +36,23 @@ def references(text, path):
         for dots, mod, _names in PY_REL_IMPORT.findall(text):
             if mod:
                 found.add("py:" + "../" * (len(dots) - 1) + mod.replace(".", "/"))
+        for mod, names in PY_ABS_FROM.findall(text):
+            found.add("pyabs:" + mod.replace(".", "/"))
+            for name in re.findall(r"\w+", names):
+                found.add("pyabs:" + mod.replace(".", "/") + "/" + name)
+        for mod in PY_ABS_IMPORT.findall(text):
+            found.add("pyabs:" + mod.replace(".", "/"))
     return found
 
 
 def resolve(ref, path, files, dirs):
+    if ref.startswith("pyabs:"):   # absolute module path: repo root or src/ layout; third-party modules resolve to None
+        mod = ref[6:]
+        for base in ("", "src/"):
+            for ext in (".py", "/__init__.py"):
+                if base + mod + ext in files:
+                    return base + mod + ext
+        return None
     base_dirs = [os.path.dirname(path), ""]
     # skill-relative: walk up to the nearest dir containing SKILL.md
     parts = path.split("/")

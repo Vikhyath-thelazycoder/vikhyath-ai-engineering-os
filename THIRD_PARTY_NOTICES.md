@@ -13,7 +13,7 @@ Vikhyath AI Engineering OS bundles selected content from the upstream projects b
 | [beyondtahir/beyondseo](https://github.com/beyondtahir/beyondseo) | `c160b9d` | MIT | Copyright (c) 2026 Muhammad Tahir Ashraf (Beyond Tahir) | 199 | `LICENSE`, `THIRD_PARTY_NOTICES.md` |
 | [latent-spaces/brag](https://github.com/latent-spaces/brag) | `cb89b9f` | MIT | Copyright (c) 2026 Shunit Haviv Hakimi | 291 | `LICENSE` |
 | [affaan-m/ECC](https://github.com/affaan-m/ECC) | `ef648e0` | MIT | Copyright (c) 2026 Affaan Mustafa | 404 | `LICENSE` |
-| [Graphify-Labs/graphify](https://github.com/Graphify-Labs/graphify) | `0b60d47` | Apache-2.0 | Copyright (c) 2026 Safi Shamsi | 549 | `LICENSE`, `LICENSE-MIT`, `NOTICE` |
+| [Graphify-Labs/graphify](https://github.com/Graphify-Labs/graphify) | `0b60d47` | Apache-2.0 | Copyright (c) 2026 Safi Shamsi | 548 | `LICENSE`, `LICENSE-MIT`, `NOTICE` |
 | [garrytan/gstack](https://github.com/garrytan/gstack) | `74512c2` | MIT | Copyright (c) 2026 Garry Tan | 88 | `LICENSE`, `NOTICE.md`, `licenses/Apache-2.0.txt` |
 | [multica-ai/andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills) | `2c60614` | MIT | forrestchang and contributors | 2 | — License declared in package metadata; upstream ships no license text. |
 | [nexu-io/open-design](https://github.com/nexu-io/open-design) | `53231d4` | Apache-2.0 | Copyright 2026 Open Design contributors | 516 | `LICENSE` |

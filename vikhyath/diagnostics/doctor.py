@@ -45,7 +45,85 @@ def _contains(paths, needle):
     return False
 
 
-def run(root: Path) -> int:
+STALE_PIN_DAYS = 120
+
+
+def host_and_supply_checks(r, root: Path, user_home: Path, bundle_dir):
+    """P25 (§59, MR-02/03, doc 22 §7): separately installed upstream plugins and their always-loaded cost, host MCP /
+    Chrome DevTools servers, stale pins, duplicate design files. Reads names and sizes only, never secret values."""
+    from datetime import date
+
+    from .benchmark import NAME, installed_plugins, measure_plugin
+    r.section("🧩 Host Environment")
+    seen = set()
+    for name, version, path in installed_plugins(user_home / ".claude" / "plugins"):
+        if name in seen or name.startswith(NAME + "@"):
+            continue
+        seen.add(name)
+        cost = sum(b for _, b in measure_plugin(path).values())
+        r.warn(f"{name} {version} is installed separately: ~{cost // 4:,} est. tokens of descriptions every turn "
+               "(its selected content is already in the bundle)")
+        for mcp in list(path.glob(".mcp.json")) + list(path.glob("*/.mcp.json")):
+            try:
+                servers = (json.loads(mcp.read_text(encoding="utf-8")).get("mcpServers") or {})
+            except ValueError:
+                servers = {}
+            for sname in servers:
+                hint = " — browser automation; the OS never uses it (config/verification.yaml)" \
+                    if "chrome" in sname.lower() or "playwright" in sname.lower() or "browser" in sname.lower() else ""
+                r.warn(f"host MCP server '{sname}' enabled by plugin {name}{hint}")
+    user_cfg = user_home / ".claude.json"
+    if user_cfg.is_file():
+        try:
+            names = list((json.loads(user_cfg.read_text(encoding="utf-8")).get("mcpServers") or {}))
+        except ValueError:
+            names = []
+        for sname in names:
+            r.warn(f"host MCP server '{sname}' configured in ~/.claude.json (outside the OS; the OS adds none)")
+    if not seen:
+        r.ok("No separately installed upstream plugins")
+    r.end_section()
+
+    r.section("📌 Supply Chain")
+    snap = root / "docs" / "audit" / "evidence" / "upstream-staging-snapshot.yaml"
+    if snap.is_file():
+        import re
+        m = re.search(r"^# Captured: (\d{4}-\d{2}-\d{2})", snap.read_text(encoding="utf-8"), re.M)
+        if m:
+            age = (date.today() - date.fromisoformat(m.group(1))).days
+            if age > STALE_PIN_DAYS:
+                r.warn(f"Upstream pins were audited {age} days ago ({m.group(1)}): review updates with `vikhyath update`")
+            else:
+                r.ok(f"Upstream pins audited {age} days ago ({m.group(1)}; review after {STALE_PIN_DAYS} days)")
+    if bundle_dir is not None and (bundle_dir / "index.json").is_file():
+        files = json.loads((bundle_dir / "index.json").read_text(encoding="utf-8"))["files"]
+        by_hash = {}
+        for dest, meta in files.items():
+            if meta["capability"].startswith("design/") and dest.endswith(".md"):
+                by_hash.setdefault(meta["sha256"], []).append(dest)
+        dups = [v for v in by_hash.values() if len(v) > 1]
+        if dups:
+            r.warn(f"{len(dups)} design rule files are bundled more than once with identical content "
+                   f"(e.g. {dups[0][0]}); the context engine loads one copy")
+        else:
+            r.ok("No duplicate design rule files in the bundle")
+    r.end_section()
+
+
+def run(root: Path, user_home: Path | None = None) -> int:
+    """Doctor with every line passed through the redactor (§78: no secrets in diagnostics output)."""
+    import contextlib
+    import io
+
+    from ..events.redact import redact_text
+    buf = io.StringIO()
+    with contextlib.redirect_stdout(buf):
+        code = _run(root, user_home or Path.home())
+    print(redact_text(buf.getvalue()), end="")
+    return code
+
+
+def _run(root: Path, user_home: Path) -> int:
     r = Report("🔍 Vikhyath AI Engineering OS — Doctor")
 
     r.section("🐍 Environment")
@@ -170,6 +248,9 @@ def run(root: Path) -> int:
     else:
         r.fail("VERSION file missing")
     r.end_section()
+
+    from ..paths import current_bundle
+    host_and_supply_checks(r, root, user_home, current_bundle())
 
     r.section("📝 Key Files")
     for name in KEY_FILES:
