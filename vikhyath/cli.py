@@ -7,9 +7,7 @@ from . import __version__
 from .paths import repo_root
 
 # Subcommands planned in docs/plan/FILE_LEVEL_PLAN.md and the phase that delivers each.
-PLANNED = {
-    "update": "P24", "rollback": "P24",
-}
+PLANNED = {}
 
 
 def _root(args) -> Path:
@@ -808,6 +806,30 @@ def _dashboard_cmd(args):
     return 0
 
 
+def _update_cmd(args):
+    from .events import emit
+    from .paths import vikhyath_home
+    from .update import UpdateError, gc, rollback, update
+    home = vikhyath_home()
+    try:
+        if args.command == "update":
+            r = update(home, args.repo, args.sha, source=Path(args.source) if args.source else None,
+                       self_test=args.self_test)
+            if r["status"] == "activated":
+                emit(_project_ref(args), "UPSTREAM_UPDATED", severity="medium",
+                     details={k: r[k] for k in ("repo", "from", "to", "bundle_id", "previous_bundle")})
+        elif args.command == "rollback":
+            r = rollback(home, args.to)
+            emit(_project_ref(args), "UPSTREAM_ROLLBACK", severity="medium", details=r)
+        else:
+            r = gc(home, dry_run=args.dry_run)
+    except (UpdateError, OSError) as exc:
+        print(f"vikhyath {args.command}: {exc}", file=sys.stderr)
+        return 1
+    _print(r, args.json)
+    return 0 if r.get("status", "ok") in ("activated", "ok") or args.command != "update" else 1
+
+
 def _guarded(func):
     """Expected user-facing errors print one line and exit 1 instead of a traceback."""
     def run(args):
@@ -1068,6 +1090,24 @@ def build_parser():
     q.add_argument("--out", help="Output directory (default brag-output/audio in the project)")
     project_arg(q)
     p.set_defaults(func=_media_cmd)
+
+    p = sub.add_parser("update", help="Pin one upstream to a new commit: build, check, switch only if everything passes")
+    p.add_argument("repo", help="Upstream name, e.g. graphify")
+    p.add_argument("sha", help="Full 40-character commit SHA")
+    p.add_argument("--source", help="Local tree of that commit (offline mirror); default: fetch it (network)")
+    p.add_argument("--self-test", action="store_true", help="Also run the runtime self-tests before switching")
+    p.add_argument("--json", action="store_true")
+    p.add_argument("--project", help=argparse.SUPPRESS)
+    p.set_defaults(func=_update_cmd)
+    p = sub.add_parser("rollback", help="Switch back to the previous (or a named) known-good bundle")
+    p.add_argument("--to", help="Bundle id (default: previous)")
+    p.add_argument("--json", action="store_true")
+    p.add_argument("--project", help=argparse.SUPPRESS)
+    p.set_defaults(func=_update_cmd)
+    p = sub.add_parser("gc", help="Remove old bundles and unused runtimes (keeps current, previous, 2 newest failed)")
+    p.add_argument("--dry-run", action="store_true")
+    p.add_argument("--json", action="store_true")
+    p.set_defaults(func=_update_cmd)
 
     p = sub.add_parser("dashboard", help="Agent Office: live, read-only view of this project's agents (127.0.0.1)")
     p.add_argument("--port", type=int, default=0, help="Port (default: a free one)")

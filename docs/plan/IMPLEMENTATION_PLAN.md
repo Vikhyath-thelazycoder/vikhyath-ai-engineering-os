@@ -25,7 +25,7 @@ Status vocabulary (spec §25): NOT_STARTED · PLANNED · IN_PROGRESS · PARTIALL
 | M4 Main domains | P12, P13, P14, P15 | **COMPLETED** (2026-10-10; accepted, user started M5) |
 | M5 Specialist domains | P16, P17 | **COMPLETED** (2026-10-10; accepted, user started M6) |
 | M6 Hosts | P19, P20, P21, P22 | **COMPLETED** (2026-10-11; accepted) |
-| M7 Dashboard & ship | P23, P24, P25, P26, P27 | **IN_PROGRESS** (P23 completed) |
+| M7 Dashboard & ship | P23, P24, P25, P26, P27 | **IN_PROGRESS** (P23, P24 completed) |
 
 ## Phase index
 
@@ -55,7 +55,7 @@ Status vocabulary (spec §25): NOT_STARTED · PLANNED · IN_PROGRESS · PARTIALL
 | P21 | Cursor adapter | Build: hosts | P19 | **COMPLETED** (files) |
 | P22 | Antigravity adapter | Build: hosts | P19 | **COMPLETED** (files) |
 | P23 | Dashboard | Build: UX | P18 | **COMPLETED** |
-| P24 | Update & rollback | Build: supply | P6, P7 | NOT_STARTED |
+| P24 | Update & rollback | Build: supply | P6, P7 | **COMPLETED** |
 | P25 | Diagnostics & measured benchmarks | Verify | P4–P24 | NOT_STARTED |
 | P26 | Documentation & migration guide | Docs | P25 | NOT_STARTED |
 | P27 | Full integration, offline & host validation, final report | Verify | all | NOT_STARTED |
@@ -252,7 +252,7 @@ Verification method for **every** phase below: local deterministic checks only �
 | P18 Observability | Record exceptional browser requests; no browser telemetry workflow | P10 | observability/events | `vikhyath/events/schema.py`, `project/state.py` | `BROWSER_EXCEPTION_REQUESTED` replaces `BROWSER_FALLBACK_ACTIVATED` | project test asserts the event | Event logged per project only ✔ | revert | **AMENDED · COMPLETED** |
 | P19–P22 Hosts | Same verification policy on all four hosts | P8–P11, P18 | — | FILE_LEVEL_PLAN P19–P22 | Adapters render the policy reference; may not enable Chrome DevTools, screenshots, visual QA or MCP; test asserts it | `tests/hosts/test_policy.py` | Every adapter output references `config/verification.yaml`; none contains MCP/browser enablement ✔ | revert | **COMPLETED** (2026-10-11) |
 | P23 Dashboard | Show verification status, evidence, disabled capabilities | P18 | observability/* | FILE_LEVEL_PLAN P23 | Read-only views of state/evidence; no visual-QA view; off unless a session is active or explicitly opened | `tests/dashboard/*` | Fixture data → correct status; no browser verification UI | revert | NOT_STARTED (plan updated) |
-| P24 Update/rollback | Pin + diff + re-audit Appllama extracted files only | P6, P7 | — | FILE_LEVEL_PLAN P24 | Update of an upstream re-runs the overlap check for its extracted files; no MCP config handled | `tests/update/*` | Appllama update touches only its 4 bundled files | revert | NOT_STARTED (plan updated) |
+| P24 Update/rollback | Pin + diff + re-audit Appllama extracted files only | P6, P7 | — | FILE_LEVEL_PLAN P24 | Update of an upstream re-runs the overlap check for its extracted files; no MCP config handled | `tests/update/*` | Appllama update touches only its 4 bundled files (inventory diff reports exactly the bundled paths changed) ✔ | revert | **COMPLETED** (2026-10-11) |
 | P25 Diagnostics | Detect policy violations | P4–P24 | — | `vikhyath/diagnostics/validate.py` (done), FILE_LEVEL_PLAN P25 | Done now: policy section + forbidden bundle paths. P25 adds doctor: host-installed MCP / Chrome DevTools detection, duplicate design rules, stale pins | fixture-based tests | The four example errors of the spec are emitted on planted violations | revert | NOT_STARTED (partly pulled forward) |
 | P26 Docs | Document local test-first default, Appllama status, no MCP | P25 | — | FILE_LEVEL_PLAN P26 | + `docs/architecture/VERIFICATION_POLICY.md`; TESTING/DESIGN architecture reflect D-034/D-035 | doc review | Docs state the policy verbatim | revert | NOT_STARTED (plan updated) |
 | P27 Integration | Final reconciliation incl. the A-1 checklist | all | all | FILE_LEVEL_PLAN P27 | + checks: no MCP, no Appllama MCP, no paid dependency, no browser default, no screenshot verification, no repo-dump, no duplicate design/capability sources, no project-local OS | e2e + offline | doc 22 §9 checklist all ✔ | — | NOT_STARTED (plan updated) |
@@ -366,6 +366,18 @@ M6 (P19–P22) packaged the OS for Claude Code, Codex, Cursor and Antigravity fr
 | Evidence | `docs/evidence/P23/run.md` |
 | Rollback | `git revert` of the P23 commit. |
 
+## P24 — Update & rollback · COMPLETED (2026-10-11)
+
+| Item | Detail |
+|---|---|
+| Changes | `vikhyath/update/{__init__,core}.py`; CLI `vikhyath update`, `vikhyath rollback`, `vikhyath gc`; `tests/update/test_update.py`. D-045. |
+| Result | Explicit, checked upstream updates that never touch the running bundle until everything passes; one-command rollback to a verified bundle; retention of current, previous and recent failures. |
+| Tests | 242/242 (6 new; 3 opt-in skipped). |
+| Acceptance | ✔ broken update (upstream removes a file a bundled skill links to) → failed with "dangling reference …", `current` unchanged · ✔ interrupted build (KeyboardInterrupt mid-transform) → `current` unchanged and intact · ✔ good update → new bundle active, `previous` = old, diff lists the changed bundled path and affected capability, the bundle records its new pin · ✔ rollback refuses a tampered bundle · ✔ gc keeps current/previous/recent failed, removes the rest and orphaned runtimes · ✔ real bundles: `rollback` → previous and back (`--to`), `gc --dry-run` lists 3 old bundles + 2 stale Graphify runtimes. |
+| Deviations | The network fetch path (`git ls-tree` on a blobless clone) is not exercised offline; the same logic runs on local trees in the tests. Normal commands make no network calls (verified offline since P12: this machine has no DNS). |
+| Evidence | `docs/evidence/P24/run.md` |
+| Rollback | `git revert` of the P24 commit. |
+
 ## P4–P27 — summary (file-level tasks: [FILE_LEVEL_PLAN.md](FILE_LEVEL_PLAN.md))
 
 | Phase | Objective (outline) | Key acceptance criteria (outline) |
@@ -397,7 +409,7 @@ M6 (P19–P22) packaged the OS for Claude Code, Codex, Cursor and Antigravity fr
 ## Resume here (next session)
 
 1. Branch `feat/v2-os-transformation` (M0–M6 committed, not pushed; `main` has A-1 only).
-2. Next: **M7 → P24** (P23 Agent Office done: `vikhyath dashboard [--demo]`). Then P24 update/rollback → P25 diagnostics + measured OLD vs NEW benchmarks (tokens, speed, routing accuracy; the user's Claude has ECC, UI/UX Pro Max and Open Design installed directly — use them as the OLD baseline) → P26 docs/README rewrite → P27 integration + final report.
+2. Next: **M7 → P25** (P23 dashboard, P24 update/rollback done). Then P25 diagnostics + measured OLD vs NEW benchmarks (tokens, speed, routing accuracy; the user's Claude has ECC, UI/UX Pro Max and Open Design installed directly — use them as the OLD baseline) → P26 docs/README rewrite → P27 integration + final report.
 3. Test setup used so far: scratch venv with `pip install -e .`, scratch `VIKHYATH_HOME` with bundle `495f026f381e`; `python -m unittest discover -s tests` (228 OK, 3 opt-in skipped). Rebuild a bundle with `vikhyath bundle build --self-test` (needs `.staging/upstream`).
 4. **Rename to Agylite in P26 (D-044)**: CLI `agylite` (+ `vikhyath` alias), package, `~/.agylite`, plugin/marketplace, skills, adapters, docs — before the v2.0.0 release.
 5. Open items carried forward: Claude Code RUNTIME_VERIFIED (install the plugin from this branch, start one session); live SEO crawl once this machine's DNS works (`vikhyath seo run crawl https://example.com/`); Graphify upstream suite per-file failure breakdown (P25); closure trace should follow absolute intra-package imports (P25, D-037).
@@ -438,3 +450,4 @@ M6 (P19–P22) packaged the OS for Claude Code, Codex, Cursor and Antigravity fr
 | 2026-10-11 | P23 (plan) | User approved the **Agent Office** dashboard design (pixel office, one agent per capability, live states) from mockup v2; FILE_LEVEL_PLAN P23 rewritten with files, state machine, API and constraints (D-043); mockup saved as `docs/design/agent-office-mockup.html`; "Resume here" section added. |
 | 2026-10-11 | Name | User chose the product name **Agylite** (D-044); rename scheduled in P26. |
 | 2026-10-11 | P23 | P23 completed: Agent Office dashboard (live states from events, loopback-only, read-only, idle exit, demo replay). 236 tests. Evidence: docs/evidence/P23/run.md. P24 next. |
+| 2026-10-11 | P24 | P24 completed: `vikhyath update|rollback|gc` with dangling-reference check, atomic switch, per-bundle evidence (D-045). 242 tests. Evidence: docs/evidence/P24/run.md. P25 next. |
