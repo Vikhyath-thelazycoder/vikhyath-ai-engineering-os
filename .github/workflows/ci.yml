@@ -41,6 +41,10 @@ jobs:
         run: |
           agylite registry check --no-bundle
 
+      - name: Check generated host packaging is current
+        run: |
+          agylite adapters render --check
+
       - name: Run Benchmark analysis
         run: |
           chmod +x scripts/benchmark

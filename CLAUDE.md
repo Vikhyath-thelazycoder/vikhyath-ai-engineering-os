@@ -1,36 +1,18 @@
-# Agylite — Claude Code Instructions
+# Agylite — Claude Code instructions
 
-This is the Agylite plugin for Claude Code.
+This repository is Agylite, a local engineering OS for coding agents (one CLI, one curated bundle, no MCP).
 
-## Architecture Guidelines
+- Start from `agylite route "<request>"` and load only the routed capabilities with `agylite context <ids>`.
+- Follow the route's lifecycle; verify with `agylite verify` and record evidence. No browser or screenshot verification.
+- Do not suggest or enable MCP servers.
+- The living plan is `docs/plan/IMPLEMENTATION_PLAN.md` ("Resume here" section); decisions are in
+  `docs/audit/21_AUDIT_DECISIONS.md`; architecture in `docs/architecture/`.
+- Tests: `python -m unittest discover -s tests`. Diagnostics: `agylite doctor`, `agylite validate`.
 
-1. **Progressive Activation**: Do NOT load all skills. Classify the user task first, then activate/route only to relevant capabilities.
-2. **NO MCP**: This plugin does not use MCP. Do not suggest or enable MCP servers.
-3. **Route to Capabilities**: Run `agylite route "<request>"` (deterministic rules in `config/routing.yaml`) to determine which capabilities apply.
-4. **Context Efficiency**: Minimize token usage by reading skill content on demand.
-
-## Marketplace & Installation
-
-Claude Code marketplace metadata is defined in `.claude-plugin/marketplace.json`.
+## Install
 
 ```bash
-# Add marketplace
 claude plugin marketplace add Vikhyath-thelazycoder/vikhyath-ai-engineering-os
-
-# Install plugin
 claude plugin install agylite@agylite-marketplace
+scripts/install          # central install into ~/.agylite and the local bundle
 ```
-
-## Routing Quick Reference
-
-- **Engineering tasks** → ECC
-- **Codebase intelligence** → Graphify
-- **Production engineering** → Addy Agent Skills
-- **Specialist perspectives** → Agency Agents (selective)
-- **Product/release review** → gstack
-- **Completion discipline** → Unlazy (substantial tasks)
-- **Simplicity review** → Ponytail (explicit request only; default OFF)
-- **Design tasks** → OpenDesign
-- **Principles** → Karpathy Skills (reference only)
-
-See `capabilities/` (one `card.yaml` per capability; `agylite registry list`) for the full capability registry and `config/priorities.yaml` for conflict resolution.

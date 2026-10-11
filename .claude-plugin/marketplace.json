@@ -4,12 +4,12 @@
     "name": "Vikhyath",
     "url": "https://github.com/Vikhyath-thelazycoder"
   },
-  "description": "Agylite Plugin Marketplace for Claude Code",
+  "description": "Agylite plugin marketplace for Claude Code",
   "plugins": [
     {
       "name": "agylite",
-      "version": "1.0.1",
-      "description": "A thin orchestration plugin that selectively activates specialized engineering capabilities from proven external repositories.",
+      "version": "2.0.0",
+      "description": "Agylite: one deterministic router, budgeted context, project state and local test-first verification over a curated bundle of engineering, codebase, design, testing, SEO and media capabilities. No MCP.",
       "source": "./"
     }
   ]

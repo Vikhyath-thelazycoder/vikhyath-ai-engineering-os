@@ -94,37 +94,19 @@ To propose integrating a new external capability:
 ## Repository Structure
 
 ```text
-agylite/
-├── .agents/                    # Antigravity skill adapter and marketplace
-│   ├── plugins/marketplace.json
-│   └── skills/agylite/SKILL.md
-├── .claude-plugin/             # Claude Code packaging & marketplace
-│   ├── marketplace.json
-│   └── plugin.json
-├── .codex-plugin/              # Codex plugin manifest
-│   └── plugin.json
-├── .github/                    # CI workflows, issue and PR templates
-│   ├── ISSUE_TEMPLATE/
-│   ├── pull_request_template.md
-│   └── workflows/ci.yml
-├── agents/                     # Specialized agent persona guidance
-├── config/                     # Core orchestration schemas
-│   ├── priorities.yaml         # 8-level conflict hierarchy
-│   └── routing.yaml            # Task classification and routing rules
-├── capabilities/               # Capability registry: <domain>/<subdomain>/card.yaml + CARD.md
-├── scripts/                    # Diagnostic and validation tooling
-│   ├── benchmark
-│   ├── doctor
-│   └── validate
-├── skills/                     # Portably structured skill definitions
-├── tests/                      # Python unit test suite
-│   ├── manifests/
-│   ├── routing/
-│   ├── security/
-│   └── structural/             # registry and repository-health tests
-├── plugin.json                 # Portable root manifest (Agent Plugins 1.0.0)
-├── VERSION                     # Release version string
-└── README.md                   # Project documentation
+agylite/                        # the OS: routing, context, project, isolation, bundle, registry, verify, codebase,
+│                               # design, seo, runtimes, events, dashboard, update, adapters, diagnostics, cli.py
+bin/agylite                     # host launcher (central install → PATH → plugin source); bin/vikhyath alias
+capabilities/<domain>/<name>/   # card.yaml (authored) + CARD.md (generated)
+config/                         # routing, priorities, budgets, lifecycle, verification, design, dashboard
+skills/agylite-*/               # entry skills shared by every host
+agents/                         # reviewer personas (frontmatter)
+hooks/hooks.json                # Claude Code: SessionStart bootstrap only
+.claude-plugin/ .codex-plugin/ .agents/   # generated host packaging (`agylite adapters render`)
+tools/audit/                    # extraction rules, matrix and scanners
+docs/architecture/              # how it works · docs/migration/ · docs/benchmarks/ · docs/plan/ · docs/audit/
+tests/                          # unittest suite (python -m unittest discover -s tests)
+scripts/                        # install, doctor, validate, benchmark wrappers
 ```
 
 ---
@@ -133,8 +115,8 @@ agylite/
 
 1. Fork the repository and create a descriptive branch from `main` (e.g., `feat/add-routing-signal`, `fix/manifest-schema`).
 2. Make minimal, surgical changes adhering to existing design patterns.
-3. Verify that `./scripts/doctor` and `./scripts/validate` pass with zero warnings or errors.
-4. Ensure no MCP references or vendor files are introduced.
+3. Run `python -m unittest discover -s tests`, `agylite doctor`, `agylite validate` and `agylite adapters render --check`; all must pass.
+4. Add no MCP configuration, no always-on hooks and no browser-based verification; upstream content enters only through `tools/audit/extraction-rules.yaml` and the bundle build.
 5. Fill out the [Pull Request Template](.github/pull_request_template.md) completely.
 6. Submit your PR against `main`. All CI checks must pass.
 

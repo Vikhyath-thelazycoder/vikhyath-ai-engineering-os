@@ -1,6 +1,29 @@
 # Changelog
 
-All notable changes to the Vikhyath AI Engineering OS will be documented in this file.
+All notable changes to Agylite (formerly Vikhyath AI Engineering OS) are documented in this file.
+
+## [2.0.0] - 2026-10-11
+
+Renamed to **Agylite** and rebuilt as a working local OS (milestones M0–M7, decisions D-001…D-046).
+
+### Added
+- `agylite` core and CLI with a curated, pinned, provenance-tracked bundle of 15 upstreams (~2,580 files), built locally.
+- 63-capability registry; deterministic router (22/22 spec scenarios, p95 0.34 ms); budgeted L0–L3 context engine with
+  a session cache; per-project state, one living plan, decisions and lifecycle; structural multi-project isolation.
+- Codebase intelligence (Graphify runtime, `codebase affected` with related tests, structural fallback); Unlazy gates;
+  design engine and design-token checks; local test-first verification (`verify`, evidence JSON); BeyondSEO runtime with
+  evidence labels and a live-site authorization gate; Brag media workflow.
+- Redacted event log and Beacon risk rules; Agent Office dashboard; explicit `update`/`rollback`/`gc`.
+- Host adapters for Claude Code, Codex, Cursor and Antigravity from one entry-skill set; measured benchmarks.
+
+### Changed
+- Verification is local and test-first; browser, Chrome DevTools and screenshot verification are disabled.
+- `workflows/` replaced by `config/lifecycle.yaml`; entry skills and agents rewritten (frontmatter on agents).
+- Names: plugin `agylite@agylite-marketplace`, CLI `agylite` (`vikhyath` kept as an alias), home `~/.agylite`,
+  project state `.agylite/` (pre-rename locations still used when present).
+
+### Removed
+- "Zero vendoring" and "runtime tested" claims; repo-first routing ("route to ECC").
 
 ## [1.0.1] - 2026-09-02
 

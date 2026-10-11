@@ -1,47 +1,16 @@
-# Agylite — Agent Instructions
+# Agylite — agent instructions
 
-This repository is the **Agylite**, a thin orchestration/plugin layer.
+Agylite is a local engineering OS for coding agents. Do not pick skills by hand and do not load every skill:
 
-## Core Behavior
+1. `agylite bootstrap --host <your host>` at the start of a session (compact project state, plan pointer, capability index).
+2. `agylite route "<request>" [--paths <files…>]` — the minimum capabilities, their lifecycle and impact step.
+3. `agylite context <capability-id>…` — load only what the route selected (L1 cards, L2 sections; L3 only on purpose).
+4. Follow the route's `lifecycle`; start existing-project changes with `agylite codebase affected`.
+5. Verify with `agylite verify` (local tests, types, lint, build) and record the evidence. Never verify with a browser,
+   Chrome DevTools or screenshots (`config/verification.yaml`).
+6. Record decisions with `agylite decide add` and progress with `agylite plan set-status`.
 
-1. **Progressive activation**: Only load skills relevant to the current task
-2. **No MCP**: Do not use or suggest MCP servers
-3. **No upstream copies**: External capabilities remain external dependencies
-4. **Context efficiency**: Minimize token usage by activating only what's needed
+Rules: no MCP servers; guidance order is the route's capability order (`config/priorities.yaml`); Simplicity review
+only when the user asks; never write into another project; live-website edits need `agylite seo authorize`.
 
-## Available Skills
-
-Refer to `skills/` for Agylite-specific routing and orchestration skills:
-
-- `agylite-engineering/` — Engineering task routing via ECC
-- `agylite-routing/` — Capability classification and activation
-- `agylite-production/` — Production readiness via Addy + gstack
-- `agylite-security/` — Security-focused capability activation
-- `agylite-review/` — Code review and quality orchestration
-
-## Routing Logic
-
-When presented with a task, classify it and activate only the relevant capabilities:
-
-- **Engineering tasks** → ECC
-- **Complex codebase** → ECC + Graphify
-- **Security-sensitive** → ECC + Addy security + security specialist
-- **Large implementation** → ECC + Unlazy
-- **Design work** → ECC + OpenDesign
-- **Release/review** → ECC + gstack
-- **Simplicity audit** → Ponytail (explicit only)
-
-## Conflict Hierarchy
-
-1. User requirements
-2. Project security/safety
-3. Project architecture
-4. ECC engineering workflow
-5. Specialized security/testing
-6. Domain specialists
-7. Product/review workflows
-8. Simplicity optimization
-
-## Configuration
-
-See `capabilities/` (one `card.yaml` per capability; `agylite registry list`) for the capability registry and `config/routing.yaml` for routing rules (run `agylite route "<request>"`).
+Entry skills: `skills/agylite-*`. Architecture: `docs/architecture/`. If `agylite` is not on PATH, use `bin/agylite`.

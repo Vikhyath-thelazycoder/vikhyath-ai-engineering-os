@@ -20,7 +20,11 @@ class ClaudeCode(Adapter):
     def repo_files(self):
         hooks = (self.root / "hooks" / "hooks.json").read_text(encoding="utf-8") \
             if (self.root / "hooks" / "hooks.json").is_file() else ""
-        return {".claude-plugin/plugin.json": _json({
+        return {".claude-plugin/marketplace.json": _json({
+                    "name": "agylite-marketplace", "owner": AUTHOR,
+                    "description": "Agylite plugin marketplace for Claude Code",
+                    "plugins": [{"name": NAME, "version": __version__, "description": DESCRIPTION, "source": "./"}]}),
+                ".claude-plugin/plugin.json": _json({
                     "name": NAME, "version": __version__, "description": DESCRIPTION, "author": AUTHOR,
                     "homepage": REPO, "repository": REPO, "license": "MIT"}),
                 "hooks/hooks.json": hooks}
