@@ -73,6 +73,13 @@ agylite dashboard --open                     # the Agent Office
 studio, QA lab, SEO & media, mentors & watch. Agents light up when a request routes to them, wait on dependencies, say
 why they are blocked, and go idle again. It is read-only, local (127.0.0.1) and stops when idle.
 
+## Staying current
+
+Upstreams are pinned, never pulled blindly. `agylite update --check` shows which have new commits;
+`agylite update --latest` applies them through every check (only new commits are downloaded) and switches only if all
+pass; `agylite rollback` undoes it. A GitHub Action checks daily and opens a weekly pull request with checked updates;
+`agylite update --schedule install` adds an optional weekly job on your Mac.
+
 ## Principles
 
 - **Light:** a few short entry skills on every turn; everything else routed and loaded in budgeted sections.

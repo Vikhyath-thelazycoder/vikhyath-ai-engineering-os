@@ -58,11 +58,14 @@ def inventory_from_git(clone: Path, sha: str):
     return rows
 
 
-def fetch_commit(repo: str, sha: str, target: Path, rules_repo, log=print):
-    """Blobless clone of `repo` at `sha`, sparse-checked-out to the paths the rules bundle (network)."""
+def fetch_commit(repo: str, sha: str, target: Path, rules_repo, log=print, mirror_path: Path | None = None):
+    """Blobless clone of `repo` at `sha`, sparse-checked-out to the paths the rules bundle. With a local mirror
+    (P28), objects the mirror already has are reused and only the new commit's bundled blobs are downloaded."""
+    from .track import url_for
     if not (target / ".git").is_dir():
-        subprocess.run(["git", "clone", "--quiet", "--filter=blob:none", "--no-checkout", "--sparse",
-                        f"https://github.com/{repo}.git", str(target)], check=True)
+        ref = ["--reference-if-able", str(mirror_path)] if mirror_path else []
+        subprocess.run(["git", "clone", "--quiet", "--filter=blob:none", "--no-checkout", "--sparse", *ref,
+                        url_for(repo), str(target)], check=True, capture_output=True)
     subprocess.run(["git", "fetch", "--quiet", "origin", sha], cwd=target, check=False)
     rows = inventory_from_git(target, sha)
     needed = [p for p, _s, _b in rows if classify(rules_repo, p)["decision"] in BUNDLED or p.startswith(("LICENSE", "NOTICE"))]
@@ -118,7 +121,7 @@ def dangling_after_update(old_rows, new_rows, rules_repo, read_text) -> list:
 
 def update(home: Path, repo: str, sha: str, *, source: Path | None = None, staging: Path | None = None,
            evidence: Path | None = None, rules_path: Path | None = None, licenses_path: Path | None = None,
-           self_test=False, check_registry=True, log=print) -> dict:
+           self_test=False, check_registry=True, mirror_path: Path | None = None, log=print) -> dict:
     """Build and (if every check passes) activate a bundle with `repo` pinned at `sha`.
     `source`: a local tree of the new commit (tests / offline mirrors); otherwise the commit is fetched (network)."""
     home = Path(home)
@@ -145,7 +148,7 @@ def update(home: Path, repo: str, sha: str, *, source: Path | None = None, stagi
         shutil.copytree(source, cand_stage / repo, symlinks=False)
         rows = inventory_from_dir(cand_stage / repo)
     else:
-        rows = fetch_commit(pins[repo]["repo"], sha, cand_stage / repo, rules_doc["repos"][repo], log)
+        rows = fetch_commit(pins[repo]["repo"], sha, cand_stage / repo, rules_doc["repos"][repo], log, mirror_path)
     old_rows = read_inventory(evidence, repo)
     report = {"repo": repo, "from": pins[repo]["head"], "to": sha, "at": _now(), "previous_bundle": old_id,
               "diff": diff_inventories(old_rows, rows, rules_doc["repos"][repo])}

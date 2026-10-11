@@ -1,0 +1,93 @@
+# Agylite upstream tracking (P28, D-047).
+# Daily: report which upstreams have new commits (no changes).
+# Weekly (Monday) and monthly (1st): fetch only the new commits, rebuild the bundle through every check, run the full
+# test suite and benchmarks, and open ONE pull request with the new pins. Nothing reaches users until it is merged.
+name: Upstream updates
+
+on:
+  schedule:
+    - cron: "17 6 * * *"     # daily check
+    - cron: "37 6 * * 1"     # weekly apply (weekly-tracked upstreams)
+    - cron: "57 6 1 * *"     # monthly apply (all non-manual upstreams)
+  workflow_dispatch:
+    inputs:
+      mode: {description: "check or apply", default: apply, type: choice, options: [check, apply]}
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  upstreams:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      AGYLITE_HOME: ${{ runner.temp }}/agylite
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - uses: actions/setup-node@v4
+        with: {node-version: "22"}
+      - name: Install Agylite
+        run: pip install -e .
+
+      - name: Check for new upstream commits
+        run: |
+          agylite update --check | tee check.txt
+          { echo '## Upstream check'; echo '```'; cat check.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Decide whether to apply
+        id: mode
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then mode="${{ inputs.mode }}"; track="";
+          elif [ "${{ github.event.schedule }}" = "37 6 * * 1" ]; then mode=apply; track="--track weekly";
+          elif [ "${{ github.event.schedule }}" = "57 6 1 * *" ]; then mode=apply; track="--track weekly --track monthly";
+          else mode=check; track=""; fi
+          echo "mode=$mode" >> "$GITHUB_OUTPUT"; echo "track=$track" >> "$GITHUB_OUTPUT"
+
+      - name: Build the current bundle
+        if: steps.mode.outputs.mode == 'apply'
+        run: |
+          agylite bundle fetch --staging "$AGYLITE_HOME/staging/upstream"
+          agylite bundle build --staging "$AGYLITE_HOME/staging/upstream" --self-test
+
+      - name: Apply new commits (new commits only, every check)
+        if: steps.mode.outputs.mode == 'apply'
+        run: |
+          agylite update --latest ${{ steps.mode.outputs.track }} | tee apply.txt || true
+          agylite update --promote | tee -a apply.txt
+
+      - name: Regenerate audited evidence, notices and docs
+        if: steps.mode.outputs.mode == 'apply'
+        run: |
+          agylite bundle fetch --staging .staging/upstream
+          python tools/audit/extraction_matrix.py
+          python tools/audit/render_matrix_docs.py
+          python -m agylite.bundle.notices
+          agylite registry cards
+          agylite bundle build --staging .staging/upstream --no-activate
+
+      - name: Tests, diagnostics and benchmarks
+        if: steps.mode.outputs.mode == 'apply'
+        run: |
+          python -m unittest discover -s tests
+          agylite validate --no-unittest
+          agylite benchmark --compare --out docs/benchmarks/RESULTS.md --plugins-root /nonexistent > /dev/null
+
+      - name: Open a pull request
+        if: steps.mode.outputs.mode == 'apply'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: upstream-updates
+          title: "Upstream updates"
+          commit-message: "chore(upstreams): update pinned upstreams (checked by agylite update --latest)"
+          body-path: apply.txt
+          add-paths: |
+            docs/audit/evidence/**
+            docs/audit/05_CAPABILITY_MATRIX.md
+            docs/audit/06_DOMAIN_MAPPING.md
+            THIRD_PARTY_NOTICES.md
+            third_party/licenses.json
+            capabilities/**/CARD.md
+            docs/benchmarks/RESULTS.md

@@ -2,6 +2,13 @@
 
 All notable changes to Agylite (formerly Vikhyath AI Engineering OS) are documented in this file.
 
+## [2.1.0] - 2026-10-11
+
+### Added
+- Automatic upstream tracking: `agylite update --check`, `--latest [--due] [--track]`, `--promote`,
+  `--schedule install|remove`; per-upstream policy in `config/upstreams.yaml`; incremental blobless mirrors (only new
+  commits are fetched); GitHub Action with a daily check and a weekly/monthly pull request of checked updates.
+
 ## [2.0.0] - 2026-10-11
 
 Renamed to **Agylite** and rebuilt as a working local OS (milestones M0–M7, decisions D-001…D-046).

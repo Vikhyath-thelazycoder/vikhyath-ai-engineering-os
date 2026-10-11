@@ -21,3 +21,21 @@ registry, provenance and the runtime locks derived from them change together. Ev
 bundle uses, and leftovers of interrupted builds.
 
 Tags and branches are refused because they move; pin a commit.
+
+## Staying current automatically (P28)
+
+```bash
+agylite update --check                 # newest commit per upstream (git ls-remote; seconds, nothing downloaded)
+agylite update --latest [--due]        # apply new commits, one upstream at a time, through every check above
+agylite update ecc --latest            # just one upstream
+agylite update --schedule install      # optional weekly job on this Mac (Mondays 09:00); `remove` undoes it
+```
+
+- Policy per upstream in `config/upstreams.yaml`: `weekly`, `monthly`, `manual` (never automatic) or `releases`
+  (newest version tag), the branch to follow, and whether to run the runtime's self-tests.
+- Only new commits are downloaded: each upstream has a blobless mirror in `~/.agylite/mirrors/`; later runs fetch only
+  new commits, and the update reuses the mirror's objects, downloading just the bundled files of the new commit.
+- A failing upstream is skipped and reported; the others still update; `current` changes only after every check passes.
+- In the repository, `.github/workflows/upstream-updates.yml` checks daily and, weekly (and monthly for monthly
+  upstreams), applies new commits, runs the full test suite and benchmarks, and opens one pull request with the new
+  pins. Merging it is what ships the update to everyone.

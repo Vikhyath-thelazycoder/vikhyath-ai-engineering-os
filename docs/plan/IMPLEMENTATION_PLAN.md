@@ -416,6 +416,16 @@ est. tokens; 31.8k → 0.9k per turn; routing 22/22), host and supply-chain diag
 compatibility aliases, the full documentation set and the final integration report. **The v2 transformation is
 complete on the branch; release (merge to main, tag v2.0.0, reinstall in hosts) awaits the user's go-ahead.**
 
+## P28 — Upstream tracking (weekly automatic updates) · COMPLETED (2026-10-11)
+
+| Item | Detail |
+|---|---|
+| Request | User: upstreams update daily/weekly — the OS should pick up new commits automatically. |
+| Changes | `config/upstreams.yaml`; `agylite/update/track.py` (check, mirror, latest, promote, schedule); `update()` accepts a mirror; CLI `agylite update --check \| --latest [--due] [--track] \| --promote \| --schedule install\|remove`; `.github/workflows/upstream-updates.yml`; `tests/update/test_track.py`. D-047. VERSION 2.1.0. |
+| Result | Live check against GitHub: 11 of 15 upstreams have new commits since the 2026-10-03 audit. Real apply of Taste: 8 commits, mirror created, 13 bundled paths fetched, all checks passed, switched to bundle `392b5d77ffb9` (~75 s). |
+| Tests | 251/251 (5 new, with real local git repositories as upstreams: check → latest via mirror, second run "none", incremental fetch of a further commit, broken upstream commit refused with current unchanged, due/manual/releases policies, promote, LaunchAgent opt-in; policy covers all 15 upstreams with their branches). |
+| Rollback | `git revert`; `agylite rollback`; `agylite update --schedule remove`; disable the workflow. |
+
 ## P4–P27 — summary (file-level tasks: [FILE_LEVEL_PLAN.md](FILE_LEVEL_PLAN.md))
 
 | Phase | Objective (outline) | Key acceptance criteria (outline) |
@@ -492,3 +502,5 @@ complete on the branch; release (merge to main, tag v2.0.0, reinstall in hosts) 
 | 2026-10-11 | P25 | P25 completed: OLD vs NEW benchmark (83% fewer est. tokens over 22 spec tasks; 31.8k → 0.9k per turn; routing 22/22), host/supply-chain doctor checks with redaction, absolute-import closure (D-046). 245 tests; bundle `a6c52114bc4d`. Evidence: docs/evidence/P25/run.md. P26 next. |
 | 2026-10-11 | P26 | P26 completed: Agylite rename with compatibility aliases (D-044), 17 architecture docs, migration guide, README/CLAUDE/AGENTS/CONTRIBUTING/CHANGELOG rewritten, VERSION 2.0.0. 245 tests. P27 next. |
 | 2026-10-11 | P27 | P27 completed: end-to-end offline integration test, checklist closed, final report (246 tests). **M7 completed; v2 transformation complete on the branch; awaiting user review and release go-ahead.** |
+| 2026-10-11 | Release | Merged to `main`, tagged and pushed `v2.0.0` (user go-ahead). |
+| 2026-10-11 | P28 | P28 added on request and completed: automatic upstream tracking — daily check, weekly/monthly apply of new commits only through every check, CI pull request, optional Mac job (D-047). 251 tests. |

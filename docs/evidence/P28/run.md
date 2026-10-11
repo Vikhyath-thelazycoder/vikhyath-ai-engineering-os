@@ -1,0 +1,6 @@
+# P28 evidence — upstream tracking (2026-10-11)
+
+- `agylite update --check` against GitHub (outside the sandbox; DNS working again): up to date — appllama, beyondseo, karpathy, unlazy; update available — addy, agency, beacon, brag, ecc, graphify, gstack, opendesign, ponytail, taste, uiuxpromax.
+- `agylite update taste --latest` (scratch home, bundle `07cd36edb5d9`): "fetched Leonxlnx/taste-skill @ 717446e (13 bundled paths)" → `taste activated ce26fc2 → 717446e · 8 commits` → current `392b5d77ffb9` known-good; mirror `~/.agylite/mirrors/Leonxlnx__taste-skill.git`; diff: 3 added, 5 removed, 1 changed upstream files, none bundled; 1 min 15 s.
+- `tests/update/test_track.py` (5, real local git upstreams): check up-to-date → new commit found → latest activated (1 commit, bundled change listed) → second run "none" → another commit fetched incrementally into the same mirror and activated; removing a referenced file → failed with "dangling reference", current unchanged; due/manual/releases (annotated tag) policies; promote rewrites the pin and inventory; LaunchAgent written with `update --latest --due`, Mondays 09:00, removed cleanly; `config/upstreams.yaml` covers all 15 upstreams with their pinned branches.
+- Full suite **251 OK, 3 skipped**; doctor and validate pass; workflow YAML parses.

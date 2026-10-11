@@ -816,7 +816,43 @@ def _update_cmd(args):
     from .update import UpdateError, gc, rollback, update
     home = agylite_home()
     try:
+        if args.command == "update" and (args.check or args.latest or args.promote or args.schedule):
+            from .update import track
+            if args.schedule:
+                path = track.schedule(home, enable=args.schedule == "install")
+                print(f"weekly update job {'installed' if args.schedule == 'install' else 'removed'}: {path}")
+                return 0
+            if args.promote:
+                changed = track.promote(home)
+                print("pins promoted into docs/audit/evidence: " + (", ".join(changed) or "none changed"))
+                return 0
+            repos = [args.repo] if args.repo else None
+            if args.check:
+                rows = track.check(home, repos=repos)
+                if args.json:
+                    _print(rows, True)
+                else:
+                    for x in rows:
+                        print(f"{x['repo']:11} {x['track']:8} {x['pinned'][:7]} → {(x['latest'] or '???????')[:7]}  "
+                              f"{x['status']}{'' if x['due'] else ' (not due)'}{'  ' + x['error'] if x.get('error') else ''}")
+                return 0
+            rows = track.latest(home, only_due=args.due, repos=repos, tracks=args.track or None)
+            if args.json:
+                _print(rows, True)
+            else:
+                for x in rows:
+                    extra = f" · {x['commits']} commits" if x.get("commits") is not None else ""
+                    print(f"{x['repo']:11} {x['action']:10} {x['pinned'][:7]} → {(x.get('latest') or '')[:7]}{extra}"
+                          + (f"  ✗ {x['errors'][0]}" if x.get("errors") else ""))
+            ok = [x for x in rows if x["action"] == "activated"]
+            for x in ok:
+                emit(_project_ref(args), "UPSTREAM_UPDATED", severity="medium",
+                     details={"repo": x["repo"], "from": x["pinned"], "to": x["latest"], "bundle_id": x["bundle_id"]})
+            return 1 if any(x["action"] == "failed" for x in rows) else 0
         if args.command == "update":
+            if not (args.repo and args.sha):
+                print("agylite update: give <repo> <sha>, or use --check / --latest", file=sys.stderr)
+                return 2
             r = update(home, args.repo, args.sha, source=Path(args.source) if args.source else None,
                        self_test=args.self_test)
             if r["status"] == "activated":
@@ -1099,8 +1135,15 @@ def build_parser():
     p.set_defaults(func=_media_cmd)
 
     p = sub.add_parser("update", help="Pin one upstream to a new commit: build, check, switch only if everything passes")
-    p.add_argument("repo", help="Upstream name, e.g. graphify")
-    p.add_argument("sha", help="Full 40-character commit SHA")
+    p.add_argument("repo", nargs="?", help="Upstream name, e.g. graphify")
+    p.add_argument("sha", nargs="?", help="Full 40-character commit SHA")
+    p.add_argument("--check", action="store_true", help="Show which upstreams have new commits (no download)")
+    p.add_argument("--latest", action="store_true", help="Apply new upstream commits (all, or the named repo)")
+    p.add_argument("--due", action="store_true", help="With --latest: only upstreams whose interval has passed")
+    p.add_argument("--promote", action="store_true", help="Write the active bundle's pins into docs/audit/evidence (CI)")
+    p.add_argument("--track", action="append", choices=("weekly", "monthly", "releases"),
+                   help="With --latest: only upstreams with this policy (repeatable)")
+    p.add_argument("--schedule", choices=("install", "remove"), help="Weekly job on this Mac (LaunchAgent)")
     p.add_argument("--source", help="Local tree of that commit (offline mirror); default: fetch it (network)")
     p.add_argument("--self-test", action="store_true", help="Also run the runtime self-tests before switching")
     p.add_argument("--json", action="store_true")
