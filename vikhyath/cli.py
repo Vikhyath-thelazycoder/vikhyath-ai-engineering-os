@@ -9,7 +9,6 @@ from .paths import repo_root
 # Subcommands planned in docs/plan/FILE_LEVEL_PLAN.md and the phase that delivers each.
 PLANNED = {
     "update": "P24", "rollback": "P24",
-    "dashboard": "P23",
 }
 
 
@@ -790,6 +789,25 @@ def _adapters_cmd(args):
     return 0
 
 
+def _dashboard_cmd(args):
+    from .dashboard.server import Dashboard
+    project = _project_ref(args)
+    try:
+        d = Dashboard(project, port=args.port, demo=args.demo,
+                      sleep_after=args.idle_minutes * 60 if args.idle_minutes is not None else None)
+    except OSError as exc:
+        print(f"vikhyath dashboard: cannot listen on 127.0.0.1:{args.port} ({exc})", file=sys.stderr)
+        return 1
+    print(f"Agent Office for {project.name}: {d.url}" + ("  (demo replay)" if args.demo else ""), flush=True)
+    print("Read-only · 127.0.0.1 only · stops after it has been idle, or with Ctrl+C.", flush=True)
+    if args.open:
+        import webbrowser
+        webbrowser.open(d.url)   # the user's own browser shows the page; the OS never drives it
+    reason = d.serve()
+    print(f"dashboard stopped ({reason})")
+    return 0
+
+
 def _guarded(func):
     """Expected user-facing errors print one line and exit 1 instead of a traceback."""
     def run(args):
@@ -1050,6 +1068,14 @@ def build_parser():
     q.add_argument("--out", help="Output directory (default brag-output/audio in the project)")
     project_arg(q)
     p.set_defaults(func=_media_cmd)
+
+    p = sub.add_parser("dashboard", help="Agent Office: live, read-only view of this project's agents (127.0.0.1)")
+    p.add_argument("--port", type=int, default=0, help="Port (default: a free one)")
+    p.add_argument("--demo", action="store_true", help="Replay sample events instead of the project's event log")
+    p.add_argument("--open", action="store_true", help="Open the page in your default browser")
+    p.add_argument("--idle-minutes", type=float, help="Stop after this many minutes without a page poll (default 10)")
+    p.add_argument("--project", help="Project directory (default: current directory)")
+    p.set_defaults(func=_dashboard_cmd)
 
     p = sub.add_parser("adapters", help="Host packaging and status: Claude Code, Codex, Cursor, Antigravity")
     asub = p.add_subparsers(dest="adapters_cmd", required=True)

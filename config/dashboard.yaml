@@ -1,0 +1,49 @@
+# Vikhyath AI Engineering OS — Agent Office layout (P23, D-043). Data, not code.
+# Every capability in the registry has exactly one seat (tests enforce it). Coordinates are in the office's
+# 480×300 pixel grid (docs/design/agent-office-mockup.html). `fixed` pins a state; `sources_any` lights a seat
+# when any selected capability draws on that upstream (the Agency specialists sit across many capabilities).
+
+version: 1
+idle_after_minutes: 10        # an agent with no event for this long goes back to idle
+sleep_after_minutes: 10       # the dashboard exits after this long without a page poll
+
+rooms:
+  - {id: front, name: Front desk, x: 8, y: 4, w: 464, h: 32}
+  - {id: engineering, name: Engineering floor, x: 8, y: 40, w: 292, h: 110}
+  - {id: design, name: Design studio, x: 308, y: 40, w: 164, h: 110}
+  - {id: qa, name: QA lab, x: 8, y: 160, w: 150, h: 132}
+  - {id: seomedia, name: SEO & Media, x: 166, y: 160, w: 166, h: 132}
+  - {id: mentors, name: Mentors & watch, x: 340, y: 160, w: 132, h: 132}
+
+seats:
+  - {id: router, name: Router, room: front, x: 226, y: 14, core: true}
+  - {id: architect, name: Architect, room: engineering, x: 22, y: 56, caps: [engineering/architecture, engineering/migration]}
+  - {id: backend, name: Backend, room: engineering, x: 74, y: 56, caps: [engineering/backend, engineering/implementation, engineering/ai-systems, engineering/stack-packs]}
+  - {id: frontend, name: Frontend, room: engineering, x: 126, y: 56, caps: [engineering/frontend, engineering/performance]}
+  - {id: security, name: Security, room: engineering, x: 178, y: 56, caps: [engineering/security]}
+  - {id: planner, name: Planner, room: engineering, x: 236, y: 56, caps: [engineering/planning, engineering/documentation]}
+  - {id: reviewer, name: Reviewer, room: engineering, x: 22, y: 106, caps: [engineering/review]}
+  - {id: release, name: Release, room: engineering, x: 74, y: 106, caps: [engineering/release, testing/release-verification]}
+  - {id: debugger, name: Debugger, room: engineering, x: 126, y: 106, caps: [engineering/debugging]}
+  - {id: mapper, name: Mapper, room: engineering, x: 178, y: 106, caps: [codebase/repository-understanding, codebase/impact-analysis, codebase/code-search]}
+  - {id: gate, name: Gatekeeper, room: engineering, x: 236, y: 106, caps: [engineering/completion]}
+  - {id: director, name: Director, room: design, x: 322, y: 56, caps: [design/design-direction, design/brand, design/visual-quality]}
+  - {id: ux, name: UX, room: design, x: 374, y: 56, caps: [design/ux, design/typography]}
+  - {id: mobile, name: Mobile, room: design, x: 426, y: 56, caps: [design/frontend]}
+  - {id: systems, name: Systems, room: design, x: 322, y: 106, caps: [design/design-system, design/design-review]}
+  - {id: motion, name: Motion, room: design, x: 374, y: 106, caps: [design/motion]}
+  - {id: a11y, name: A11y, room: design, x: 426, y: 106, caps: [design/accessibility, testing/accessibility]}
+  - {id: qa, name: QA, room: qa, x: 22, y: 178, caps: [testing/local-verification, testing/regression, testing/strategy, testing/evidence]}
+  - {id: sectest, name: Sec tests, room: qa, x: 76, y: 178, caps: [testing/security]}
+  - {id: perf, name: Perf, room: qa, x: 22, y: 236, caps: [testing/performance]}
+  - {id: browser, name: Browser QA, room: qa, x: 96, y: 236, caps: [testing/browser-exception], fixed: disabled}
+  - {id: seo, name: SEO, room: seomedia, x: 176, y: 178, caps: [seo/auditing, seo/technical, seo/on-page, seo/website-work, seo/runtime, seo/evidence, seo/reporting]}
+  - {id: research, name: Research, room: seomedia, x: 228, y: 178, caps: [seo/keyword-research, seo/competitor-research, seo/research, seo/strategy, seo/backlinks-reputation, seo/local]}
+  - {id: aisearch, name: AI Search, room: seomedia, x: 280, y: 178, caps: [seo/ai-search, seo/entity, seo/content]}
+  - {id: video, name: Video, room: seomedia, x: 176, y: 236, caps: [media/launch-video]}
+  - {id: demo, name: Demo, room: seomedia, x: 228, y: 236, caps: [media/demo, media/showcase]}
+  - {id: deck, name: Deck, room: seomedia, x: 280, y: 236, caps: [media/presentation]}
+  - {id: mentor, name: Karpathy, room: mentors, x: 350, y: 178, caps: [engineering/principles]}
+  - {id: agency, name: Specialists, room: mentors, x: 418, y: 178, caps: [], sources_any: [agency]}
+  - {id: beacon, name: Watchtower, room: mentors, x: 350, y: 236, caps: [observability/risk-detection, observability/events, observability/sessions, observability/token-metrics]}
+  - {id: simple, name: Simplicity, room: mentors, x: 418, y: 236, caps: [engineering/simplicity], fixed: "off"}

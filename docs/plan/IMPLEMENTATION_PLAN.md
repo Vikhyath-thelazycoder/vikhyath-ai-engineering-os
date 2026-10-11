@@ -24,8 +24,8 @@ Status vocabulary (spec §25): NOT_STARTED · PLANNED · IN_PROGRESS · PARTIALL
 | A-1 Amendment | P0–P3, P5–P8, P10, P11, P18 (built phases amended); P12–P27 plans updated | **COMPLETED** (2026-10-05; accepted with M3) |
 | M4 Main domains | P12, P13, P14, P15 | **COMPLETED** (2026-10-10; accepted, user started M5) |
 | M5 Specialist domains | P16, P17 | **COMPLETED** (2026-10-10; accepted, user started M6) |
-| M6 Hosts | P19, P20, P21, P22 | **COMPLETED** (2026-10-11; host runtime verification pending install, see P19–P22) |
-| M7 Dashboard & ship | P23, P24, P25, P26, P27 | NOT_STARTED |
+| M6 Hosts | P19, P20, P21, P22 | **COMPLETED** (2026-10-11; accepted) |
+| M7 Dashboard & ship | P23, P24, P25, P26, P27 | **IN_PROGRESS** (P23 completed) |
 
 ## Phase index
 
@@ -54,7 +54,7 @@ Status vocabulary (spec §25): NOT_STARTED · PLANNED · IN_PROGRESS · PARTIALL
 | P20 | Codex adapter | Build: hosts | P19 | **COMPLETED** (files) |
 | P21 | Cursor adapter | Build: hosts | P19 | **COMPLETED** (files) |
 | P22 | Antigravity adapter | Build: hosts | P19 | **COMPLETED** (files) |
-| P23 | Dashboard | Build: UX | P18 | NOT_STARTED |
+| P23 | Dashboard | Build: UX | P18 | **COMPLETED** |
 | P24 | Update & rollback | Build: supply | P6, P7 | NOT_STARTED |
 | P25 | Diagnostics & measured benchmarks | Verify | P4–P24 | NOT_STARTED |
 | P26 | Documentation & migration guide | Docs | P25 | NOT_STARTED |
@@ -354,6 +354,18 @@ M5 (P16, P17) delivered the specialist domains: an isolated BeyondSEO runtime (c
 
 M6 (P19–P22) packaged the OS for Claude Code, Codex, Cursor and Antigravity from one entry-skill set: generated manifests, a SessionStart-only Claude hook, a launcher that works with or without the central install, user-level installs for Cursor/Antigravity, and §34 status levels where RUNTIME_VERIFIED is recorded only from a real host bootstrap. 228 tests. **Open:** install the plugin from this branch in Claude Code to reach RUNTIME_VERIFIED there. **Next: M7 (P23 dashboard → P24 update/rollback → P25 diagnostics/benchmarks → P26 docs → P27 integration)** after user review.
 
+## P23 — Dashboard (Agent Office) · COMPLETED (2026-10-11)
+
+| Item | Detail |
+|---|---|
+| Changes | `config/dashboard.yaml` (6 rooms, 31 seats covering all 63 capabilities); `vikhyath/dashboard/{agents,api,server}.py`, `demo_events.json`, `static/{index.html,office.css,office.js}`; `vikhyath dashboard [--demo] [--open] [--port] [--idle-minutes]`; package data in `pyproject.toml`. D-043. |
+| Result | The approved Agent Office runs live from the project's event log: agents light up on CAPABILITIES_SELECTED / CONTEXT_LOADED, wait on dependencies, block with a reason on failed verification, blocked tasks or risk alerts, and return to idle after 10 min; Browser QA is always disabled, Simplicity off unless asked for. Hosts and runtimes panels; activity log. |
+| Tests | 236/236 (8 new in `tests/dashboard/test_dashboard.py`; 3 opt-in skipped). |
+| Acceptance | ✔ every capability seated exactly once (validator catches double/missing seats) · ✔ fixture event sequences → exact states and bubble text · ✔ server binds 127.0.0.1 only, serves page + 5 JSON endpoints, 404 on path escape, 405 on POST (read-only) · ✔ stops by itself when idle, emitting DASHBOARD_STARTED / DASHBOARD_SLEEPING · ✔ no web fonts or external scripts (offline; CSP `default-src 'self'`) · ✔ event text inserted as text, never markup. |
+| Deviations | Rendering is checked by the API/state tests and a served-page check, not by browser automation (D-035). A YAML pitfall was caught by the tests: a bare `off` parses as false, so fixed states are quoted. |
+| Evidence | `docs/evidence/P23/run.md` |
+| Rollback | `git revert` of the P23 commit. |
+
 ## P4–P27 — summary (file-level tasks: [FILE_LEVEL_PLAN.md](FILE_LEVEL_PLAN.md))
 
 | Phase | Objective (outline) | Key acceptance criteria (outline) |
@@ -385,7 +397,7 @@ M6 (P19–P22) packaged the OS for Claude Code, Codex, Cursor and Antigravity fr
 ## Resume here (next session)
 
 1. Branch `feat/v2-os-transformation` (M0–M6 committed, not pushed; `main` has A-1 only).
-2. Next: **M7 → P23 Dashboard** — build the approved Agent Office exactly as specified in FILE_LEVEL_PLAN "M7 · P23" (D-043), reference mockup `docs/design/agent-office-mockup.html`. Then P24 update/rollback → P25 diagnostics + measured OLD vs NEW benchmarks (tokens, speed, routing accuracy; the user's Claude has ECC, UI/UX Pro Max and Open Design installed directly — use them as the OLD baseline) → P26 docs/README rewrite → P27 integration + final report.
+2. Next: **M7 → P24** (P23 Agent Office done: `vikhyath dashboard [--demo]`). Then P24 update/rollback → P25 diagnostics + measured OLD vs NEW benchmarks (tokens, speed, routing accuracy; the user's Claude has ECC, UI/UX Pro Max and Open Design installed directly — use them as the OLD baseline) → P26 docs/README rewrite → P27 integration + final report.
 3. Test setup used so far: scratch venv with `pip install -e .`, scratch `VIKHYATH_HOME` with bundle `495f026f381e`; `python -m unittest discover -s tests` (228 OK, 3 opt-in skipped). Rebuild a bundle with `vikhyath bundle build --self-test` (needs `.staging/upstream`).
 4. **Rename to Agylite in P26 (D-044)**: CLI `agylite` (+ `vikhyath` alias), package, `~/.agylite`, plugin/marketplace, skills, adapters, docs — before the v2.0.0 release.
 5. Open items carried forward: Claude Code RUNTIME_VERIFIED (install the plugin from this branch, start one session); live SEO crawl once this machine's DNS works (`vikhyath seo run crawl https://example.com/`); Graphify upstream suite per-file failure breakdown (P25); closure trace should follow absolute intra-package imports (P25, D-037).
@@ -425,3 +437,4 @@ M6 (P19–P22) packaged the OS for Claude Code, Codex, Cursor and Antigravity fr
 | 2026-10-11 | P19–P22 | Host adapters completed: one entry-skill set, generated manifests, SessionStart-only Claude hook, launcher, Cursor/Antigravity user-level install, §34 status with recorded host runs (D-042). 228 tests. Evidence: docs/evidence/P19-P22/run.md. **M6 completed; awaiting user review before M7.** |
 | 2026-10-11 | P23 (plan) | User approved the **Agent Office** dashboard design (pixel office, one agent per capability, live states) from mockup v2; FILE_LEVEL_PLAN P23 rewritten with files, state machine, API and constraints (D-043); mockup saved as `docs/design/agent-office-mockup.html`; "Resume here" section added. |
 | 2026-10-11 | Name | User chose the product name **Agylite** (D-044); rename scheduled in P26. |
+| 2026-10-11 | P23 | P23 completed: Agent Office dashboard (live states from events, loopback-only, read-only, idle exit, demo replay). 236 tests. Evidence: docs/evidence/P23/run.md. P24 next. |

@@ -1,0 +1,245 @@
+[
+ {
+  "event": "SESSION_STARTED",
+  "capabilities": [],
+  "details": {},
+  "host": "claude-code",
+  "severity": "info",
+  "id": "demo-0",
+  "schema_version": 1,
+  "project_id": "demo",
+  "session_id": "demo"
+ },
+ {
+  "event": "DOMAIN_SELECTED",
+  "capabilities": [],
+  "details": {
+   "change_type": "SECURITY_CHANGE",
+   "domains": [
+    "engineering",
+    "testing"
+   ],
+   "method": "rules",
+   "confidence": "high"
+  },
+  "severity": "info",
+  "id": "demo-1",
+  "schema_version": 1,
+  "project_id": "demo",
+  "session_id": "demo"
+ },
+ {
+  "event": "CAPABILITIES_SELECTED",
+  "capabilities": [
+   "engineering/security",
+   "testing/security",
+   "codebase/impact-analysis"
+  ],
+  "details": {
+   "dependencies": [
+    "codebase/repository-understanding"
+   ]
+  },
+  "severity": "info",
+  "id": "demo-2",
+  "schema_version": 1,
+  "project_id": "demo",
+  "session_id": "demo"
+ },
+ {
+  "event": "CONTEXT_LOADED",
+  "capabilities": [
+   "codebase/impact-analysis"
+  ],
+  "details": {},
+  "est_tokens": 1820,
+  "severity": "info",
+  "id": "demo-3",
+  "schema_version": 1,
+  "project_id": "demo",
+  "session_id": "demo"
+ },
+ {
+  "event": "CONTEXT_LOADED",
+  "capabilities": [
+   "engineering/security",
+   "testing/security"
+  ],
+  "details": {},
+  "est_tokens": 5430,
+  "severity": "info",
+  "id": "demo-4",
+  "schema_version": 1,
+  "project_id": "demo",
+  "session_id": "demo"
+ },
+ {
+  "event": "TASK_STARTED",
+  "capabilities": [],
+  "details": {
+   "item": "T-1.1"
+  },
+  "severity": "info",
+  "id": "demo-5",
+  "schema_version": 1,
+  "project_id": "demo",
+  "session_id": "demo"
+ },
+ {
+  "event": "VERIFICATION_STARTED",
+  "capabilities": [],
+  "details": {
+   "checks": 2,
+   "task": "T-1.1"
+  },
+  "severity": "info",
+  "id": "demo-6",
+  "schema_version": 1,
+  "project_id": "demo",
+  "session_id": "demo"
+ },
+ {
+  "event": "VERIFICATION_PASSED",
+  "capabilities": [],
+  "details": {
+   "result": "PASSED",
+   "evidence": ".vikhyath/evidence/demo.json"
+  },
+  "severity": "info",
+  "id": "demo-7",
+  "schema_version": 1,
+  "project_id": "demo",
+  "session_id": "demo"
+ },
+ {
+  "event": "TASK_COMPLETED",
+  "capabilities": [],
+  "details": {
+   "item": "T-1.1"
+  },
+  "severity": "info",
+  "id": "demo-8",
+  "schema_version": 1,
+  "project_id": "demo",
+  "session_id": "demo"
+ },
+ {
+  "event": "DOMAIN_SELECTED",
+  "capabilities": [],
+  "details": {
+   "change_type": "DESIGN_CHANGE",
+   "domains": [
+    "design"
+   ],
+   "method": "rules",
+   "confidence": "high"
+  },
+  "severity": "info",
+  "id": "demo-9",
+  "schema_version": 1,
+  "project_id": "demo",
+  "session_id": "demo"
+ },
+ {
+  "event": "CAPABILITIES_SELECTED",
+  "capabilities": [
+   "design/design-direction",
+   "design/ux",
+   "design/design-system"
+  ],
+  "details": {
+   "dependencies": []
+  },
+  "severity": "info",
+  "id": "demo-10",
+  "schema_version": 1,
+  "project_id": "demo",
+  "session_id": "demo"
+ },
+ {
+  "event": "CONTEXT_LOADED",
+  "capabilities": [
+   "design/design-direction",
+   "design/ux"
+  ],
+  "details": {},
+  "est_tokens": 4100,
+  "severity": "info",
+  "id": "demo-11",
+  "schema_version": 1,
+  "project_id": "demo",
+  "session_id": "demo"
+ },
+ {
+  "event": "RISK_DETECTED",
+  "capabilities": [],
+  "details": {
+   "rule": "curl-pipe-to-shell",
+   "title": "curl piped to a shell"
+  },
+  "severity": "high",
+  "id": "demo-12",
+  "schema_version": 1,
+  "project_id": "demo",
+  "session_id": "demo"
+ },
+ {
+  "event": "DOMAIN_SELECTED",
+  "capabilities": [],
+  "details": {
+   "change_type": "MEDIA_CHANGE",
+   "domains": [
+    "media"
+   ],
+   "method": "rules",
+   "confidence": "high"
+  },
+  "severity": "info",
+  "id": "demo-13",
+  "schema_version": 1,
+  "project_id": "demo",
+  "session_id": "demo"
+ },
+ {
+  "event": "CAPABILITIES_SELECTED",
+  "capabilities": [
+   "media/launch-video",
+   "engineering/principles"
+  ],
+  "details": {
+   "dependencies": []
+  },
+  "severity": "info",
+  "id": "demo-14",
+  "schema_version": 1,
+  "project_id": "demo",
+  "session_id": "demo"
+ },
+ {
+  "event": "VERIFICATION_STARTED",
+  "capabilities": [],
+  "details": {
+   "checks": 3
+  },
+  "severity": "info",
+  "id": "demo-15",
+  "schema_version": 1,
+  "project_id": "demo",
+  "session_id": "demo"
+ },
+ {
+  "event": "VERIFICATION_FAILED",
+  "capabilities": [],
+  "details": {
+   "result": "FAILED",
+   "failed": [
+    "unittest"
+   ]
+  },
+  "severity": "info",
+  "id": "demo-16",
+  "schema_version": 1,
+  "project_id": "demo",
+  "session_id": "demo"
+ }
+]

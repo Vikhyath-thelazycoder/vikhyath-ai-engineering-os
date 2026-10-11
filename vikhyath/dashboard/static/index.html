@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agent Office · Vikhyath OS</title>
+<link rel="stylesheet" href="office.css">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Agent Office</h1>
+      <p class="sub" id="sub">Loading project…</p>
+    </div>
+    <div class="controls">
+      <span class="pill" id="mode">live</span>
+      <span class="pill" id="policy">verification local-test-first</span>
+    </div>
+  </header>
+
+  <div class="office">
+    <canvas id="cv" width="480" height="300" aria-label="Pixel office with one agent per capability"></canvas>
+    <div class="ov" id="ov"></div>
+  </div>
+
+  <div class="statusbar" id="bar" aria-label="All agents"><time id="clock"></time></div>
+
+  <div class="legend">
+    <span><i class="l-ok"></i>working</span><span><i class="l-warn"></i>waiting on another agent</span>
+    <span><i class="l-crit"></i>blocked (says why)</span><span><i class="l-off"></i>idle</span>
+    <span>Zz · off until you ask</span><span>dark desk · disabled by policy</span>
+  </div>
+
+  <div class="cols">
+    <section class="panel" id="card" aria-live="polite"></section>
+    <section class="panel">
+      <h2>Activity</h2>
+      <div class="log" id="log"></div>
+    </section>
+  </div>
+
+  <div class="cols">
+    <section class="panel"><h2>Hosts</h2><div id="hosts" class="rows"></div></section>
+    <section class="panel"><h2>Runtimes</h2><div id="runtimes" class="rows"></div></section>
+  </div>
+
+  <footer>Read-only view of this project's state and event log · served on 127.0.0.1 only · stops when idle or closed.</footer>
+</div>
+<script src="office.js"></script>
+</body>
+</html>

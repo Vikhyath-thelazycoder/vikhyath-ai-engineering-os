@@ -23,3 +23,6 @@ version = {file = "VERSION"}
 
 [tool.setuptools.packages.find]
 include = ["vikhyath*"]
+
+[tool.setuptools.package-data]
+vikhyath = ["dashboard/static/*", "dashboard/demo_events.json"]
