@@ -387,7 +387,8 @@ M6 (P19–P22) packaged the OS for Claude Code, Codex, Cursor and Antigravity fr
 1. Branch `feat/v2-os-transformation` (M0–M6 committed, not pushed; `main` has A-1 only).
 2. Next: **M7 → P23 Dashboard** — build the approved Agent Office exactly as specified in FILE_LEVEL_PLAN "M7 · P23" (D-043), reference mockup `docs/design/agent-office-mockup.html`. Then P24 update/rollback → P25 diagnostics + measured OLD vs NEW benchmarks (tokens, speed, routing accuracy; the user's Claude has ECC, UI/UX Pro Max and Open Design installed directly — use them as the OLD baseline) → P26 docs/README rewrite → P27 integration + final report.
 3. Test setup used so far: scratch venv with `pip install -e .`, scratch `VIKHYATH_HOME` with bundle `495f026f381e`; `python -m unittest discover -s tests` (228 OK, 3 opt-in skipped). Rebuild a bundle with `vikhyath bundle build --self-test` (needs `.staging/upstream`).
-4. Open items carried forward: Claude Code RUNTIME_VERIFIED (install the plugin from this branch, start one session); live SEO crawl once this machine's DNS works (`vikhyath seo run crawl https://example.com/`); Graphify upstream suite per-file failure breakdown (P25); closure trace should follow absolute intra-package imports (P25, D-037).
+4. **Rename to Agylite in P26 (D-044)**: CLI `agylite` (+ `vikhyath` alias), package, `~/.agylite`, plugin/marketplace, skills, adapters, docs — before the v2.0.0 release.
+5. Open items carried forward: Claude Code RUNTIME_VERIFIED (install the plugin from this branch, start one session); live SEO crawl once this machine's DNS works (`vikhyath seo run crawl https://example.com/`); Graphify upstream suite per-file failure breakdown (P25); closure trace should follow absolute intra-package imports (P25, D-037).
 
 ## Change history
 
@@ -423,3 +424,4 @@ M6 (P19–P22) packaged the OS for Claude Code, Codex, Cursor and Antigravity fr
 | 2026-10-11 | M6 | User started M6 ("m6 we go bro"); M5 accepted (live SEO crawl blocked by this machine's DNS; success path checked offline). |
 | 2026-10-11 | P19–P22 | Host adapters completed: one entry-skill set, generated manifests, SessionStart-only Claude hook, launcher, Cursor/Antigravity user-level install, §34 status with recorded host runs (D-042). 228 tests. Evidence: docs/evidence/P19-P22/run.md. **M6 completed; awaiting user review before M7.** |
 | 2026-10-11 | P23 (plan) | User approved the **Agent Office** dashboard design (pixel office, one agent per capability, live states) from mockup v2; FILE_LEVEL_PLAN P23 rewritten with files, state machine, API and constraints (D-043); mockup saved as `docs/design/agent-office-mockup.html`; "Resume here" section added. |
+| 2026-10-11 | Name | User chose the product name **Agylite** (D-044); rename scheduled in P26. |
