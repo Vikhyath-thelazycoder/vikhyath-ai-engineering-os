@@ -1,6 +1,6 @@
 ---
 name: Capability Proposal
-about: Propose adding a new external capability to Vikhyath AI Engineering OS
+about: Propose adding a new external capability to Agylite
 title: "[CAPABILITY] "
 labels: ["capability", "integration"]
 assignees: ""

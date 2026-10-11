@@ -15,16 +15,16 @@ ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 sys.path.insert(0, ROOT_DIR)
 
 from tests.context.fixtures import make_project  # noqa: E402
-from vikhyath.isolation import LockTimeout, project_lock  # noqa: E402
-from vikhyath.project import plan_index, state  # noqa: E402
-from vikhyath.project.identity import detect  # noqa: E402
+from agylite.isolation import LockTimeout, project_lock  # noqa: E402
+from agylite.project import plan_index, state  # noqa: E402
+from agylite.project.identity import detect  # noqa: E402
 
 WORKER = textwrap.dedent("""
     import sys
     from pathlib import Path
     sys.path.insert(0, {root!r})
-    from vikhyath.project.identity import detect
-    from vikhyath.project import state, reconcile
+    from agylite.project.identity import detect
+    from agylite.project import state, reconcile
     ref = detect(Path(sys.argv[1]), home=Path(sys.argv[2]))
     mode, n = sys.argv[3], int(sys.argv[4])
     for i in range(n):

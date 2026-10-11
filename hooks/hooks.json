@@ -1,12 +1,12 @@
 {
-  "description": "Vikhyath AI Engineering OS: Level-0 bootstrap at session start (D-042). No other hooks; the optional Unlazy Stop hook is registered centrally by `vikhyath runtime unlazy-hook --enable`.",
+  "description": "Agylite: Level-0 bootstrap at session start (D-042). No other hooks; the optional Unlazy Stop hook is registered centrally by `agylite runtime unlazy-hook --enable`.",
   "hooks": {
     "SessionStart": [
       {
         "hooks": [
           {
             "type": "command",
-            "command": "\"${CLAUDE_PLUGIN_ROOT}/bin/vikhyath\" bootstrap --host claude-code",
+            "command": "\"${CLAUDE_PLUGIN_ROOT}/bin/agylite\" bootstrap --host claude-code",
             "timeout": 20
           }
         ]

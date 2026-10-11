@@ -3,9 +3,9 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "vikhyath"
+name = "agylite"
 dynamic = ["version"]
-description = "Vikhyath AI Engineering OS — one local-first core with thin host adapters."
+description = "Agylite — one local-first core with thin host adapters."
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.10"
@@ -16,13 +16,14 @@ dependencies = ["PyYAML>=6"]
 Repository = "https://github.com/Vikhyath-thelazycoder/vikhyath-ai-engineering-os"
 
 [project.scripts]
-vikhyath = "vikhyath.cli:main"
+agylite = "agylite.cli:main"
+vikhyath = "agylite.cli:main"   # pre-rename alias (D-044)
 
 [tool.setuptools.dynamic]
 version = {file = "VERSION"}
 
 [tool.setuptools.packages.find]
-include = ["vikhyath*"]
+include = ["agylite*"]
 
 [tool.setuptools.package-data]
-vikhyath = ["dashboard/static/*", "dashboard/demo_events.json"]
+agylite = ["dashboard/static/*", "dashboard/demo_events.json"]

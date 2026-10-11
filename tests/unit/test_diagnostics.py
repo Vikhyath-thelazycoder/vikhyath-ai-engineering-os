@@ -11,7 +11,7 @@ from pathlib import Path
 ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 sys.path.insert(0, ROOT_DIR)
 
-from vikhyath.diagnostics import benchmark, doctor, validate  # noqa: E402
+from agylite.diagnostics import benchmark, doctor, validate  # noqa: E402
 
 
 def quiet(func, *args, **kwargs):

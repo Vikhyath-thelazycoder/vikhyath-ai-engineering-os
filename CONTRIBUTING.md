@@ -1,6 +1,6 @@
-# Contributing to Vikhyath AI Engineering OS
+# Contributing to Agylite
 
-Thank you for your interest in contributing to **Vikhyath AI Engineering OS**! This project is a thin, portable orchestration layer that selectively routes AI coding tasks to specialized engineering capabilities from proven external repositories.
+Thank you for your interest in contributing to **Agylite**! This project is a thin, portable orchestration layer that selectively routes AI coding tasks to specialized engineering capabilities from proven external repositories.
 
 Before submitting contributions, please read this guide and our [Code of Conduct](CODE_OF_CONDUCT.md).
 
@@ -8,10 +8,10 @@ Before submitting contributions, please read this guide and our [Code of Conduct
 
 ## Architecture Principles & Guardrails (Non-Negotiable)
 
-The architecture of Vikhyath AI Engineering OS is locked to ensure stability, portability, and context efficiency:
+The architecture of Agylite is locked to ensure stability, portability, and context efficiency:
 
-1. **Thin Orchestration Layer**: Vikhyath OS routes tasks; it is not a monolithic framework, giant prompt, or always-on daemon.
-2. **No upstream code in this repository**: Never vendor, submodule, or commit third-party files here. Selected upstream files are fetched at their pinned commits and built into the local bundle at install time (`scripts/install`, D-023). To change what is bundled, edit `tools/audit/extraction-rules.yaml`, run `python tools/audit/extraction_matrix.py` (0 open closure gaps required) and regenerate notices with `python -m vikhyath.bundle.notices`.
+1. **Thin Orchestration Layer**: Agylite routes tasks; it is not a monolithic framework, giant prompt, or always-on daemon.
+2. **No upstream code in this repository**: Never vendor, submodule, or commit third-party files here. Selected upstream files are fetched at their pinned commits and built into the local bundle at install time (`scripts/install`, D-023). To change what is bundled, edit `tools/audit/extraction-rules.yaml`, run `python tools/audit/extraction_matrix.py` (0 open closure gaps required) and regenerate notices with `python -m agylite.bundle.notices`.
 3. **Progressive Capability Activation**: Only capabilities relevant to the immediate task are activated. Never load all capabilities simultaneously.
 4. **Strict NO MCP**: No Model Context Protocol (MCP) servers, configs (`.mcp.json`), adapters, or dependencies are allowed.
 5. **Deterministic Conflict Hierarchy**: Conflicting guidance is resolved using the 8-level priority hierarchy defined in `config/priorities.yaml`.
@@ -32,7 +32,7 @@ The architecture of Vikhyath AI Engineering OS is locked to ensure stability, po
 
 ```bash
 git clone https://github.com/Vikhyath-thelazycoder/vikhyath-ai-engineering-os.git
-cd vikhyath-ai-engineering-os
+cd agylite
 pip install pyyaml
 ```
 
@@ -85,7 +85,7 @@ To propose integrating a new external capability:
    - **Pinned Commit SHA**: Must point to an exact 40-character hexadecimal Git commit SHA.
 3. If approved, add:
    - Extraction rules for the upstream in `tools/audit/extraction-rules.yaml` (each rule names its capability)
-   - A capability card when the work needs a new capability: `capabilities/<domain>/<subdomain>/card.yaml`, then `vikhyath registry cards`
+   - A capability card when the work needs a new capability: `capabilities/<domain>/<subdomain>/card.yaml`, then `agylite registry cards`
    - Updated routing signals in: `config/routing.yaml`
    - Unit tests validating the new metadata.
 
@@ -94,10 +94,10 @@ To propose integrating a new external capability:
 ## Repository Structure
 
 ```text
-vikhyath-ai-engineering-os/
+agylite/
 ├── .agents/                    # Antigravity skill adapter and marketplace
 │   ├── plugins/marketplace.json
-│   └── skills/vikhyath-os/SKILL.md
+│   └── skills/agylite/SKILL.md
 ├── .claude-plugin/             # Claude Code packaging & marketplace
 │   ├── marketplace.json
 │   └── plugin.json
@@ -142,4 +142,4 @@ vikhyath-ai-engineering-os/
 
 ## License
 
-By contributing to Vikhyath AI Engineering OS, you agree that your contributions will be licensed under the project's [MIT License](LICENSE).
+By contributing to Agylite, you agree that your contributions will be licensed under the project's [MIT License](LICENSE).

@@ -8,8 +8,8 @@ from pathlib import Path
 ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 sys.path.insert(0, ROOT_DIR)
 
-from vikhyath.bundle import checks  # noqa: E402
-from vikhyath.bundle.transforms import gstack, rewrites  # noqa: E402
+from agylite.bundle import checks  # noqa: E402
+from agylite.bundle.transforms import gstack, rewrites  # noqa: E402
 
 FM = "---\nname: demo\ndescription: Demo skill.\n---\n"
 TMPL = FM + """
@@ -176,7 +176,7 @@ class TestRewrites(unittest.TestCase):
     def test_appllama_keeps_native_rules_and_local_verification(self):
         out = rewrites.apply("appllama", "skills/appllama-app-design-skill/SKILL.md", APPLLAMA_SAMPLE)
         self.assertIn("## Navigation laws", out)
-        self.assertIn("## Verification (Vikhyath local test-first, D-035)", out)
+        self.assertIn("## Verification (Agylite local test-first, D-035)", out)
         self.assertIn("design/visual-quality", out)  # anti-slop canonical in Taste/OpenDesign
 
     def test_drift_raises(self):

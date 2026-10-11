@@ -15,11 +15,11 @@ ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 sys.path.insert(0, ROOT_DIR)
 
 from tests.context.fixtures import make_bundle, make_project  # noqa: E402
-from vikhyath.cli import main  # noqa: E402
-from vikhyath.context.loader import ContextLoader  # noqa: E402
-from vikhyath.isolation import IsolationError, guard_for, on_violation  # noqa: E402
-from vikhyath.project import decisions, plan_index, state  # noqa: E402
-from vikhyath.project.identity import detect  # noqa: E402
+from agylite.cli import main  # noqa: E402
+from agylite.context.loader import ContextLoader  # noqa: E402
+from agylite.isolation import IsolationError, guard_for, on_violation  # noqa: E402
+from agylite.project import decisions, plan_index, state  # noqa: E402
+from agylite.project.identity import detect  # noqa: E402
 
 _OPENED = []
 _RECORDING = [False]
@@ -70,7 +70,7 @@ class TestMultiProject(unittest.TestCase):
         base = Path(self.tmp.name)
         self.home = base / "home"
         self.bundle = make_bundle(self.home)
-        self.env = mock.patch.dict(os.environ, {"VIKHYATH_HOME": str(self.home)})
+        self.env = mock.patch.dict(os.environ, {"AGYLITE_HOME": str(self.home)})
         self.env.start()
         self.refs = {}
         for name, (kind, topic, decision) in PROJECTS.items():
@@ -136,7 +136,7 @@ class TestMultiProject(unittest.TestCase):
         loader = ContextLoader(a, "s1", self.bundle)
         link = a.root / "docs" / "shortcut.md"
         link.symlink_to(b.root / "docs" / "DESIGN.md")
-        targets = [b.root / ".vikhyath" / "decisions.yaml", b.data_dir / "project.yaml",
+        targets = [b.root / ".agylite" / "decisions.yaml", b.data_dir / "project.yaml",
                    a.root / ".." / "javali" / ".env", Path("/etc/hosts"), link]
         for t in targets:
             with self.assertRaises(IsolationError, msg=str(t)):

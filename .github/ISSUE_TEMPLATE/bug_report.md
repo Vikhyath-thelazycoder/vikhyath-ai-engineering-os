@@ -1,6 +1,6 @@
 ---
 name: Bug Report
-about: Create a report to help improve Vikhyath AI Engineering OS
+about: Create a report to help improve Agylite
 title: "[BUG] "
 labels: ["bug"]
 assignees: ""
@@ -13,7 +13,7 @@ A clear and concise description of what the bug is.
 - Host: [e.g., Codex CLI, Antigravity, Claude Code]
 - Host Version: [e.g., v1.0.0]
 - OS: [e.g., macOS 15, Ubuntu 22.04, Windows 11 WSL2]
-- Vikhyath OS Version: [e.g., 1.0.1]
+- Agylite Version: [e.g., 1.0.1]
 
 **To Reproduce**
 Steps to reproduce the behavior:

@@ -1,7 +1,7 @@
-# Requirements question bank (spec §19.3, §53). Read by vikhyath/project/questions.py.
+# Requirements question bank (spec §19.3, §53). Read by agylite/project/questions.py.
 # priority: BLOCKING (cannot plan without it) · IMPORTANT (changes architecture/scope) · OPTIONAL (nice to know).
 # new_project: asked for every new project · ask_when: asked when the request mentions any of these.
-# inferable_from: stack tags (vikhyath/project/lifecycle.py detect_stack) that already answer the question.
+# inferable_from: stack tags (agylite/project/lifecycle.py detect_stack) that already answer the question.
 # affects: what the answer changes — a question that changes nothing is not asked (spec §53).
 
 version: 1

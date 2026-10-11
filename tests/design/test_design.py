@@ -9,10 +9,10 @@ ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 sys.path.insert(0, ROOT_DIR)
 
 from tests.context.fixtures import make_project  # noqa: E402
-from vikhyath.design import tokens  # noqa: E402
-from vikhyath.project.identity import detect  # noqa: E402
-from vikhyath.routing import ProjectFacts, Router, capability_ids  # noqa: E402
-from vikhyath.runtimes import uiux  # noqa: E402
+from agylite.design import tokens  # noqa: E402
+from agylite.project.identity import detect  # noqa: E402
+from agylite.routing import ProjectFacts, Router, capability_ids  # noqa: E402
+from agylite.runtimes import uiux  # noqa: E402
 
 STAGED_UIUX = Path(ROOT_DIR) / ".staging" / "upstream" / "uiuxpromax"
 

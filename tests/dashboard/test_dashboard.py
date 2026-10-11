@@ -17,10 +17,10 @@ ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 sys.path.insert(0, ROOT_DIR)
 
 from tests.context.fixtures import make_project  # noqa: E402
-from vikhyath.dashboard import agents as office  # noqa: E402
-from vikhyath.dashboard.server import Dashboard  # noqa: E402
-from vikhyath.project.identity import detect  # noqa: E402
-from vikhyath.registry.loader import load_cards  # noqa: E402
+from agylite.dashboard import agents as office  # noqa: E402
+from agylite.dashboard.server import Dashboard  # noqa: E402
+from agylite.project.identity import detect  # noqa: E402
+from agylite.registry.loader import load_cards  # noqa: E402
 
 NOW = datetime(2026, 10, 11, 12, 0, tzinfo=timezone.utc)
 
@@ -91,7 +91,7 @@ class TestStates(unittest.TestCase):
 
     def test_activity_newest_first_and_readable(self):
         items = office.activity([ev("VERIFICATION_STARTED", checks=2, minutes_ago=2),
-                                 ev("VERIFICATION_PASSED", evidence=".vikhyath/evidence/x.json")])
+                                 ev("VERIFICATION_PASSED", evidence=".agylite/evidence/x.json")])
         self.assertEqual(items[0]["event"], "VERIFICATION_PASSED")
         self.assertIn("PASSED", items[0]["text"])
 
@@ -100,7 +100,7 @@ class TestServer(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
         base = Path(self.tmp.name)
-        self.env = mock.patch.dict(os.environ, {"VIKHYATH_HOME": str(base / "home")})
+        self.env = mock.patch.dict(os.environ, {"AGYLITE_HOME": str(base / "home")})
         self.env.start()
         self.project = detect(make_project(base), home=base / "home")
 
@@ -139,7 +139,7 @@ class TestServer(unittest.TestCase):
             t.join(timeout=15)
         self.assertFalse(t.is_alive())
         self.assertEqual(d.reason, "idle")
-        from vikhyath.events import read
+        from agylite.events import read
         kinds = [e["event"] for e in read(self.project)]
         self.assertIn("DASHBOARD_STARTED", kinds)
         self.assertIn("DASHBOARD_SLEEPING", kinds)

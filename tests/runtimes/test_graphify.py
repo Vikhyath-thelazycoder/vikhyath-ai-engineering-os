@@ -1,8 +1,8 @@
 """P12 Graphify wrapper (D-016, SEC-08/09, D-021, §74). Fast tests need no runtime. The real-runtime test installs
 Graphify into a temporary home and is opt-in (network for pip, ~15 s). It installs from a built bundle when
-VIKHYATH_TEST_BUNDLE names one (what users get: extraction rules applied), else from the staged upstream:
+AGYLITE_TEST_BUNDLE names one (what users get: extraction rules applied), else from the staged upstream:
 
-    VIKHYATH_RUNTIME_TESTS=1 [VIKHYATH_TEST_BUNDLE=$VIKHYATH_HOME/bundles/current] python -m unittest tests.runtimes.test_graphify
+    AGYLITE_RUNTIME_TESTS=1 [AGYLITE_TEST_BUNDLE=$AGYLITE_HOME/bundles/current] python -m unittest tests.runtimes.test_graphify
 """
 import contextlib
 import io
@@ -19,10 +19,10 @@ ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 sys.path.insert(0, ROOT_DIR)
 
 from tests.context.fixtures import make_project  # noqa: E402
-from vikhyath.cli import main  # noqa: E402
-from vikhyath.codebase import FALLBACK_NOTICE, affected  # noqa: E402
-from vikhyath.project.identity import detect  # noqa: E402
-from vikhyath.runtimes import graphify  # noqa: E402
+from agylite.cli import main  # noqa: E402
+from agylite.codebase import FALLBACK_NOTICE, affected  # noqa: E402
+from agylite.project.identity import detect  # noqa: E402
+from agylite.runtimes import graphify  # noqa: E402
 
 STAGED = Path(ROOT_DIR) / ".staging" / "upstream" / "graphify"
 FIXTURE = {"app/__init__.py": "", "app/payments.py": "def charge(x):\n    return x\n",
@@ -93,7 +93,7 @@ class TestHealthAndFallback(unittest.TestCase):
         bundle = fake_bundle(self.home)
         h = graphify.health(self.home, bundle)
         self.assertEqual(h["status"], "not-installed")
-        self.assertIn("vikhyath runtime install graphify", h["reason"])
+        self.assertIn("agylite runtime install graphify", h["reason"])
 
     def test_not_installed_falls_back_with_notice(self):
         r = affected(self.project, ["app/payments.py"], home=self.home, bundle_dir=fake_bundle(self.home))
@@ -105,11 +105,11 @@ class TestHealthAndFallback(unittest.TestCase):
 
     def test_cli_blocks_and_reports(self):
         err = io.StringIO()
-        with mock.patch.dict(os.environ, {"VIKHYATH_HOME": str(self.home)}), contextlib.redirect_stderr(err):
+        with mock.patch.dict(os.environ, {"AGYLITE_HOME": str(self.home)}), contextlib.redirect_stderr(err):
             self.assertEqual(main(["codebase", "query", "x", "--project", str(self.root)]), 1)
         self.assertIn("graph-based analysis unavailable", err.getvalue())
         out = io.StringIO()
-        with mock.patch.dict(os.environ, {"VIKHYATH_HOME": str(self.home)}), contextlib.redirect_stdout(out):
+        with mock.patch.dict(os.environ, {"AGYLITE_HOME": str(self.home)}), contextlib.redirect_stdout(out):
             self.assertEqual(main(["codebase", "affected", "--paths", "app/payments.py", "--json",
                                    "--project", str(self.root)]), 0)
         self.assertEqual(json.loads(out.getvalue())["method"], "structural")
@@ -118,15 +118,15 @@ class TestHealthAndFallback(unittest.TestCase):
                 main(["codebase", "hook"])
 
 
-@unittest.skipUnless(os.environ.get("VIKHYATH_RUNTIME_TESTS") and STAGED.is_dir(),
-                     "opt-in: VIKHYATH_RUNTIME_TESTS=1 and a staged graphify upstream")
+@unittest.skipUnless(os.environ.get("AGYLITE_RUNTIME_TESTS") and STAGED.is_dir(),
+                     "opt-in: AGYLITE_RUNTIME_TESTS=1 and a staged graphify upstream")
 class TestRealRuntime(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.tmp = tempfile.TemporaryDirectory()
         base = Path(cls.tmp.name)
         cls.home = base / "home"
-        built = os.environ.get("VIKHYATH_TEST_BUNDLE")
+        built = os.environ.get("AGYLITE_TEST_BUNDLE")
         cls.bundle = Path(built).resolve() if built else fake_bundle(cls.home, STAGED)
         cls.info = graphify.install(cls.home, cls.bundle / "files" / "graphify", log=lambda *_: None)
 
@@ -163,7 +163,7 @@ class TestRealRuntime(unittest.TestCase):
 
     def test_query_passthrough(self):
         g = graphify.Graphify(self.project, self.home, self.bundle)
-        from vikhyath.codebase import structural
+        from agylite.codebase import structural
         files, _ = structural.scan(self.root)
         g.ensure_graph(structural.fingerprint(self.root, files))
         for sub, terms in (("query", ["how is a webhook charged"]), ("explain", ["handle"]),

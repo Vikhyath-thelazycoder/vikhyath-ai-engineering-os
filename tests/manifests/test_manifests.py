@@ -15,7 +15,7 @@ class TestManifests(unittest.TestCase):
             data = json.load(f)
             
         self.assertEqual(data.get("$schema"), "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json")
-        self.assertEqual(data.get("name"), "vikhyath-ai-engineering-os")
+        self.assertEqual(data.get("name"), "agylite")
         self.assertEqual(data.get("version"), VERSION)
         self.assertIn("description", data)
         self.assertIn("author", data)
@@ -34,7 +34,7 @@ class TestManifests(unittest.TestCase):
         with open(manifest_path, "r", encoding="utf-8") as f:
             data = json.load(f)
             
-        self.assertEqual(data.get("name"), "vikhyath-ai-engineering-os")
+        self.assertEqual(data.get("name"), "agylite")
         self.assertEqual(data.get("version"), VERSION)
         self.assertEqual(data.get("skills"), "./skills/")
         self.assertIn("interface", data)
@@ -47,7 +47,7 @@ class TestManifests(unittest.TestCase):
         with open(manifest_path, "r", encoding="utf-8") as f:
             data = json.load(f)
             
-        self.assertEqual(data.get("name"), "vikhyath-ai-engineering-os")
+        self.assertEqual(data.get("name"), "agylite")
         self.assertEqual(data.get("version"), VERSION)
         self.assertNotIn("skills", data, "Claude manifest should not contain relative skills path")
         self.assertNotIn("mcpServers", data, "MCP servers prohibited in Claude manifest")
@@ -59,11 +59,11 @@ class TestManifests(unittest.TestCase):
         with open(mkt_path, "r", encoding="utf-8") as f:
             data = json.load(f)
             
-        self.assertEqual(data.get("name"), "vikhyath-marketplace")
+        self.assertEqual(data.get("name"), "agylite-marketplace")
         self.assertIn("plugins", data)
         self.assertGreaterEqual(len(data["plugins"]), 1)
         plugin = data["plugins"][0]
-        self.assertEqual(plugin.get("name"), "vikhyath-ai-engineering-os")
+        self.assertEqual(plugin.get("name"), "agylite")
         self.assertEqual(plugin.get("version"), VERSION)
         self.assertEqual(plugin.get("source"), "./")
 
@@ -74,23 +74,23 @@ class TestManifests(unittest.TestCase):
         with open(mkt_path, "r", encoding="utf-8") as f:
             data = json.load(f)
             
-        self.assertEqual(data.get("name"), "vikhyath-marketplace")
+        self.assertEqual(data.get("name"), "agylite-marketplace")
         self.assertIn("plugins", data)
         self.assertGreaterEqual(len(data["plugins"]), 1)
         plugin = data["plugins"][0]
-        self.assertEqual(plugin.get("name"), "vikhyath-ai-engineering-os")
+        self.assertEqual(plugin.get("name"), "agylite")
         self.assertEqual(plugin.get("version"), VERSION)
         self.assertEqual(plugin.get("source"), "./")
 
     def test_antigravity_skill_adapter(self):
-        skill_path = os.path.join(ROOT_DIR, ".agents", "skills", "vikhyath-os", "SKILL.md")
+        skill_path = os.path.join(ROOT_DIR, ".agents", "skills", "agylite", "SKILL.md")
         self.assertTrue(os.path.isfile(skill_path), "Antigravity skill adapter missing")
         
         with open(skill_path, "r", encoding="utf-8") as f:
             content = f.read()
             
         self.assertTrue(content.startswith("---"), "SKILL.md missing frontmatter")
-        self.assertIn("name: vikhyath-os", content)
+        self.assertIn("name: agylite", content)
         self.assertIn("description:", content)
 
 if __name__ == "__main__":

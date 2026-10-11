@@ -19,14 +19,14 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 sys.path.insert(0, ROOT)
 from pathlib import Path  # noqa: E402
 
-from vikhyath.bundle.rules import (BUNDLED, classify, compile_rules, load_capabilities,  # noqa: E402
+from agylite.bundle.rules import (BUNDLED, classify, compile_rules, load_capabilities,  # noqa: E402
                                    load_rules)
-from vikhyath.bundle.rules import read_inventory as _read_inventory  # noqa: E402
+from agylite.bundle.rules import read_inventory as _read_inventory  # noqa: E402
 
 STAGING = os.path.join(ROOT, ".staging", "upstream")
 EVIDENCE = os.path.join(ROOT, "docs", "audit", "evidence")
 
-from vikhyath.bundle.closure import staging_reader, trace_gaps  # noqa: E402
+from agylite.bundle.closure import staging_reader, trace_gaps  # noqa: E402
 
 
 def read_inventory(repo):

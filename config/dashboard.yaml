@@ -1,4 +1,4 @@
-# Vikhyath AI Engineering OS — Agent Office layout (P23, D-043). Data, not code.
+# Agylite — Agent Office layout (P23, D-043). Data, not code.
 # Every capability in the registry has exactly one seat (tests enforce it). Coordinates are in the office's
 # 480×300 pixel grid (docs/design/agent-office-mockup.html). `fixed` pins a state; `sources_any` lights a seat
 # when any selected capability draws on that upstream (the Agency specialists sit across many capabilities).

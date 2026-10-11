@@ -16,12 +16,12 @@ ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 sys.path.insert(0, ROOT_DIR)
 
 from tests.context.fixtures import make_bundle, make_project  # noqa: E402
-from vikhyath.cli import main  # noqa: E402
-from vikhyath.context.loader import ContextLoader  # noqa: E402
-from vikhyath.events import emit, read  # noqa: E402
-from vikhyath.events.schema import EVENT_TYPES, EventError, envelope, validate  # noqa: E402
-from vikhyath.isolation import IsolationError  # noqa: E402
-from vikhyath.project.identity import detect  # noqa: E402
+from agylite.cli import main  # noqa: E402
+from agylite.context.loader import ContextLoader  # noqa: E402
+from agylite.events import emit, read  # noqa: E402
+from agylite.events.schema import EVENT_TYPES, EventError, envelope, validate  # noqa: E402
+from agylite.isolation import IsolationError  # noqa: E402
+from agylite.project.identity import detect  # noqa: E402
 
 RULES = {
     "curl-pipe-to-shell.rule.yaml": """id: curl-pipe-to-shell
@@ -69,9 +69,9 @@ class Env(unittest.TestCase):
             (rules / name).write_text(text)
         self.root = make_project(base)
         (self.root / "package.json").write_text('{"dependencies": {"react": "18"}}')
-        self.env = mock.patch.dict(os.environ, {"VIKHYATH_HOME": str(self.home)})
+        self.env = mock.patch.dict(os.environ, {"AGYLITE_HOME": str(self.home)})
         self.env.start()
-        os.environ.pop("VIKHYATH_SESSION_ID", None)
+        os.environ.pop("AGYLITE_SESSION_ID", None)
         self.ref = detect(self.root, home=self.home)
 
     def tearDown(self):

@@ -13,12 +13,12 @@ ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 sys.path.insert(0, ROOT_DIR)
 
 from tests.context.fixtures import make_bundle, make_project  # noqa: E402
-from vikhyath.cli import main  # noqa: E402
-from vikhyath.context import levels  # noqa: E402
-from vikhyath.context.budget import load_budgets, validate_budgets  # noqa: E402
-from vikhyath.context.loader import ContextError, ContextLoader, file_kind  # noqa: E402
-from vikhyath.context.sections import pick_sections, split_sections  # noqa: E402
-from vikhyath.project.identity import ProjectRef, compute_id, current_branch, detect, normalize_origin  # noqa: E402
+from agylite.cli import main  # noqa: E402
+from agylite.context import levels  # noqa: E402
+from agylite.context.budget import load_budgets, validate_budgets  # noqa: E402
+from agylite.context.loader import ContextError, ContextLoader, file_kind  # noqa: E402
+from agylite.context.sections import pick_sections, split_sections  # noqa: E402
+from agylite.project.identity import ProjectRef, compute_id, current_branch, detect, normalize_origin  # noqa: E402
 
 
 class TestBudgetsConfig(unittest.TestCase):
@@ -66,7 +66,7 @@ class Env(unittest.TestCase):
         self.root = make_project(base)
         self.project = detect(self.root, home=self.home)
         self.budgets = load_budgets()
-        self.env = mock.patch.dict(os.environ, {"VIKHYATH_HOME": str(self.home)})
+        self.env = mock.patch.dict(os.environ, {"AGYLITE_HOME": str(self.home)})
         self.env.start()
 
     def tearDown(self):

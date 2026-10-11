@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Agylite launcher for host plugins (P19, D-042): hooks and skills call this when `agylite` is not on PATH.
+# Order: the central install ($AGYLITE_HOME/core), else `agylite` on PATH, else this plugin's own source.
+set -euo pipefail
+HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+HOME_DIR="${AGYLITE_HOME:-$HOME/.agylite}"
+export AGYLITE_CLI="${BASH_SOURCE[0]}"
+if [ -x "$HOME_DIR/core/bin/agylite" ]; then
+  exec "$HOME_DIR/core/bin/agylite" "$@"
+elif command -v agylite >/dev/null 2>&1 && [ "$(command -v agylite)" != "${BASH_SOURCE[0]}" ]; then
+  exec agylite "$@"
+fi
+PY="${AGYLITE_PYTHON:-python3}"
+if "$PY" -c 'import yaml' 2>/dev/null; then
+  PYTHONPATH="$HERE${PYTHONPATH:+:$PYTHONPATH}" exec "$PY" -m agylite "$@"
+fi
+echo "Agylite is not installed: run \"$HERE/scripts/install\" (central install into $HOME_DIR)." >&2
+exit 0   # never fail a host session start

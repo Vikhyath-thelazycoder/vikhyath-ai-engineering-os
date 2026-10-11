@@ -1,6 +1,6 @@
-# Vikhyath AI Engineering OS — Agent Instructions
+# Agylite — Agent Instructions
 
-This repository is the **Vikhyath AI Engineering OS**, a thin orchestration/plugin layer.
+This repository is the **Agylite**, a thin orchestration/plugin layer.
 
 ## Core Behavior
 
@@ -11,13 +11,13 @@ This repository is the **Vikhyath AI Engineering OS**, a thin orchestration/plug
 
 ## Available Skills
 
-Refer to `skills/` for Vikhyath-specific routing and orchestration skills:
+Refer to `skills/` for Agylite-specific routing and orchestration skills:
 
-- `vikhyath-engineering/` — Engineering task routing via ECC
-- `vikhyath-routing/` — Capability classification and activation
-- `vikhyath-production/` — Production readiness via Addy + gstack
-- `vikhyath-security/` — Security-focused capability activation
-- `vikhyath-review/` — Code review and quality orchestration
+- `agylite-engineering/` — Engineering task routing via ECC
+- `agylite-routing/` — Capability classification and activation
+- `agylite-production/` — Production readiness via Addy + gstack
+- `agylite-security/` — Security-focused capability activation
+- `agylite-review/` — Code review and quality orchestration
 
 ## Routing Logic
 
@@ -44,4 +44,4 @@ When presented with a task, classify it and activate only the relevant capabilit
 
 ## Configuration
 
-See `capabilities/` (one `card.yaml` per capability; `vikhyath registry list`) for the capability registry and `config/routing.yaml` for routing rules (run `vikhyath route "<request>"`).
+See `capabilities/` (one `card.yaml` per capability; `agylite registry list`) for the capability registry and `config/routing.yaml` for routing rules (run `agylite route "<request>"`).

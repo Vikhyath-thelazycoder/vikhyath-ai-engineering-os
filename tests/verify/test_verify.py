@@ -16,10 +16,10 @@ ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 sys.path.insert(0, ROOT_DIR)
 
 from tests.context.fixtures import make_project  # noqa: E402
-from vikhyath.cli import main  # noqa: E402
-from vikhyath.project import state as pstate  # noqa: E402
-from vikhyath.project.identity import detect as detect_project  # noqa: E402
-from vikhyath.verify import detect, engine, evidence, run, select  # noqa: E402
+from agylite.cli import main  # noqa: E402
+from agylite.project import state as pstate  # noqa: E402
+from agylite.project.identity import detect as detect_project  # noqa: E402
+from agylite.verify import detect, engine, evidence, run, select  # noqa: E402
 
 TEST = "import unittest\nfrom app.webhook import handle\n\nclass T(unittest.TestCase):\n    def test_it(self):\n        self.assertEqual(handle({}), {X})\n"
 FILES = {
@@ -47,7 +47,7 @@ class Base(unittest.TestCase):
             (self.root / rel).parent.mkdir(parents=True, exist_ok=True)
             (self.root / rel).write_text(text, encoding="utf-8")
         self.project = detect_project(self.root, home=self.home)
-        self.env = mock.patch.dict(os.environ, {"VIKHYATH_HOME": str(self.home)})
+        self.env = mock.patch.dict(os.environ, {"AGYLITE_HOME": str(self.home)})
         self.env.start()
 
     def tearDown(self):
@@ -99,7 +99,7 @@ class TestRun(Base):
             calls.append(cmd)
             return real(cmd, *a, **kw)
 
-        with mock.patch("vikhyath.verify.run.subprocess.run", side_effect=spy):
+        with mock.patch("agylite.verify.run.subprocess.run", side_effect=spy):
             record, rel, results = engine.verify(self.project, ["app/webhook.py"], task="T-1.1")
         self.assertEqual(record["result"], "PASSED", results)
         test = next(r for r in results if r["kind"] == "test")
@@ -147,7 +147,7 @@ class TestCli(Base):
             self.assertEqual(main(["verify", "exception", "--reason", "drag-and-drop feel needs a human",
                                    "--project", str(self.root)]), 0)
             sp.assert_not_called()
-        data = (self.root / ".vikhyath" / "verification.yaml").read_text(encoding="utf-8")
+        data = (self.root / ".agylite" / "verification.yaml").read_text(encoding="utf-8")
         self.assertIn("drag-and-drop feel needs a human", data)
         with contextlib.redirect_stderr(io.StringIO()):
             self.assertEqual(main(["verify", "exception", "--project", str(self.root)]), 2)
@@ -159,7 +159,7 @@ class TestCli(Base):
         self.assertEqual(code, 0)
         last = pstate.load_state(self.project)["verification"]["last"]
         self.assertEqual((last["result"], last["task"]), ("PASSED", "T-1.1"))
-        self.assertTrue(last["evidence"].startswith(".vikhyath/evidence/"))
+        self.assertTrue(last["evidence"].startswith(".agylite/evidence/"))
 
 
 if __name__ == "__main__":

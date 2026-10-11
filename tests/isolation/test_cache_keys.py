@@ -9,12 +9,12 @@ ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 sys.path.insert(0, ROOT_DIR)
 
 from tests.context.fixtures import make_bundle, make_project  # noqa: E402
-from vikhyath.context import levels  # noqa: E402
-from vikhyath.context.budget import load_budgets  # noqa: E402
-from vikhyath.context.cache import SessionCache  # noqa: E402
-from vikhyath.context.loader import ContextLoader  # noqa: E402
-from vikhyath.project.identity import detect  # noqa: E402
-from vikhyath.routing import Router  # noqa: E402
+from agylite.context import levels  # noqa: E402
+from agylite.context.budget import load_budgets  # noqa: E402
+from agylite.context.cache import SessionCache  # noqa: E402
+from agylite.context.loader import ContextLoader  # noqa: E402
+from agylite.project.identity import detect  # noqa: E402
+from agylite.routing import Router  # noqa: E402
 
 REQUEST = "Fix the payment webhook security."
 

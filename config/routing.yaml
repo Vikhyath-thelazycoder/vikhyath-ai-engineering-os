@@ -1,4 +1,4 @@
-# Vikhyath AI Engineering OS — Routing configuration (v2, P8, spec §14–15, §54, D-012)
+# Agylite — Routing configuration (v2, P8, spec §14–15, §54, D-012)
 #
 # The router is deterministic: request text, file paths and project facts are matched against the rules below and
 # against each capability card's intent_tags (capabilities/**/card.yaml). BM25 over CARD.md runs only when nothing

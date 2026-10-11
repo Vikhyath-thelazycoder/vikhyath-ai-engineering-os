@@ -1,4 +1,4 @@
-# Vikhyath AI Engineering OS
+# Agylite
 
 > A thin, portable orchestration plugin and control layer that selectively routes AI coding agent tasks to specialized engineering capabilities from proven external repositories.
 
@@ -12,7 +12,7 @@
 
 ## Table of Contents
 
-1. [What Vikhyath AI Engineering OS Is](#1-what-vikhyath-ai-engineering-os-is)
+1. [What Agylite Is](#1-what-agylite-is)
 2. [What Problem It Solves](#2-what-problem-it-solves)
 3. [Architecture Overview](#3-architecture-overview)
 4. [Capability Routing Model](#4-capability-routing-model)
@@ -33,11 +33,11 @@
 
 ---
 
-## 1. What Vikhyath AI Engineering OS Is
+## 1. What Agylite Is
 
-**Vikhyath AI Engineering OS** is a thin, portable orchestration plugin for AI coding agents. Rather than bundling or duplicating external code, it serves as an intelligent control and routing layer across major AI coding hosts—including **OpenAI Codex**, **Google Antigravity**, and **Anthropic Claude Code**.
+**Agylite** is a thin, portable orchestration plugin for AI coding agents. Rather than bundling or duplicating external code, it serves as an intelligent control and routing layer across major AI coding hosts—including **OpenAI Codex**, **Google Antigravity**, and **Anthropic Claude Code**.
 
-When you assign a task to your AI agent, Vikhyath OS analyzes the task intent and selectively routes execution to proven, specialized external capabilities (such as ECC for engineering foundation, Graphify for codebase intelligence, Addy Agent Skills for production hardening, and gstack for release workflows).
+When you assign a task to your AI agent, Agylite analyzes the task intent and selectively routes execution to proven, specialized external capabilities (such as ECC for engineering foundation, Graphify for codebase intelligence, Addy Agent Skills for production hardening, and gstack for release workflows).
 
 Key characteristics:
 - **Thin Orchestration Layer**: Pure declarative routing and instructions—not a monolithic framework.
@@ -58,7 +58,7 @@ Modern AI coding agents face three critical challenges when using external devel
 3. **Monolithic Framework Overkill**:
    Heavy frameworks that require dedicated background daemons or complex socket configurations introduce operational fragility and security risks.
 
-**The Vikhyath OS Solution**:
+**The Agylite Solution**:
 A unified, portable plugin that dynamically routes tasks to the minimal required capability set just-in-time, keeping context clean, instructions sharp, and external dependencies strictly external.
 
 ---
@@ -70,7 +70,7 @@ A unified, portable plugin that dynamically routes tasks to the minimal required
                    (Source of Truth)
                            │
                            ▼
-              Vikhyath AI Engineering OS
+              Agylite
                            │
                  Portable Plugin Layer
             (Agent Plugins 1.0 Specification)
@@ -81,7 +81,7 @@ A unified, portable plugin that dynamically routes tasks to the minimal required
             │              │              │
             └──────────────┼──────────────┘
                            ▼
-                    Vikhyath Router
+                    Agylite Router
                            │
                   Capability Registry
                (Pinned 40-character SHAs)
@@ -116,7 +116,7 @@ A unified, portable plugin that dynamically routes tasks to the minimal required
 
 ## 4. Capability Routing Model
 
-When an agent receives a prompt, the Vikhyath OS Router follows a five-step lifecycle:
+When an agent receives a prompt, the Agylite Router follows a five-step lifecycle:
 
 ```text
 Task Prompt
@@ -186,7 +186,7 @@ Progressive activation is not just a stylistic choice; it is fundamental to agen
 |---|---|---|---|---|
 | **Codex** | Packaging Supported | `.codex-plugin/plugin.json` | `.agents/plugins/marketplace.json` | Manifest & Marketplace Verified |
 | **Claude Code** | Packaging Supported | `.claude-plugin/plugin.json` | `.claude-plugin/marketplace.json` | Manifest & Marketplace Verified |
-| **Antigravity** | Runtime Tested | `plugin.json` & `.agents/skills/vikhyath-os/` | Global plugin discovery / `plugins.json` | End-to-End Runtime Tested |
+| **Antigravity** | Runtime Tested | `plugin.json` & `.agents/skills/agylite/` | Global plugin discovery / `plugins.json` | End-to-End Runtime Tested |
 
 ---
 
@@ -199,7 +199,7 @@ Before installing, understand the distinction between these four stages:
 1. **Installation**: Downloading/caching the plugin onto your machine or host environment. Performed **once** per environment.
 2. **Registration**: The host registering the plugin in its marketplace catalog or configuration.
 3. **Project Activation**: Using the installed plugin within any project workspace without copying files.
-4. **Capability Activation**: Vikhyath OS automatically selecting and routing specific external capabilities per task.
+4. **Capability Activation**: Agylite automatically selecting and routing specific external capabilities per task.
 
 > **CRITICAL**: Do **NOT** manually copy or vendor the plugin files into your individual project repositories. The plugin should be installed once globally (or registered in your host's plugin directory) and invoked across projects.
 
@@ -217,7 +217,7 @@ Before installing, understand the distinction between these four stages:
 codex plugin marketplace add Vikhyath-thelazycoder/vikhyath-ai-engineering-os
 
 # Step 2: Install the plugin
-codex plugin add vikhyath-ai-engineering-os@vikhyath-marketplace   # Codex ≥0.122 (older: `codex plugin install`)
+codex plugin add agylite@agylite-marketplace   # Codex ≥0.122 (older: `codex plugin install`)
 ```
 
 - **Verify Installation**:
@@ -225,15 +225,15 @@ codex plugin add vikhyath-ai-engineering-os@vikhyath-marketplace   # Codex ≥0.
   codex plugin list
   ```
 - **How to Use in Any Project**:
-  Open Codex in any workspace. The plugin is active globally. Assign tasks normally; Vikhyath OS routes execution automatically.
+  Open Codex in any workspace. The plugin is active globally. Assign tasks normally; Agylite routes execution automatically.
 - **How to Update**:
   ```bash
-  codex plugin update vikhyath-ai-engineering-os@vikhyath-marketplace
+  codex plugin update agylite@agylite-marketplace
   ```
 - **How to Uninstall**:
   ```bash
-  codex plugin uninstall vikhyath-ai-engineering-os@vikhyath-marketplace
-  codex plugin marketplace remove vikhyath-marketplace
+  codex plugin uninstall agylite@agylite-marketplace
+  codex plugin marketplace remove agylite-marketplace
   ```
 - **Known Limitations**: External standalone CLI tools (such as Graphify) require a local Python environment (`pip install graphify-ai`).
 
@@ -249,7 +249,7 @@ codex plugin add vikhyath-ai-engineering-os@vikhyath-marketplace   # Codex ≥0.
 claude plugin marketplace add Vikhyath-thelazycoder/vikhyath-ai-engineering-os
 
 # Step 2: Install the plugin
-claude plugin install vikhyath-ai-engineering-os@vikhyath-marketplace
+claude plugin install agylite@agylite-marketplace
 ```
 
 - **Verify Installation**:
@@ -260,12 +260,12 @@ claude plugin install vikhyath-ai-engineering-os@vikhyath-marketplace
   Run `claude` in any project folder. The plugin instructions are automatically loaded.
 - **How to Update**:
   ```bash
-  claude plugin update vikhyath-ai-engineering-os@vikhyath-marketplace
+  claude plugin update agylite@agylite-marketplace
   ```
 - **How to Uninstall**:
   ```bash
-  claude plugin uninstall vikhyath-ai-engineering-os@vikhyath-marketplace
-  claude plugin marketplace remove vikhyath-marketplace
+  claude plugin uninstall agylite@agylite-marketplace
+  claude plugin marketplace remove agylite-marketplace
   ```
 - **Known Limitations**: Capabilities that do not offer native Claude Code plugins are applied via instructional guidance.
 
@@ -280,7 +280,7 @@ claude plugin install vikhyath-ai-engineering-os@vikhyath-marketplace
 Clone directly into the Antigravity global plugins directory. It is immediately available across all your workspaces:
 
 ```bash
-git clone https://github.com/Vikhyath-thelazycoder/vikhyath-ai-engineering-os.git ~/.gemini/config/plugins/vikhyath-ai-engineering-os
+git clone https://github.com/Vikhyath-thelazycoder/vikhyath-ai-engineering-os.git ~/.gemini/config/plugins/agylite
 ```
 
 **Alternative: Shared Path Registration**
@@ -290,24 +290,24 @@ If you keep the repository in a custom folder, register it in `~/.gemini/config/
 {
   "plugins": [
     {
-      "name": "vikhyath-ai-engineering-os",
-      "path": "/path/to/cloned/vikhyath-ai-engineering-os"
+      "name": "agylite",
+      "path": "/path/to/cloned/agylite"
     }
   ]
 }
 ```
 
 - **Verify Installation**:
-  Launch Antigravity; verify that the skill `vikhyath-os` appears in available skills.
+  Launch Antigravity; verify that the skill `agylite` appears in available skills.
 - **How to Use in Any Project**:
   Any project opened in Antigravity automatically inherits global plugins. No files need to be copied into the project.
 - **How to Update**:
   ```bash
-  git -C ~/.gemini/config/plugins/vikhyath-ai-engineering-os pull origin main
+  git -C ~/.gemini/config/plugins/agylite pull origin main
   ```
 - **How to Uninstall**:
   ```bash
-  rm -rf ~/.gemini/config/plugins/vikhyath-ai-engineering-os
+  rm -rf ~/.gemini/config/plugins/agylite
   ```
 - **Known Limitations**: Upstream `gstack` does not provide native Antigravity packaging; Graphify runs as a CLI tool.
 
@@ -315,7 +315,7 @@ If you keep the repository in a custom folder, register it in `~/.gemini/config/
 
 ### External Capabilities Setup
 
-Vikhyath OS is an orchestration layer that directs tasks to external tools. When you require capabilities that have their own host plugins or CLI tools, install them using their standard methods:
+Agylite is an orchestration layer that directs tasks to external tools. When you require capabilities that have their own host plugins or CLI tools, install them using their standard methods:
 
 ```bash
 # ECC (primary engineering foundation)
@@ -337,10 +337,10 @@ pip install graphify-ai
 
 ## 9. First-Use Example
 
-To verify that Vikhyath OS is active and operating correctly in your agent session, provide this prompt:
+To verify that Agylite is active and operating correctly in your agent session, provide this prompt:
 
 ```text
-Use Vikhyath AI Engineering OS and report which capabilities you activate for this task.
+Use Agylite and report which capabilities you activate for this task.
 ```
 
 ### Expected Output
@@ -348,7 +348,7 @@ Use Vikhyath AI Engineering OS and report which capabilities you activate for th
 Your agent should produce a response demonstrating task classification and progressive routing similar to:
 
 ```text
-[Vikhyath AI Engineering OS]
+[Agylite]
 • Task Intent: General engineering inquiry / verification
 • Active Capabilities: [ECC] (Engineering Foundation)
 • Inactive Capabilities: Graphify, Unlazy, Addy, Agency, gstack, OpenDesign, Ponytail, Karpathy
@@ -395,17 +395,17 @@ These examples demonstrate how the progressive router handles diverse engineerin
 
 ## 11. Updating
 
-To keep Vikhyath OS up to date with the latest capability pins and routing definitions:
+To keep Agylite up to date with the latest capability pins and routing definitions:
 
 ```bash
 # Codex
-codex plugin update vikhyath-ai-engineering-os@vikhyath-marketplace
+codex plugin update agylite@agylite-marketplace
 
 # Claude Code
-claude plugin update vikhyath-ai-engineering-os@vikhyath-marketplace
+claude plugin update agylite@agylite-marketplace
 
 # Antigravity (global installation)
-git -C ~/.gemini/config/plugins/vikhyath-ai-engineering-os pull origin main
+git -C ~/.gemini/config/plugins/agylite pull origin main
 ```
 
 ### Pinning to a Specific Release
@@ -413,10 +413,10 @@ To pin your environment to a specific release tag (e.g., `v1.0.1`):
 
 ```bash
 # Codex
-codex plugin install vikhyath-ai-engineering-os@vikhyath-marketplace#v1.0.1
+codex plugin install agylite@agylite-marketplace#v1.0.1
 
 # Antigravity
-git -C ~/.gemini/config/plugins/vikhyath-ai-engineering-os checkout v1.0.1
+git -C ~/.gemini/config/plugins/agylite checkout v1.0.1
 ```
 
 ---
@@ -427,15 +427,15 @@ To cleanly remove the plugin:
 
 ```bash
 # Codex
-codex plugin uninstall vikhyath-ai-engineering-os@vikhyath-marketplace
-codex plugin marketplace remove vikhyath-marketplace
+codex plugin uninstall agylite@agylite-marketplace
+codex plugin marketplace remove agylite-marketplace
 
 # Claude Code
-claude plugin uninstall vikhyath-ai-engineering-os@vikhyath-marketplace
-claude plugin marketplace remove vikhyath-marketplace
+claude plugin uninstall agylite@agylite-marketplace
+claude plugin marketplace remove agylite-marketplace
 
 # Antigravity
-rm -rf ~/.gemini/config/plugins/vikhyath-ai-engineering-os
+rm -rf ~/.gemini/config/plugins/agylite
 ```
 
 ---
@@ -464,12 +464,12 @@ python3 -m unittest discover -s tests -p "test_*.py"
 
 1. **Plugin Not Recognized After Installation**:
    - Verify that your host agent CLI is up to date.
-   - For Antigravity, ensure the clone is located at `~/.gemini/config/plugins/vikhyath-ai-engineering-os` and contains `plugin.json`.
+   - For Antigravity, ensure the clone is located at `~/.gemini/config/plugins/agylite` and contains `plugin.json`.
 2. **Missing External Dependency**:
    - If a task activates `Graphify`, ensure `graphify-ai` is installed in your Python environment (`pip install graphify-ai`).
 3. **Overriding Default Routing**:
    - To force or suppress a specific capability, state it directly in your prompt:
-     `"Use Vikhyath OS and perform a Ponytail simplicity review on src/engine/"`
+     `"Use Agylite and perform a Ponytail simplicity review on src/engine/"`
 4. **Reporting a Bug**:
    - Run `./scripts/doctor` and include the terminal output in your [Bug Report](.github/ISSUE_TEMPLATE/bug_report.md).
 
@@ -484,7 +484,7 @@ We welcome contributions! Please review our [Contributing Guide](CONTRIBUTING.md
 ```bash
 # Clone the repository
 git clone https://github.com/Vikhyath-thelazycoder/vikhyath-ai-engineering-os.git
-cd vikhyath-ai-engineering-os
+cd agylite
 
 # Install test dependencies
 pip install pyyaml
@@ -500,10 +500,10 @@ python3 -m unittest discover -s tests -p "test_*.py"
 ### Repository Structure
 
 ```text
-vikhyath-ai-engineering-os/
+agylite/
 ├── .agents/                    # Antigravity skill adapter and marketplace
 │   ├── plugins/marketplace.json
-│   └── skills/vikhyath-os/SKILL.md
+│   └── skills/agylite/SKILL.md
 ├── .claude-plugin/             # Claude Code packaging & marketplace
 │   ├── marketplace.json
 │   └── plugin.json
@@ -541,7 +541,7 @@ vikhyath-ai-engineering-os/
 
 ## 15. Security Model
 
-Vikhyath AI Engineering OS maintains a strict security posture:
+Agylite maintains a strict security posture:
 
 - **Cryptographic Immutability**: All external capabilities are pinned to immutable 40-character hexadecimal Git commit SHAs, preventing upstream supply chain attacks.
 - **Zero Daemons / Zero Network Sockets**: The plugin contains no daemon processes, listening sockets, or background network activity.
@@ -554,7 +554,7 @@ See [SECURITY.md](SECURITY.md) for full details and vulnerability reporting inst
 
 ## 16. No-MCP Statement
 
-> **Vikhyath AI Engineering OS is strictly and intentionally Model Context Protocol (MCP) FREE.**
+> **Agylite is strictly and intentionally Model Context Protocol (MCP) FREE.**
 
 - **Zero MCP Servers**: This repository does not define, launch, or configure any MCP servers.
 - **No `.mcp.json`**: There is no `.mcp.json` or `mcpServers` configuration present.

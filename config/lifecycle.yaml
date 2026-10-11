@@ -1,9 +1,9 @@
-# Vikhyath AI Engineering OS — engineering lifecycle (P13, spec §19, §25, D-038)
+# Agylite — engineering lifecycle (P13, spec §19, §25, D-038)
 #
 # One lifecycle for all engineering work: UNDERSTAND → PLAN → IMPLEMENT → TEST → VERIFY → RECONCILE. Replaces the
-# v1 workflows/*.md. `vikhyath route` returns the steps for the request's change type and project stage; each step
+# v1 workflows/*.md. `agylite route` returns the steps for the request's change type and project stage; each step
 # names the OS command that performs it and the exit criterion that must hold before the next step starts.
-# Completion states are spec §25 (vikhyath/project/lifecycle.py enforces the transitions): a task is VERIFIED or
+# Completion states are spec §25 (agylite/project/lifecycle.py enforces the transitions): a task is VERIFIED or
 # COMPLETED only with recorded evidence, never on a confident report.
 
 version: 1
@@ -12,34 +12,34 @@ steps:
   UNDERSTAND:
     purpose: Know what is asked and what it touches before changing anything.
     commands:
-      existing: ['vikhyath plan locate "<request>"', "vikhyath codebase affected --paths <files>"]
-      new: ['vikhyath project questions "<request>"']
+      existing: ['agylite plan locate "<request>"', "agylite codebase affected --paths <files>"]
+      new: ['agylite project questions "<request>"']
     exit: Intent restated; affected files and their tests listed (existing) or open requirement questions answered (new).
   PLAN:
     purpose: Put the change in the one living plan with acceptance criteria.
     commands:
-      existing: ['vikhyath plan reconcile "<request>"']
-      new: ['vikhyath plan add-task <phase> "<title>" --acceptance "<criteria>"']
-    exit: Task exists in the right phase with acceptance criteria; architecture changes recorded with `vikhyath decide add`.
+      existing: ['agylite plan reconcile "<request>"']
+      new: ['agylite plan add-task <phase> "<title>" --acceptance "<criteria>"']
+    exit: Task exists in the right phase with acceptance criteria; architecture changes recorded with `agylite decide add`.
   IMPLEMENT:
     purpose: Make the change within the planned scope.
     commands:
-      any: ["vikhyath plan set-status <task> IN_PROGRESS"]
+      any: ["agylite plan set-status <task> IN_PROGRESS"]
     exit: Complete deliverable, no placeholders or deferred remainder; scope matches the plan task.
   TEST:
     purpose: Prove the behaviour with tests that would fail without the change.
     commands:
-      any: ["vikhyath verify --plan"]
+      any: ["agylite verify --plan"]
     exit: Every changed behaviour has a test; new tests fail before and pass after the change.
   VERIFY:
     purpose: Run the local checks and record evidence (config/verification.yaml, local test-first).
     commands:
-      any: ["vikhyath verify", "vikhyath plan set-status <task> READY_FOR_VERIFICATION"]
+      any: ["agylite verify", "agylite plan set-status <task> READY_FOR_VERIFICATION"]
     exit: All selected checks PASSED with command, exit code and counts recorded; nothing visual claimed as verified.
   RECONCILE:
     purpose: Close the loop in the plan and state.
     commands:
-      any: ["vikhyath plan set-status <task> VERIFIED --evidence <evidence file>"]
+      any: ["agylite plan set-status <task> VERIFIED --evidence <evidence file>"]
     exit: Task VERIFIED (or COMPLETED) with evidence; follow-ups added as PLANNED tasks, never silently dropped.
 
 # Per change type: the step order and the extra rule that step carries. Types not listed use `default`.
@@ -60,5 +60,5 @@ change_types:
 # Completion discipline (Unlazy-derived, engineering/completion): substantial work writes acceptance gates first.
 completion:
   substantial_when: [multi-file change, new phase, more than one deliverable, user asks for exhaustive completion]
-  gates: ["vikhyath gates lint GATES.md", "vikhyath gates check GATES.md"]
+  gates: ["agylite gates lint GATES.md", "agylite gates check GATES.md"]
   done_requires: [evidence recorded, every gate met or visibly abandoned with a reason]

@@ -26,7 +26,7 @@ class TestSecurity(unittest.TestCase):
         self.assertFalse(os.path.exists(vendor_path), "vendor directory must not exist")
 
     def test_repo_never_contains_a_built_bundle(self):
-        # D-023: upstream files are fetched and built into $VIKHYATH_HOME at install, never committed here.
+        # D-023: upstream files are fetched and built into $AGYLITE_HOME at install, never committed here.
         for name in ("bundles", "files", "blobs"):
             self.assertFalse(os.path.exists(os.path.join(ROOT_DIR, name)), f"{name}/ must not exist in the repo")
         third_party = os.path.join(ROOT_DIR, "third_party")

@@ -39,7 +39,7 @@ jobs:
 
       - name: Check capability registry
         run: |
-          vikhyath registry check --no-bundle
+          agylite registry check --no-bundle
 
       - name: Run Benchmark analysis
         run: |

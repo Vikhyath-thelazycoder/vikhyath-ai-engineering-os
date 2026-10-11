@@ -3,4 +3,4 @@
 set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 case "${1:-}" in -v|--version) set -- --version ;; *) set -- doctor "$@" ;; esac
-exec env PYTHONPATH="$ROOT_DIR${PYTHONPATH:+:$PYTHONPATH}" "${VIKHYATH_PYTHON:-python3}" -m vikhyath "$@"
+exec env PYTHONPATH="$ROOT_DIR${PYTHONPATH:+:$PYTHONPATH}" "${AGYLITE_PYTHON:-python3}" -m agylite "$@"

@@ -12,8 +12,8 @@ ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 sys.path.insert(0, ROOT_DIR)
 
 from tests.bundle.test_build import FILES, Fixture  # noqa: E402
-from vikhyath.bundle import build as bundle_build  # noqa: E402
-from vikhyath.update import UpdateError, gc, rollback, update  # noqa: E402
+from agylite.bundle import build as bundle_build  # noqa: E402
+from agylite.update import UpdateError, gc, rollback, update  # noqa: E402
 
 NEW_SHA = "b" * 40
 

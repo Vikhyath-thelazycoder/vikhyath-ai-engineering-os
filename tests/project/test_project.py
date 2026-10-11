@@ -16,11 +16,11 @@ from unittest import mock
 ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 sys.path.insert(0, ROOT_DIR)
 
-from vikhyath.cli import main  # noqa: E402
-from vikhyath.events import log as event_log  # noqa: E402
-from vikhyath.project import decisions, lifecycle, plan_index, questions, reconcile, state  # noqa: E402
-from vikhyath.project.identity import detect  # noqa: E402
-from vikhyath.routing import Router  # noqa: E402
+from agylite.cli import main  # noqa: E402
+from agylite.events import log as event_log  # noqa: E402
+from agylite.project import decisions, lifecycle, plan_index, questions, reconcile, state  # noqa: E402
+from agylite.project.identity import detect  # noqa: E402
+from agylite.routing import Router  # noqa: E402
 
 PHASES = """
 ## P2 · Accounts and authentication
@@ -66,7 +66,7 @@ class ProjectEnv(unittest.TestCase):
         (self.root / ".git" / "HEAD").write_text("ref: refs/heads/main\n")
         (self.root / "package.json").write_text(json.dumps({"dependencies": {"react": "18", "stripe": "1"}}))
         (self.root / "src" / "bookings" / "api.ts").write_text("export const x = 1\n")
-        self.env = mock.patch.dict(os.environ, {"VIKHYATH_HOME": str(self.home)})
+        self.env = mock.patch.dict(os.environ, {"AGYLITE_HOME": str(self.home)})
         self.env.start()
         code, _, err = run_cli("project", "init", "--docs", "--project", str(self.root))
         self.assertEqual(code, 0, err)

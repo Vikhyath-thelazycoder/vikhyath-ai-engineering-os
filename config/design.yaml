@@ -1,6 +1,6 @@
-# Vikhyath AI Engineering OS — design-token limits (P14, spec §27, D-035/D-039)
+# Agylite — design-token limits (P14, spec §27, D-035/D-039)
 #
-# `vikhyath design check` counts literal design values in the project's style sources and compares them with these
+# `agylite design check` counts literal design values in the project's style sources and compares them with these
 # limits: PASS ≤ limit, WARN ≤ 2 × limit, FAIL above. Starting points from the design capabilities (Taste anti-slop,
 # Appllama "one accent, one grey family"); a project can justify more in DESIGN.md and record a design decision.
 

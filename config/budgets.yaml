@@ -1,4 +1,4 @@
-# Vikhyath AI Engineering OS — context budgets (P9, spec §16, §47, D-014)
+# Agylite — context budgets (P9, spec §16, §47, D-014)
 #
 # Token figures are ESTIMATES: bytes ÷ 4 (spec §46; no model tokenizer is used). Every value is a configurable
 # starting point from the doc 13 measurements; P25 benchmarks them against representative prompts and may change them

@@ -10,11 +10,11 @@ import unittest
 ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 sys.path.insert(0, ROOT_DIR)
 
-from vikhyath.cli import main  # noqa: E402
-from vikhyath.routing import ProjectFacts, Router, RoutingError, capability_ids  # noqa: E402
-from vikhyath.routing.classify import CHANGE_TYPES, classify_change, normalize  # noqa: E402
-from vikhyath.routing.fallback_bm25 import BM25  # noqa: E402
-from vikhyath.routing.rules import validate_routing  # noqa: E402
+from agylite.cli import main  # noqa: E402
+from agylite.routing import ProjectFacts, Router, RoutingError, capability_ids  # noqa: E402
+from agylite.routing.classify import CHANGE_TYPES, classify_change, normalize  # noqa: E402
+from agylite.routing.fallback_bm25 import BM25  # noqa: E402
+from agylite.routing.rules import validate_routing  # noqa: E402
 
 
 class TestRoutingConfig(unittest.TestCase):
@@ -143,11 +143,11 @@ class TestRouter(unittest.TestCase):
 
 
 class TestRouteCli(unittest.TestCase):
-    def setUp(self):   # `route` emits events: keep them out of the real $VIKHYATH_HOME
+    def setUp(self):   # `route` emits events: keep them out of the real $AGYLITE_HOME
         import tempfile
         from unittest import mock
         self.tmp = tempfile.TemporaryDirectory()
-        self.env = mock.patch.dict(os.environ, {"VIKHYATH_HOME": self.tmp.name})
+        self.env = mock.patch.dict(os.environ, {"AGYLITE_HOME": self.tmp.name})
         self.env.start()
 
     def tearDown(self):

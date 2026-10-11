@@ -6,7 +6,7 @@ import unittest
 ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 sys.path.insert(0, ROOT_DIR)
 
-from vikhyath.events.redact import redact, redact_text  # noqa: E402
+from agylite.events.redact import redact, redact_text  # noqa: E402
 
 # Synthetic credentials shaped like the real formats (none of these are valid keys).
 PLANTED = {

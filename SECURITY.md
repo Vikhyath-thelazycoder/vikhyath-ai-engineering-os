@@ -13,7 +13,7 @@ We release patches and security fixes for the current major/minor version series
 
 ## Security Model
 
-Vikhyath AI Engineering OS is designed with a defense-in-depth security model suited for developer tooling:
+Agylite is designed with a defense-in-depth security model suited for developer tooling:
 
 ### 1. Thin Orchestration (No Daemons, No Background Listeners)
 The project contains only static declarative manifests, routing configurations, skills, and validation scripts. There are:
@@ -25,7 +25,7 @@ The project contains only static declarative manifests, routing configurations, 
 External capabilities are never referenced via mutable branches (e.g., `main`, `master`) or unverified floating tags. Every upstream bundled into the capability registry is pinned (`docs/audit/evidence/upstream-staging-snapshot.yaml`, carried into every provenance record and registry entry) to a full **40-character hexadecimal Git commit SHA**. This protects against upstream tampering, unexpected breaking changes, and supply-chain supply poisoning.
 
 ### 3. Strict NO MCP Guarantee
-Model Context Protocol (MCP) servers run external processes with system-level access. Vikhyath OS strictly prohibits MCP:
+Model Context Protocol (MCP) servers run external processes with system-level access. Agylite strictly prohibits MCP:
 - No `mcpServers` manifests.
 - No `.mcp.json` files.
 - No MCP dependencies or proxy bridges.
@@ -41,7 +41,7 @@ Capability activations provide instructional routing guidance to the hosting env
 
 ## Reporting a Vulnerability
 
-If you discover a potential security vulnerability in Vikhyath AI Engineering OS:
+If you discover a potential security vulnerability in Agylite:
 
 1. **Do NOT disclose it publicly** in an open issue or discussion.
 2. Please submit a **Private Security Advisory** on GitHub via the [Advisories tab](https://github.com/Vikhyath-thelazycoder/vikhyath-ai-engineering-os/security/advisories/new).

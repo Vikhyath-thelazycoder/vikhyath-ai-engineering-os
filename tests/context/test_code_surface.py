@@ -12,10 +12,10 @@ ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 sys.path.insert(0, ROOT_DIR)
 
 from tests.context.fixtures import make_project  # noqa: E402
-from vikhyath.codebase import FALLBACK_NOTICE, affected  # noqa: E402
-from vikhyath.codebase import structural  # noqa: E402
-from vikhyath.project.identity import detect  # noqa: E402
-from vikhyath.routing import ProjectFacts, Router  # noqa: E402
+from agylite.codebase import FALLBACK_NOTICE, affected  # noqa: E402
+from agylite.codebase import structural  # noqa: E402
+from agylite.project.identity import detect  # noqa: E402
+from agylite.routing import ProjectFacts, Router  # noqa: E402
 
 
 def write(root: Path, files: dict):
@@ -113,7 +113,7 @@ class TestRouterImpactStep(unittest.TestCase):
         r = self.router.route("add refund support to the payment webhook", paths=["app/webhook.py"],
                               project=ProjectFacts(stage="existing"))
         self.assertGreaterEqual(r["schema_version"], 3)
-        self.assertEqual(r["impact"]["command"], "vikhyath codebase affected --paths app/webhook.py")
+        self.assertEqual(r["impact"]["command"], "agylite codebase affected --paths app/webhook.py")
         self.assertEqual(r["impact"]["code_files_limit"], 12)
 
     def test_new_project_has_no_impact_step(self):

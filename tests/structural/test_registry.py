@@ -10,8 +10,8 @@ import unittest
 ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 sys.path.insert(0, ROOT_DIR)
 
-from vikhyath.cli import main  # noqa: E402
-from vikhyath.registry import generate, loader, schema  # noqa: E402
+from agylite.cli import main  # noqa: E402
+from agylite.registry import generate, loader, schema  # noqa: E402
 
 EXPECTED_CAPABILITIES = 63  # D-035: + testing/evidence
 EXPECTED_BUNDLED_FILES = 2582  # D-034/D-035: −15 browser/visual files, +4 Appllama (LICENSE, SKILL, 2 references); D-037: +graphify serve.py; D-038: −laravel-plugin-discovery (MCP); P25: −graphify tests/test_skillgen.py

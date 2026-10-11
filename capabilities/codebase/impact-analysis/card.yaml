@@ -1,5 +1,5 @@
 # codebase/impact-analysis — capability card (spec §13). Provenance fields (sources, commit, license, size) are generated
-# by vikhyath/registry/generate.py; domain defaults come from config/priorities.yaml.
+# by agylite/registry/generate.py; domain defaults come from config/priorities.yaml.
 name: Impact analysis
 description: Affected-file and dependency impact of a change (graph reverse traversal)
 intent_tags: [impact, affected, what breaks, dependency, blast radius]

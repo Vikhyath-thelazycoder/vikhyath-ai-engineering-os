@@ -15,3 +15,18 @@ Absolute-import tracing found 2 open gaps: `graphify/tests/test_skillgen.py` imp
 
 ## Tests
 `tests/unit/test_p25.py`: fake installed plugin with `chrome-devtools` MCP + `~/.claude.json` server → reported; a `ghp_…` version string and an MCP env secret are not printed; function-local `from graphify.serve import …` resolves, third-party imports do not; benchmark compare on a fixture plugin root → routing all ok, NEW per-turn < 6,000 B. Full suite **245 OK, 3 skipped**.
+
+## Graphify upstream suite — per-file breakdown (carried from P12)
+Copy of the pinned upstream, scratch venv (core deps + pytest): **5,853 passed, 66 failed, 263 skipped** (4 min 31 s).
+| Failures | File | Cause |
+|---:|---|---|
+| 18 + 12 | test_terraform, test_terraform_modules | `tree-sitter-hcl` extra not installed |
+| 7 | test_r_extractor | R grammar (`tree-sitter-language-pack` extra) not installed |
+| 7 | test_erlang_extractor | Erlang grammar extra not installed |
+| 5 | test_vbnet_extractor | `tree-sitter-vb-dotnet` extra not installed |
+| 5 | test_solidity_extractor | `tree-sitter-solidity` extra not installed |
+| 6 | test_security | `example.com` DNS lookup — this machine has no DNS (environment, not code) |
+| 4 | test_ollama_retry_cap | LLM/Ollama backend not installed (LLM extraction excluded, SEC-09) |
+| 1 | test_install_references | `graphify install` (excluded, SEC-08) |
+| 1 | test_languages | `KeyError: 'coherence_check'` in an upstream markdown-frontmatter test (upstream issue; markdown extraction is not used by `affected`) |
+None of the failing areas is used by `update/query/path/explain/affected` on the languages the OS fixtures use.

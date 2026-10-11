@@ -8,10 +8,10 @@ from pathlib import Path
 ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 sys.path.insert(0, ROOT_DIR)
 
-from vikhyath.bundle import build as bundle_build  # noqa: E402
-from vikhyath.bundle.store import git_blob_sha1  # noqa: E402
-from vikhyath.registry.generate import check, load_registry  # noqa: E402
-from vikhyath.registry.loader import cards_hash  # noqa: E402
+from agylite.bundle import build as bundle_build  # noqa: E402
+from agylite.bundle.store import git_blob_sha1  # noqa: E402
+from agylite.registry.generate import check, load_registry  # noqa: E402
+from agylite.registry.loader import cards_hash  # noqa: E402
 
 SHA = "a" * 40
 FILES = {

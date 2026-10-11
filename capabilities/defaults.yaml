@@ -1,4 +1,4 @@
-# Registry-wide defaults (spec §13). Merged into every card by vikhyath/registry/loader.py; a card may override.
+# Registry-wide defaults (spec §13). Merged into every card by agylite/registry/loader.py; a card may override.
 # Domain-level routing defaults (priority, activation mode) live in config/priorities.yaml.
 
 version: 1
@@ -6,7 +6,7 @@ version: 1
 # Registry and display order of the domains; each has capabilities/<domain>/domain.yaml.
 domains: [engineering, codebase, design, testing, seo, media, observability]
 
-# Capabilities are host-neutral: every host reaches them through its thin adapter calling the `vikhyath` CLI (D-009).
+# Capabilities are host-neutral: every host reaches them through its thin adapter calling the `agylite` CLI (D-009).
 # Status stays NOT_VERIFIED until the host's adapter phase (P19–P22) records runtime evidence (D-024).
 host_compatibility:
   claude-code: {integration: adapter, status: NOT_VERIFIED}

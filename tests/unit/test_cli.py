@@ -7,8 +7,8 @@ import unittest
 ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 sys.path.insert(0, ROOT_DIR)
 
-from vikhyath import __version__  # noqa: E402
-from vikhyath.cli import PLANNED, main  # noqa: E402
+from agylite import __version__  # noqa: E402
+from agylite.cli import PLANNED, main  # noqa: E402
 
 
 class TestCli(unittest.TestCase):

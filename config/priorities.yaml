@@ -1,4 +1,4 @@
-# Vikhyath AI Engineering OS — Priority Configuration
+# Agylite — Priority Configuration
 # Conflict resolution and domain-level defaults. Per-capability metadata lives in capabilities/**/card.yaml.
 
 # When two capabilities provide conflicting guidance, use this hierarchy (level 1 wins)

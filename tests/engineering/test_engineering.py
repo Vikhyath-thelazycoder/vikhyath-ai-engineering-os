@@ -10,10 +10,10 @@ from pathlib import Path
 ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 sys.path.insert(0, ROOT_DIR)
 
-from vikhyath.bundle.transforms import domain  # noqa: E402
-from vikhyath.project.lifecycle import load_lifecycle, steps_for, validate_lifecycle  # noqa: E402
-from vikhyath.routing import ProjectFacts, Router  # noqa: E402
-from vikhyath.runtimes import unlazy  # noqa: E402
+from agylite.bundle.transforms import domain  # noqa: E402
+from agylite.project.lifecycle import load_lifecycle, steps_for, validate_lifecycle  # noqa: E402
+from agylite.routing import ProjectFacts, Router  # noqa: E402
+from agylite.runtimes import unlazy  # noqa: E402
 
 STAGED_UNLAZY = Path(ROOT_DIR) / ".staging" / "upstream" / "unlazy"
 
@@ -34,12 +34,12 @@ class TestLifecycle(unittest.TestCase):
         steps = steps_for(self.cfg, "BUG_FIX", "existing")
         self.assertEqual([s["step"] for s in steps], ["UNDERSTAND", "TEST", "IMPLEMENT", "VERIFY", "RECONCILE"])
         self.assertIn("failing regression test", steps[1]["rule"])
-        self.assertIn("vikhyath codebase affected --paths <files>", steps[0]["commands"])
+        self.assertIn("agylite codebase affected --paths <files>", steps[0]["commands"])
 
     def test_route_carries_lifecycle(self):
         r = self.router.route("build a SaaS for dentists", project=ProjectFacts(stage="new"))   # scenario A
         self.assertEqual(r["schema_version"], 4)
-        self.assertEqual(r["lifecycle"][0]["commands"], ['vikhyath project questions "<request>"'])
+        self.assertEqual(r["lifecycle"][0]["commands"], ['agylite project questions "<request>"'])
         r = self.router.route("add Google Maps navigation to bookings", project=ProjectFacts(stage="existing"))
         self.assertEqual(r["lifecycle"][-1]["step"], "RECONCILE")
         self.assertIsNone(self.router.route("make a launch video plan for our product")["lifecycle"])
@@ -48,7 +48,7 @@ class TestLifecycle(unittest.TestCase):
 class TestDomainTransform(unittest.TestCase):
     def test_gstack_adaptation(self):
         text = ("---\nname: x\nhooks:\n  PreToolUse:\n    - matcher: Edit\ntriggers:\n  - a\n---\n"
-                "<!-- vikhyath: gstack placeholder BASE_BRANCH_DETECT not recovered -->\n"
+                "<!-- agylite: gstack placeholder BASE_BRANCH_DETECT not recovered -->\n"
                 "Read `~/.claude/skills/gstack/review/checklist.md`.\n"
                 "Run gstack-review-read when done.\n"
                 "```bash\ngit diff\n~/.claude/skills/gstack/bin/gstack-review-log --start \\\n  --x y\necho ok\n```\n")
@@ -56,13 +56,13 @@ class TestDomainTransform(unittest.TestCase):
         self.assertNotIn("hooks:", out)
         self.assertIn("triggers:", out)
         self.assertIn("## Step 0: Detect the base branch", out)
-        self.assertIn("$VIKHYATH_BUNDLE/files/gstack/review/checklist.md", out)
-        self.assertIn("# [vikhyath] removed: gstack runtime step (gstack-review-log)", out)
+        self.assertIn("$AGYLITE_BUNDLE/files/gstack/review/checklist.md", out)
+        self.assertIn("# [agylite] removed: gstack runtime step (gstack-review-log)", out)
         self.assertNotIn("--x y", out)          # continuation line removed with its command
         self.assertIn("git diff\n", out)
         self.assertIn("echo ok", out)
-        self.assertIn("not part of Vikhyath OS — removed", out)
-        self.assertIn("Vikhyath OS adaptation (D-038)", out)
+        self.assertIn("not part of Agylite — removed", out)
+        self.assertIn("Agylite adaptation (D-038)", out)
         again, _ = domain.adapt("gstack", "review/SKILL.md", out, "engineering/review", {"review/checklist.md"})
         self.assertEqual(again, out)            # idempotent
 
@@ -86,9 +86,9 @@ class TestEntrySurfaces(unittest.TestCase):
 
     def test_entry_skills_are_thin(self):
         for name in ("engineering", "security", "review", "production", "codebase"):
-            text = Path(ROOT_DIR, "skills", f"vikhyath-{name}", "SKILL.md").read_text(encoding="utf-8")
+            text = Path(ROOT_DIR, "skills", f"agylite-{name}", "SKILL.md").read_text(encoding="utf-8")
             self.assertLessEqual(len(text.encode()), 2200, name)
-            self.assertIn("vikhyath ", text)
+            self.assertIn("agylite ", text)
             self.assertNotIn("ECC", text)       # no repo-first routing (MR-01)
 
 

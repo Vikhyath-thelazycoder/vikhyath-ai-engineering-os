@@ -5,7 +5,7 @@ import unittest
 ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 sys.path.insert(0, ROOT_DIR)
 
-from vikhyath.bundle import provenance, rules  # noqa: E402
+from agylite.bundle import provenance, rules  # noqa: E402
 
 EXPECTED_BUNDLED_FILES = 2582  # P6: 36 generated gstack sections rendered from .tmpl; Angular mcp.md and 13 UI/UX tooling tests excluded; D-034/D-035: −15 browser/visual files, +4 Appllama; D-037: +graphify serve.py; D-038: −laravel-plugin-discovery (MCP); P25: −graphify tests/test_skillgen.py
 

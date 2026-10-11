@@ -1,11 +1,11 @@
-# Vikhyath OS verification policy — the ONE source of truth (D-035). Global; read by the router, project state,
+# Agylite verification policy — the ONE source of truth (D-035). Global; read by the router, project state,
 # diagnostics and every host adapter (P19–P22 receive this same policy; no adapter may override it).
-# Per-project browser exceptions live only in <project>/.vikhyath/verification.yaml (isolated per project, P11).
+# Per-project browser exceptions live only in <project>/.agylite/verification.yaml (isolated per project, P11).
 
 version: 1
 mode: local-test-first
 
-# Disabled verification mechanisms. `vikhyath validate` fails if any of them is switched on here, if an enabled
+# Disabled verification mechanisms. `agylite validate` fails if any of them is switched on here, if an enabled
 # capability declares them, or if a routing rule can select a DISABLED_BY_POLICY capability.
 disabled:
   browser_visual_verification: true
@@ -43,7 +43,7 @@ browser_exception:
     - the user operates the browser; the agent does not navigate, click or capture
     - screenshots are never sent into model context
     - the reason local verification was insufficient is recorded (BROWSER_EXCEPTION_REQUESTED event)
-  scope: project  # recorded in that project's .vikhyath/verification.yaml only
+  scope: project  # recorded in that project's .agylite/verification.yaml only
 
 # Browser use that is not verification stays inside its own domain and never becomes engineering evidence.
 scoped_browser_use:

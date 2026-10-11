@@ -14,7 +14,7 @@ import yaml
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 sys.path.insert(0, ROOT)
-from vikhyath.registry.loader import load_cards, load_domains  # noqa: E402
+from agylite.registry.loader import load_cards, load_domains  # noqa: E402
 AUDIT = os.path.join(ROOT, "docs", "audit")
 EVIDENCE = os.path.join(AUDIT, "evidence")
 BUNDLED = {"COPY", "ADAPT", "WRAP", "PRESERVE"}

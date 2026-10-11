@@ -12,11 +12,11 @@ ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 sys.path.insert(0, ROOT_DIR)
 
 from tests.context.fixtures import make_project  # noqa: E402
-from vikhyath.cli import main  # noqa: E402
-from vikhyath.project.identity import detect  # noqa: E402
-from vikhyath.routing import Router, capability_ids  # noqa: E402
-from vikhyath.runtimes import seo  # noqa: E402
-from vikhyath.seo import authorization, evidence  # noqa: E402
+from agylite.cli import main  # noqa: E402
+from agylite.project.identity import detect  # noqa: E402
+from agylite.routing import Router, capability_ids  # noqa: E402
+from agylite.runtimes import seo  # noqa: E402
+from agylite.seo import authorization, evidence  # noqa: E402
 
 FULL = {"usable": True, "absence_supported": True, "limits": []}
 PARTIAL = {"usable": True, "absence_supported": False, "limits": ["Browser render deadline reached"]}
@@ -47,7 +47,7 @@ class TestAuthorization(unittest.TestCase):
         self.home = base / "home"
         self.root = make_project(base)
         self.project = detect(self.root, home=self.home)
-        self.env = mock.patch.dict(os.environ, {"VIKHYATH_HOME": str(self.home)})
+        self.env = mock.patch.dict(os.environ, {"AGYLITE_HOME": str(self.home)})
         self.env.start()
 
     def tearDown(self):
@@ -70,7 +70,7 @@ class TestAuthorization(unittest.TestCase):
         b = authorization.grant(self.project, site="acme.com", task="T-2.1", reason="r", hours=-1)
         with self.assertRaises(authorization.AuthorizationError):
             authorization.require(self.project, b["id"], action="apply")
-        text = (self.root / ".vikhyath" / "seo-authorizations.yaml").read_text(encoding="utf-8")
+        text = (self.root / ".agylite" / "seo-authorizations.yaml").read_text(encoding="utf-8")
         self.assertIn("used:", text)
         self.assertNotIn("password", text.lower())
 

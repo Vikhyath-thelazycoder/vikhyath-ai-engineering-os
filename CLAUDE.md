@@ -1,12 +1,12 @@
-# Vikhyath AI Engineering OS — Claude Code Instructions
+# Agylite — Claude Code Instructions
 
-This is the Vikhyath AI Engineering OS plugin for Claude Code.
+This is the Agylite plugin for Claude Code.
 
 ## Architecture Guidelines
 
 1. **Progressive Activation**: Do NOT load all skills. Classify the user task first, then activate/route only to relevant capabilities.
 2. **NO MCP**: This plugin does not use MCP. Do not suggest or enable MCP servers.
-3. **Route to Capabilities**: Run `vikhyath route "<request>"` (deterministic rules in `config/routing.yaml`) to determine which capabilities apply.
+3. **Route to Capabilities**: Run `agylite route "<request>"` (deterministic rules in `config/routing.yaml`) to determine which capabilities apply.
 4. **Context Efficiency**: Minimize token usage by reading skill content on demand.
 
 ## Marketplace & Installation
@@ -18,7 +18,7 @@ Claude Code marketplace metadata is defined in `.claude-plugin/marketplace.json`
 claude plugin marketplace add Vikhyath-thelazycoder/vikhyath-ai-engineering-os
 
 # Install plugin
-claude plugin install vikhyath-ai-engineering-os@vikhyath-marketplace
+claude plugin install agylite@agylite-marketplace
 ```
 
 ## Routing Quick Reference
@@ -33,4 +33,4 @@ claude plugin install vikhyath-ai-engineering-os@vikhyath-marketplace
 - **Design tasks** → OpenDesign
 - **Principles** → Karpathy Skills (reference only)
 
-See `capabilities/` (one `card.yaml` per capability; `vikhyath registry list`) for the full capability registry and `config/priorities.yaml` for conflict resolution.
+See `capabilities/` (one `card.yaml` per capability; `agylite registry list`) for the full capability registry and `config/priorities.yaml` for conflict resolution.

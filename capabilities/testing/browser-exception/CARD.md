@@ -2,7 +2,7 @@
 
 Browser/visual verification is disabled by policy; an explicit user request is recorded as a logged per-project exception instead.
 
-- **Use when:** never by routing; only `vikhyath verify exception` after local checks are insufficient, no equivalent test exists and the user explicitly asked (config/verification.yaml)
+- **Use when:** never by routing; only `agylite verify exception` after local checks are insufficient, no equivalent test exists and the user explicitly asked (config/verification.yaml)
 - **Activation:** explicit · priority 50 · context L1 · DISABLED_BY_POLICY
 - **Needs:** runtime os-native
 - **Loads:** OS-native (no bundled files)

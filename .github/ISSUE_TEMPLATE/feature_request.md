@@ -1,6 +1,6 @@
 ---
 name: Feature Request
-about: Suggest an idea or routing improvement for Vikhyath AI Engineering OS
+about: Suggest an idea or routing improvement for Agylite
 title: "[FEAT] "
 labels: ["enhancement"]
 assignees: ""

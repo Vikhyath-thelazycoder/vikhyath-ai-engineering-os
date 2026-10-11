@@ -11,8 +11,8 @@ from pathlib import Path
 ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 sys.path.insert(0, ROOT_DIR)
 
-from vikhyath.bundle.closure import references, resolve  # noqa: E402
-from vikhyath.diagnostics import benchmark, doctor  # noqa: E402
+from agylite.bundle.closure import references, resolve  # noqa: E402
+from agylite.diagnostics import benchmark, doctor  # noqa: E402
 
 
 def fake_plugin(user: Path, name: str, version: str, mcp=None):

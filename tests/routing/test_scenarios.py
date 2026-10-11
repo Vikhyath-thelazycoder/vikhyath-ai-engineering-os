@@ -10,7 +10,7 @@ import yaml
 ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 sys.path.insert(0, ROOT_DIR)
 
-from vikhyath.routing import ProjectFacts, Router, capability_ids  # noqa: E402
+from agylite.routing import ProjectFacts, Router, capability_ids  # noqa: E402
 
 with open(os.path.join(os.path.dirname(__file__), "scenarios.yaml"), encoding="utf-8") as _f:
     SCENARIOS = yaml.safe_load(_f)

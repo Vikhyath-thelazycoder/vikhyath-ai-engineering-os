@@ -1,4 +1,4 @@
-# Vikhyath OS v2 — upstream extraction rules (P2 draft; consumed by tools/audit/extraction_matrix.py, later by the P6 bundler)
+# Agylite v2 — upstream extraction rules (P2 draft; consumed by tools/audit/extraction_matrix.py, later by the P6 bundler)
 #
 # Every tracked upstream file receives exactly one decision: the FIRST rule whose glob matches wins,
 # otherwise the repo default applies. Globs: fnmatch with `**` = any depth.
@@ -15,7 +15,7 @@ reason_codes:
   INSTALLER: "Upstream installer/updater mutating host config (OS install flow owns this, §34)"
   HOST_PORT: "Per-host copy of canonical content (adapters render host forms, §2.2)"
   TRANSLATION: "Translated duplicate of canonical English content"
-  OUT_OF_DOMAIN: "No Vikhyath domain needs it"
+  OUT_OF_DOMAIN: "No Agylite domain needs it"
   PRODUCT_RUNTIME: "Upstream product app/daemon/cloud, not a capability"
   DUPLICATE: "Byte-identical or equivalent copy of a canonical file elsewhere"
   SUPERSEDED: "Replaced by a better source or by an OS-native mechanism"
